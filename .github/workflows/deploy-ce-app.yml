@@ -12,31 +12,13 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v3
 
-    - name: Log in to IBM Cloud
-      run: ibmcloud login --apikey '1D4vtuwENvuxvHRvYlOK22towUf8WOT0YLCjKQ92ThnE' -r us-south
-
-    - name: Target resource group
-      run: ibmcloud target -g Pruebas-Demos
-
-    - name: Display current directory
-      run: pwd
-
-    - name: List files in the current directory
-      run: ls -la
-
-    - name: List files in appbogados directory (if applicable)
-      run: ls -la ./appbogados
-
-    - name: Build Docker image
-      run: docker build -t appbogados .
-
     - name: Deploy Application to Code Engine
       uses: ibm/code-engine-github-action@v1
       with:
         api-key: '1D4vtuwENvuxvHRvYlOK22towUf8WOT0YLCjKQ92ThnE'
+        resource-group: 'Pruebas-Demos'
         region: 'us-south'
         project: 'ce-project-Appbogado'
         component: 'app'
         name: 'appbogados'
         build-source: './appbogados'
-        resource-group: 'Pruebas-Demos'
