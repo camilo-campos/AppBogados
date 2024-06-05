@@ -9,7 +9,7 @@ const router = express.Router()
 app.use("/", router)
 // get on root route 
 router.get("/", (req,res) => {
-	res.send("  APP Abogados")
+	res.send("  APP Abogados / maqueta en blanco")
 })
 // start server
 const server = app.listen(PORT, () => {
