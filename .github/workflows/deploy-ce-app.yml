@@ -21,4 +21,4 @@ jobs:
         project: 'ce-project-Appbogado'
         component: 'app'
         name: 'appbogados'
-        build-source: '/usr/src/app'
+         build-source: '.'
