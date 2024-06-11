@@ -1,7 +1,7 @@
 FROM node:alpine
 WORKDIR /usr/src/app
 COPY package*.json index.js ./
-COPY ./appABogados /usr/src/app
+COPY ./appABogados ./
 RUN npm install
 EXPOSE 8080
 CMD ["node", "index.js"]
