@@ -1,0 +1,304 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.image {
+  display: flex;
+  justify-content: center; /* Alinea las imágenes en el centro horizontalmente */
+  gap: 20px; /* Espacio entre las imágenes */
+}
+
+.image img {
+  width: 150px; /* Ancho de las imágenes */
+  height: 150px; /* Alto de las imágenes */
+  object-fit: cover; /* Ajusta cómo se redimensiona la imagen */
+}
+
+.logo img {
+  margin-right: 20px; /* Ajusta el espacio entre la imagen y el texto */
+}
+
+.logo h1 {
+  margin: 0; /* Elimina cualquier margen predeterminado en el h1 */
+  font-size: 24px; /* Ajusta el tamaño de la fuente si es necesario */
+}
+
+header {
+  background-color: #ff6f00;
+  color: white;
+  padding: 10px 0;
+  border-bottom: 2px solid #e0e0e0; /* Linea entre header y secciones */
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header-top .logo h1 {
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.button-nav {
+  background-color: rgb(50, 40, 99);
+  color: #f5f2f0;
+  padding: 10px 20px; /* Tamaño más grande para el botón */
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.button-main {
+  background-color: rgb(248, 248, 248);
+  color: #f8863a;
+  padding: 10px 20px; /* Tamaño más grande para el botón */
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.button-nav:hover {
+  background-color: #ffcc80; /* Color al pasar el cursor */
+}
+
+.main-banner {
+  background-color: #052565;
+  color: white;
+  padding: 40px 20px;
+  border-bottom: 2px solid #e0e0e0; /* Linea entre secciones */
+}
+
+.main-banner .content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.main-banner .text {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.main-banner .text h2 {
+  font-size: 24px;
+  margin: 0 0 10px 0;
+}
+
+.main-banner .text p {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.main-banner .text button {
+  background-color: white;
+  color: #ff6f00;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.main-banner .image {
+  flex: 1;
+}
+
+.main-banner .image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.how-to {
+  background-color: #ff6f00;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  border-bottom: 2px solid #e0e0e0; /* Linea entre secciones */
+}
+
+.how-to h2 {
+  margin: 0 0 20px 0;
+  font-size: 24px;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+}
+
+.step {
+  background-color: #ff6f00;
+  color: white;
+  margin: 0 10px;
+  padding: 20px;
+  border-radius: 5px;
+  flex: 1;
+  text-align: center;
+}
+
+.step-icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.step p {
+  font-size: 16px;
+}
+
+.step button {
+  background-color: #ff6f00;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+footer {
+  background-color: #000033;
+  color: white;
+  padding: 20px 0;
+  border-top: 2px solid #e0e0e0; /* Linea entre la ultima seccion y footer */
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.contact-info {
+  flex: 1;
+}
+
+.footer-links {
+  flex: 2;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-links .footer-section {
+  flex: 1;
+}
+
+.footer-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin: 5px 0;
+}
+
+.footer-links ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.social-media {
+  flex: 1;
+}
+
+.social-media ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.social-media ul li {
+  margin: 5px 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"] {
+  margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+button[type="submit"] {
+  width: 100%;
+}
+
+label {
+  font-weight: bold;
+  color: #333;
+}
+
+button[type="submit"] {
+  margin-top: 15px;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.formulario-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  height: 100vh; /* Ajusta el alto al 100% del viewport */
+  padding: 20px; /* Agrega espacio interno al formulario */
+  max-width: 400px; /* Establece el ancho máximo del formulario */
+  background-color: white; /* Color de fondo del formulario */
+  border-radius: 10px; /* Ajusta el radio de los bordes para suavizar las esquinas */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave alrededor del formulario */
+  margin: auto; /* Centra el formulario horizontalmente */
+}
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Aquí puedes añadir tus estilos personalizados */
