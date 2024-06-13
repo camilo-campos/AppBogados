@@ -12,12 +12,21 @@ const router = express.Router();
 app.use("/", router);
 // get on root route
 router.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(__dirname + "/public/index_cliente.html");
 });
 
 router.get("/contacto", (req, res) => {
   res.sendFile(__dirname + "/public/formulario_cliente.html");
 });
+
+router.get("/abogado", (req, res) => {
+  res.sendFile(__dirname + "/public/index_abogado.html");
+});
+
+router.get("/registro", (req, res) => {
+  res.sendFile(__dirname + "/public/formulario_abogado.html");
+});
+
 // Route to handle form submission
 router.post("/submit-form", (req, res) => {
   const formData = req.body;
@@ -28,7 +37,7 @@ router.post("/submit-form", (req, res) => {
 
 router.get("/success", (req, res) => {
   // Envia la página de éxito al usuario
-  res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(__dirname + "/public/index_cliente.html");
 });
 // start server
 const server = app.listen(PORT, () => {

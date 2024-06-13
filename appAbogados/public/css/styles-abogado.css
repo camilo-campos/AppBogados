@@ -37,7 +37,7 @@ body {
 }
 
 header {
-  background-color: #ff6f00;
+  background-color: #1a1449;
   color: white;
   padding: 10px 0;
   border-bottom: 2px solid #e0e0e0; /* Linea entre header y secciones */
@@ -83,7 +83,7 @@ nav ul li a {
 
 .button-main {
   background-color: rgb(248, 248, 248);
-  color: #f8863a;
+  color: white;
   padding: 10px 20px; /* Tamaño más grande para el botón */
   border-radius: 5px;
   text-decoration: none;
@@ -92,17 +92,6 @@ nav ul li a {
 
 .button-nav:hover {
   background-color: #ffcc80; /* Color al pasar el cursor */
-}
-
-.main-banner-cliente {
-  background-color: #052565;
-  color: white;
-  padding: 40px 20px;
-  border-bottom: 2px solid #e0e0e0; /* Linea entre secciones */
-  background-image: url("/imagen/fondo_final.png");
-  background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
-  background-position: center; /* Centra la imagen en el contenedor */
-  background-repeat: no-repeat;
 }
 
 .main-banner-abogado {
@@ -141,7 +130,7 @@ nav ul li a {
 
 .main-banner .text button {
   background-color: white;
-  color: #ff6f00;
+  color: #1a1449;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -158,7 +147,7 @@ nav ul li a {
 }
 
 .how-to {
-  background-color: #ff6f00;
+  background-color: #1a1449;
   color: white;
   padding: 40px 20px;
   text-align: center;
@@ -176,7 +165,7 @@ nav ul li a {
 }
 
 .step {
-  background-color: #ff6f00;
+  background-color: #1a1449;
   color: white;
   margin: 0 10px;
   padding: 20px;
@@ -211,8 +200,8 @@ nav ul li a {
 
 .step button,
 .button-main {
-  background-color: #ff6f00;
-  color: white;
+  background-color: white;
+  color: #ff6f00;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -220,7 +209,7 @@ nav ul li a {
 }
 
 footer {
-  background-color: #000033;
+  background-color: #1a1449;
   color: white;
   padding: 20px 0;
   border-top: 2px solid #e0e0e0; /* Linea entre la ultima seccion y footer */
@@ -277,60 +266,67 @@ footer {
   margin: 5px 0;
 }
 
+.formulario-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  padding: 20px; /* Agrega espacio interno al formulario */
+  max-width: 600px; /* Establece el ancho máximo del formulario */
+  background-color: white; /* Color de fondo del formulario */
+  border-radius: 10px; /* Ajusta el radio de los bordes para suavizar las esquinas */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave alrededor del formulario */
+  margin: 20px auto; /* Centra el formulario horizontalmente */
+}
+
 form {
   display: flex;
   flex-direction: column;
-}
-
-label {
-  margin-bottom: 5px;
-}
-
-input[type="text"],
-input[type="email"] {
-  margin-bottom: 15px;
-}
-
-input[type="text"],
-input[type="email"],
-button[type="submit"] {
-  width: 100%;
+  width: 100%; /* Asegura que el formulario ocupe todo el ancho del contenedor */
 }
 
 label {
   font-weight: bold;
   color: #333;
-}
-
-button[type="submit"] {
   margin-top: 15px;
 }
 
-button[type="submit"] {
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+select,
+textarea {
+  margin-bottom: 15px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input[type="file"] {
+  margin-bottom: 15px;
+}
+
+input[type="range"] {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+button[type="submit"],
+button[type="button"] {
   background-color: #007bff;
   color: #fff;
   border: none;
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 15px;
 }
 
-button[type="submit"]:hover {
+button[type="submit"]:hover,
+button[type="button"]:hover {
   background-color: #0056b3;
-}
-
-.formulario-div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centra verticalmente */
-  align-items: center; /* Centra horizontalmente */
-  height: 100vh; /* Ajusta el alto al 100% del viewport */
-  padding: 20px; /* Agrega espacio interno al formulario */
-  max-width: 400px; /* Establece el ancho máximo del formulario */
-  background-color: white; /* Color de fondo del formulario */
-  border-radius: 10px; /* Ajusta el radio de los bordes para suavizar las esquinas */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave alrededor del formulario */
-  margin: auto; /* Centra el formulario horizontalmente */
 }
 
 /* Aquí puedes añadir tus estilos personalizados */
