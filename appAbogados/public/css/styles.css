@@ -4,11 +4,6 @@ body {
   padding: 0;
   background-color: #f4f4f4;
 }
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
 
 .logo {
   display: flex;
@@ -105,17 +100,6 @@ nav ul li a {
   background-repeat: no-repeat;
 }
 
-.main-banner-abogado {
-  background-color: #052565;
-  color: white;
-  padding: 40px 20px;
-  border-bottom: 2px solid #e0e0e0; /* Linea entre secciones */
-  background-image: url("/imagen/fondo_abogado.png");
-  background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
-  background-position: center; /* Centra la imagen en el contenedor */
-  background-repeat: no-repeat;
-}
-
 .main-banner .content {
   display: flex;
   align-items: center;
@@ -157,83 +141,27 @@ nav ul li a {
   display: block;
 }
 
-.how-to {
-  background-image: url("/imagen/HOME.png"); /* Actualiza la ruta según sea necesario */
-  background-size: cover; /* Ajusta la imagen para cubrir el contenedor sin recortarse */
-  background-position: cover; /* Centra la imagen en el contenedor */
-  background-repeat: no-repeat;
-  background-color: #f8863a;
-  color: white;
-  padding: 40px 20px;
-  text-align: center;
-  border-bottom: 2px solid #e0e0e0; /* Línea entre secciones */
-}
-
-.how-to h2 {
-  font-size: 24px;
-  /* Ajusta los márgenes según tu diseño */
-  float: left; /* Coloca el h2 a la izquierda */
-}
-
-.steps {
-  display: flex;
-  justify-content: space-around; /* Asegura que los pasos estén espaciados uniformemente */
-}
-
-.step {
-  color: white;
-  margin: 0 10px;
-  padding: 20px;
-  border-radius: 5px;
-  flex: 1;
-  text-align: left; /* Alinea el texto al lado izquierdo */
-}
-
-.icon-container {
-  display: flex; /* Usamos flex para alinear el icono y el número horizontalmente */
-  align-items: center; /* Centra verticalmente los elementos */
-  justify-content: flex-start; /* Alinea horizontalmente los elementos a la izquierda */
-  width: auto;
-  margin-bottom: 10px; /* Añade margen inferior */
-}
-
-.icon-container img {
-  width: 100px; /* Ajusta el ancho del icono */
-  height: 100px; /* Ajusta la altura del icono */
-}
-
-.step-icon {
-  font-size: 36px;
-  color: white;
-  font-weight: bold;
-  margin-left: 10px; /* Añade margen entre el icono y el número */
-}
-
-.step p {
-  font-size: 16px;
-}
-
-.step button,
-.button-main {
+.background-container {
+  background-image: url("/imagen/HOME4.png");
   background-color: #ff6f00;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  margin-top: 10px;
+  background-size: contain; /* Asegura que la imagen cubra todo el contenedor */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-position: center; /* Centra la imagen en el contenedor */
+  width: 100%; /* Ajusta el ancho del contenedor */
+  height: 90vh; /* Ajusta la altura del contenedor; puedes cambiarlo según tus necesidades */
 }
 
 footer {
-  background-color: #000033;
+  /* Ajusta el color de fondo con transparencia si es necesario */
   color: white;
   padding: 20px 0;
-  border-top: 2px solid #e0e0e0; /* Linea entre la ultima seccion y footer */
+  border-top: 2px solid #e0e0e0;
 }
 
 .footer-content {
   display: flex;
   justify-content: space-between;
-  max-width: 1200px;
+  max-width: 3000px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -279,6 +207,67 @@ footer {
 
 .social-media ul li {
   margin: 5px 0;
+}
+
+.how-to {
+  /* Ajusta el color de fondo con transparencia si es necesario */
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.how-to h2 {
+  font-size: 24px;
+  float: left;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-around;
+}
+
+.step {
+  color: white;
+  margin: 0 10px;
+  padding: 20px;
+  border-radius: 5px;
+  flex: 1;
+  text-align: left;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: auto;
+  margin-bottom: 10px;
+}
+
+.icon-container img {
+  width: 100px;
+  height: 100px;
+}
+
+.step-icon {
+  font-size: 36px;
+  color: white;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.step p {
+  font-size: 16px;
+}
+
+.step button,
+.button-main {
+  background-color: #ff6f00;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
 form {
