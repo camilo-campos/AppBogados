@@ -30,12 +30,13 @@
       <h1>Registro de Abogado</h1>
       <form id="cliente-form" action="/submit-form" method="post">
         <input type="hidden" id="csrf-token" name="_csrf" value="" />
+        <input type="hidden" name="formType" value="abogado" />
         <h2>NIVEL I</h2>
-        <label for="nombres">Nombres:</label>
-        <input type="text" id="nombres" name="nombres" required />
+        <label for="Nombres">Nombres:</label>
+        <input type="text" id="name" name="nombres" required />
         <br />
         <label for="apellidos">Apellidos:</label>
-        <input type="text" id="apellidos" name="apellidos" required />
+        <input type="text" id="Apellidos" name="apellidos" required />
         <br />
         <label for="rut">Rut:</label>
         <input type="text" id="rut" name="rut" required />

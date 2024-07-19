@@ -11,6 +11,56 @@
 //    });
 //});
 
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("/csrf-token")
+    .then((response) => response.json())
+    .then((data) => {
+      document.getElementById("csrf-token").value = data.csrfToken;
+    })
+    .catch((error) => {
+      console.error("Error fetching CSRF token:", error);
+    });
+
+  fetch("/js/comunas.json")
+    .then((response) => response.json())
+    .then((data) => {
+      populateRegionAndComuna(data);
+    })
+    .catch((error) => {
+      console.error("Error fetching comunas JSON:", error);
+    });
+
+  function populateRegionAndComuna(data) {
+    const regionSelect = document.getElementById("Region");
+    const comunaSelect = document.getElementById("Comuna");
+
+    const regions = [...new Set(data.map(item => item.desc_region))];
+    regions.forEach(region => {
+      const option = document.createElement("option");
+      option.value = region;
+      option.textContent = region;
+      regionSelect.appendChild(option);
+    });
+
+    regionSelect.addEventListener("change", () => {
+      const selectedRegion = regionSelect.value;
+      const comunas = data.filter(item => item.desc_region === selectedRegion);
+      comunaSelect.innerHTML = "";  // Clear previous options
+
+      comunas.forEach(comuna => {
+        const option = document.createElement("option");
+        option.value = comuna.desc_comuna;
+        option.textContent = comuna.desc_comuna;
+        comunaSelect.appendChild(option);
+      });
+    });
+
+    // Trigger change event to populate the initial list of comunas
+    const event = new Event("change");
+    regionSelect.dispatchEvent(event);
+  }
+});
+
 document
   .getElementById("cliente-form")
   .addEventListener("submit", function (event) {
@@ -35,7 +85,10 @@ document
 
     fetch("/submit-form", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json",
+        "CSRF-Token": document.getElementById("csrf-token").value  // Add the CSRF token to the headers
+      },
       body: formJson,
     })
       .then((response) => {
