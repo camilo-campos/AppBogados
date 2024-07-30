@@ -26,41 +26,128 @@
     </header>
     <br />
     <div class="formulario-div">
-      <h1>Formulario de Cliente</h1>
       <form id="cliente-form" action="/submit-form" method="post">
         <input type="hidden" id="csrf-token" name="_csrf" value="" />
         <input type="hidden" name="formType" value="cliente" />
-        <label for="nombres">Nombres:</label>
-        <input type="text" id="name" name="name" required />
+
+        <label for="name">Nombres:</label>
+        <input type="text" id="name" name="nombres" required />
+
+        <label for="rut">Rut :</label>
+        <input type="text" name="rut" id="rut" required />
+
         <br />
         <label for="apellidos">Apellidos:</label>
         <input type="text" id="Apellidos" name="Apellidos" required />
+
         <br />
         <label for="email">Correo Electrónico:</label>
         <input type="email" id="email" name="email" required />
+
         <br />
         <label for="Region">Region de residencia:</label>
-        <select id="Region" name="Region" required>
+        <select id="Region" name="region" required>
           <option value="">Seleccione una región</option>
         </select>
+
         <br />
         <label for="Comuna">Comuna de residencia:</label>
-        <select id="Comuna" name="Comuna" required>
+        <select id="Comuna" name="comuna" required>
           <option value="">Seleccione una comuna</option>
         </select>
+
         <br />
-        <label for="name">Cuentanos tu problema:</label>
-        <textarea type="text" id="Problema" name="Problema" required></textarea>
-        <br />
-        <label for="archivo">Adjuntar Archivo:</label>
-        <input
-          type="file"
-          id="archivo"
-          name="archivo"
-          accept=".pdf,.doc,.docx,.txt"
-        />
-        <br />
-        <button type="submit">Enviar</button>
+        <label style="display: block; margin-top: 10px"
+          >¿Tienes antecedentes penales?</label
+        >
+        <div class="radio-group">
+          <input
+            type="radio"
+            id="penales_si"
+            name="antecedentes_penales"
+            value="si"
+            required
+          />
+          <label for="penales_si">SI</label>
+          <input
+            type="radio"
+            id="penales_no"
+            name="antecedentes_penales"
+            value="no"
+            required
+          />
+          <label for="penales_no">NO</label>
+        </div>
+
+        <label style="display: block; margin-top: 10px"
+          >¿Tienes antecedentes comerciales (DICOM)?</label
+        >
+        <div class="radio-group">
+          <input
+            type="radio"
+            id="dicom_si"
+            name="antecedentes_comerciales"
+            value="si"
+            required
+          />
+          <label for="dicom_si">SI</label>
+          <input
+            type="radio"
+            id="dicom_no"
+            name="antecedentes_comerciales"
+            value="no"
+            required
+          />
+          <label for="dicom_no">NO</label>
+        </div>
+
+        <label style="display: block; margin-top: 10px"
+          >¿Tienes Residencia regular en Chile?</label
+        >
+        <div class="radio-group">
+          <input
+            type="radio"
+            id="residencia_si"
+            name="residencia"
+            value="si"
+            required
+          />
+          <label for="residencia_si">SI</label>
+          <input
+            type="radio"
+            id="residencia_no"
+            name="residencia"
+            value="no"
+            required
+          />
+          <label for="residencia_no">NO</label>
+        </div>
+
+        <label for="Problema" style="display: block; margin-top: 10px"
+          >Describe tu problema aquí</label
+        >
+        <textarea
+          id="Problema"
+          name="Problema"
+          required
+          style="width: 100%; padding: 10px; border-radius: 5px; border: none"
+        ></textarea>
+
+        <button
+          type="submit"
+          style="
+            background-color: #ffa500;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+          "
+        >
+          Click Aquí
+        </button>
+
         <br />
       </form>
     </div>
@@ -101,5 +188,6 @@
         </div>
       </div>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
   </body>
 </html>

@@ -271,59 +271,53 @@ footer {
 }
 
 form {
-  display: flex;
-  flex-direction: column;
+  background-color: #f58220;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  margin: auto;
+  color: white;
+  box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total del formulario */
 }
 
-label {
-  margin-bottom: 5px;
+form h2 {
+  text-align: center;
 }
 
-input[type="text"],
-input[type="email"] {
-  margin-bottom: 15px;
+form label {
+  display: block;
+  margin-top: 10px;
+  margin-right: 10px; /* Añade espacio a la derecha de las etiquetas */
 }
 
-input[type="text"],
-input[type="email"],
-button[type="submit"] {
-  width: 100%;
-}
-
-label {
-  font-weight: bold;
-  color: #333;
-}
-
-button[type="submit"] {
-  margin-top: 15px;
-}
-
-button[type="submit"] {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
+form input,
+form select,
+form textarea {
+  width: calc(
+    100% - 22px
+  ); /* Ajusta el ancho para incluir el padding interno */
   padding: 10px;
   border-radius: 5px;
-  cursor: pointer;
+  border: none;
+  margin-top: 5px;
+  box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total del campo */
 }
 
-button[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
-.formulario-div {
+form .radio-group {
   display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centra verticalmente */
-  align-items: center; /* Centra horizontalmente */
-  height: 100vh; /* Ajusta el alto al 100% del viewport */
-  padding: 20px; /* Agrega espacio interno al formulario */
-  max-width: 400px; /* Establece el ancho máximo del formulario */
-  background-color: white; /* Color de fondo del formulario */
-  border-radius: 10px; /* Ajusta el radio de los bordes para suavizar las esquinas */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave alrededor del formulario */
-  margin: auto; /* Centra el formulario horizontalmente */
+  gap: 10px; /* Espacio entre las opciones */
+  margin-top: 10px;
+}
+
+form button {
+  background-color: #ffa500;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+  width: 100%;
 }
 
 /* Aquí puedes añadir tus estilos personalizados */

@@ -1,6 +1,7 @@
 // handle form using AI and the database
 const { handleForm } = require("./scripts/handleForm");
 const { getAssistantPrompt } = require("./scripts/databaseProcess");
+const { insertFormDataToDB } = require("./scripts/databaseControl");
 
 // require expressjs
 const express = require("express");
@@ -79,6 +80,19 @@ router.post("/submit-form", csrfProtection, (req, res) => {
   }
 
   res.redirect("/success"); // Redirige al usuario a una página de éxito
+});
+
+router.post("/submit-db", csrfProtection, async (req, res) => {
+  const formData = req.body;
+  console.log("Form Data for DB Insert:", formData);
+
+  try {
+    await insertFormDataToDB(formData);
+    res.status(200).json({ message: "Data inserted successfully" });
+  } catch (error) {
+    console.error("Error inserting data into DB:", error);
+    res.status(500).json({ message: "Error inserting data into DB" });
+  }
 });
 
 router.get("/success", csrfProtection, (req, res) => {
