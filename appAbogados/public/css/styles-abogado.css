@@ -266,23 +266,61 @@ footer {
   margin: 5px 0;
 }
 
-.formulario-div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centra verticalmente */
-  align-items: center; /* Centra horizontalmente */
-  padding: 20px; /* Agrega espacio interno al formulario */
-  max-width: 600px; /* Establece el ancho máximo del formulario */
-  background-color: white; /* Color de fondo del formulario */
-  border-radius: 10px; /* Ajusta el radio de los bordes para suavizar las esquinas */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave alrededor del formulario */
-  margin: 20px auto; /* Centra el formulario horizontalmente */
+form {
+  background-color: #1a1449;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  margin: auto;
+  color: white;
+  box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total del formulario */
 }
 
-form {
+form h2 {
+  text-align: center;
+}
+
+form label {
+  display: block;
+  margin-top: 10px;
+  margin-right: 10px;
+  color: white; /* Añade espacio a la derecha de las etiquetas */
+}
+
+#valor_nivel_coincidencia {
+  color: white;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+form input,
+form select,
+form textarea {
+  width: calc(
+    100% - 22px
+  ); /* Ajusta el ancho para incluir el padding interno */
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 5px;
+  box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total del campo */
+}
+
+form .radio-group {
   display: flex;
-  flex-direction: column;
-  width: 100%; /* Asegura que el formulario ocupe todo el ancho del contenedor */
+  gap: 10px; /* Espacio entre las opciones */
+  margin-top: 10px;
+}
+
+form button {
+  background-color: #1a1449;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+  width: 100%;
 }
 
 label {

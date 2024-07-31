@@ -99,6 +99,63 @@ async function insertFormDataToDB(formData) {
   }
 }
 
+async function insertAbogado(formData) {
+  const {
+    rut,
+    nombre,
+    apellidos,
+    mail,
+    telefono,
+    costo_ser_primer_adelant,
+    costo_ser_cuota_litis,
+    costo_ser_gastos_tramitacion,
+    horario_at_dias_hab,
+    horario_at_horas_hab,
+    req_cliente_sin_ant_penales,
+    req_cliente_sin_ant_com,
+    req_cliente_residencia_regular,
+    nivel_coincidencia,
+    descripcion,
+    territorio,
+    tipo_territorio,
+  } = formData;
+
+  try {
+    const client = await pool.connect();
+    const query = `
+      INSERT INTO dim_abogados (rut, nombres, apellidos, mail, telefono, costo_ser_primer_adelant, costo_ser_cuota_litis, costo_ser_gastos_tramitacion, horario_at_dias_hab, horario_at_horas_hab, req_cliente_sin_ant_penales, req_cliente_sin_ant_com, req_cliente_residencia_regular, nivel_coincidencia, descripcion, territorio, tipo_territorio)
+      VALUES ($1,$2, $3, $4, $5, $6, $7, $8, $9, $10, $11 , $12 , $13 , $14 , $15 , $16 , $17) RETURNING *`;
+    const values = [
+      rut,
+      nombre,
+      apellidos,
+      mail,
+      telefono,
+      costo_ser_primer_adelant,
+      costo_ser_cuota_litis,
+      costo_ser_gastos_tramitacion,
+      horario_at_dias_hab,
+      horario_at_horas_hab,
+      req_cliente_sin_ant_penales,
+      req_cliente_sin_ant_com,
+      req_cliente_residencia_regular,
+      nivel_coincidencia,
+      descripcion,
+      territorio,
+      tipo_territorio,
+    ];
+
+    const result = await client.query(query, values);
+    client.release();
+
+    console.log("Form Data Inserted:", result.rows[0]);
+    return result.rows[0];
+  } catch (error) {
+    console.error("Error executing query", error.stack);
+    throw error;
+  }
+}
+
 async function databaseGet({ table, ...filters } = {}) {
   let selectQuery;
   if (table) {
@@ -157,4 +214,9 @@ async function databaseGet({ table, ...filters } = {}) {
   }
 }
 
-module.exports = { databaseGet, databaseStore, insertFormDataToDB };
+module.exports = {
+  databaseGet,
+  databaseStore,
+  insertFormDataToDB,
+  insertAbogado,
+};

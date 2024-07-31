@@ -28,131 +28,119 @@
     
     <div class="formulario-div">
       <h1>Registro de Abogado</h1>
-      <form id="cliente-form" action="/submit-form" method="post">
+      <form id="abogado-form" action="/submit-form" method="post">
         <input type="hidden" id="csrf-token" name="_csrf" value="" />
         <input type="hidden" name="formType" value="abogado" />
         <h2>NIVEL I</h2>
-        <label for="Nombres">Nombres:</label>
-        <input type="text" id="name" name="nombres" required />
-        <br />
-        <label for="apellidos">Apellidos:</label>
-        <input type="text" id="Apellidos" name="apellidos" required />
-        <br />
         <label for="rut">Rut:</label>
         <input type="text" id="rut" name="rut" required />
         <br />
-        <label for="email">Correo Electrónico:</label>
-        <input type="email" id="email" name="email" required />
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required />
+        <br />
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos" required />
+        <br />
+        <label for="mail">Correo Electrónico:</label>
+        <input type="email" id="mail" name="mail" required />
         <br />
         <label for="telefono">Teléfono:</label>
         <input type="tel" id="telefono" name="telefono" required />
         <br />
-        <label for="password">Elige una contraseña:</label>
-        <input type="password" id="password" name="password" required />
-        <br />
-        <label for="confirm-password">Confirma tu contraseña:</label>
-        <input type="password" id="confirm-password" name="confirm-password" required />
-        <br />
-        <!-- Aquí agregarías tu captcha -->
-
-        <!-- NIVEL II -->
-        <h2>NIVEL II</h2>
-        <label>Contrata tu servicio aquí:</label>
-        <div>Resumen del servicio</div>
-        <button type="button">Botón de pago</button>
-        <br />
-        <label>Valida tu identidad aquí:</label>
-        <button type="button">Aplicación externa (Equifax u otra)</button>
-        <br />
-        <label for="titulo">Adjunta tu Título Profesional aquí:</label>
-        <input type="file" id="titulo" name="titulo" accept=".pdf,.jpg,.jpeg,.png" required />
-        <br />
-
-        <!-- NIVEL III -->
-        <h2>NIVEL III</h2>
-        <label for="areas-derecho">Áreas del derecho en que te especializas:</label>
-        <div id="areas-derecho">
-          <input type="checkbox" id="derecho-contractual" name="areas-derecho[]" value="derecho-contractual">
-          <label for="derecho-contractual">Derecho Contractual</label><br>
-          
-          <input type="checkbox" id="derecho-familia" name="areas-derecho[]" value="derecho-familia">
-          <label for="derecho-familia">Derecho de Familia</label><br>
-          
-          <input type="checkbox" id="derecho-migratorio" name="areas-derecho[]" value="derecho-migratorio">
-          <label for="derecho-migratorio">Derecho Migratorio</label><br>
-          
-          <input type="checkbox" id="derecho-laboral" name="areas-derecho[]" value="derecho-laboral">
-          <label for="derecho-laboral">Derecho Laboral</label><br>
-          
-          <input type="checkbox" id="derecho-penal" name="areas-derecho[]" value="derecho-penal">
-          <label for="derecho-penal">Derecho Penal</label><br>
-          
-          <input type="checkbox" id="derecho-comercial" name="areas-derecho[]" value="derecho-comercial">
-          <label for="derecho-comercial">Derecho Comercial</label><br>
-          
-          <input type="checkbox" id="derecho-aduanero" name="areas-derecho[]" value="derecho-aduanero">
-          <label for="derecho-aduanero">Derecho Aduanero</label><br>
-          
-          <input type="checkbox" id="derecho-tributario" name="areas-derecho[]" value="derecho-tributario">
-          <label for="derecho-tributario">Derecho Tributario</label><br>
-          
-          <input type="checkbox" id="derecho-consumidor" name="areas-derecho[]" value="derecho-consumidor">
-          <label for="derecho-consumidor">Derecho del Consumidor</label><br>
-          
-          <input type="checkbox" id="derechos-humanos" name="areas-derecho[]" value="derechos-humanos">
-          <label for="derechos-humanos">Derechos Humanos</label><br>
-          
-          <input type="checkbox" id="derecho-sucesorio" name="areas-derecho[]" value="derecho-sucesorio">
-          <label for="derecho-sucesorio">Derecho Sucesorio</label><br>
-          
-          <input type="checkbox" id="cobranzas" name="areas-derecho[]" value="cobranzas">
-          <label for="cobranzas">Cobranzas</label><br>
-          
-          <input type="checkbox" id="compra-propiedades" name="areas-derecho[]" value="compra-propiedades">
-          <label for="compra-propiedades">Compra de propiedades</label><br>
-          
-          <input type="checkbox" id="arriendo-propiedades" name="areas-derecho[]" value="arriendo-propiedades">
-          <label for="arriendo-propiedades">Arriendo de propiedades</label><br>
-          
-          <input type="checkbox" id="accidentes-transito" name="areas-derecho[]" value="accidentes-transito">
-          <label for="accidentes-transito">Accidentes de tránsito</label><br>
-          
-          <input type="checkbox" id="manejo-ebriedad" name="areas-derecho[]" value="manejo-ebriedad">
-          <label for="manejo-ebriedad">Manejo en estado de ebriedad</label><br>
-          
-          <input type="checkbox" id="problemas-vecinales" name="areas-derecho[]" value="problemas-vecinales">
-          <label for="problemas-vecinales">Problemas vecinales</label><br>
+    
+        <!-- Campos booleanos -->
+        <label style="display: block; margin-top: 10px">Costo Ser Primer Adelantado:</label>
+        <div class="radio-group">
+          <input type="radio" id="costo_ser_primer_adelant_si" name="costo_ser_primer_adelant" value="1" required />
+          <label for="costo_ser_primer_adelant_si">SI</label>
+          <input type="radio" id="costo_ser_primer_adelant_no" name="costo_ser_primer_adelant" value="0" required />
+          <label for="costo_ser_primer_adelant_no">NO</label>
         </div>
-
+    
+        <label style="display: block; margin-top: 10px">Costo Ser Cuota Litis:</label>
+        <div class="radio-group">
+          <input type="radio" id="costo_ser_cuota_litis_si" name="costo_ser_cuota_litis" value="1" required />
+          <label for="costo_ser_cuota_litis_si">SI</label>
+          <input type="radio" id="costo_ser_cuota_litis_no" name="costo_ser_cuota_litis" value="0" required />
+          <label for="costo_ser_cuota_litis_no">NO</label>
+        </div>
+    
+        <label style="display: block; margin-top: 10px">Costo Ser Gastos Tramitación:</label>
+        <div class="radio-group">
+          <input type="radio" id="costo_ser_gastos_tramitacion_si" name="costo_ser_gastos_tramitacion" value="1" required />
+          <label for="costo_ser_gastos_tramitacion_si">SI</label>
+          <input type="radio" id="costo_ser_gastos_tramitacion_no" name="costo_ser_gastos_tramitacion" value="0" required />
+          <label for="costo_ser_gastos_tramitacion_no">NO</label>
+        </div>
+    
+        <label style="display: block; margin-top: 10px">Horario Atención Días Hábiles:</label>
+        <div class="radio-group">
+          <input type="radio" id="horario_at_dias_hab_si" name="horario_at_dias_hab" value="1" required />
+          <label for="horario_at_dias_hab_si">SI</label>
+          <input type="radio" id="horario_at_dias_hab_no" name="horario_at_dias_hab" value="0" required />
+          <label for="horario_at_dias_hab_no">NO</label>
+        </div>
+    
+        <label style="display: block; margin-top: 10px">Horario Atención Horas Hábiles:</label>
+        <div class="radio-group">
+          <input type="radio" id="horario_at_horas_hab_si" name="horario_at_horas_hab" value="1" required />
+          <label for="horario_at_horas_hab_si">SI</label>
+          <input type="radio" id="horario_at_horas_hab_no" name="horario_at_horas_hab" value="0" required />
+          <label for="horario_at_horas_hab_no">NO</label>
+        </div>
+    
+        <label style="display: block; margin-top: 10px">Requiere Cliente sin Antecedentes Penales:</label>
+        <div class="radio-group">
+          <input type="radio" id="req_cliente_sin_ant_penales_si" name="req_cliente_sin_ant_penales" value="1" required />
+          <label for="req_cliente_sin_ant_penales_si">SI</label>
+          <input type="radio" id="req_cliente_sin_ant_penales_no" name="req_cliente_sin_ant_penales" value="0" required />
+          <label for="req_cliente_sin_ant_penales_no">NO</label>
+        </div>
+    
+        <label style="display: block; margin-top: 10px">Requiere Cliente sin Antecedentes Comerciales:</label>
+        <div class="radio-group">
+          <input type="radio" id="req_cliente_sin_ant_com_si" name="req_cliente_sin_ant_com" value="1" required />
+          <label for="req_cliente_sin_ant_com_si">SI</label>
+          <input type="radio" id="req_cliente_sin_ant_com_no" name="req_cliente_sin_ant_com" value="0" required />
+          <label for="req_cliente_sin_ant_com_no">NO</label>
+        </div>
+    
+        <label style="display: block; margin-top: 10px">Requiere Cliente con Residencia Regular:</label>
+        <div class="radio-group">
+          <input type="radio" id="req_cliente_residencia_regular_si" name="req_cliente_residencia_regular" value="1" required />
+          <label for="req_cliente_residencia_regular_si">SI</label>
+          <input type="radio" id="req_cliente_residencia_regular_no" name="req_cliente_residencia_regular" value="0" required />
+          <label for="req_cliente_residencia_regular_no">NO</label>
+        </div>
+    
+        <label for="nivel_coincidencia">Nivel de Coincidencia:</label>
+<input type="range" id="nivel_coincidencia" name="nivel_coincidencia" min="10" max="100" step="10" value="50" />
+<span id="valor_nivel_coincidencia">50</span>
+        <br />
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion"></textarea>
+        <br />
+        <label for="territorio">Territorio:</label>
+<input type="number" id="territorio" name="territorio" step="1" required />
+        <br />
+        <label for="tipo_territorio">Tipo de Territorio:</label>
+        <input type="text" id="tipo_territorio" name="tipo_territorio" required />
+        <br />
         
-        <br />
-        <label for="comunas">Comunas en que te desempeñas:</label>
-        <input type="text" id="comunas" name="comunas" required />
-        <br />
-        <label for="condiciones-atencion">Condiciones de atención al cliente (opcional):</label>
-        <textarea id="condiciones-atencion" name="condiciones-atencion"></textarea>
-        <br />
-        <label for="coincidencia">¿Qué nivel de coincidencia quieres tener con tus clientes?:</label>
-        <input type="range" id="coincidencia" name="coincidencia" min="50" max="100" step="10" />
-        <br />
-        <label for="cliente-ideal">Describe tu cliente ideal (campo abierto y opcional):</label>
-        <textarea id="cliente-ideal" name="cliente-ideal"></textarea>
-        <br />
-
         <button type="submit">Enviar</button>
       </form>
     </div>
+    
   
     </div>
     <br />
-    <script src="/js/script.js"></script>
+    <script src="/js/scriptabogado.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
 
     <footer>
       <div class="footer-content">
         <div class="contact-info">
-          <p>Contacto</p>
-          <p>Email: meugeniaibarra@gmail.com</p>
+          
         </div>
         <div class="footer-links">
           <div class="footer-section">

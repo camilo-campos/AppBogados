@@ -1,7 +1,10 @@
 // handle form using AI and the database
 const { handleForm } = require("./scripts/handleForm");
 const { getAssistantPrompt } = require("./scripts/databaseProcess");
-const { insertFormDataToDB } = require("./scripts/databaseControl");
+const {
+  insertFormDataToDB,
+  insertAbogado,
+} = require("./scripts/databaseControl");
 
 // require expressjs
 const express = require("express");
@@ -58,7 +61,7 @@ router.post("/submit-form", csrfProtection, (req, res) => {
   console.log("Form Data Received:", formData);
 
   if (formData.formType === "cliente") {
-    // Process client form data and get AI response
+    // Procesar datos del formulario de cliente y obtener respuesta de IA
     if (formData.Problema) {
       const prompt = "User: " + formData.Problema + getAssistantPrompt();
       handleForm(formData, prompt);
@@ -66,20 +69,23 @@ router.post("/submit-form", csrfProtection, (req, res) => {
       console.error("Error: No 'Problema' field in client form data");
     }
   } else if (formData.formType === "abogado") {
-    // Process abogado form data
-    if (formData.nombres && formData.apellidos) {
+    // Procesar datos del formulario de abogado
+    if (formData.nombre && formData.apellidos) {
       console.log("Processing Abogado form data");
-      // <-- Handle Abogado form data here :J -->
-      // ...
-      // <--
+      try {
+        insertAbogado(formData);
+        res.status(200).json({ message: "Data inserted successfully" });
+      } catch (error) {
+        console.error("Error inserting data into DB:", error);
+        res.status(500).json({ message: "Error inserting data into DB" });
+      }
     } else {
-      console.error("Error: Missing required fields in abogado form data");
+      console.error("Error: Unknown form type");
+      res.status(400).json({ error: "Invalid form type" }); // Respuesta JSON en caso de error
     }
   } else {
-    console.error("Error: Unknown form type");
+    res.status(400).json({ error: "Unknown form type" }); // Respuesta JSON en caso de error
   }
-
-  res.redirect("/success"); // Redirige al usuario a una página de éxito
 });
 
 router.post("/submit-db", csrfProtection, async (req, res) => {
