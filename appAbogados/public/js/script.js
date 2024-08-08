@@ -216,7 +216,7 @@ document
         throw new Error("Error al enviar el formulario");
       }
 
-      window.location.href = "/success"; // Redirigir después de la inserción exitosa
+      // Redirigir después de la inserción exitosa
     } catch (error) {
       console.error("Error:", error);
       alert(

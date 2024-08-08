@@ -3,39 +3,17 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
-}
-
-.logo {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  overflow-x: hidden;
 }
 
-.image {
-  display: flex;
-  justify-content: center; /* Alinea las imágenes en el centro horizontalmente */
-  gap: 20px; /* Espacio entre las imágenes */
-}
-
-.image img {
-  width: 150px; /* Ancho de las imágenes */
-  height: 150px; /* Alto de las imágenes */
-  object-fit: cover; /* Ajusta cómo se redimensiona la imagen */
-}
-
-.logo img {
-  margin-right: 20px; /* Ajusta el espacio entre la imagen y el texto */
-}
-
-.logo h1 {
-  margin: 0; /* Elimina cualquier margen predeterminado en el h1 */
-  font-size: 24px; /* Ajusta el tamaño de la fuente si es necesario */
-}
-
+/* Header */
 header {
   background-color: #ff6f00;
   color: white;
   padding: 10px 0;
-  border-bottom: 2px solid #e0e0e0; /* Linea entre header y secciones */
+  border-bottom: 2px solid #e0e0e0;
 }
 
 .header-top {
@@ -47,8 +25,18 @@ header {
   padding: 0 20px;
 }
 
-.header-top .logo h1 {
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  margin-right: 20px;
+}
+
+.logo h1 {
   margin: 0;
+  font-size: 24px;
 }
 
 nav ul {
@@ -67,95 +55,12 @@ nav ul li a {
   text-decoration: none;
 }
 
-.button-nav {
-  background-color: rgb(50, 40, 99);
-  color: #f5f2f0;
-  padding: 10px 20px; /* Tamaño más grande para el botón */
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.button-main {
-  background-color: rgb(248, 248, 248);
-  color: #f8863a;
-  padding: 10px 20px; /* Tamaño más grande para el botón */
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.button-nav:hover {
-  background-color: #ffcc80; /* Color al pasar el cursor */
-}
-
-.main-banner-cliente {
-  background-color: #052565;
-  color: white;
-  padding: 40px 20px;
-  border-bottom: 2px solid #e0e0e0; /* Linea entre secciones */
-  background-image: url("/imagen/fondo_final.png");
-  background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
-  background-position: center; /* Centra la imagen en el contenedor */
-  background-repeat: no-repeat;
-}
-
-.main-banner .content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.main-banner .text {
-  flex: 1;
-  margin-right: 20px;
-}
-
-.main-banner .text {
-  font-size: 24px;
-  margin: 0 0 10px 0;
-}
-
-.main-banner .text p {
-  font-size: 16px;
-  margin: 10px 0;
-}
-
-.main-banner .text button {
-  background-color: white;
-  color: #ff6f00;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.main-banner .image {
-  flex: 1;
-}
-
-.main-banner .image img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-.background-container {
-  background-image: url("/imagen/HOME4.png");
-  background-color: #ff6f00;
-  background-size: contain; /* Asegura que la imagen cubra todo el contenedor */
-  background-repeat: no-repeat; /* Evita que la imagen se repita */
-  background-position: center; /* Centra la imagen en el contenedor */
-  width: 100%; /* Ajusta el ancho del contenedor */
-  height: 90vh; /* Ajusta la altura del contenedor; puedes cambiarlo según tus necesidades */
-}
-
 footer {
   /* Ajusta el color de fondo con transparencia si es necesario */
   color: white;
   padding: 20px 0;
   border-top: 2px solid #e0e0e0;
+  background-color: #f58220;
 }
 
 .footer-content {
@@ -193,81 +98,6 @@ footer {
 .footer-links ul li a {
   color: white;
   text-decoration: none;
-}
-
-.social-media {
-  flex: 1;
-}
-
-.social-media ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.social-media ul li {
-  margin: 5px 0;
-}
-
-.how-to {
-  /* Ajusta el color de fondo con transparencia si es necesario */
-  color: white;
-  padding: 40px 20px;
-  text-align: center;
-  border-bottom: 2px solid #e0e0e0;
-}
-
-.how-to h2 {
-  font-size: 24px;
-  float: left;
-}
-
-.steps {
-  display: flex;
-  justify-content: space-around;
-}
-
-.step {
-  color: white;
-  margin: 0 10px;
-  padding: 20px;
-  border-radius: 5px;
-  flex: 1;
-  text-align: left;
-}
-
-.icon-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: auto;
-  margin-bottom: 10px;
-}
-
-.icon-container img {
-  width: 100px;
-  height: 100px;
-}
-
-.step-icon {
-  font-size: 36px;
-  color: white;
-  font-weight: bold;
-  margin-left: 10px;
-}
-
-.step p {
-  font-size: 16px;
-}
-
-.step button,
-.button-main {
-  background-color: #ff6f00;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  margin-top: 10px;
 }
 
 form {
@@ -321,3 +151,337 @@ form button {
 }
 
 /* Aquí puedes añadir tus estilos personalizados */
+@media (max-width: 767.98px) {
+  form {
+    width: 90%; /* Ajusta el ancho del formulario para dispositivos más pequeños */
+  }
+  .header-top {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo h1 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+  .main-banner-cliente {
+    padding: 20px 10px;
+  }
+
+  .main-banner .content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main-banner .text {
+    margin-right: 0;
+    text-align: center;
+  }
+
+  .main-banner .text p {
+    font-size: 14px;
+  }
+
+  .main-banner .image {
+    margin-top: 20px;
+  }
+
+  .main-banner .image img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .main-banner .text a.button-main {
+    display: block;
+    margin: 20px auto 0;
+  }
+  .how-to h2 {
+    font-size: 20px;
+  }
+
+  .steps {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step {
+    margin: 10px 0;
+  }
+
+  .icon-container img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .step-icon {
+    font-size: 30px;
+  }
+
+  .step p {
+    font-size: 14px;
+  }
+
+  .button-main {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  footer {
+    padding: 10px 0;
+    margin-top: 100px;
+  }
+
+  .footer-content {
+    padding: 0 10px;
+    flex-direction: column;
+  }
+
+  .footer-links {
+    flex-direction: column;
+  }
+
+  .footer-links ul,
+  .social-media ul {
+    display: block;
+  }
+
+  .footer-links ul li,
+  .social-media ul li {
+    margin: 5px 0;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  form {
+    width: 500px; /* Ajusta el ancho del formulario para dispositivos medianos */
+  }
+  .how-to h2 {
+    font-size: 22px;
+  }
+
+  .steps {
+    flex-direction: row;
+  }
+
+  .step {
+    margin: 10px;
+    min-width: 300px;
+  }
+
+  .icon-container img {
+    width: 90px;
+    height: 90px;
+  }
+
+  .step-icon {
+    font-size: 34px;
+  }
+
+  .step p {
+    font-size: 15px;
+  }
+  .header-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+
+  .main-banner-cliente {
+    padding: 30px 20px;
+  }
+
+  .main-banner .content {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .main-banner .text {
+    margin-right: 15px;
+    text-align: left;
+  }
+
+  .main-banner .text p {
+    font-size: 15px;
+  }
+
+  .main-banner .image {
+    margin-top: 0;
+  }
+  .footer-content {
+    flex-direction: column;
+  }
+
+  .footer-links {
+    flex-direction: column;
+  }
+
+  .footer-links ul,
+  .social-media ul {
+    display: block;
+  }
+
+  .footer-links ul li,
+  .social-media ul li {
+    margin: 10px 0;
+  }
+}
+
+/* Large devices (desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  form {
+    width: 600px; /* Ajusta el ancho del formulario para pantallas grandes */
+  }
+  .main-banner-cliente {
+    padding: 40px 20px;
+  }
+
+  .main-banner .content {
+    flex-direction: row;
+  }
+
+  .main-banner .text {
+    margin-right: 20px;
+  }
+
+  .main-banner .text p {
+    font-size: 16px;
+  }
+  .how-to h2 {
+    font-size: 24px;
+  }
+
+  .steps {
+    flex-direction: row;
+  }
+
+  .step {
+    margin: 20px;
+    min-width: 300px;
+  }
+
+  .icon-container img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .step-icon {
+    font-size: 36px;
+  }
+
+  .step p {
+    font-size: 16px;
+  }
+  .footer-content {
+    flex-direction: row;
+  }
+
+  .footer-links {
+    flex-direction: row;
+  }
+
+  .footer-links ul,
+  .social-media ul {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .footer-links ul li,
+  .social-media ul li {
+    margin: 10px 20px;
+  }
+}
+
+@media (max-width: 320px) {
+  .header-top {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px; /* Ajusta el relleno para pantallas más pequeñas */
+  }
+
+  .logo h1 {
+    font-size: 18px; /* Reduce el tamaño del texto para mejor ajuste */
+    text-align: center;
+  }
+
+  .logo img {
+    width: 60px; /* Ajusta el tamaño de la imagen del logo */
+    height: auto;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+  }
+
+  nav ul li {
+    margin: 5px 0; /* Ajusta el margen para pantallas pequeñas */
+  }
+
+  nav ul li a {
+    font-size: 14px; /* Reduce el tamaño de la fuente para mejor ajuste */
+  }
+
+  footer {
+    padding: 5px 0;
+    margin-top: 80px;
+  }
+
+  .footer-content {
+    padding: 0 5px;
+  }
+
+  .footer-links,
+  .social-media {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-links ul,
+  .social-media ul {
+    display: block;
+    text-align: center;
+  }
+
+  .footer-links ul li,
+  .social-media ul li {
+    margin: 3px 0;
+  }
+  form {
+    width: 100%; /* El formulario ocupa el ancho completo en dispositivos muy pequeños */
+    padding: 10px; /* Ajusta el padding para pantallas pequeñas */
+  }
+
+  form input,
+  form select,
+  form textarea {
+    width: calc(
+      100% - 18px
+    ); /* Ajusta el ancho para incluir el padding interno */
+    padding: 8px; /* Ajusta el padding para pantallas pequeñas */
+  }
+
+  form .radio-group {
+    flex-direction: column; /* Muestra las opciones de radio en una columna */
+  }
+}

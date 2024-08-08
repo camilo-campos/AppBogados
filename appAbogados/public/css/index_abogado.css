@@ -1,11 +1,16 @@
+/* Estilos Generales */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
+}
+
+/* Contenedor Principal */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 /* Header */
@@ -55,24 +60,157 @@ nav ul li a {
   text-decoration: none;
 }
 
+.button-nav,
+.button-main {
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+}
+
+.button-nav {
+  background-color: rgb(50, 40, 99);
+  color: #f5f2f0;
+}
+
+.button-main {
+  background-color: rgb(248, 248, 248);
+  color: white;
+}
+
+.button-nav:hover {
+  background-color: #ffcc80;
+}
+
+/* Banner Principal */
+.main-banner-abogado {
+  background-color: #052565;
+  color: white;
+  padding: 40px 20px;
+  border-bottom: 2px solid #e0e0e0;
+  background-image: url("/imagen/fondo_abogado.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.main-banner .content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.main-banner .text {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.main-banner .text h2 {
+  font-size: 24px;
+  margin: 0 0 10px 0;
+}
+
+.main-banner .text p {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.main-banner .text button {
+  background-color: white;
+  color: #1a1449;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.main-banner .image {
+  flex: 1;
+}
+
+.main-banner .image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Sección Cómo Hacerlo */
+.how-to {
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  border-bottom: 2px solid #e0e0e0;
+  max-width: 100%;
+  background-color: #1a1449; /* Evita el desbordamiento horizontal */
+}
+
+.steps {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  box-sizing: border-box; /* Incluye padding y border en el ancho total */
+}
+
+.step {
+  color: white;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 5px;
+  flex: 1;
+  min-width: 250px;
+  text-align: center;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.icon-container img {
+  width: 80px;
+  height: 80px;
+}
+
+.step-icon {
+  font-size: 36px;
+  color: rgb(195, 45, 45);
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.step p {
+  font-size: 16px;
+  margin: 0;
+}
+
+.step button,
+.button-main {
+  background-color: rgb(0, 0, 0);
+  color: #ff6f00;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Footer */
 footer {
-  /* Ajusta el color de fondo con transparencia si es necesario */
+  background-color: #1a1449;
   color: white;
   padding: 20px 0;
   border-top: 2px solid #e0e0e0;
-  background-color: #1a1449;
 }
 
 .footer-content {
   display: flex;
   justify-content: space-between;
-  max-width: 3000px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
-}
-
-.contact-info {
-  flex: 1;
 }
 
 .footer-links {
@@ -81,80 +219,45 @@ footer {
   justify-content: space-between;
 }
 
-.footer-links .footer-section {
+.footer-section {
   flex: 1;
 }
 
-.footer-links ul {
+.footer-links ul,
+.social-media ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.footer-links ul li {
+.footer-links ul li,
+.social-media ul li {
   margin: 5px 0;
 }
 
-.footer-links ul li a {
+.footer-links ul li a,
+.social-media ul li a {
   color: white;
   text-decoration: none;
 }
 
-form {
-  background-color: #1a1449;
-  padding: 20px;
-  border-radius: 10px;
-  width: 400px;
-  margin: auto;
-  color: white;
-  box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total del formulario */
+.social-media {
+  flex: 1;
 }
 
-form h2 {
-  text-align: center;
+.social-media img {
+  height: 20px;
+  width: 20px;
 }
 
-form label {
-  display: block;
-  margin-top: 10px;
-  margin-right: 10px; /* Añade espacio a la derecha de las etiquetas */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Incluye padding y border en el ancho total */
 }
 
-form input,
-form select,
-form textarea {
-  width: calc(
-    100% - 22px
-  ); /* Ajusta el ancho para incluir el padding interno */
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  margin-top: 5px;
-  box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total del campo */
-}
-
-form .radio-group {
-  display: flex;
-  gap: 10px; /* Espacio entre las opciones */
-  margin-top: 10px;
-}
-
-form button {
-  background-color: #ffa500;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  margin-top: 20px;
-  cursor: pointer;
-  width: 100%;
-}
-
-/* Aquí puedes añadir tus estilos personalizados */
+/* media query */
 @media (max-width: 767.98px) {
-  form {
-    width: 90%; /* Ajusta el ancho del formulario para dispositivos más pequeños */
-  }
   .header-top {
     flex-direction: column;
     align-items: center;
@@ -263,9 +366,6 @@ form button {
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991.98px) {
-  form {
-    width: 500px; /* Ajusta el ancho del formulario para dispositivos medianos */
-  }
   .how-to h2 {
     font-size: 22px;
   }
@@ -347,9 +447,6 @@ form button {
 
 /* Large devices (desktops, 1200px and up) */
 @media (min-width: 1200px) {
-  form {
-    width: 600px; /* Ajusta el ancho del formulario para pantallas grandes */
-  }
   .main-banner-cliente {
     padding: 40px 20px;
   }
@@ -442,6 +539,69 @@ form button {
     font-size: 14px; /* Reduce el tamaño de la fuente para mejor ajuste */
   }
 
+  .how-to h2 {
+    font-size: 18px;
+  }
+
+  .steps {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step {
+    margin: 10px 0;
+    padding: 10px; /* Adjust padding for small screens */
+    min-width: 100%; /* Ensure steps take full width */
+  }
+
+  .icon-container img {
+    width: 50px; /* Smaller icons for smaller screens */
+    height: 50px;
+  }
+
+  .step-icon {
+    font-size: 24px; /* Smaller step icons */
+  }
+
+  .step p {
+    font-size: 12px; /* Smaller text for better fit */
+  }
+
+  .button-main {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 8px; /* Adjust padding for smaller buttons */
+  }
+  .main-banner-cliente {
+    padding: 20px 10px;
+    background-size: contain; /* Ajusta la imagen de fondo para caber en la pantalla */
+  }
+
+  .main-banner .content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .main-banner .text {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .main-banner .text p {
+    font-size: 14px; /* Reduce el tamaño de la fuente */
+  }
+
+  .main-banner .image {
+    margin-top: 20px;
+  }
+
+  .main-banner .image img {
+    max-width: 100%;
+    height: auto;
+  }
+
   footer {
     padding: 5px 0;
     margin-top: 80px;
@@ -466,22 +626,5 @@ form button {
   .footer-links ul li,
   .social-media ul li {
     margin: 3px 0;
-  }
-  form {
-    width: 100%; /* El formulario ocupa el ancho completo en dispositivos muy pequeños */
-    padding: 10px; /* Ajusta el padding para pantallas pequeñas */
-  }
-
-  form input,
-  form select,
-  form textarea {
-    width: calc(
-      100% - 18px
-    ); /* Ajusta el ancho para incluir el padding interno */
-    padding: 8px; /* Ajusta el padding para pantallas pequeñas */
-  }
-
-  form .radio-group {
-    flex-direction: column; /* Muestra las opciones de radio en una columna */
   }
 }
