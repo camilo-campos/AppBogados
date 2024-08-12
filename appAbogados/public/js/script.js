@@ -201,20 +201,31 @@ document
         throw new Error("Error al insertar los datos en la base de datos");
       }
 
-      console.log("Datos insertados en la base de datos correctamente");
-      // Enviar datos al endpoint /submit-form
-      const responseForm = await fetch("/submit-form", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "CSRF-Token": document.getElementById("csrf-token").value,
-        },
-        body: JSON.stringify(formDataForFirstRequest),
-      });
+      document.getElementById("cliente-form").reset();
 
-      if (!responseForm.ok) {
-        throw new Error("Error al enviar el formulario");
-      }
+      document.getElementById("success-image").style.display = "block";
+      document
+        .getElementById("success-image")
+        .scrollIntoView({ behavior: "smooth" });
+
+      // Esperar 3 segundos y luego redirigir a otra página
+      setTimeout(() => {
+        window.location.href = "/success"; // Cambia "/gracias" por la ruta de la página de destino
+      }, 3000);
+      //console.log("Datos insertados en la base de datos correctamente");
+      // Enviar datos al endpoint /submit-form
+      //const responseForm = await fetch("/submit-form", {
+      //  method: "POST",
+      //  headers: {
+      //    "Content-Type": "application/json",
+      //    "CSRF-Token": document.getElementById("csrf-token").value,
+      //  },
+      //  body: JSON.stringify(formDataForFirstRequest),
+      //});
+
+      //if (!responseForm.ok) {
+      //  throw new Error("Error al enviar el formulario");
+      //}
 
       // Redirigir después de la inserción exitosa
     } catch (error) {

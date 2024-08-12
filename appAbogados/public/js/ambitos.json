@@ -1,0 +1,266 @@
+[
+  {
+    "id": 1,
+    "nombre": "Derecho Contractual",
+    "categoria": "Derecho Contractual"
+  },
+  {
+    "id": 2,
+    "nombre": "Pensión Alimenticia",
+    "categoria": "Derecho de Familia"
+  },
+  { "id": 3, "nombre": "Divorcio", "categoria": "Derecho de Familia" },
+  { "id": 4, "nombre": "Tuición", "categoria": "Derecho de Familia" },
+  {
+    "id": 5,
+    "nombre": "Juicio de paternidad",
+    "categoria": "Derecho de Familia"
+  },
+  {
+    "id": 6,
+    "nombre": "Régimen de visitas",
+    "categoria": "Derecho de Familia"
+  },
+  {
+    "id": 7,
+    "nombre": "Violencia Intrafamiliar",
+    "categoria": "Derecho de Familia"
+  },
+  { "id": 8, "nombre": "Cambio de Nombre", "categoria": "Derecho de Familia" },
+  {
+    "id": 9,
+    "nombre": "Declaración de Interdicción",
+    "categoria": "Derecho de Familia"
+  },
+  { "id": 10, "nombre": "Adopciones", "categoria": "Derecho de Familia" },
+  {
+    "id": 11,
+    "nombre": "Derecho Migratorio",
+    "categoria": "Derecho Migratorio"
+  },
+  {
+    "id": 12,
+    "nombre": "Defensa de derechos laborales",
+    "categoria": "Derecho Laboral"
+  },
+  {
+    "id": 13,
+    "nombre": "Despido injustificado",
+    "categoria": "Derecho Laboral"
+  },
+  { "id": 14, "nombre": "Licencia Médica", "categoria": "Derecho Laboral" },
+  {
+    "id": 15,
+    "nombre": "Accidentes Laborales",
+    "categoria": "Derecho Laboral"
+  },
+  { "id": 16, "nombre": "Acoso Sexual", "categoria": "Derecho Laboral" },
+  { "id": 17, "nombre": "Autodespido", "categoria": "Derecho Laboral" },
+  {
+    "id": 18,
+    "nombre": "Constitución de Sindicatos",
+    "categoria": "Derecho Laboral"
+  },
+  {
+    "id": 19,
+    "nombre": "Asesoría de Sindicatos",
+    "categoria": "Derecho Laboral"
+  },
+  {
+    "id": 20,
+    "nombre": "Negociación Colectiva",
+    "categoria": "Derecho Laboral"
+  },
+  { "id": 21, "nombre": "Abuso sexual", "categoria": "Derecho Penal" },
+  { "id": 22, "nombre": "Violación", "categoria": "Derecho Penal" },
+  { "id": 23, "nombre": "Robos", "categoria": "Derecho Penal" },
+  { "id": 24, "nombre": "Hurtos", "categoria": "Derecho Penal" },
+  { "id": 25, "nombre": "Lesiones", "categoria": "Derecho Penal" },
+  { "id": 26, "nombre": "Asesinato", "categoria": "Derecho Penal" },
+  { "id": 27, "nombre": "Muerte accidental", "categoria": "Derecho Penal" },
+  { "id": 28, "nombre": "Estafa", "categoria": "Derecho Penal" },
+  { "id": 29, "nombre": "Incendio", "categoria": "Derecho Penal" },
+  { "id": 30, "nombre": "Daños", "categoria": "Derecho Penal" },
+  { "id": 31, "nombre": "Calumnias", "categoria": "Derecho Penal" },
+  { "id": 32, "nombre": "Injurias", "categoria": "Derecho Penal" },
+  { "id": 33, "nombre": "Tráfico de drogas", "categoria": "Derecho Penal" },
+  { "id": 34, "nombre": "Negligencia médica", "categoria": "Derecho Penal" },
+  { "id": 35, "nombre": "Agresiones", "categoria": "Derecho Penal" },
+  { "id": 36, "nombre": "Discriminación", "categoria": "Derecho Penal" },
+  { "id": 37, "nombre": "Delitos de odio", "categoria": "Derecho Penal" },
+  { "id": 38, "nombre": "Chantaje", "categoria": "Derecho Penal" },
+  { "id": 39, "nombre": "Delitos Informáticos", "categoria": "Derecho Penal" },
+  { "id": 40, "nombre": "Quiebras", "categoria": "Derecho Comercial" },
+  { "id": 41, "nombre": "Insolvencias", "categoria": "Derecho Comercial" },
+  { "id": 42, "nombre": "Marcas", "categoria": "Derecho Comercial" },
+  {
+    "id": 43,
+    "nombre": "Patentes comerciales",
+    "categoria": "Derecho Comercial"
+  },
+  {
+    "id": 44,
+    "nombre": "Constitución de Sociedades",
+    "categoria": "Derecho Comercial"
+  },
+  {
+    "id": 45,
+    "nombre": "Redacción de contratos",
+    "categoria": "Derecho Comercial"
+  },
+  {
+    "id": 46,
+    "nombre": "Inversión extrajera",
+    "categoria": "Derecho Comercial"
+  },
+  {
+    "id": 47,
+    "nombre": "Mercado de capitales",
+    "categoria": "Derecho Comercial"
+  },
+  {
+    "id": 48,
+    "nombre": "Recursos Naturales",
+    "categoria": "Derecho Comercial"
+  },
+  { "id": 49, "nombre": "Medioambiente", "categoria": "Derecho Comercial" },
+  { "id": 50, "nombre": "Exportaciones", "categoria": "Derecho Comercial" },
+  { "id": 51, "nombre": "Importaciones", "categoria": "Derecho Comercial" },
+  { "id": 52, "nombre": "Agentes aduaneros", "categoria": "Derecho Aduanero" },
+  {
+    "id": 53,
+    "nombre": "Contratos de bodegaje",
+    "categoria": "Derecho Aduanero"
+  },
+  {
+    "id": 54,
+    "nombre": "Contratos de cabotaje",
+    "categoria": "Derecho Aduanero"
+  },
+  { "id": 55, "nombre": "Seguros aduaneros", "categoria": "Derecho Aduanero" },
+  {
+    "id": 56,
+    "nombre": "Planificación Tributaria",
+    "categoria": "Derecho Tributario"
+  },
+  {
+    "id": 57,
+    "nombre": "Litigios tributarios",
+    "categoria": "Derecho Tributario"
+  },
+  {
+    "id": 58,
+    "nombre": "Inmobiliarias",
+    "categoria": "Derecho del Consumidor"
+  },
+  {
+    "id": 59,
+    "nombre": "Constructoras",
+    "categoria": "Derecho del Consumidor"
+  },
+  { "id": 60, "nombre": "Bancos", "categoria": "Derecho del Consumidor" },
+  { "id": 61, "nombre": "AFPs", "categoria": "Derecho del Consumidor" },
+  { "id": 62, "nombre": "Aseguradoras", "categoria": "Derecho del Consumidor" },
+  { "id": 63, "nombre": "Transporte", "categoria": "Derecho del Consumidor" },
+  {
+    "id": 64,
+    "nombre": "Tiendas comerciales",
+    "categoria": "Derecho del Consumidor"
+  },
+  { "id": 65, "nombre": "Entretención", "categoria": "Derecho del Consumidor" },
+  { "id": 66, "nombre": "Turismo", "categoria": "Derecho del Consumidor" },
+  {
+    "id": 67,
+    "nombre": "Comercio Electrónico",
+    "categoria": "Derecho del Consumidor"
+  },
+  { "id": 68, "nombre": "Automóviles", "categoria": "Derecho del Consumidor" },
+  { "id": 69, "nombre": "Salud", "categoria": "Derecho del Consumidor" },
+  { "id": 70, "nombre": "Educación", "categoria": "Derecho del Consumidor" },
+  {
+    "id": 71,
+    "nombre": "Telecomunicaciones",
+    "categoria": "Derecho del Consumidor"
+  },
+  {
+    "id": 72,
+    "nombre": "Servicios básicos",
+    "categoria": "Derecho del Consumidor"
+  },
+  {
+    "id": 73,
+    "nombre": "Detención ilegal por parte del Estado",
+    "categoria": "Derechos Humanos"
+  },
+  {
+    "id": 74,
+    "nombre": "Lesiones por parte del Estado",
+    "categoria": "Derechos Humanos"
+  },
+  {
+    "id": 75,
+    "nombre": "Tortura por parte del Estado",
+    "categoria": "Derechos Humanos"
+  },
+  {
+    "id": 76,
+    "nombre": "Secuestro por parte del Estado",
+    "categoria": "Derechos Humanos"
+  },
+  {
+    "id": 77,
+    "nombre": "Sustracción de menores por parte del Estado",
+    "categoria": "Derechos Humanos"
+  },
+  {
+    "id": 78,
+    "nombre": "Violencia sexual por parte del Estado",
+    "categoria": "Derechos Humanos"
+  },
+  {
+    "id": 79,
+    "nombre": "Adopciones irregulares por parte del Estado",
+    "categoria": "Derechos Humanos"
+  },
+  {
+    "id": 80,
+    "nombre": "Homicidio por parte del Estado",
+    "categoria": "Derechos Humanos"
+  },
+  { "id": 81, "nombre": "Herencias", "categoria": "Derecho Sucesorio" },
+  { "id": 82, "nombre": "Particiones", "categoria": "Derecho Sucesorio" },
+  { "id": 83, "nombre": "Testamentos", "categoria": "Derecho Sucesorio" },
+  {
+    "id": 84,
+    "nombre": "Posesiones Efectivas",
+    "categoria": "Derecho Sucesorio"
+  },
+  { "id": 85, "nombre": "Repactación de deudas", "categoria": "Cobranzas" },
+  { "id": 86, "nombre": "Embargos", "categoria": "Cobranzas" },
+  { "id": 87, "nombre": "Remates", "categoria": "Cobranzas" },
+  {
+    "id": 88,
+    "nombre": "Compra de propiedades",
+    "categoria": "Compra de propiedades"
+  },
+  {
+    "id": 89,
+    "nombre": "Arriendo de propiedades",
+    "categoria": "Arriendo de propiedades"
+  },
+  {
+    "id": 90,
+    "nombre": "Accidentes de tránsito",
+    "categoria": "Accidentes de tránsito"
+  },
+  {
+    "id": 91,
+    "nombre": "Manejo en estado de ebriedad",
+    "categoria": "Manejo en estado de ebriedad"
+  },
+  {
+    "id": 92,
+    "nombre": "Problemas vecinales",
+    "categoria": "Problemas vecinales"
+  }
+]

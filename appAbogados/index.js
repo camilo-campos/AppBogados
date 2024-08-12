@@ -4,6 +4,7 @@ const { getAssistantPrompt } = require("./scripts/databaseProcess");
 const {
   insertFormDataToDB,
   insertAbogado,
+  insertft_ambitos,
 } = require("./scripts/databaseControl");
 
 // require expressjs
@@ -56,35 +57,52 @@ router.get("/csrf-token", csrfProtection, (req, res) => {
 });
 
 // Route to handle form submission
-router.post("/submit-form", csrfProtection, (req, res) => {
+router.post("/submit-form", csrfProtection, async (req, res) => {
   const formData = req.body;
   console.log("Form Data Received:", formData);
 
   if (formData.formType === "cliente") {
-    // Procesar datos del formulario de cliente y obtener respuesta de IA
     if (formData.Problema) {
       const prompt = "User: " + formData.Problema + getAssistantPrompt();
-      handleForm(formData, prompt);
+      await handleForm(formData, prompt);
+      res.status(200).json({ message: "Client form processed successfully" });
     } else {
       console.error("Error: No 'Problema' field in client form data");
+      res
+        .status(400)
+        .json({ error: "No 'Problema' field in client form data" });
     }
   } else if (formData.formType === "abogado") {
-    // Procesar datos del formulario de abogado
     if (formData.nombre && formData.apellidos) {
       console.log("Processing Abogado form data");
       try {
-        insertAbogado(formData);
+        // Insertar datos del abogado en la tabla correspondiente
+        await insertAbogado(formData);
+
+        // Insertar datos en la tabla ft_ambitos para cada ámbito seleccionado
+        const selectedSpecialties = formData.especialidades; // IDs de los ámbitos seleccionados
+        const rut = formData.rut;
+        const vigencia = "SI";
+
+        // Esperar que todas las inserciones se completen antes de enviar la respuesta
+        await Promise.all(
+          selectedSpecialties.map(async (id_ambito) => {
+            const id_rut_ambito = `${rut}-${id_ambito}`; // Combina rut y id_ambito
+            await insertft_ambitos({ id_rut_ambito, rut, id_ambito, vigencia });
+          })
+        );
+
         res.status(200).json({ message: "Data inserted successfully" });
       } catch (error) {
         console.error("Error inserting data into DB:", error);
         res.status(500).json({ message: "Error inserting data into DB" });
       }
     } else {
-      console.error("Error: Unknown form type");
-      res.status(400).json({ error: "Invalid form type" }); // Respuesta JSON en caso de error
+      console.error("Error: Missing required form fields");
+      res.status(400).json({ error: "Invalid form data" });
     }
   } else {
-    res.status(400).json({ error: "Unknown form type" }); // Respuesta JSON en caso de error
+    res.status(400).json({ error: "Unknown form type" });
   }
 });
 

@@ -99,6 +99,27 @@ async function insertFormDataToDB(formData) {
   }
 }
 
+async function insertft_ambitos(formData) {
+  const { id_rut_ambito, rut, id_ambito, vigencia } = formData;
+
+  try {
+    const client = await pool.connect();
+    const query = `
+      INSERT INTO ft_ambitos (id_rut_ambito, rut, id_ambito, vigencia)
+      VALUES ($1, $2, $3, $4) RETURNING *`;
+    const values = [id_rut_ambito, rut, id_ambito, vigencia];
+
+    const result = await client.query(query, values);
+    client.release();
+
+    console.log("Form Data Inserted:", result.rows[0]);
+    return result.rows[0];
+  } catch (error) {
+    console.error("Error executing query", error.stack);
+    throw error;
+  }
+}
+
 async function insertAbogado(formData) {
   const {
     rut,
@@ -116,14 +137,14 @@ async function insertAbogado(formData) {
     req_cliente_residencia_regular,
     nivel_coincidencia,
     descripcion,
-    territorio,
-    tipo_territorio,
+    region,
+    comuna,
   } = formData;
 
   try {
     const client = await pool.connect();
     const query = `
-      INSERT INTO dim_abogados (rut, nombres, apellidos, mail, telefono, costo_ser_primer_adelant, costo_ser_cuota_litis, costo_ser_gastos_tramitacion, horario_at_dias_hab, horario_at_horas_hab, req_cliente_sin_ant_penales, req_cliente_sin_ant_com, req_cliente_residencia_regular, nivel_coincidencia, descripcion, territorio, tipo_territorio)
+      INSERT INTO dim_abogados (rut, nombres, apellidos, mail, telefono, costo_ser_primer_adelant, costo_ser_cuota_litis, costo_ser_gastos_tramitacion, horario_at_dias_hab, horario_at_horas_hab, req_cliente_sin_ant_penales, req_cliente_sin_ant_com, req_cliente_residencia_regular, nivel_coincidencia, descripcion, region, comuna)
       VALUES ($1,$2, $3, $4, $5, $6, $7, $8, $9, $10, $11 , $12 , $13 , $14 , $15 , $16 , $17) RETURNING *`;
     const values = [
       rut,
@@ -141,8 +162,8 @@ async function insertAbogado(formData) {
       req_cliente_residencia_regular,
       nivel_coincidencia,
       descripcion,
-      territorio,
-      tipo_territorio,
+      region,
+      comuna,
     ];
 
     const result = await client.query(query, values);
@@ -219,4 +240,5 @@ module.exports = {
   databaseStore,
   insertFormDataToDB,
   insertAbogado,
+  insertft_ambitos,
 };

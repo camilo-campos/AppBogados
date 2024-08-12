@@ -99,6 +99,69 @@ footer {
   color: white;
   text-decoration: none;
 }
+/* Estilo para el formulario en general */
+.formulario_ambito {
+  max-width: 800px;
+  margin: 0 auto;
+  color: #ddd;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #1a1449;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para las etiquetas */
+.formulario_ambito label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Estilo para los checkboxes */
+.formulario_ambito input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+/* Estilo para los grupos de checkboxes */
+.formulario_ambito div {
+  margin-bottom: 20px;
+}
+
+/* Estilo para el botón de enviar */
+.formulario_ambito input[type="submit"] {
+  background-color: #007bff;
+  color: #0c0505;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.formulario_ambito input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para mejorar la visibilidad de los checkboxes dentro de un grupo */
+.formulario_ambito div > input[type="checkbox"] {
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* Espaciado entre checkboxes */
+.formulario_ambito div input[type="checkbox"] + label {
+  margin-left: 5px;
+}
+
+/* Estilo para los grupos de checkboxes anidados */
+.formulario_ambito div > div {
+  margin-left: 20px;
+}
 
 form {
   background-color: #1a1449;

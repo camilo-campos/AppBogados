@@ -10,6 +10,68 @@
 //      console.error("Error fetching CSRF token:", error);
 //    });
 //});
+let especialidades = [];
+
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("/js/ambitos.json")
+    .then((response) => response.json())
+    .then((data) => {
+      especialidades = data;
+    })
+    .catch((error) => {
+      console.error("Error fetching especialidades JSON:", error);
+    });
+
+  fetch("/csrf-token")
+    .then((response) => response.json())
+    .then((data) => {
+      document.getElementById("csrf-token").value = data.csrfToken;
+    })
+    .catch((error) => {
+      console.error("Error fetching CSRF token:", error);
+    });
+
+  fetch("/js/comunas.json")
+    .then((response) => response.json())
+    .then((data) => {
+      populateRegionAndComuna(data);
+    })
+    .catch((error) => {
+      console.error("Error fetching comunas JSON:", error);
+    });
+
+  function populateRegionAndComuna(data) {
+    const regionSelect = document.getElementById("region");
+    const comunaSelect = document.getElementById("comuna");
+
+    const regions = [...new Set(data.map((item) => item.desc_region))];
+    regions.forEach((region) => {
+      const option = document.createElement("option");
+      option.value = region;
+      option.textContent = region;
+      regionSelect.appendChild(option);
+    });
+
+    regionSelect.addEventListener("change", () => {
+      const selectedRegion = regionSelect.value;
+      const comunas = data.filter(
+        (item) => item.desc_region === selectedRegion
+      );
+      comunaSelect.innerHTML = ""; // Clear previous options
+
+      comunas.forEach((comuna) => {
+        const option = document.createElement("option");
+        option.value = comuna.desc_comuna;
+        option.textContent = comuna.desc_comuna;
+        comunaSelect.appendChild(option);
+      });
+    });
+
+    // Trigger change event to populate the initial list of comunas
+    const event = new Event("change");
+    regionSelect.dispatchEvent(event);
+  }
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   // Obtener el CSRF token
@@ -35,10 +97,97 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// Función para validar los campos del formulario y devolver mensajes de error específicos
+function validateForm() {
+  const errors = [];
+
+  const name = document.getElementById("nombre").value.trim();
+  const rut = document.getElementById("rut").value.trim();
+  const apellidos = document.getElementById("apellidos").value.trim();
+  const mail = document.getElementById("mail").value.trim();
+  const telefono = document.getElementById("telefono").value.trim();
+  const costo_ser_primer_adelant = document.querySelector(
+    'input[name="costo_ser_primer_adelant"]:checked'
+  )?.value;
+  const costo_ser_cuota_litis = document.querySelector(
+    'input[name="costo_ser_cuota_litis"]:checked'
+  )?.value;
+  const costo_ser_gastos_tramitacion = document.querySelector(
+    'input[name="costo_ser_gastos_tramitacion"]:checked'
+  )?.value;
+  const horario_at_dias_hab = document.querySelector(
+    'input[name="horario_at_dias_hab"]:checked'
+  )?.value;
+  const horario_at_horas_hab = document.querySelector(
+    'input[name="horario_at_horas_hab"]:checked'
+  )?.value;
+  const req_cliente_sin_ant_penales = document.querySelector(
+    'input[name="req_cliente_sin_ant_penales"]:checked'
+  )?.value;
+  const req_cliente_sin_ant_com = document.querySelector(
+    'input[name="req_cliente_sin_ant_com"]:checked'
+  )?.value;
+  const req_cliente_residencia_regular = document.querySelector(
+    'input[name="req_cliente_residencia_regular"]:checked'
+  )?.value;
+  const nivel_coincidencia = document
+    .getElementById("nivel_coincidencia")
+    ?.value.trim();
+  const descripcion = document.getElementById("descripcion").value.trim();
+  const region = document.getElementById("region").value.trim();
+  const comuna = document.getElementById("comuna").value.trim();
+  const selectedSpecialties = document.querySelectorAll(
+    'input[name="especialidad"]:checked'
+  );
+
+  if (!name) errors.push("Nombre es obligatorio.");
+  if (!rut) errors.push("RUT es obligatorio.");
+  if (!apellidos) errors.push("Apellidos son obligatorios.");
+  if (!mail) errors.push("Correo electrónico es obligatorio.");
+  if (!telefono) errors.push("Teléfono es obligatorio.");
+  if (!costo_ser_primer_adelant)
+    errors.push("Debe seleccionar el costo por ser primer adelantado.");
+  if (!costo_ser_cuota_litis)
+    errors.push("Debe seleccionar el costo por cuota litis.");
+  if (!costo_ser_gastos_tramitacion)
+    errors.push("Debe seleccionar el costo por gastos de tramitación.");
+  if (!horario_at_dias_hab)
+    errors.push("Debe seleccionar el horario de atención en días hábiles.");
+  if (!horario_at_horas_hab)
+    errors.push("Debe seleccionar el horario de atención en horas hábiles.");
+  if (!req_cliente_sin_ant_penales)
+    errors.push(
+      "Debe seleccionar el requerimiento de cliente sin antecedentes penales."
+    );
+  if (!req_cliente_sin_ant_com)
+    errors.push(
+      "Debe seleccionar el requerimiento de cliente sin antecedentes comerciales."
+    );
+  if (!req_cliente_residencia_regular)
+    errors.push("Debe seleccionar el requerimiento de residencia regular.");
+  if (!nivel_coincidencia) errors.push("Nivel de coincidencia es obligatorio.");
+  if (!descripcion) errors.push("Descripción es obligatoria.");
+  if (!region) errors.push("Región es obligatoria.");
+  if (!comuna) errors.push("Comuna es obligatoria.");
+  if (selectedSpecialties.length === 0)
+    errors.push("Debe seleccionar al menos una especialidad.");
+
+  return errors;
+}
+
 document
   .getElementById("abogado-form")
   .addEventListener("submit", async function (event) {
     event.preventDefault(); // Evita el envío del formulario por defecto
+
+    // Cargar el JSON y validar el formulario
+
+    const errors = validateForm();
+
+    if (errors.length > 0) {
+      alert("Errores en el formulario:\n" + errors.join("\n"));
+      return;
+    }
 
     // Captura los valores del formulario
     const name = document.getElementById("nombre").value.trim();
@@ -72,43 +221,23 @@ document
     )?.value;
     const nivel_coincidencia = document
       .getElementById("nivel_coincidencia")
-      ?.value.trim(); // Asegúrate de que el slider exista
+      ?.value.trim();
     const descripcion = document.getElementById("descripcion").value.trim();
-    const territorio = document.getElementById("territorio").value.trim();
-    const tipo_territorio = document
-      .getElementById("tipo_territorio")
-      .value.trim();
-
-    // Validación de datos
-    if (
-      !name ||
-      !rut ||
-      !apellidos ||
-      !mail ||
-      !telefono ||
-      !costo_ser_primer_adelant ||
-      !costo_ser_cuota_litis ||
-      !costo_ser_gastos_tramitacion ||
-      !horario_at_dias_hab ||
-      !horario_at_horas_hab ||
-      !req_cliente_sin_ant_penales ||
-      !req_cliente_sin_ant_com ||
-      !req_cliente_residencia_regular ||
-      !nivel_coincidencia ||
-      !descripcion ||
-      !territorio ||
-      !tipo_territorio
-    ) {
-      alert("Todos los campos son obligatorios.");
-      return;
-    }
+    const region = document.getElementById("region").value.trim();
+    const comuna = document.getElementById("comuna").value.trim();
+    const selectedSpecialties = document.querySelectorAll(
+      'input[name="especialidad"]:checked'
+    );
+    const selectedSpecialtyValues = Array.from(selectedSpecialties).map(
+      (checkbox) => checkbox.value
+    );
 
     // Formatear el RUT (eliminar puntos)
     rut = rut.replace(/\./g, "");
 
     // Generar objeto de datos para la solicitud
     const dataToSend = {
-      formType: "abogado", // Tipo de formulario específico para abogado
+      formType: "abogado",
       rut: rut,
       nombre: name,
       apellidos: apellidos,
@@ -123,10 +252,10 @@ document
       req_cliente_sin_ant_com: req_cliente_sin_ant_com,
       req_cliente_residencia_regular: req_cliente_residencia_regular,
       nivel_coincidencia: nivel_coincidencia,
-
       descripcion: descripcion,
-      territorio: territorio,
-      tipo_territorio: tipo_territorio,
+      region: region,
+      comuna: comuna,
+      especialidades: selectedSpecialtyValues,
     };
 
     try {
@@ -143,9 +272,17 @@ document
         throw new Error("Network response was not ok");
       }
 
-      const data = await response.json();
-      console.log("Éxito:", data);
-      window.location.href = "/registro";
+      document.getElementById("abogado-form").reset();
+
+      document.getElementById("success-image").style.display = "block";
+      document
+        .getElementById("success-image")
+        .scrollIntoView({ behavior: "smooth" });
+
+      // Esperar 3 segundos y luego redirigir a otra página
+      setTimeout(() => {
+        window.location.href = "/registro"; // Cambia "/gracias" por la ruta de la página de destino
+      }, 3000);
     } catch (error) {
       console.error("Error:", error);
     }
