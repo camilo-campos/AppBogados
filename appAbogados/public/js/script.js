@@ -34,7 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const regionSelect = document.getElementById("Region");
     const comunaSelect = document.getElementById("Comuna");
 
-    const regions = [...new Set(data.map((item) => item.desc_region))];
+    // Get unique regions and sort them alphabetically
+    const regions = regionOrganize(data);
     regions.forEach((region) => {
       const option = document.createElement("option");
       option.value = region;
@@ -44,15 +45,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     regionSelect.addEventListener("change", () => {
       const selectedRegion = regionSelect.value;
-      const comunas = data.filter(
-        (item) => item.desc_region === selectedRegion
-      );
       comunaSelect.innerHTML = ""; // Clear previous options
-
+      const comunas = comunaOrganize(data, selectedRegion);
       comunas.forEach((comuna) => {
         const option = document.createElement("option");
-        option.value = comuna.desc_comuna;
-        option.textContent = comuna.desc_comuna;
+        option.value = comuna.comuna;
+        option.textContent = comuna.comuna;
         comunaSelect.appendChild(option);
       });
     });
@@ -63,57 +61,46 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("/csrf-token")
-    .then((response) => response.json())
-    .then((data) => {
-      document.getElementById("csrf-token").value = data.csrfToken;
-    })
-    .catch((error) => {
-      console.error("Error fetching CSRF token:", error);
-    });
-
-  fetch("/js/comunas.json")
-    .then((response) => response.json())
-    .then((data) => {
-      populateRegionAndComuna(data);
-    })
-    .catch((error) => {
-      console.error("Error fetching comunas JSON:", error);
-    });
-
-  function populateRegionAndComuna(data) {
-    const regionSelect = document.getElementById("Region");
-    const comunaSelect = document.getElementById("Comuna");
-
-    const regions = [...new Set(data.map((item) => item.desc_region))];
-    regions.forEach((region) => {
-      const option = document.createElement("option");
-      option.value = region;
-      option.textContent = region;
-      regionSelect.appendChild(option);
-    });
-
-    regionSelect.addEventListener("change", () => {
-      const selectedRegion = regionSelect.value;
-      const comunas = data.filter(
-        (item) => item.desc_region === selectedRegion
-      );
-      comunaSelect.innerHTML = ""; // Clear previous options
-
-      comunas.forEach((comuna) => {
-        const option = document.createElement("option");
-        option.value = comuna.desc_comuna;
-        option.textContent = comuna.desc_comuna;
-        comunaSelect.appendChild(option);
-      });
-    });
-
-    // Trigger change event to populate the initial list of comunas
-    const event = new Event("change");
-    regionSelect.dispatchEvent(event);
+function regionOrganize(data) {
+  // Get unique regions and sort them alphabetically
+    let regions = [...new Set(data.map((item) => item.region))].sort();
+    // Find 'Metropolitana de Santiago' and move it to the beginning of the list
+    const metropolitanaIndex = regions.findIndex(
+      (region) => region.trim() === "Metropolitana de Santiago"
+    );
+    if (metropolitanaIndex !== -1) {
+      regions = [
+        regions[metropolitanaIndex],
+        ...regions.slice(0, metropolitanaIndex),
+        ...regions.slice(metropolitanaIndex + 1),
+      ];
+    }
+  
+    return regions;
   }
-});
+  
+  function comunaOrganize(data, selectedRegion) {
+    let comunas = data.filter(
+      (item) => item.region === selectedRegion
+    );
+  
+    // Sort comunas alphabetically
+    comunas.sort((a, b) => a.comuna.localeCompare(b.comuna));
+  
+    // If selectedRegion is 'Metropolitana de Santiago', move 'Santiago' to the beginning of the list
+    const santiagoIndex = comunas.findIndex(
+      (comuna) => comuna.comuna === "Santiago"
+    );
+    if (santiagoIndex !== -1) {
+      comunas = [
+        comunas[santiagoIndex],
+        ...comunas.slice(0, santiagoIndex),
+        ...comunas.slice(santiagoIndex + 1),
+      ];
+    }
+  
+    return comunas;
+  }
 
 document
   .getElementById("cliente-form")
@@ -187,45 +174,54 @@ document
     };
 
     try {
-      // Enviar datos al endpoint /submit-db si la primera solicitud fue exitosa
-      const responseDB = await fetch("/submit-db", {
+      // Enviar datos al endpoint /submit-form
+      const responseForm = await fetch("/submit-form", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "CSRF-Token": document.getElementById("csrf-token").value,
         },
-        body: JSON.stringify(formDataForSecondRequest),
+        body: JSON.stringify(formDataForFirstRequest),
       });
 
-      if (!responseDB.ok) {
-        throw new Error("Error al insertar los datos en la base de datos");
+      if (!responseForm.ok) {
+        throw new Error("Error al enviar el formulario");
+      } else {
+
+
+        // Enviar datos al endpoint /submit-db si la primera solicitud fue exitosa
+        const responseDB = await fetch("/submit-db", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "CSRF-Token": document.getElementById("csrf-token").value,
+          },
+          body: JSON.stringify(formDataForSecondRequest),
+        });
+
+        if (!responseDB.ok) {
+          throw new Error("Error al insertar los datos en la base de datos");
+        }
+
+        document.getElementById("cliente-form").reset();
+
+        document.getElementById("success-image").style.display = "block";
+        document
+          .getElementById("success-image")
+          .scrollIntoView({ behavior: "smooth" });
+
+        // Esperar 3 segundos y luego redirigir a otra página
+        setTimeout(() => {
+          window.location.href = "/success"; // Cambia "/gracias" por la ruta de la página de destino
+        }, 3000);
+        console.log("Datos insertados en la base de datos correctamente");
+
+
+
+
+
+
       }
-
-      document.getElementById("cliente-form").reset();
-
-      document.getElementById("success-image").style.display = "block";
-      document
-        .getElementById("success-image")
-        .scrollIntoView({ behavior: "smooth" });
-
-      // Esperar 3 segundos y luego redirigir a otra página
-      setTimeout(() => {
-        window.location.href = "/success"; // Cambia "/gracias" por la ruta de la página de destino
-      }, 3000);
-      //console.log("Datos insertados en la base de datos correctamente");
-      // Enviar datos al endpoint /submit-form
-      //const responseForm = await fetch("/submit-form", {
-      //  method: "POST",
-      //  headers: {
-      //    "Content-Type": "application/json",
-      //    "CSRF-Token": document.getElementById("csrf-token").value,
-      //  },
-      //  body: JSON.stringify(formDataForFirstRequest),
-      //});
-
-      //if (!responseForm.ok) {
-      //  throw new Error("Error al enviar el formulario");
-      //}
 
       // Redirigir después de la inserción exitosa
     } catch (error) {

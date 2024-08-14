@@ -1,12 +1,14 @@
 const { databaseStore, databaseGet } = require('./databaseControl');
 const { dataTest } = require('./dataTest');
 const { parseResponse } = require('./parseResponse');
+const { comunaLocator } = require('./comunaLocator');
+const { ambitosFilter } = require('./microScripts/ambitosFilter');
 
-const basePrompt = "\n Prompt: Based on the information provided, output relevant tags from the list that apply to the user, inside curly brackets, separated by commas, DO NOT JUSTIFY YOUR ANSWER select ONLY tags from the list\n Tags list:";
+const basePrompt = "Based on the information provided, output the relevant tags from the list that apply to the user, inside curly brackets, separated by commas, DO NOT JUSTIFY YOUR ANSWER select ONLY tags from the list";
 
 
 let dimAmbitos = [];
-let assistantPrompt = "";
+let ambitoList = "";
 
 
 databaseGet({ table: 'dim_ambitos' }).then((ambitos) => {
@@ -14,17 +16,23 @@ databaseGet({ table: 'dim_ambitos' }).then((ambitos) => {
   for (let i = 0; i < ambitos.length; i++) {
     dimAmbitos[ambitos[i].id_ambito] = ambitos[i].desc_ambito;
   }
-  assistantPrompt = basePrompt + `\n{${dimAmbitos.join(", ")}}`;
+  // Remove any ambito that could be EMPTY, or a space character
+  dimAmbitos = dimAmbitos.filter(ambito => !!ambito && ambito.trim() !== "");
+
+
+  ambitoList = `{${dimAmbitos.join(", ")}}`;
 }).catch(error => console.error(error));
 
 function getAssistantPrompt() {
-  return assistantPrompt;
+  return [basePrompt, ambitoList];
 }
 
 //----------------------------------------------
 
 // <-- Uncomment to test the data retrieval -->
-//dataTest(['dim_comunas', 'dim_abogados', 'ft_ambitos', 'ft_comunas', 'ft_solicitudes']);
+//dataTest(['dim_comunas_chile', 'dim_abogados', 'ft_ambitos', 'ft_comunas', 'ft_solicitudes']); OLD
+//dataTest(['dim_comunas_chile', 'dim_credenciales', 'ft_ambitos', 'dim_ambitos', 'dim_abogados']);
+//dataTest(['dim_comunas_chile']);
 
 //----------------------------------------------
 
@@ -33,29 +41,9 @@ async function processForm(formData, response) {
   // Extract tags using a regular expression
   let cleanResponse = parseResponse(response);
 
-  let aiAmbitosIds = [];
   if (cleanResponse) {
     try {
-      let aiAmbitos = [];
-      // Split the matched group by commas to get individual tags
-      aiAmbitos = cleanResponse.split(',').map(tag => tag.trim());
-
-      // Convert the tags to their corresponding IDs
-      aiAmbitosIds = aiAmbitos.map(tag => dimAmbitos.indexOf(tag));
-      console.log("Ambitos:", aiAmbitos)
-
-      // Remove any tags that were not found (IDs < 0)
-      aiAmbitosIds = aiAmbitosIds.filter(id => id >= 0);
-      console.log("Ambitos IDs:", aiAmbitosIds);
-
-      // Remove those aiAmbitos that were not found based on the IDs
-      aiAmbitos = aiAmbitosIds.map(id => dimAmbitos[id]);
-      console.log("Ambitos found:", aiAmbitos);
-
-      // Get the Territorio ID
-      const regionData = await databaseGet({ table: 'dim_comunas', desc_region: formData.Region });
-      let idTerritorio = regionData ? regionData[0].id_region : 13; // Default to "Metropolitana" if not found
-      console.log("Territorio:", formData.Region,"|| Id:", regionData ? regionData[0].id_region : null);
+      let aiAmbitosIds = ambitosFilter(cleanResponse, dimAmbitos);
 
       // Get the abogados that match the tags (ft_ambitos)
       const abogados = await databaseGet({ table: 'ft_ambitos', id_ambito: aiAmbitosIds });
@@ -65,38 +53,53 @@ async function processForm(formData, response) {
       // Remove duplicates from the abogados IDs
       abogadosIds = [...new Set(abogadosIds)];
 
-      const dataMatch = {
+      let dataMatch = {
         rut: abogadosIds,
-        territorio: idTerritorio,
-        //comuna: formData.Comuna, // Not implemented yet since Abogados don't have a comuna defined
       };
+
+      /*if (formData.antecedentes_penales) {
+        dataMatch.req_cliente_sin_ant_penales = "0";
+      }
+      if (formData.antecedentes_comerciales) {
+        dataMatch.req_cliente_sin_ant_com = "0";
+      }
+      if (!formData.residencia) {
+        dataMatch.req_cliente_residencia_regular = "0";
+      }*/
+
+      console.log("-------> [dataMatch]:", dataMatch);
 
       // Get the abogados names from the IDs
       let abogadosData = await databaseGet({ table: 'dim_abogados', ...dataMatch });
 
-      if (!abogadosData || !abogadosData.length) {
-        // No abogados found in that region, try again in Region 13 (Metropolitana), unless that was the region already
-        if (idTerritorio !== 13) {
-          console.log("No abogados found in", formData.Region, "trying in Metropolitana...");
-          dataMatch.territorio = 13;
-          abogadosData = await databaseGet({ table: 'dim_abogados', ...dataMatch });
-        }
-        // If even then we find no abogados, try with the whole country (no territorio defined)
-        if (!abogadosData || !abogadosData.length) {
-          console.log("No abogados found in Metropolitana, trying in whole country...");
-          delete dataMatch.territorio;
-          abogadosData = await databaseGet({ table: 'dim_abogados', ...dataMatch });
-        }
-        // If even then we can't find an abogado, return false
-        if (!abogadosData || !abogadosData.length) {
-          console.log("No abogados found in whole country, giving up...");
-          return false;
-        }
-      }
-
-      // Extract the abogados names from the data
       const abogadosNombres = abogadosData.map(abogado => abogado.nombres);
       console.log("Abogados matching tags:", abogadosNombres);
+
+      // Filter abogados if they are too far (using comunaLocator)
+      let abogadosFiltered = [];
+
+      const comunaA = formData.Comuna;
+
+      // Run all the comunaLocator in parallel
+      const comunaPromises = abogadosData.map(async (abogado) => {
+        const comunaB = abogado.comuna;
+        if (await comunaLocator(comunaA, comunaB, 40)) {
+          return abogado;
+        }
+        return null;
+      });
+      abogadosFiltered = (await Promise.all(comunaPromises)).filter(abogado => abogado !== null);
+      
+
+      if (abogadosFiltered.length > 0) {
+        abogadosData = abogadosFiltered;
+      } else {
+        console.log("No abogados found in the vicinity, using the original list...");
+      }
+
+    
+      const abogadosNombresB = abogadosData.map(abogado => abogado.nombres);
+      console.log("Abogados Final list:", abogadosNombresB);
 
       // Make a list of the abogados with their respective ambitos
       let abogadosAmbitosRet = [];

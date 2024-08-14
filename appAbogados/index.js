@@ -63,9 +63,17 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
 
   if (formData.formType === "cliente") {
     if (formData.Problema) {
-      const prompt = "User: " + formData.Problema + getAssistantPrompt();
-      await handleForm(formData, prompt);
+      const assistantData = getAssistantPrompt();
+
+      const promptProblema = formData.Problema;
+      const promptSystem = assistantData[0];
+      const promptAmbitoList = assistantData[1];
+
       res.status(200).json({ message: "Client form processed successfully" });
+
+      // Process AFTER we send the response to the client
+      // So the client doesn't have to wait for the processing to complete
+      await handleForm(formData, {promptProblema, promptSystem, promptAmbitoList});
     } else {
       console.error("Error: No 'Problema' field in client form data");
       res

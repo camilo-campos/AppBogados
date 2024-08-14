@@ -44,7 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const regionSelect = document.getElementById("region");
     const comunaSelect = document.getElementById("comuna");
 
-    const regions = [...new Set(data.map((item) => item.desc_region))];
+    // Get unique regions and sort them alphabetically
+    const regions = regionOrganize(data);
     regions.forEach((region) => {
       const option = document.createElement("option");
       option.value = region;
@@ -54,15 +55,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     regionSelect.addEventListener("change", () => {
       const selectedRegion = regionSelect.value;
-      const comunas = data.filter(
-        (item) => item.desc_region === selectedRegion
-      );
       comunaSelect.innerHTML = ""; // Clear previous options
-
+      const comunas = comunaOrganize(data, selectedRegion);
       comunas.forEach((comuna) => {
         const option = document.createElement("option");
-        option.value = comuna.desc_comuna;
-        option.textContent = comuna.desc_comuna;
+        option.value = comuna.comuna;
+        option.textContent = comuna.comuna;
         comunaSelect.appendChild(option);
       });
     });
@@ -173,6 +171,47 @@ function validateForm() {
     errors.push("Debe seleccionar al menos una especialidad.");
 
   return errors;
+}
+
+function regionOrganize(data) {
+// Get unique regions and sort them alphabetically
+  let regions = [...new Set(data.map((item) => item.region))].sort();
+  // Find 'Metropolitana de Santiago' and move it to the beginning of the list
+  const metropolitanaIndex = regions.findIndex(
+    (region) => region.trim() === "Metropolitana de Santiago"
+  );
+  if (metropolitanaIndex !== -1) {
+    regions = [
+      regions[metropolitanaIndex],
+      ...regions.slice(0, metropolitanaIndex),
+      ...regions.slice(metropolitanaIndex + 1),
+    ];
+  }
+
+  return regions;
+}
+
+function comunaOrganize(data, selectedRegion) {
+  let comunas = data.filter(
+    (item) => item.region === selectedRegion
+  );
+
+  // Sort comunas alphabetically
+  comunas.sort((a, b) => a.comuna.localeCompare(b.comuna));
+
+  // If selectedRegion is 'Metropolitana de Santiago', move 'Santiago' to the beginning of the list
+  const santiagoIndex = comunas.findIndex(
+    (comuna) => comuna.comuna === "Santiago"
+  );
+  if (santiagoIndex !== -1) {
+    comunas = [
+      comunas[santiagoIndex],
+      ...comunas.slice(0, santiagoIndex),
+      ...comunas.slice(santiagoIndex + 1),
+    ];
+  }
+
+  return comunas;
 }
 
 document

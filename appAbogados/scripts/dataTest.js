@@ -9,7 +9,7 @@ const { databaseGet } = require('./databaseControl');
     { table_name: 'ft_ambitos' }, // Rut abogado -> Las tag que le corresponde (ids)
     { table_name: 'dim_ambitos' }, // id Tag -> Nombre tag
     { table_name: 'dim_abogados' },
-    { table_name: 'dim_comunas' }, // id -> Territorio
+    { table_name: 'dim_comunas_chile' }, // id -> Territorio
     { table_name: 'ft_solicitudes' }, // Solicitudes de prueba
     { table_name: 'ft_operacion' },
     { table_name: 'ft_envio' }
