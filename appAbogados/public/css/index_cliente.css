@@ -1,5 +1,12 @@
+@font-face {
+  font-family: "navbar"; /* Nombre que usarás para referenciar la fuente */
+  src: url("../fonts/MYRIADPRO-BOLD.OTF") format("opentype"); /* Para navegadores modernos */
+  /* Para navegadores más antiguos */
+  font-weight: normal; /* Ajusta según el peso de la fuente */
+  font-style: normal; /* Ajusta según el estilo de la fuente */
+}
+
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
@@ -9,11 +16,14 @@ body {
 }
 
 /* Header */
-header {
+header,
+h1 {
   background-color: #ff6f00;
   color: white;
   padding: 10px 0;
   border-bottom: 2px solid #e0e0e0;
+  font-family: "navbar";
+  font-size: x-large;
 }
 
 .header-top {
@@ -259,7 +269,7 @@ nav ul li a {
   }
 
   .main-banner .text p {
-    font-size: 16px;
+    font-size: 40px;
   }
   .how-to h2 {
     font-size: 24px;
@@ -280,29 +290,56 @@ nav ul li a {
   }
 
   .step-icon {
-    font-size: 36px;
+    font-size: 200px;
   }
 
   .step p {
     font-size: 16px;
   }
   .footer-content {
-    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    max-width: 3000px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .contact-info,
+  .footer-links,
+  .social-media {
+    flex: 1;
   }
 
   .footer-links {
-    flex-direction: row;
-  }
-
-  .footer-links ul,
-  .social-media ul {
     display: flex;
     justify-content: space-between;
   }
 
+  .footer-section,
+  .social-media {
+    flex: 1;
+    display: flex;
+    margin: 0 20px;
+    flex-direction: column; /* Las listas dentro estarán en columna */
+  }
+
+  /* No es necesario cambiar el estilo de ul y li ya que están correctos */
+  .footer-links ul,
+  .social-media ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
   .footer-links ul li,
   .social-media ul li {
-    margin: 10px 20px;
+    margin: 5px 0;
+  }
+
+  .footer-links ul li a,
+  .social-media ul li a {
+    color: white;
+    text-decoration: none;
   }
 }
 
@@ -374,7 +411,8 @@ nav ul li a {
   }
   .main-banner-cliente {
     padding: 20px 10px;
-    background-size: contain; /* Ajusta la imagen de fondo para caber en la pantalla */
+    background-size: contain; /* Ajusta la imagen para que se contenga dentro del área del elemento */
+    background-position: top center; /* Ajusta la imagen de fondo para caber en la pantalla */
   }
 
   .main-banner .content {
@@ -432,12 +470,13 @@ nav ul li a {
 .button-nav,
 .button-main,
 .step button {
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 15px 25px;
+  border-radius: 25px;
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
   border: none;
+  font-size: x-large;
 }
 
 .button-nav {
@@ -470,6 +509,7 @@ nav ul li a {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  font-size: x-large;
 }
 
 .main-banner .content {
@@ -478,17 +518,19 @@ nav ul li a {
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
+  font-size: x-large;
 }
 
 .main-banner .text {
   flex: 1;
   margin-right: 20px;
-  font-size: 24px;
+  font-size: x-large;
 }
 
 .main-banner .text p {
   font-size: 16px;
   margin: 10px 0;
+  font-size: x-large;
 }
 
 .main-banner .image {
@@ -501,14 +543,6 @@ nav ul li a {
   display: block;
 }
 
-footer {
-  color: white;
-  padding: 20px 0;
-  border-top: 2px solid #e0e0e0;
-  flex-shrink: 0;
-  margin-top: 150px;
-}
-
 .footer-content {
   display: flex;
   justify-content: space-between;
@@ -518,17 +552,25 @@ footer {
 }
 
 .contact-info,
-.social-media,
-.footer-links .footer-section {
+.footer-links,
+.social-media {
   flex: 1;
 }
 
 .footer-links {
-  flex: 2;
   display: flex;
   justify-content: space-between;
 }
 
+.footer-section,
+.social-media {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px; /* Las listas dentro estarán en columna */
+}
+
+/* No es necesario cambiar el estilo de ul y li ya que están correctos */
 .footer-links ul,
 .social-media ul {
   list-style: none;
@@ -545,6 +587,11 @@ footer {
 .social-media ul li a {
   color: white;
   text-decoration: none;
+  font-size: 23px;
+}
+.footer-section p,
+.social-media p {
+  font-size: 23px; /* Ajusta el tamaño según sea necesario */
 }
 
 .background-container {
@@ -582,6 +629,7 @@ footer {
   flex: 1;
   min-width: 250px;
   text-align: center;
+  font-size: x-large;
 }
 
 .icon-container {
@@ -592,20 +640,25 @@ footer {
 }
 
 .icon-container img {
-  width: 80px;
-  height: 80px;
+  width: 150px;
+  height: 150px;
+  padding-right: 10px;
 }
 
 .step-icon {
-  font-size: 36px;
+  font-size: 200px;
   color: white;
   font-weight: bold;
   margin-left: 10px;
 }
 
 .step p {
-  font-size: 16px;
+  font-size: x-large;
   margin: 0;
+}
+
+.step h1 {
+  font-size: 40px;
 }
 
 *,
@@ -622,7 +675,7 @@ footer {
 }
 
 .image img {
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 250px;
   object-fit: cover;
 }
