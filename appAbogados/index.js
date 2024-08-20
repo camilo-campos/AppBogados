@@ -11,6 +11,7 @@ const {
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const csrf = require("csurf");
+const { lawyerVerify } = require("./scripts/lawyerVerify");
 
 const app = express();
 
@@ -84,23 +85,28 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
     if (formData.nombre && formData.apellidos) {
       console.log("Processing Abogado form data");
       try {
-        // Insertar datos del abogado en la tabla correspondiente
-        await insertAbogado(formData);
+        // Verificar si el abogado existe en la base de datos del PJUD
+        if (await lawyerVerify(formData.rut)) {
+          // Insertar datos del abogado en la tabla correspondiente
+          await insertAbogado(formData);
 
-        // Insertar datos en la tabla ft_ambitos para cada ámbito seleccionado
-        const selectedSpecialties = formData.especialidades; // IDs de los ámbitos seleccionados
-        const rut = formData.rut;
-        const vigencia = "SI";
+          // Insertar datos en la tabla ft_ambitos para cada ámbito seleccionado
+          const selectedSpecialties = formData.especialidades; // IDs de los ámbitos seleccionados
+          const rut = formData.rut;
+          const vigencia = "SI";
 
-        // Esperar que todas las inserciones se completen antes de enviar la respuesta
-        await Promise.all(
-          selectedSpecialties.map(async (id_ambito) => {
-            const id_rut_ambito = `${rut}-${id_ambito}`; // Combina rut y id_ambito
-            await insertft_ambitos({ id_rut_ambito, rut, id_ambito, vigencia });
-          })
-        );
-
-        res.status(200).json({ message: "Data inserted successfully" });
+          // Esperar que todas las inserciones se completen antes de enviar la respuesta
+          await Promise.all(
+            selectedSpecialties.map(async (id_ambito) => {
+              const id_rut_ambito = `${rut}-${id_ambito}`; // Combina rut y id_ambito
+              await insertft_ambitos({ id_rut_ambito, rut, id_ambito, vigencia });
+            })
+          );
+          res.status(200).json({ message: "Data inserted successfully" });
+        } else {
+          console.error("Error: Lawyer not found in PJUD database");
+          res.status(400).json({ error: "Lawyer not found in PJUD database" });
+        }
       } catch (error) {
         console.error("Error inserting data into DB:", error);
         res.status(500).json({ message: "Error inserting data into DB" });
@@ -119,8 +125,13 @@ router.post("/submit-db", csrfProtection, async (req, res) => {
   console.log("Form Data for DB Insert:", formData);
 
   try {
-    await insertFormDataToDB(formData);
-    res.status(200).json({ message: "Data inserted successfully" });
+    if (await lawyerVerify(formData.rut)) {
+      await insertFormDataToDB(formData);
+      res.status(200).json({ message: "Data inserted successfully" });
+    } else {
+      console.error("Error: Lawyer not found in PJUD database");
+      res.status(400).json({ error: "Lawyer not found in PJUD database" });
+    }
   } catch (error) {
     console.error("Error inserting data into DB:", error);
     res.status(500).json({ message: "Error inserting data into DB" });

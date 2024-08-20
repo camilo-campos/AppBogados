@@ -308,6 +308,16 @@ document
       });
 
       if (!response.ok) {
+        // if the response is: "Lawyer not found in PJUD database", show an alert
+        const data = await response.json();
+        if (data.error === "Lawyer not found in PJUD database") {
+          alert(
+            "El abogado no se encuentra en la base de datos del PJUD. Por favor, verifique el RUT ingresado."
+          );
+          return;
+        }
+
+
         throw new Error("Network response was not ok");
       }
 
