@@ -76,7 +76,7 @@ nav ul li a {
 .button-nav,
 .button-main {
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 25px;
   text-decoration: none;
   font-weight: bold;
   border: none;
@@ -202,7 +202,7 @@ nav ul li a {
 }
 
 .step p {
-  font-size: x-large;
+  /*font-size: x-large;*/
   margin: 0;
 }
 
@@ -212,8 +212,9 @@ nav ul li a {
 
 .step button,
 .button-main {
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(248, 248, 248);
   color: #ff6f00;
+  border-radius: 25px;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -285,195 +286,6 @@ footer {
 *::before,
 *::after {
   box-sizing: border-box; /* Incluye padding y border en el ancho total */
-}
-
-/* media query */
-@media (max-width: 767.98px) {
-  .header-top {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .logo h1 {
-    font-size: 20px;
-    text-align: center;
-  }
-
-  nav ul {
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-  }
-
-  nav ul li {
-    margin: 10px 0;
-  }
-  .main-banner-cliente {
-    padding: 20px 10px;
-  }
-
-  .main-banner .content {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .main-banner .text {
-    margin-right: 0;
-    text-align: center;
-  }
-
-  .main-banner .text p {
-    font-size: 14px;
-  }
-
-  .main-banner .image {
-    margin-top: 20px;
-  }
-
-  .main-banner .image img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .main-banner .text a.button-main {
-    display: block;
-    margin: 20px auto 0;
-  }
-  .how-to h2 {
-    font-size: 20px;
-  }
-
-  .steps {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .step {
-    margin: 10px 0;
-  }
-
-  .icon-container img {
-    width: 60px;
-    height: 60px;
-  }
-
-  .step-icon {
-    font-size: 30px;
-  }
-
-  .step p {
-    font-size: 14px;
-  }
-
-  .button-main {
-    display: block;
-    width: 100%;
-    text-align: center;
-  }
-  footer {
-    padding: 10px 0;
-    margin-top: 100px;
-  }
-
-  .footer-content {
-    padding: 0 10px;
-    flex-direction: column;
-  }
-
-  .footer-links {
-    flex-direction: column;
-  }
-
-  .footer-links ul,
-  .social-media ul {
-    display: block;
-  }
-
-  .footer-links ul li,
-  .social-media ul li {
-    margin: 5px 0;
-  }
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) and (max-width: 991.98px) {
-  .how-to h2 {
-    font-size: 22px;
-  }
-
-  .steps {
-    flex-direction: row;
-  }
-
-  .step {
-    margin: 10px;
-    min-width: 300px;
-  }
-
-  .icon-container img {
-    width: 90px;
-    height: 90px;
-  }
-
-  .step-icon {
-    font-size: 34px;
-  }
-
-  .step p {
-    font-size: 15px;
-  }
-  .header-top {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  nav ul {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  nav ul li {
-    margin: 10px 0;
-  }
-
-  .main-banner-cliente {
-    padding: 30px 20px;
-  }
-
-  .main-banner .content {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .main-banner .text {
-    margin-right: 15px;
-    text-align: left;
-  }
-
-  .main-banner .text p {
-    font-size: 15px;
-  }
-
-  .main-banner .image {
-    margin-top: 0;
-  }
-  .footer-content {
-    flex-direction: column;
-  }
-
-  .footer-links {
-    flex-direction: column;
-  }
-
-  .footer-links ul,
-  .social-media ul {
-    display: block;
-  }
-
-  .footer-links ul li,
-  .social-media ul li {
-    margin: 10px 0;
-  }
 }
 
 /* Large devices (desktops, 1200px and up) */
@@ -578,6 +390,320 @@ footer {
   }
 }
 
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 991.98px) and (max-width: 1199px) {
+  .how-to h2 {
+    font-size: 22px;
+  }
+
+  .steps {
+    flex-direction: row;
+  }
+
+  .step {
+    margin: 10px;
+    min-width: 300px;
+  }
+  .step p {
+    font-size: 45px;
+  }
+
+  .icon-container img {
+    width: 90px;
+    height: 90px;
+  }
+
+  .step-icon {
+    font-size: 34px;
+  }
+
+  .step p {
+    font-size: 55px;
+  }
+  .header-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+
+  .main-banner-cliente {
+    padding: 30px 20px;
+  }
+
+  .main-banner .content {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .main-banner .text {
+    margin-right: 15px;
+    text-align: left;
+  }
+
+  .main-banner .text p {
+    font-size: 15px;
+  }
+
+  .main-banner .image {
+    margin-top: 0;
+  }
+  .footer-content {
+    flex-direction: column;
+  }
+
+  .footer-links {
+    flex-direction: column;
+  }
+
+  .footer-links ul,
+  .social-media ul {
+    display: block;
+  }
+
+  .footer-links ul li,
+  .social-media ul li {
+    margin: 10px 0;
+  }
+}
+
+/* media query */
+@media (max-width: 769.98px) and (max-width: 990px) {
+  .header-top {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo h1 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+  .main-banner-cliente {
+    padding: 20px 10px;
+  }
+
+  .main-banner .content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main-banner .text {
+    margin-right: 0;
+    text-align: center;
+  }
+
+  .main-banner .text p {
+    font-size: 14px;
+  }
+
+  .main-banner .image {
+    margin-top: 20px;
+  }
+
+  .main-banner .image img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .main-banner .text a.button-main {
+    display: block;
+    margin: 20px auto 0;
+  }
+  .how-to h2 {
+    font-size: 20px;
+  }
+
+  .steps {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step {
+    margin: 10px 0;
+  }
+
+  .icon-container img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .step-icon {
+    font-size: 30px;
+  }
+
+  .step p {
+    font-size: 45px;
+  }
+
+  .button-main {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  footer {
+    padding: 10px 0;
+    margin-top: 100px;
+  }
+
+  .footer-content {
+    padding: 0 10px;
+    flex-direction: column;
+  }
+
+  .footer-links {
+    flex-direction: column;
+  }
+
+  .footer-links ul,
+  .social-media ul {
+    display: block;
+  }
+
+  .footer-links ul li,
+  .social-media ul li {
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 325px) and (max-width: 768.98px) {
+  .header-top {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px; /* Ajusta el relleno para pantallas más pequeñas */
+  }
+
+  .logo h1 {
+    font-size: 18px; /* Reduce el tamaño del texto para mejor ajuste */
+    text-align: center;
+  }
+
+  .logo img {
+    width: 60px; /* Ajusta el tamaño de la imagen del logo */
+    height: auto;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+  }
+
+  nav ul li {
+    margin: 5px 0; /* Ajusta el margen para pantallas pequeñas */
+  }
+
+  nav ul li a {
+    font-size: 14px; /* Reduce el tamaño de la fuente para mejor ajuste */
+  }
+
+  .how-to h2 {
+    font-size: 18px;
+  }
+
+  .steps {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step {
+    margin: 10px 0;
+    padding: 10px; /* Adjust padding for small screens */
+    min-width: 100%; /* Ensure steps take full width */
+  }
+
+  .icon-container img {
+    width: 50px; /* Smaller icons for smaller screens */
+    height: 50px;
+  }
+
+  .step-icon {
+    font-size: 24px; /* Smaller step icons */
+  }
+
+  .step p {
+    font-size: 35px; /* Smaller text for better fit */
+  }
+
+  .button-main {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 8px; /* Adjust padding for smaller buttons */
+  }
+  .main-banner-cliente {
+    padding: 20px 10px;
+    background-size: contain; /* Ajusta la imagen de fondo para caber en la pantalla */
+  }
+
+  .main-banner .content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .main-banner .text {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .main-banner .text p {
+    font-size: 14px; /* Reduce el tamaño de la fuente */
+  }
+
+  .main-banner .image {
+    margin-top: 20px;
+  }
+
+  .main-banner .image img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  footer {
+    padding: 5px 0;
+    margin-top: 80px;
+  }
+
+  .footer-content {
+    padding: 0 5px;
+  }
+
+  .footer-links,
+  .social-media {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-links ul,
+  .social-media ul {
+    display: block;
+    text-align: center;
+  }
+
+  .footer-links ul li,
+  .social-media ul li {
+    margin: 3px 0;
+  }
+}
+
 @media (max-width: 320px) {
   .header-top {
     flex-direction: column;
@@ -635,7 +761,7 @@ footer {
   }
 
   .step p {
-    font-size: 12px; /* Smaller text for better fit */
+    font-size: 25px; /* Smaller text for better fit */
   }
 
   .button-main {
