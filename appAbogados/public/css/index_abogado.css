@@ -24,7 +24,19 @@ body {
 }
 
 /* Header */
-header,
+header {
+  position: fixed; /* Fija la barra de navegación en la parte superior */
+  top: 0; /* Alinea la barra con la parte superior de la página */
+  width: 100%; /* Hace que la barra ocupe todo el ancho de la página */
+  z-index: 1000; /* Asegura que la barra esté por encima de otros elementos */
+  background-color: #1a1449;
+  color: white;
+  padding: 10px 0;
+  border-bottom: 2px solid #e0e0e0;
+  font-family: "navbar";
+  font-size: x-large;
+}
+
 h1 {
   background-color: #1a1449;
   color: white;
@@ -108,6 +120,7 @@ nav ul li a {
   background-position: center;
   background-repeat: no-repeat;
   font-size: x-large;
+  padding-top: 60px;
 }
 
 .main-banner .content {
@@ -290,8 +303,9 @@ footer {
 
 /* Large devices (desktops, 1200px and up) */
 @media (min-width: 1200px) {
-  .main-banner-cliente {
+  .main-banner-abogado {
     padding: 40px 20px;
+    padding-top: 80px;
   }
 
   .main-banner .content {
@@ -404,9 +418,6 @@ footer {
     margin: 10px;
     min-width: 300px;
   }
-  .step p {
-    font-size: 45px;
-  }
 
   .icon-container img {
     width: 90px;
@@ -420,22 +431,26 @@ footer {
   .step p {
     font-size: 55px;
   }
+
   .header-top {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row; /* Cambia de columna a fila */
+    justify-content: space-between; /* Alinea los elementos a los extremos */
+    align-items: center; /* Alinea verticalmente al centro */
   }
 
   nav ul {
-    flex-direction: column;
-    width: 100%;
+    flex-direction: row; /* Cambia de columna a fila */
+    justify-content: space-around; /* Espacia los elementos horizontalmente */
+    width: auto; /* Ajusta el ancho a los elementos internos */
   }
 
   nav ul li {
-    margin: 10px 0;
+    margin: 0 15px; /* Ajusta el margen horizontal para espaciado */
   }
 
-  .main-banner-cliente {
+  .main-banner-abogado {
     padding: 30px 20px;
+    padding-top: 90px;
   }
 
   .main-banner .content {
@@ -455,30 +470,95 @@ footer {
   .main-banner .image {
     margin-top: 0;
   }
+
   .footer-content {
-    flex-direction: column;
+    display: flex; /* Cambiado a flex */
+    justify-content: space-between; /* Espacia los elementos horizontalmente */
+    flex-direction: row; /* Alinea los elementos en fila */
+    align-items: flex-start; /* Alinea los elementos en la parte superior */
+  }
+
+  .contact-info {
+    flex: 1; /* Ocupa espacio flexible */
+    display: flex; /* Usa flex para alinear la imagen */
+    align-items: center; /* Alinea la imagen verticalmente */
+    justify-content: center; /* Centra la imagen horizontalmente */
+  }
+
+  .contact-info img {
+    max-width: 100%; /* Asegura que la imagen no se desborde */
+    height: auto;
   }
 
   .footer-links {
-    flex-direction: column;
+    flex: 2; /* Ocupa más espacio */
+    display: flex; /* Usa flex para alinear las secciones */
+    flex-direction: row; /* Alinea las secciones en fila */
+    justify-content: space-between; /* Espacia las secciones horizontalmente */
   }
 
-  .footer-links ul,
+  .footer-section {
+    flex: 1; /* Cada sección ocupa un espacio igual */
+    margin: 0 10px; /* Ajusta el margen horizontal */
+  }
+
+  .footer-section p {
+    margin: 0 0 10px; /* Ajusta el margen de abajo */
+  }
+
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-links ul li {
+    margin: 5px 0; /* Ajusta el margen vertical */
+  }
+
+  .social-media {
+    flex: 1; /* Ocupa el espacio restante */
+    display: flex; /* Usa flex para alinear los elementos */
+    flex-direction: column; /* Alinea los elementos en columna */
+    align-items: flex-start; /* Alinea los elementos a la izquierda */
+  }
+
   .social-media ul {
-    display: block;
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 
-  .footer-links ul li,
   .social-media ul li {
-    margin: 10px 0;
+    margin: 5px 0; /* Ajusta el margen vertical */
   }
 }
 
 /* media query */
 @media (max-width: 769.98px) and (max-width: 990px) {
   .header-top {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row; /* Cambia de columna a fila */
+    justify-content: space-between; /* Alinea los elementos a los extremos */
+    align-items: center; /* Alinea verticalmente al centro */
+  }
+
+  nav ul {
+    flex-direction: row; /* Cambia de columna a fila */
+    justify-content: space-around; /* Espacia los elementos horizontalmente */
+    width: auto; /* Ajusta el ancho a los elementos internos */
+  }
+
+  nav ul li {
+    margin: 0 15px; /* Ajusta el margen horizontal para espaciado */
+  }
+
+  nav li {
+    font-size: medium;
+  }
+
+  .button-nav {
+    font-size: small;
+    padding: 8px 8px;
   }
 
   .logo h1 {
@@ -486,17 +566,9 @@ footer {
     text-align: center;
   }
 
-  nav ul {
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-  }
-
-  nav ul li {
-    margin: 10px 0;
-  }
-  .main-banner-cliente {
+  .main-banner-abogado {
     padding: 20px 10px;
+    padding-top: 120px;
   }
 
   .main-banner .content {
@@ -553,10 +625,13 @@ footer {
   }
 
   .button-main {
-    display: block;
-    width: 100%;
+    width: 300px;
     text-align: center;
+    display: inline-block; /* Asegura que el margen se aplique correctamente */
+    padding: 10px;
+    margin: 15px;
   }
+
   footer {
     padding: 10px 0;
     margin-top: 100px;
@@ -643,14 +718,18 @@ footer {
   }
 
   .button-main {
-    display: block;
+    display: inline-block;
     width: 100%;
     text-align: center;
-    padding: 8px; /* Adjust padding for smaller buttons */
+    padding: 10px;
+    margin: 15px; /* Adjust padding for smaller buttons */
   }
-  .main-banner-cliente {
+
+  .main-banner-abogado {
+    padding-top: 120px;
     padding: 20px 10px;
-    background-size: contain; /* Ajusta la imagen de fondo para caber en la pantalla */
+    background-size: contain; /* Ajusta la imagen para que se contenga dentro del área del elemento */
+    background-position: top center; /* Ajusta la imagen de fondo para caber en la pantalla */
   }
 
   .main-banner .content {
@@ -705,12 +784,19 @@ footer {
 }
 
 @media (max-width: 320px) {
+  header {
+    position: static; /* Cambia la posición a estática en pantallas pequeñas */
+    top: auto; /* Anula la posición superior */
+  }
   .header-top {
     flex-direction: column;
     align-items: center;
-    padding: 0 10px; /* Ajusta el relleno para pantallas más pequeñas */
+    padding: 0 10px;
   }
-
+  .button-nav {
+    font-size: xx-small;
+    padding: 8px 8px;
+  }
   .logo h1 {
     font-size: 18px; /* Reduce el tamaño del texto para mejor ajuste */
     text-align: center;
@@ -765,12 +851,14 @@ footer {
   }
 
   .button-main {
-    display: block;
+    display: inline-block;
     width: 100%;
     text-align: center;
-    padding: 8px; /* Adjust padding for smaller buttons */
+    padding: 10px;
+    margin: 15px; /* Adjust padding for smaller buttons */
   }
   .main-banner-cliente {
+    padding-top: 160px;
     padding: 20px 10px;
     background-size: contain; /* Ajusta la imagen de fondo para caber en la pantalla */
   }

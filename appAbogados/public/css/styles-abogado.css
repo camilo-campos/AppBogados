@@ -8,12 +8,17 @@ body {
   overflow-x: hidden;
 }
 
-/* Header */
 header {
+  position: fixed; /* Fija la barra de navegación en la parte superior */
+  top: 0; /* Alinea la barra con la parte superior de la página */
+  width: 100%; /* Hace que la barra ocupe todo el ancho de la página */
+  z-index: 1000; /* Asegura que la barra esté por encima de otros elementos */
   background-color: #1a1449;
   color: white;
   padding: 10px 0;
   border-bottom: 2px solid #e0e0e0;
+  font-family: "navbar";
+  font-size: x-large;
 }
 
 .header-top {
@@ -474,10 +479,18 @@ form button {
 }
 
 @media (max-width: 320px) {
+  header {
+    position: static; /* Cambia la posición a estática en pantallas pequeñas */
+    top: auto; /* Anula la posición superior */
+  }
   .header-top {
     flex-direction: column;
     align-items: center;
     padding: 0 10px; /* Ajusta el relleno para pantallas más pequeñas */
+  }
+  .button-nav {
+    font-size: xx-small;
+    padding: 8px 8px;
   }
 
   .logo h1 {
