@@ -10,7 +10,7 @@ function camelCaseToKebabCase(str) {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
-async function sendEmail(to, from, subject, placeholders = {}, htmlFilePath = '') {
+async function sendEmail(to, from, subject, placeholders = {}, htmlFilePath = '', list = []) {
   let htmlTemplate = '';
 
   const resolvedHtmlFilePath = path.resolve(__dirname, htmlFilePath);
@@ -37,6 +37,47 @@ async function sendEmail(to, from, subject, placeholders = {}, htmlFilePath = ''
       placeholderElements.forEach(element => {
         element.textContent = value;
       });
+    }
+
+    // Handle the list argument to dynamically create a table in the HTML
+    if (list.length > 0 && typeof list[0] === 'object') {
+      const tablePlaceholderElement = document.querySelector('.ph-lista');
+      if (tablePlaceholderElement) {
+        const tableElement = document.createElement('table'); // Create a new <table> element
+        tableElement.style.width = '100%';
+        tableElement.setAttribute('border', '1');
+        tableElement.classList.add('dynamic-content'); // Add class if needed
+
+        // Create table header
+        const theadElement = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        Object.keys(list[0]).forEach(key => {
+          const thElement = document.createElement('th');
+          thElement.textContent = key; // Use the object key as column name
+          headerRow.appendChild(thElement);
+        });
+        theadElement.appendChild(headerRow);
+        tableElement.appendChild(theadElement);
+
+        // Create table body
+        const tbodyElement = document.createElement('tbody');
+        list.forEach(item => {
+          const rowElement = document.createElement('tr');
+          Object.values(item).forEach(value => {
+            const tdElement = document.createElement('td');
+            tdElement.textContent = value; // Set the text content of the <td> to the value
+            rowElement.appendChild(tdElement);
+          });
+          tbodyElement.appendChild(rowElement);
+        });
+        tableElement.appendChild(tbodyElement);
+
+        // Clear the placeholder text
+        tablePlaceholderElement.textContent = '';
+
+        // Append the new table after clearing placeholder content
+        tablePlaceholderElement.appendChild(tableElement);
+      }
     }
 
     // Serialize the updated DOM back to HTML

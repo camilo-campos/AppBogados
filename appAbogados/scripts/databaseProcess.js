@@ -32,7 +32,7 @@ function getAssistantPrompt() {
 // <-- Uncomment to test the data retrieval -->
 //dataTest(['dim_comunas_chile', 'dim_abogados', 'ft_ambitos', 'ft_comunas', 'ft_solicitudes']); OLD
 //dataTest(['dim_comunas_chile', 'dim_credenciales', 'ft_ambitos', 'dim_ambitos', 'dim_abogados']);
-//dataTest(['dim_comunas_chile']);
+//dataTest(['ft_solicitudes']);
 
 //----------------------------------------------
 
@@ -57,15 +57,15 @@ async function processForm(formData, response) {
         rut: abogadosIds,
       };
 
-      /*if (formData.antecedentes_penales) {
+      if (formData.antecedentes_penales === 'si') {
         dataMatch.req_cliente_sin_ant_penales = "0";
       }
-      if (formData.antecedentes_comerciales) {
+      if (formData.antecedentes_comerciales === 'si') {
         dataMatch.req_cliente_sin_ant_com = "0";
       }
-      if (!formData.residencia) {
+      if (formData.residencia === 'no') {
         dataMatch.req_cliente_residencia_regular = "0";
-      }*/
+      }
 
       console.log("-------> [dataMatch]:", dataMatch);
 

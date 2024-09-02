@@ -54,7 +54,7 @@ async function databaseStore(formData) {
   }
 }
 
-async function insertFormDataToDB(formData) {
+async function insertSolicitante(formData) {
   const {
     id_solicitud,
     nombre,
@@ -234,7 +234,7 @@ async function databaseGet({ table, ...filters } = {}) {
 module.exports = {
   databaseGet,
   databaseStore,
-  insertFormDataToDB,
+  insertSolicitante,
   insertAbogado,
   insertft_ambitos,
 };

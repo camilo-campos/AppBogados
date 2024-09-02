@@ -1,11 +1,18 @@
 // handle form using AI and the database
-const { handleForm } = require("./scripts/handleForm");
+const { handleClientForm } = require("./scripts/handleClientForm");
 const { getAssistantPrompt } = require("./scripts/databaseProcess");
 const {
-  insertFormDataToDB,
+  insertSolicitante,
   insertAbogado,
   insertft_ambitos,
 } = require("./scripts/databaseControl");
+
+// --- Configuraciones miscelaneas ---
+// [i] Subir los abogados y solicitantes a la base de datos
+const subirABaseDeDatos = true;
+// [i] Numero maximo de abogados a los que se les enviara el caso de un cliente
+const maxAbogadosPerClient = 10;
+
 
 // require expressjs
 const express = require("express");
@@ -64,17 +71,31 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
 
   if (formData.formType === "cliente") {
     if (formData.Problema) {
+
+      /*
+        Insertar datos del formulario del cliente en la base de datos
+        y enviar respuesta al cliente
+        [i] Verificamos al usuario ANTES de procesar el formulario para que el usuario no tenga que esperar a que se complete el procesamiento
+      */
+
+      if (subirABaseDeDatos) {
+        //await insertSolicitante(formData);
+      }
+
+      res.status(200).json({ message: "Client form processed successfully" });
+
+      /*
+        Procesar el formulario del cliente con la AI y enviar correos a los abogados
+      */   
+
       const assistantData = getAssistantPrompt();
 
       const promptProblema = formData.Problema;
       const promptSystem = assistantData[0];
       const promptAmbitoList = assistantData[1];
 
-      res.status(200).json({ message: "Client form processed successfully" });
+      await handleClientForm(formData, {promptProblema, promptSystem, promptAmbitoList}, maxAbogadosPerClient);
 
-      // Process AFTER we send the response to the client
-      // So the client doesn't have to wait for the processing to complete
-      await handleForm(formData, {promptProblema, promptSystem, promptAmbitoList});
     } else {
       console.error("Error: No 'Problema' field in client form data");
       res
@@ -88,7 +109,9 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
         // Verificar si el abogado existe en la base de datos del PJUD
         if (await lawyerVerify(formData.rut)) {
           // Insertar datos del abogado en la tabla correspondiente
-          await insertAbogado(formData);
+          if (subirABaseDeDatos) {
+            await insertAbogado(formData);
+          }
 
           // Insertar datos en la tabla ft_ambitos para cada ámbito seleccionado
           const selectedSpecialties = formData.especialidades; // IDs de los ámbitos seleccionados
@@ -117,24 +140,6 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
     }
   } else {
     res.status(400).json({ error: "Unknown form type" });
-  }
-});
-
-router.post("/submit-db", csrfProtection, async (req, res) => {
-  const formData = req.body;
-  console.log("Form Data for DB Insert:", formData);
-
-  try {
-    if (await lawyerVerify(formData.rut)) {
-      await insertFormDataToDB(formData);
-      res.status(200).json({ message: "Data inserted successfully" });
-    } else {
-      console.error("Error: Lawyer not found in PJUD database");
-      res.status(400).json({ error: "Lawyer not found in PJUD database" });
-    }
-  } catch (error) {
-    console.error("Error inserting data into DB:", error);
-    res.status(500).json({ message: "Error inserting data into DB" });
   }
 });
 
