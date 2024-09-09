@@ -189,11 +189,15 @@ async function databaseGet({ table, ...filters } = {}) {
   let tableList = JSON.parse(JSON.stringify(validTables));
   if (tableList.length === 0) {
     tableList = [
-      'dim_comunas_chile',
-      'dim_credenciales',
-      'ft_ambitos',
-      'dim_ambitos',
-      'dim_abogados'
+      "dim_comunas_chile",
+      "dim_credenciales",
+      "ft_ambitos",
+      "dim_ambitos",
+      "dim_abogados",
+      "dim_comunas",
+      "ft_solicitudes",
+      "ft_operacion",
+      "ft_envio",
     ];
   }
   // Fill tables from the database

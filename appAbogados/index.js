@@ -79,7 +79,7 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
       */
 
       if (subirABaseDeDatos) {
-        //await insertSolicitante(formData);
+        await insertSolicitante(formData);
       }
 
       res.status(200).json({ message: "Client form processed successfully" });
