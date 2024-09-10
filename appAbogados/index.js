@@ -50,6 +50,10 @@ router.get("/contacto", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/formulario_cliente.html");
 });
 
+router.get("/equipo", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/equipo.html");
+});
+
 router.get("/politicas_cliente", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/politicas.cliente.html");
 });
@@ -60,6 +64,10 @@ router.get("/politicas_abogado", csrfProtection, (req, res) => {
 
 router.get("/preguntas", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/preguntas.html");
+});
+
+router.get("/nosotros", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/nosotros.html");
 });
 
 router.get("/abogado", csrfProtection, (req, res) => {
