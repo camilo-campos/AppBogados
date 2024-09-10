@@ -54,7 +54,7 @@ async function databaseStore(formData) {
   }
 }
 
-async function insertFormDataToDB(formData) {
+async function insertSolicitante(formData) {
   const {
     id_solicitud,
     nombre,
@@ -189,11 +189,15 @@ async function databaseGet({ table, ...filters } = {}) {
   let tableList = JSON.parse(JSON.stringify(validTables));
   if (tableList.length === 0) {
     tableList = [
-      'dim_comunas_chile',
-      'dim_credenciales',
-      'ft_ambitos',
-      'dim_ambitos',
-      'dim_abogados'
+      "dim_comunas_chile",
+      "dim_credenciales",
+      "ft_ambitos",
+      "dim_ambitos",
+      "dim_abogados",
+      "dim_comunas",
+      "ft_solicitudes",
+      "ft_operacion",
+      "ft_envio",
     ];
   }
   // Fill tables from the database
@@ -234,7 +238,7 @@ async function databaseGet({ table, ...filters } = {}) {
 module.exports = {
   databaseGet,
   databaseStore,
-  insertFormDataToDB,
+  insertSolicitante,
   insertAbogado,
   insertft_ambitos,
 };
