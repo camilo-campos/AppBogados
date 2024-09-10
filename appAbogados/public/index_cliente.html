@@ -4,21 +4,43 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Appbogado.cl</title>
-    <link rel="stylesheet" href="css/index_cliente.css" />
+    <link rel="stylesheet" href="./css/index_cliente.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
       <div class="header-top">
-        <div class="logo">
-          <img src="/imagen/lupa-removebg-preview.png" alt="Lupa" />
-          <h1>Appbogado.cl</h1>
+        <div class="header-top2">
+          <div class="logo">
+            <img
+              src="./imagen/logo blanco fondo azul.png"
+              alt="Lupa"
+              width="80px"
+            />
+            <h1>Appbogado.cl</h1>
+          </div>
+          <div class="menu2">
+            <i class="fa-solid fa-bars fa-2x" style="color: #ffffff"></i>
+          </div>
         </div>
         <nav>
           <ul>
-            <li><a href="/">Inicio</a></li>
-            <li><a href="#">Condiciones del Servicio</a></li>
-            <li><a href="#">Contacto</a></li>
-            <li><a href="/abogado" class="button-nav">¿Eres Abogado?</a></li>
+            <li><a href="/">INICIO</a></li>
+            <li><a href="/politicas_cliente">CONDICIONES DEL SERVICIO</a></li>
+            <li><a href="#">CONTACTO</a></li>
+            <li><a href="/abogado" class="button-nav">¿ERES ABOGADO?</a></li>
           </ul>
         </nav>
       </div>
@@ -53,12 +75,16 @@
     <div class="background-container">
       <!-- Tu contenido aquí -->
       <section class="how-to">
-        <h2>Cómo hacerlo</h2>
+        <div class="text-how-to">
+          <p>Cómo hacerlo</p>
+        </div>
         <div class="steps">
           <div class="step">
             <div class="icon-container">
-              <img src="/imagen/PRIMERICONO.png" />
-              <div class="step-icon"><h1>1</h1></div>
+              <img src="./imagen/PRIMERICONO.png" />
+              <div class="step-icon">
+                <p class="text-steps">1</p>
+              </div>
             </div>
             <p>
               Compártenos tu problema y <br />
@@ -68,8 +94,10 @@
           </div>
           <div class="step">
             <div class="icon-container">
-              <img src="/imagen/SEGUNDOICONO.png" />
-              <div class="step-icon"><h1>2</h1></div>
+              <img src="./imagen/SEGUNDOICONO.png" />
+              <div class="step-icon">
+                <p class="text-steps">2</p>
+              </div>
             </div>
             <p>
               Nuestra Inteligencia Artificial <br />
@@ -79,8 +107,10 @@
           </div>
           <div class="step">
             <div class="icon-container">
-              <img src="/imagen/TERCERICONO.png" />
-              <div class="step-icon"><h1>3</h1></div>
+              <img src="./imagen/TERCERICONO.png" />
+              <div class="step-icon">
+                <p class="text-steps">3</p>
+              </div>
             </div>
             <p>
               Los profesionales seleccionados<br />
@@ -88,7 +118,7 @@
             </p>
           </div>
         </div>
-        <div>
+        <div class="buttons-main">
           <a href="/contacto" class="button-main">Cuéntanos tu problema</a>
           <a href="#" class="button-main">Más información</a>
         </div>
@@ -96,16 +126,9 @@
 
       <footer>
         <div class="footer-content">
-          <div class="contact-info">
-            <img
-              src="/imagen/appabogados.cl.png"
-              height="200px"
-              width="240px"
-            />
-          </div>
           <div class="footer-links">
             <div class="footer-section">
-              <p>Nosotros</p>
+              <p class="nosotros">Nosotros</p>
               <ul>
                 <li><a href="#">Sobre nosotros</a></li>
                 <li><a href="#">Equipo</a></li>
@@ -113,9 +136,9 @@
               </ul>
             </div>
             <div class="footer-section">
-              <p>Soporte</p>
+              <p class="soporte">Soporte</p>
               <ul>
-                <li><a href="#">Preguntas frecuentes</a></li>
+                <li><a href="/preguntas">Preguntas frecuentes</a></li>
                 <li><a href="#">Términos y condiciones</a></li>
                 <li><a href="#">Políticas de Privacidad</a></li>
                 <li><a href="#">Contacto</a></li>
@@ -123,12 +146,12 @@
             </div>
           </div>
           <div class="social-media">
-            <p>Redes sociales</p>
+            <p class="redessociales">Redes sociales</p>
             <ul>
               <li>
                 <a href="https://www.facebook.com" target="_blank"
                   ><img
-                    src="/imagen/facebook.png"
+                    src="./imagen/facebook.png"
                     alt="Facebook"
                     height="20px"
                     width="20px"
@@ -137,7 +160,7 @@
               <li>
                 <a href="https://www.instagram.com" target="_blank"
                   ><img
-                    src="/imagen/instagram.png"
+                    src="./imagen/instagram.png"
                     alt="Instagram"
                     height="20px"
                     width="20px"
@@ -146,7 +169,7 @@
               <li>
                 <a href="https://www.twitter.com" target="_blank"
                   ><img
-                    src="/imagen/twitter.png"
+                    src="./imagen/twitter.png"
                     alt="Twitter"
                     height="20px"
                     width="20px"

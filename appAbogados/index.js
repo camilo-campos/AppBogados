@@ -44,6 +44,18 @@ router.get("/contacto", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/formulario_cliente.html");
 });
 
+router.get("/politicas_cliente", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/politicas.cliente.html");
+});
+
+router.get("/politicas_abogado", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/politicas.abogado.html");
+});
+
+router.get("/preguntas", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/preguntas.html");
+});
+
 router.get("/abogado", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/index_abogado.html");
 });
@@ -74,7 +86,11 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
 
       // Process AFTER we send the response to the client
       // So the client doesn't have to wait for the processing to complete
-      await handleForm(formData, {promptProblema, promptSystem, promptAmbitoList});
+      await handleForm(formData, {
+        promptProblema,
+        promptSystem,
+        promptAmbitoList,
+      });
     } else {
       console.error("Error: No 'Problema' field in client form data");
       res
@@ -99,7 +115,12 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
           await Promise.all(
             selectedSpecialties.map(async (id_ambito) => {
               const id_rut_ambito = `${rut}-${id_ambito}`; // Combina rut y id_ambito
-              await insertft_ambitos({ id_rut_ambito, rut, id_ambito, vigencia });
+              await insertft_ambitos({
+                id_rut_ambito,
+                rut,
+                id_ambito,
+                vigencia,
+              });
             })
           );
           res.status(200).json({ message: "Data inserted successfully" });

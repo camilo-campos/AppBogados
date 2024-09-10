@@ -1,9 +1,10 @@
-@font-face {
-  font-family: "navbar"; /* Nombre que usarás para referenciar la fuente */
-  src: url("../fonts/MYRIADPRO-BOLD.OTF") format("opentype"); /* Para navegadores modernos */
-  /* Para navegadores más antiguos */
-  font-weight: normal; /* Ajusta según el peso de la fuente */
-  font-style: normal; /* Ajusta según el estilo de la fuente */
+/* ASPECTOS GENERALES*/
+
+body {
+  font-family: "Source Sans 3", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 body {
@@ -16,41 +17,28 @@ body {
 }
 
 header {
-  position: fixed; /* Fija la barra de navegación en la parte superior */
-  top: 0; /* Alinea la barra con la parte superior de la página */
-  width: 100%; /* Hace que la barra ocupe todo el ancho de la página */
-  z-index: 1000; /* Asegura que la barra esté por encima de otros elementos */
+  position: fixed; /* Fija la barra de navegaciÃ³n en la parte superior */
+  top: 0; /* Alinea la barra con la parte superior de la pÃ¡gina */
+  width: 100%; /* Hace que la barra ocupe todo el ancho de la pÃ¡gina */
+  z-index: 1000; /* Asegura que la barra estÃ© por encima de otros elementos */
   background-color: #ff6f00;
   color: white;
   padding: 10px 0;
   border-bottom: 2px solid #e0e0e0;
-  font-family: "navbar";
-  font-size: x-large;
 }
 
 /* Header */
-
 h1 {
   background-color: #ff6f00;
   color: white;
   padding: 10px 0;
   border-bottom: 2px solid #e0e0e0;
-  font-family: "navbar";
-  font-size: x-large;
-}
-
-.header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
 }
 
 .logo {
   display: flex;
   align-items: center;
+  grid-area: 20px;
 }
 
 .logo img {
@@ -69,21 +57,22 @@ nav ul {
   display: flex;
 }
 
-nav ul li {
-  margin-left: 20px;
-}
-
 nav ul li a {
   color: white;
   text-decoration: none;
+  font-size: 20px;
+  margin-left: 30px;
+  list-style: none;
 }
+
+  /*Fin Header */
 
 /* Buttons */
 .button-nav,
 .button-main,
 .step button {
   padding: 15px 25px;
-  border-radius: 25px;
+  border-radius: 16px;
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
@@ -94,15 +83,26 @@ nav ul li a {
 .button-nav {
   background-color: rgb(50, 40, 99);
   color: #f5f2f0;
+  font-size: 20px;
+  font-weight: normal;
+  padding: 8px 20px;
+  border-radius: 12px;
 }
 
 .button-nav:hover {
   background-color: #ffcc80;
 }
 
+.description p{
+  text-align: left;
+  margin-left: 80px;
+  margin-right: 80px;
+}
 .button-main {
   background-color: rgb(248, 248, 248);
   color: #f8863a;
+  margin-left: 20px;
+  border-radius: 80px;
 }
 
 .step button {
@@ -111,13 +111,15 @@ nav ul li a {
   margin-top: 10px;
 }
 
+
 /* Main Banner */
 .main-banner-cliente {
   background-color: #052565;
   color: white;
   padding: 40px 20px;
+  margin-top: 40px;
   border-bottom: 2px solid #e0e0e0;
-  background-image: url("/imagen/fondo_final.png");
+  background-image: url(../imagen/fondo_final.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -125,12 +127,21 @@ nav ul li a {
   padding-top: 60px;
 }
 
+.text {
+  text-decoration: none;
+  list-style: none;
+}
+
+ul {
+  list-style: none;
+}
+
 .main-banner .content {
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: auto;
   font-size: x-large;
 }
 
@@ -156,12 +167,71 @@ nav ul li a {
   display: block;
 }
 
+.buttons-main{
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+
 .footer-content {
   display: flex;
   justify-content: space-between;
-  max-width: 3000px;
-  margin: 0 auto;
   padding: 0 20px;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  margin-left: 40px;
+}
+
+.info-contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  gap: 2px;
+}
+
+.info-contact .correo {
+  font-size: 18px;
+  margin: auto;
+}
+
+.info-contact .contacto {
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.footer-section .nosotros {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.footer-section .soporte {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.social-media .redessociales {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.info-contact-total {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.social-media {
+  display: flex;
+  align-items: center;
 }
 
 .contact-info,
@@ -180,10 +250,10 @@ nav ul li a {
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin: 0 20px; /* Las listas dentro estarán en columna */
+  margin: 0 20px; /* Las listas dentro estarÃ¡n en columna */
 }
 
-/* No es necesario cambiar el estilo de ul y li ya que están correctos */
+/* No es necesario cambiar el estilo de ul y li ya que estÃ¡n correctos */
 .footer-links ul,
 .social-media ul {
   list-style: none;
@@ -204,27 +274,32 @@ nav ul li a {
 }
 .footer-section p,
 .social-media p {
-  font-size: 23px; /* Ajusta el tamaño según sea necesario */
+  font-size: 23px; /* Ajusta el tamaÃ±o segÃºn sea necesario */
 }
 
 .background-container {
-  /*background-image: url("/imagen/HOME4.png");*/
+  background-image: url(../imagen/HOME4.png);
   background-color: #ff6f00;
-  background-size: contain;
+  background-size:cover;
   background-repeat: no-repeat;
   background-position: center;
-  flex: 1;
   min-height: 90vh;
   max-width: 100%; /* Evita el desbordamiento horizontal */
   padding: 0; /* Ajusta el padding si es necesario */
-}
+  font-size: x-large;
+} 
 
 .how-to {
   color: white;
-  padding: 40px 20px;
+  padding: 60px 20px;
   text-align: center;
-  border-bottom: 2px solid #e0e0e0;
-  max-width: 100%; /* Evita el desbordamiento horizontal */
+  margin: auto;
+} 
+
+.text-how-to {
+text-align: left;
+font-size: 32px;
+font-weight: 700;
 }
 
 .steps {
@@ -237,41 +312,24 @@ nav ul li a {
 .step {
   color: white;
   margin: 10px;
-  padding: 20px;
+  padding-bottom: 20px;
   border-radius: 5px;
   flex: 1;
   min-width: 250px;
   text-align: center;
-  font-size: x-large;
 }
 
 .icon-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
-}
-
-.icon-container img {
-  width: 150px;
-  height: 150px;
-  padding-right: 10px;
 }
 
 .step-icon {
-  font-size: 200px;
-  color: white;
-  font-weight: bold;
   margin-left: 10px;
-}
-
-.step p {
-  font-size: x-large;
-  margin: 0;
-}
-
-.step h1 {
-  font-size: 40px;
+  font-size: 60px;
+  line-height: 4px;
+  font-weight: 600;
 }
 
 *,
@@ -298,6 +356,19 @@ nav ul li a {
   .main-banner-cliente {
     padding: 40px 20px;
     padding-top: 80px;
+  }
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 80px;
+  margin-right: 40px;
+  padding: 0 20px;
+}
+
+  .menu2 {
+    display: none;
   }
 
   .main-banner .content {
@@ -329,13 +400,7 @@ nav ul li a {
     height: 100px;
   }
 
-  .step-icon {
-    font-size: 200px;
-  }
 
-  .step p {
-    font-size: x-large;
-  }
   .footer-content {
     display: flex;
     justify-content: space-between;
@@ -360,10 +425,10 @@ nav ul li a {
     flex: 1;
     display: flex;
     margin: 0 20px;
-    flex-direction: column; /* Las listas dentro estarán en columna */
+    flex-direction: column; /* Las listas dentro estarÃ¡n en columna */
   }
 
-  /* No es necesario cambiar el estilo de ul y li ya que están correctos */
+  /* No es necesario cambiar el estilo de ul y li ya que estÃ¡n correctos */
   .footer-links ul,
   .social-media ul {
     list-style: none;
@@ -383,11 +448,26 @@ nav ul li a {
   }
 }
 
-/* Medium devices (tablets, 991.98px to 1199px) */
-@media (min-width: 991.98px) and (max-width: 1199px) {
-  .how-to h2 {
-    font-size: 22px;
+/* Medium devices (tablets, 770px to 1199px) */
+@media (min-width: 770px) and (max-width: 1199px) {
+
+  body {
+    font-family: "Source Sans 3", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-size: 18px;
+    font-style: normal;
+  } 
+
+  .header-top2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 32px;
+    margin-right: 32px;
   }
+
 
   .steps {
     flex-direction: row;
@@ -398,33 +478,21 @@ nav ul li a {
     min-width: 300px;
   }
 
+
   .icon-container img {
     width: 90px;
     height: 90px;
   }
 
+  nav ul li a {
+    display: none;
+  }
+
   .step-icon {
-    font-size: 34px;
-  }
-
-  .step p {
-    font-size: 55px;
-  }
-
-  .header-top {
-    flex-direction: row; /* Cambia de columna a fila */
-    justify-content: space-between; /* Alinea los elementos a los extremos */
-    align-items: center; /* Alinea verticalmente al centro */
-  }
-
-  nav ul {
-    flex-direction: row; /* Cambia de columna a fila */
-    justify-content: space-around; /* Espacia los elementos horizontalmente */
-    width: auto; /* Ajusta el ancho a los elementos internos */
-  }
-
-  nav ul li {
-    margin: 0 15px; /* Ajusta el margen horizontal para espaciado */
+    margin-left: 10px;
+    font-size: 60px;
+    line-height: 4px;
+    font-weight: 600;
   }
 
   .main-banner-cliente {
@@ -442,6 +510,13 @@ nav ul li a {
     text-align: left;
   }
 
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0px;
+  }
+
   .main-banner .text p {
     font-size: 15px;
   }
@@ -455,6 +530,23 @@ nav ul li a {
     justify-content: space-between; /* Espacia los elementos horizontalmente */
     flex-direction: row; /* Alinea los elementos en fila */
     align-items: flex-start; /* Alinea los elementos en la parte superior */
+    font-size: 12px;
+  }
+
+  .footer-section .nosotros {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .footer-section .soporte {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .social-media .redessociales {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 0px;
   }
 
   .contact-info {
@@ -462,6 +554,7 @@ nav ul li a {
     display: flex; /* Usa flex para alinear la imagen */
     align-items: center; /* Alinea la imagen verticalmente */
     justify-content: center; /* Centra la imagen horizontalmente */
+    font-size: 12px;
   }
 
   .contact-info img {
@@ -470,14 +563,14 @@ nav ul li a {
   }
 
   .footer-links {
-    flex: 2; /* Ocupa más espacio */
+    flex: 2; /* Ocupa mÃ¡s espacio */
     display: flex; /* Usa flex para alinear las secciones */
     flex-direction: row; /* Alinea las secciones en fila */
     justify-content: space-between; /* Espacia las secciones horizontalmente */
   }
 
   .footer-section {
-    flex: 1; /* Cada sección ocupa un espacio igual */
+    flex: 1; /* Cada secciÃ³n ocupa un espacio igual */
     margin: 0 10px; /* Ajusta el margen horizontal */
   }
 
@@ -514,11 +607,19 @@ nav ul li a {
 }
 
 /* Small devices (phones, 767px and down) */
-@media (max-width: 769.98px) and (max-width: 990px) {
-  .header-top {
-    flex-direction: row; /* Cambia de columna a fila */
-    justify-content: space-between; /* Alinea los elementos a los extremos */
-    align-items: center; /* Alinea verticalmente al centro */
+@media (max-width: 770px) and (max-width: 990px) {
+
+  .header-top2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 32px;
+    margin-right: 32px;
+  }
+
+  nav ul li a {
+    display: none;
   }
 
   nav ul {
@@ -532,7 +633,11 @@ nav ul li a {
   }
 
   nav li {
-    font-size: medium;
+    font-size: 16px;
+  }
+
+  .step p {
+    font-size: 16px;
   }
 
   .button-nav {
@@ -545,9 +650,25 @@ nav ul li a {
     text-align: center;
   }
 
+  .social-media {
+    display: flex;
+    align-items: start;
+  }
+
   .main-banner-cliente {
     padding: 20px 10px;
     padding-top: 120px;
+      background-color: #052565;
+      color: white;
+      padding: 40px 20px;
+      margin-top: 40px;
+      border-bottom: 2px solid #e0e0e0;
+      background-image: url("/imagen/fondo_final.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-size: px;
+      padding-top: 60px;
   }
 
   .main-banner .content {
@@ -591,16 +712,21 @@ nav ul li a {
   }
 
   .icon-container img {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .buttons-main {
+    margin-top: 0px;
   }
 
   .step-icon {
     font-size: 30px;
   }
 
+
   .step p {
-    font-size: 45px;
+    font-size: 24px;
   }
 
   .button-main {
@@ -608,12 +734,18 @@ nav ul li a {
     text-align: center;
     display: inline-block; /* Asegura que el margen se aplique correctamente */
     padding: 10px;
-    margin: 15px;
+    margin: 8px;
   }
 
   footer {
     padding: 10px 0;
-    margin-top: 100px;
+    margin-top: 10px;
+  }
+
+  .how-to {
+    margin-bottom: 0px;
+    margin-left: 20px;
+    padding: 0px;
   }
 
   .footer-content {
@@ -624,6 +756,14 @@ nav ul li a {
   .footer-links {
     flex-direction: column;
   }
+
+  .social-media .redessociales {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 0px;
+  }
+
+
 
   .footer-links ul,
   .social-media ul {
@@ -636,20 +776,25 @@ nav ul li a {
   }
 }
 
+/* NO SE
 @media (max-width: 325px) and (max-width: 768.98px) {
-  .header-top {
-    flex-direction: column;
+
+  .header-top2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    padding: 0 10px; /* Ajusta el relleno para pantallas más pequeñas */
+    margin-left: 32px;
+    margin-right: 32px;
   }
 
   .logo h1 {
-    font-size: 18px; /* Reduce el tamaño del texto para mejor ajuste */
+    font-size: 18px; /* Reduce el tamaÃ±o del texto para mejor ajuste *
     text-align: center;
   }
 
   .logo img {
-    width: 60px; /* Ajusta el tamaño de la imagen del logo */
+    width: 60px; /* Ajusta el tamaÃ±o de la imagen del logo *
     height: auto;
   }
 
@@ -661,11 +806,11 @@ nav ul li a {
   }
 
   nav ul li {
-    margin: 5px 0; /* Ajusta el margen para pantallas pequeñas */
+    margin: 5px 0; /* Ajusta el margen para pantallas pequeÃ±as *
   }
 
   nav ul li a {
-    font-size: 14px; /* Reduce el tamaño de la fuente para mejor ajuste */
+    font-size: 14px; /* Reduce el tamaÃ±o de la fuente para mejor ajuste *
   }
 
   .how-to h2 {
@@ -679,21 +824,21 @@ nav ul li a {
 
   .step {
     margin: 10px 0;
-    padding: 10px; /* Adjust padding for small screens */
-    min-width: 100%; /* Ensure steps take full width */
+    padding: 10px; /* Adjust padding for small screens *
+    min-width: 100%; /* Ensure steps take full width *
   }
 
   .icon-container img {
-    width: 50px; /* Smaller icons for smaller screens */
+    width: 50px; /* Smaller icons for smaller screens *
     height: 50px;
   }
 
   .step-icon {
-    font-size: 24px; /* Smaller step icons */
+    font-size: 24px; /* Smaller step icons *
   }
 
   .step p {
-    font-size: 35px; /* Smaller text for better fit */
+    font-size: 35px; /* Smaller text for better fit *
   }
 
   .button-main {
@@ -701,14 +846,14 @@ nav ul li a {
     width: 100%;
     text-align: center;
     padding: 10px;
-    margin: 15px; /* Adjust padding for smaller buttons */
+    margin: 15px; /* Adjust padding for smaller buttons *
   }
 
   .main-banner-cliente {
     padding-top: 120px;
     padding: 20px 10px;
-    background-size: contain; /* Ajusta la imagen para que se contenga dentro del área del elemento */
-    background-position: top center; /* Ajusta la imagen de fondo para caber en la pantalla */
+    background-size: contain; /* Ajusta la imagen para que se contenga dentro del Ã¡rea del elemento *
+    background-position: top center; /* Ajusta la imagen de fondo para caber en la pantalla *
   }
 
   .main-banner .content {
@@ -723,7 +868,7 @@ nav ul li a {
   }
 
   .main-banner .text p {
-    font-size: 14px; /* Reduce el tamaño de la fuente */
+    font-size: 14px; /* Reduce el tamaÃ±o de la fuente *
   }
 
   .main-banner .image {
@@ -763,10 +908,16 @@ nav ul li a {
 }
 
 @media (max-width: 320px) {
-  header {
-    position: static; /* Cambia la posición a estática en pantallas pequeñas */
-    top: auto; /* Anula la posición superior */
+
+  .header-top2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 32px;
+    margin-right: 32px;
   }
+
   .header-top {
     flex-direction: column;
     align-items: center;
@@ -857,8 +1008,8 @@ nav ul li a {
   }
 
   .main-banner .text p {
-    font-size: 14px; /* Reduce el tamaño de la fuente */
-    line-height: 1.4; /* Aumenta el espaciado entre líneas para mejor legibilidad */
+    font-size: 14px; /* Reduce el tamaÃ±o de la fuente *
+    line-height: 1.4; /* Aumenta el espaciado entre lÃ­neas para mejor legibilidad *
   }
 
   .main-banner .image {
@@ -896,3 +1047,7 @@ nav ul li a {
     margin: 3px 0;
   }
 }
+
+//* NO SE
+
+

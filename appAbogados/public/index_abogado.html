@@ -4,32 +4,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Appbogado.cl</title>
-    <link rel="stylesheet" href="css/index_abogado.css" />
+    <link rel="stylesheet" href="./css/style.abogado.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
       <div class="header-top">
-        <div class="logo">
-          <img src="/imagen/lupa-removebg-preview.png" alt="Lupa" />
-          <h1>Appbogado.cl</h1>
+        <div class="header-top2">
+          <div class="logo">
+            <img
+              src="./imagen/logo blanco fondo azul.png"
+              alt="Lupa"
+              width="80px"
+            />
+            <h1>Appbogado.cl</h1>
+          </div>
+          <div class="menu2">
+            <i class="fa-solid fa-bars fa-2x" style="color: #ffffff"></i>
+          </div>
         </div>
         <nav>
           <ul>
-            <li><a href="/">Inicio</a></li>
-            
-            <li><a href="#">Condiciones del Servicio</a></li>
-            <li><a href="#">Contacto</a></li>
-            <li><a href="#" class="button-nav">¿Eres Abogado?</a></li>
+            <li><a href="/abogado">INICIO</a></li>
+            <li><a href="/politicas_abogado">CONDICIONES DEL SERVICIO</a></li>
+            <li><a href="#">CONTACTO</a></li>
+            <li><a href="/abogado" class="button-nav">¿ERES ABOGADO?</a></li>
           </ul>
         </nav>
       </div>
     </header>
-    <section class="main-banner-abogado">
-      
-      <div >
+
+    <section class="main-banner-cliente">
+      <div>
         <h2>
-          Encuentra el abogado a tu medida: en todas las áreas<br />
-          del Derecho y en todo Chile.
+          Aumenta tu cartera de clientes de forma<br />
+          rápida y efectiva.
         </h2>
       </div>
 
@@ -37,136 +58,131 @@
         <div class="text">
           <ul>
             <li><p>Rápido y fácil de usar.</p></li>
-            <li><p>Tarifa plana y sin cargos adicionales</p></li>
             <li>
+              <p>Tarifa plana y sin cargos adicionales<br /></p>
               <p>
-                Cuéntanos que tipos de casos te interesan , define los<br />limites
-                y condiciones de tus servicios y deja que nuestra<br />
-                Inteligencia Artificial encuentre a los clientes que quieres
+                Cuéntanos que tipos de casos te interesan, define los <br />
+                límites y condiciones de tus servicios y deja que nuestra<br />
+                inteligencia artificial encuentre a los clientes que quieres
                 tener.
               </p>
             </li>
           </ul>
-
+          <br />
           <a href="/registro" class="button-main">Regístrate</a>
         </div>
       </div>
-      
-    </div>
     </section>
-    <section class="how-to">
-      <h2>Cómo hacerlo</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="icon-container">
-            <img src="/imagen/PRIMERICONO.png" />
-            <div class="step-icon"><h1>1</h1></div>
-          </div>
-          <p>
-            Registra tus datos profesionales <br />
-            (100% confidencial) y paga tu <br />
-            inscripción.
-          </p>
-        </div>
-        <div class="step">
-          <div class="icon-container">
-            <img src="/imagen/SEGUNDOICONO.png" />
-            <div class="step-icon"><h1>2</h1></div>
-          </div>
-          <p>
-            Nuestra Inteligencia Artificial <br />
-            seleccionará los casos mas adecuados <br />
-            para ti, segun los parametros de <br />
-            búsqueda que tu mismo le entregaste.<br />
-            al registrarte
-          </p>
-        </div>
-        <div class="step">
-          <div class="icon-container">
-            <img src="/imagen/TERCERICONO.png" />
-            <div class="step-icon"><h1>3</h1></div>
-          </div>
-          <p>
-            Recibe la informacion de los<br />
-            casos seleccionados y los datos<br />
-            de contacto de tus futuros clientes.
-          </p>
-        </div>
-      </div>
-      <a href="/registro" class="button-main">Regístrate</a>
-      <a href="#" class="button-main">Más información</a>
-    </section>
-    
-    <footer>
-      <div class="footer-content">
-        <div class="footer-links">
-          <div class="footer-section">
-            
-              
-                <img
-                  src="/imagen/appabogados.cl.png"
-                  height="200px"
-                  width="240px"
-                  
-                />
-              
 
-              
-            
+    <div class="background-container">
+      <!-- Tu contenido aquí -->
+      <section class="how-to">
+        <div class="text-how-to">
+          <p>Cómo hacerlo</p>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="icon-container">
+              <img src="./imagen/PRIMERICONO.png" />
+              <div class="step-icon">
+                <p class="text-steps">1</p>
+              </div>
+            </div>
+            <p>
+              Registra tus datos profesioanles <br />
+              (100% confidencial) y paga tu <br />
+              inscripción.
+            </p>
+          </div>
+          <div class="step">
+            <div class="icon-container">
+              <img src="./imagen/SEGUNDOICONO.png" />
+              <div class="step-icon">
+                <p class="text-steps">2</p>
+              </div>
+            </div>
+            <p>
+              Nuestra Inteligencia Artificial <br />
+              seleccionará los casos más adecuados <br />
+              para ti, según los parámetros de búsqueda <br />
+              que tu mismo le entregaste al registrarte. <br />
+            </p>
+          </div>
+          <div class="step">
+            <div class="icon-container">
+              <img src="./imagen/TERCERICONO.png" />
+              <div class="step-icon">
+                <p class="text-steps">3</p>
+              </div>
+            </div>
+            <p>
+              Recibe la información de los<br />
+              casos seleccionado y los datos <br />
+              de contacto de tus futuros clientes. <br />
+            </p>
           </div>
         </div>
-        <div class="footer-links">
-          <div class="footer-section">
-            <p>Nosotros</p>
+        <div class="buttons-main">
+          <a href="/contacto" class="button-main">Regístrate</a>
+          <a href="#" class="button-main">Más información</a>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-content">
+          <div class="footer-links">
+            <div class="footer-section">
+              <p class="nosotros">Nosotros</p>
+              <ul>
+                <li><a href="#">Sobre nosotros</a></li>
+                <li><a href="#">Equipo</a></li>
+                <li><a href="#">¿Eres Abogado?</a></li>
+              </ul>
+            </div>
+            <div class="footer-section">
+              <p class="soporte">Soporte</p>
+              <ul>
+                <li><a href="#">Preguntas frecuentes</a></li>
+                <li><a href="#">Términos y condiciones</a></li>
+                <li><a href="#">Políticas de Privacidad</a></li>
+                <li><a href="#">Contacto</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="social-media">
+            <p class="redessociales">Redes sociales</p>
             <ul>
-              <li><a href="#">Sobre nosotros</a></li>
-              <li><a href="#">Equipo</a></li>
-              <li><a href="#">¿Eres Abogado?</a></li>
+              <li>
+                <a href="https://www.facebook.com" target="_blank"
+                  ><img
+                    src="./imagen/facebook.png"
+                    alt="Facebook"
+                    height="20px"
+                    width="20px"
+                /></a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com" target="_blank"
+                  ><img
+                    src="./imagen/instagram.png"
+                    alt="Instagram"
+                    height="20px"
+                    width="20px"
+                /></a>
+              </li>
+              <li>
+                <a href="https://www.twitter.com" target="_blank"
+                  ><img
+                    src="./imagen/twitter.png"
+                    alt="Twitter"
+                    height="20px"
+                    width="20px"
+                /></a>
+              </li>
             </ul>
           </div>
-          <div class="footer-section">
-            <p>Soporte</p>
-            <ul>
-              <li><a href="#">Preguntas frecuentes</a></li>
-              <li><a href="#">Términos y condiciones</a></li>
-              <li><a href="#">Políticas de Privacidad</a></li>
-              <li><a href="#">Contacto</a></li>
-            </ul>
-          </div>
         </div>
-        <div class="social-media">
-          <p>Redes sociales</p>
-          <ul>
-            <li>
-              <a href="https://www.facebook.com" target="_blank"
-                ><img
-                  src="/imagen/facebook.png"
-                  alt="Facebook"
-                  height="20px"
-                  width="20px"
-              /></a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com" target="_blank"
-                ><img
-                  src="/imagen/instagram.png"
-                  alt="Instagram"
-                  height="20px"
-                  width="20px"
-              /></a>
-            </li>
-            <li>
-              <a href="https://www.twitter.com" target="_blank"
-                ><img
-                  src="/imagen/twitter.png"
-                  alt="Twitter"
-                  height="20px"
-                  width="20px"
-              /></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </div>
   </body>
 </html>
