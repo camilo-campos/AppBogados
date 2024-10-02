@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verificación con Regula</title>
+  </head>
+  <body>
+    <h1>Verificación de Documentos y Rostros con Regula</h1>
+
+    <form id="regulaForm">
+      <label for="tipo">Seleccione el tipo de verificación:</label><br />
+      <input
+        type="radio"
+        id="documento"
+        name="tipo"
+        value="documento"
+        checked
+      />
+      Verificar Documento<br />
+      <input type="radio" id="rostro" name="tipo" value="rostro" /> Verificar
+      Rostro<br /><br />
+
+      <label for="file">Cargar archivo:</label><br />
+      <input
+        type="file"
+        id="file"
+        name="file"
+        accept="image/*, .pdf"
+      /><br /><br />
+
+      <button type="submit">Verificar</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+      document
+        .getElementById("regulaForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
+          const formData = new FormData();
+          const fileInput = document.getElementById("file").files[0];
+          const tipo = document.querySelector(
+            'input[name="tipo"]:checked'
+          ).value;
+
+          formData.append("file", fileInput);
+          formData.append("tipo", tipo);
+
+          try {
+            const response = await fetch("/api/regula-verificacion", {
+              method: "POST",
+              body: formData,
+            });
+            const data = await response.json();
+            document.getElementById("result").innerText = JSON.stringify(
+              data,
+              null,
+              2
+            );
+          } catch (error) {
+            console.error("Error en la verificación:", error);
+            document.getElementById("result").innerText =
+              "Error en la verificación";
+          }
+        });
+    </script>
+  </body>
+</html>

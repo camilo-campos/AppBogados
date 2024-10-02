@@ -18,6 +18,25 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const csrf = require("csurf");
 const { lawyerVerify } = require("./scripts/lawyerVerify");
+const fs = require("fs");
+const path = require("path");
+
+// Ruta absoluta al archivo de licencia
+const licensePath = path.join(
+  __dirname,
+  "public",
+  "licencia_regula",
+  "regula.license"
+);
+
+// Leer el archivo de licencia y almacenarlo
+let regulaLicense = null;
+try {
+  regulaLicense = fs.readFileSync(licensePath, "utf-8");
+  console.log("Licencia de Regula cargada correctamente");
+} catch (error) {
+  console.error("Error al cargar la licencia de Regula:", error);
+}
 
 const app = express();
 
@@ -77,6 +96,59 @@ router.get("/abogado", csrfProtection, (req, res) => {
 router.get("/registro", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/formulario_abogado.html");
 });
+
+router.get("/soporte", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/soporte.html");
+});
+
+// Ruta para la página de verificación con Regula
+router.get("/regula-verificacion", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/regula_verificacion.html");
+});
+
+const multer = require("multer"); // Para manejar la carga de archivos
+const axios = require("axios");
+const upload = multer({ dest: "uploads/" }); // Directorio temporal de carga de archivos
+
+// Ruta para manejar la verificación con Regula
+router.post(
+  "/api/regula-verificacion",
+  upload.single("file"),
+  async (req, res) => {
+    const { tipo } = req.body;
+    const file = req.file;
+
+    if (!file) {
+      return res.status(400).json({ error: "Archivo no encontrado" });
+    }
+
+    try {
+      const fileContent = fs.readFileSync(file.path); // Leer archivo cargado
+      const apiUrl =
+        tipo === "documento"
+          ? "https://api.regula.com/document"
+          : "https://api.regula.com/face";
+
+      // Enviar la solicitud a Regula API con la licencia
+      const response = await axios.post(apiUrl, fileContent, {
+        headers: {
+          Authorization: `Bearer ${process.env.REGULA_API_KEY}`,
+          "Content-Type": file.mimetype, // Usar el mime type correcto
+          "X-License": regulaLicense, // Incluye la licencia en los encabezados
+        },
+      });
+
+      // Eliminar el archivo temporal después de procesar
+      fs.unlinkSync(file.path);
+
+      // Enviar respuesta de Regula al cliente
+      res.status(200).json(response.data);
+    } catch (error) {
+      console.error("Error en la verificación con Regula:", error);
+      res.status(500).json({ error: "Error en la verificación con Regula" });
+    }
+  }
+);
 
 // Route to serve CSRF token
 router.get("/csrf-token", csrfProtection, (req, res) => {

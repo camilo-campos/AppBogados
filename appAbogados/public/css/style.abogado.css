@@ -81,7 +81,7 @@ nav ul li a {
 }
 
 .button-nav {
-  background-color: rgb(50, 40, 99);
+  background-color: #d9691f;
   color: #f5f2f0;
   font-size: 20px;
   font-weight: normal;
@@ -118,9 +118,9 @@ nav ul li a {
   padding: 40px 20px;
   margin-top: 40px;
   border-bottom: 2px solid #e0e0e0;
-  background-image: url(../imagen/front_abogado.jpg);
+  background-image: url(../imgs/Foto-front-abogados.jpg);
   background-size: cover;
-  background-position: center;
+  background-position: top center;
   background-repeat: no-repeat;
   font-size: x-large;
   padding-top: 60px;
@@ -148,6 +148,22 @@ ul {
   flex: 1;
   margin-right: 20px;
   font-size: x-large;
+}
+
+.viñeta {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  gap: 12px;
+  margin-left: 24px;
+}
+
+.viñeta p {
+  margin-top: 0px;
+}
+
+.viñeta img {
+  margin-top: 8px;
 }
 
 .main-banner .text p {
@@ -276,8 +292,8 @@ ul {
 }
 
 .background-container {
-  background-image: url(../imagen/HOME4.png);
-  background-color: #052565;
+  background-image: url(../imgs/HOME4.png);
+  background-color: #1a1449;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -365,6 +381,10 @@ ul {
     padding: 0 20px;
   }
 
+  .text-how-to {
+    margin-left: 40px;
+  }
+
   .menu2 {
     display: none;
   }
@@ -398,14 +418,6 @@ ul {
     height: 100px;
   }
 
-  .footer-content {
-    display: flex;
-    justify-content: space-between;
-    max-width: 3000px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
   .contact-info,
   .footer-links,
   .social-media {
@@ -414,16 +426,16 @@ ul {
 
   .footer-links {
     display: flex;
-    justify-content: space-between;
   }
 
+  /*
   .footer-section,
   .social-media {
     flex: 1;
     display: flex;
     margin: 0 20px;
     flex-direction: column; /* Las listas dentro estarÃ¡n en columna */
-  }
+  /*
 
   /* No es necesario cambiar el estilo de ul y li ya que estÃ¡n correctos */
   .footer-links ul,
@@ -438,10 +450,82 @@ ul {
     margin: 5px 0;
   }
 
+  .info-contact-total2 {
+    display: none;
+  }
+
   .footer-links ul li a,
   .social-media ul li a {
     color: white;
     text-decoration: none;
+  }
+
+  .titulo-mobile {
+    display: none;
+  }
+
+  .footer-links2 {
+    display: none;
+  }
+
+  .image-tablet {
+    display: none;
+  }
+
+  .footer-completo2 {
+    display: flex;
+  }
+
+  .redes-sociales-iconos {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin-left: 40px;
+    gap: 28px;
+  }
+
+  .button-main-position {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .footer-completo2 {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  .soporte {
+    font-weight: 700;
+    font-size: 24px;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .social-media {
+    display: flex;
+    align-items: flex-end;
+    margin-right: 40px;
+  }
+
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
   }
 }
 
@@ -453,6 +537,41 @@ ul {
     font-weight: 400;
     font-size: 18px;
     font-style: normal;
+  }
+
+  .main-banner-cliente {
+    background-color: #052565;
+    color: white;
+    border-bottom: 2px solid #e0e0e0;
+    background-image: url(../imgs/Foto-front-abogados.jpg);
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+  }
+
+  .menu2 {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .menu2 i {
+    font-size: 28px;
+  }
+
+  .menu2 a {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .titulo-mobile {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  .button-main-position {
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   .header-top2 {
@@ -504,13 +623,6 @@ ul {
     text-align: left;
   }
 
-  .contact-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 0px;
-  }
-
   .main-banner .text p {
     font-size: 15px;
   }
@@ -519,12 +631,22 @@ ul {
     margin-top: 0;
   }
 
-  .footer-content {
-    display: flex; /* Cambiado a flex */
-    justify-content: space-between; /* Espacia los elementos horizontalmente */
-    flex-direction: row; /* Alinea los elementos en fila */
-    align-items: flex-start; /* Alinea los elementos en la parte superior */
+  /* .footer-content {
+    display: flex; 
+    justify-content: space-between; 
+    flex-direction: row; 
+    align-items: flex-start; 
     font-size: 12px;
+  } */
+
+  .footer-content {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .info-contact-total {
+    display: none;
   }
 
   .footer-section .nosotros {
@@ -538,22 +660,10 @@ ul {
   }
 
   .social-media .redessociales {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 28px;
+    font-weight: 600;
     margin-top: 0px;
-  }
-
-  .contact-info {
-    flex: 1; /* Ocupa espacio flexible */
-    display: flex; /* Usa flex para alinear la imagen */
-    align-items: center; /* Alinea la imagen verticalmente */
-    justify-content: center; /* Centra la imagen horizontalmente */
-    font-size: 12px;
-  }
-
-  .contact-info img {
-    max-width: 100%; /* Asegura que la imagen no se desborde */
-    height: auto;
+    margin-left: 0px;
   }
 
   .footer-links {
@@ -572,21 +682,69 @@ ul {
     margin: 0 0 10px; /* Ajusta el margen de abajo */
   }
 
+  .contacto2 {
+    font-weight: 600;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 20px;
+  }
+
+  .correo2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 20px;
+  }
+
   .footer-links ul {
     list-style: none;
     padding: 0;
     margin: 0;
   }
 
+  .links-footer-2 a {
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+  }
+
+  .footer-links2 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .nosotros2 {
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 20px;
+    margin-right: 100px;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  .soporte2 {
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 20px;
+    margin-right: 150px;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
   .footer-links ul li {
     margin: 5px 0; /* Ajusta el margen vertical */
+  }
+
+  .footer-links {
+    display: none;
   }
 
   .social-media {
     flex: 1; /* Ocupa el espacio restante */
     display: flex; /* Usa flex para alinear los elementos */
     flex-direction: column; /* Alinea los elementos en columna */
-    align-items: flex-start; /* Alinea los elementos a la izquierda */
+    align-items: center; /* Alinea los elementos a la izquierda */
+    margin-left: 0px;
   }
 
   .social-media ul {
@@ -598,6 +756,82 @@ ul {
   .social-media ul li {
     margin: 5px 0; /* Ajusta el margen vertical */
   }
+
+  .info-contact-total2 {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .titulo-mobile {
+    display: none;
+  }
+
+  .contact-info {
+    display: none;
+  }
+
+  .footer-links2 {
+    display: flex;
+  }
+
+  .redes-sociales-iconos {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin-left: 40px;
+    gap: 28px;
+  }
+
+  .rrss-mobile {
+    margin-left: 40px;
+  }
+
+  .contacto2 {
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  .footer-section2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .links-footer-2 {
+    padding-left: 0;
+    margin-right: 0;
+    list-style-type: none;
+  }
+
+  .redessociales {
+    line-height: auto;
+    margin-bottom: 0px;
+    justify-content: center;
+  }
+
+  .rrss-mobile {
+    margin-left: 0px;
+  }
+
+  .social-media {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 0px;
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .image-tablet {
+    margin-left: 40px;
+  }
 }
 
 /* Small devices (phones, 767px and down) */
@@ -607,8 +841,23 @@ ul {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-left: 32px;
-    margin-right: 32px;
+    margin-left: 12px;
+    margin-right: 24px;
+  }
+
+  .menu2 {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .menu2 i {
+    font-size: 24px;
+  }
+
+  .menu2 a {
+    font-size: 18px;
+    font-weight: 600;
   }
 
   nav ul li a {
@@ -633,6 +882,10 @@ ul {
     font-size: 16px;
   }
 
+  .logo img {
+    width: 140px;
+  }
+
   .button-nav {
     font-size: small;
     padding: 8px 8px;
@@ -646,22 +899,47 @@ ul {
   .social-media {
     display: flex;
     align-items: start;
+    margin-left: 0px;
   }
 
   .main-banner-cliente {
-    padding: 20px 10px;
-    padding-top: 120px;
     background-color: #052565;
     color: white;
-    padding: 40px 20px;
-    margin-top: 40px;
     border-bottom: 2px solid #e0e0e0;
-    background-image: url("/imagen/fondo_final.png");
+    background-image: url(../imgs/Foto-front-abogados.jpg);
     background-size: cover;
-    background-position: center;
+    background-position: top center;
     background-repeat: no-repeat;
-    font-size: px;
-    padding-top: 60px;
+  }
+
+  .titulo-mobile {
+    font-size: 24px;
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  .titulo-desktop {
+    display: none;
+  }
+
+  .viñeta {
+    font-size: 20px;
+  }
+
+  .button-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .buttons-main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .button-main-position {
+    display: flex;
+    justify-content: center;
   }
 
   .main-banner .content {
@@ -729,9 +1007,35 @@ ul {
     margin: 8px;
   }
 
-  footer {
-    padding: 10px 0;
-    margin-top: 10px;
+  .info-contact-total2 {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .info-contact2 {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .contacto2 {
+    font-weight: 600;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: white;
+  }
+
+  .correo2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 16px;
+    color: white;
+  }
+
+  .info-contact-total {
+    display: none;
   }
 
   .how-to {
@@ -742,26 +1046,58 @@ ul {
 
   .footer-content {
     padding: 0 10px;
+    display: flex;
     flex-direction: column;
   }
 
   .footer-links {
+    display: none;
+  }
+
+  .social-media {
+    display: flex;
     flex-direction: column;
   }
 
   .social-media .redessociales {
-    font-size: 20px;
-    font-weight: 700;
-    margin-top: 0px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
   }
 
-  .footer-links ul,
-  .social-media ul {
-    display: block;
+  .links-footer-2 a {
+    text-decoration: none;
+    color: white;
+    padding-left: 0px;
+    list-style-type: none;
   }
 
-  .footer-links ul li,
-  .social-media ul li {
-    margin: 5px 0;
+  .nosotros2 {
+    font-weight: 600;
+    height: 20px;
+  }
+
+  .soporte2 {
+    font-weight: 600;
+    height: 20px;
+  }
+
+  .redes-sociales-iconos {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin-left: 40px;
+    gap: 28px;
+  }
+
+  .image-tablet {
+    display: none;
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
   }
 }

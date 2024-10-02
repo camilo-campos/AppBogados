@@ -4,161 +4,198 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Appbogado.cl</title>
-    <link rel="stylesheet" href="./css/style.nosotros.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="./css/style.nosotros.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header>
-      <div class="header-top">
-        <div class="header-top2">
+      <header>
+        <div class="header-top">
+          <div class="header-top2">
           <div class="logo">
-            <img
-              src="./imagen/logo blanco fondo azul.png"
-              alt="Lupa"
-              width="80px"
-            />
-            <h1>Appbogado.cl</h1>
+            <img src="./imgs/logo.png" alt="Lupa" width="250px" />
           </div>
           <div class="menu2">
-            <i class="fa-solid fa-bars fa-2x" style="color: #ffffff"></i>
+            <a href="/abogado" class="button-nav">¿ERES ABOGADO?</a>
+              <i class="fa-solid fa-bars fa-1x" style="color: #ffffff"></i> 
+              </div>
+          </div>
+          <nav>
+            <ul>
+              <li><a href="/">INICIO</a></li>
+              <li><a href="#">CONDICIONES DEL SERVICIO</a></li>
+              <li><a href="#">CONTACTO</a></li>
+              <li><a href="/abogado" class="button-nav">¿ERES ABOGADO?</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <section class="main-banner-cliente">
+        <div>
+          <h2 class="titulo-desktop">
+            Encuentra el abogado a tu medida: en todas las áreas<br />
+            del Derecho y en todo Chile.
+          </h2>
+          <h2 class="titulo-mobile">Encuentra el abogado a tu medida: en todas las áreas del Derecho y en todo Chile</h2>
+        </div>
+  
+        <div class="content">
+          <div class="text">
+              <li class="viñeta">
+              <img src="./imgs/chevron_right.png" width="28px">
+              <p>Gratis, rápido y fácil de usar.</p>
+              </li>
+              <li class="viñeta">
+                <img src="./imgs/chevron_right.png" width="28px">
+                <p>
+                  Cuéntanos tu problema y deja que nuestra <br />Inteligencia
+                  Artificial encuentre a los abogados<br />
+                  que mejor se adapten a tus necesidades.
+                </p>
+              </li>
+            </div>
+            <div class="button-main-position">
+            <a href="/contacto" class="button-main">Cuéntanos tu problema</a>
+          </div>
           </div>
         </div>
-        <nav>
-          <ul>
-            <li><a href="/">INICIO</a></li>
-            <li><a href="#">CONDICIONES DEL SERVICIO</a></li>
-            <li><a href="#">CONTACTO</a></li>
-            <li><a href="/abogado" class="button-nav">¿ERES ABOGADO?</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-
-    <section class="main-banner-cliente">
-      <div>
-        <h2>
-          Encuentra el abogado a tu medida: en todas las áreas<br />
-          del Derecho y en todo Chile.
-        </h2>
-      </div>
-
-      <div class="content">
-        <div class="text">
-          <ul>
-            <li><p>Gratis, rápido y fácil de usar.</p></li>
-            <li>
-              <p>
-                Cuéntanos tu problema y deja que nuestra <br />Inteligencia
-                Artificial encuentre a los abogados<br />
-                que mejor se adapten a tus necesidades.
-              </p>
-            </li>
-          </ul>
-          <br />
-          <a href="/contacto" class="button-main">Cuéntanos tu problema</a>
-        </div>
-      </div>
-    </section>
-
-    <div class="background-container">
-      <!-- Tu contenido aquí -->
-      <section class="how-to">
-        <div class="text-how-to">
-          <p>Sobre nosotros</p>
-        </div>
-        <p class="description">
-          Appbogado.cl es una plataforma digital que conecta a quienes buscan
-          asesoría legal personalizada con los profesionales del Derecho que
-          mejor se adaptan a sus necesidades. Para cumplir con ese objetivo de
-          forma eciente utilizamos herramientas de Inteligencia Articial.
-        </p>
-
-        <p class="description">
-          Utilizamos un modelo fundacional de Inteligencia Articial generativa
-          que recibe las solicitudes de apoyo jurídico y las analiza en busca de
-          su más alta coincidencia (o “match”) con el perl del abogado que,
-          inscrito en nuestra plataforma, también busca hacer contacto con
-          clientes que se acomoden a sus especicas fortalezas y competencias.
-        </p>
-
-        <p class="description">
-          A través del uso de la Inteligencia articial evitamos que la búsqueda
-          de asesoría legal se haga fatigosa, y, simultáneamente, garantizamos
-          que los casos que reciben los abogados inscritos en nuestra plataforma
-          sean efectivamente de su interés y dominio. De esta manera, ahorramos
-          tiempo y recursos tanto a quienes buscan apoyo jurídico como a los
-          profesionales del Derecho y, sobre todo, ofrecemos una solución que
-          prioriza la calidad por sobre la cantidad.
-        </p>
       </section>
 
-      <footer>
-        <div class="footer-content">
-          <div class="footer-links">
-            <div class="footer-section">
-              <p class="nosotros">Nosotros</p>
-              <ul>
-                <li><a href="#">Sobre nosotros</a></li>
-                <li><a href="#">Equipo</a></li>
-                <li><a href="#">¿Eres Abogado?</a></li>
+      <div class="background-container">
+        <!-- Tu contenido aquí -->
+        <section class="how-to">
+          <div class="text-how-to">
+          <p>Sobre nosotros</p>
+          </div>
+          <p class="description"> Appbogado.cl es una plataforma digital que conecta a quienes buscan asesoría legal personalizada con los profesionales del Derecho que mejor se adaptan a sus necesidades. Para cumplir con ese objetivo de forma eficiente utilizamos herramientas de Inteligencia Articial. </p>
+            
+            <p class="description">
+            Utilizamos un modelo fundacional de Inteligencia Articial generativa que recibe las solicitudes de apoyo jurídico y las analiza en busca de su más alta coincidencia (o “match”) con el perfil del abogado que, inscrito en nuestra plataforma, también busca hacer contacto con clientes que se acomoden a sus específicas fortalezas y competencias.  </p>
+
+             <p class="description">
+            A través del uso de la Inteligencia articial evitamos que la búsqueda de asesoría legal se haga fatigosa, y, simultáneamente, garantizamos que los casos que reciben los abogados inscritos en nuestra plataforma sean efectivamente de su interés y dominio. De esta manera, ahorramos tiempo y recursos tanto a quienes buscan apoyo jurídico como a los profesionales del Derecho y, sobre todo, ofrecemos una solución que prioriza la calidad por sobre la cantidad. </p>
+
+        </section>
+  
+        <footer>
+          <img class="image-tablet"
+          src="./imgs/appabogados.cl.png" width="100px" height="100px"/>
+          <div class="footer-content">
+            <div class="contact-info">
+              <img
+                src="./imgs/appabogados.cl.png" width="100px"/>
+                <div class="info-contact-total">
+                <img src="./imgs/mail.png" width="40px"  height="40px">
+                <div class="info-contact">
+                <p class="contacto">Contacto</p>
+                <p class="correo">E-mail: contacto@appbogado.cl</p>
+              </div>
+              </div>
+            </div>
+          
+           <div class="footer-completo2">
+            <div class="footer-links">
+              <div class="footer-section">
+                <p class="nosotros">Nosotros</p>
+                <ul>
+                  <li><a href="/nosotros">Sobre nosotros</a></li>
+                  <li><a href="/equipo">Equipo</a></li>
+                  <li><a href="#">¿Eres Abogado?</a></li>
+                </ul> 
+              </div>
+              </div>
+           </div>
+  
+              
+              <div class="footer-completo2">
+                <div class="footer-links">
+                  <div class="footer-section">
+                <p class="soporte">Soporte</p>
+                <ul>
+                  <li><a href="#">Preguntas frecuentes</a></li>
+                  <li><a href="#">Términos y condiciones</a></li>
+                  <li><a href="#">Políticas de Privacidad</a></li>
+                  <li><a href="#">Contacto</a></li>
+                </ul>
+              </div>
+              </div>
+              </div>
+            
+  
+            <div class="footer-links2">
+              <div class="footer-section2">
+                <p class="nosotros2">Nosotros</p>
+                <ul class="links-footer-2">
+                  <li><a href="/nosotros">Sobre nosotros</a></li>
+                  <li><a href="/equipo">Equipo</a></li>
+                  <li><a href="#">¿Eres Abogado?</a></li>
+                </ul>
+              </div>
+              <div class="footer-section2">
+                <p class="soporte2">Soporte</p>
+                <ul class="links-footer-2">
+                  <li><a href="#">Preguntas frecuentes</a></li>
+                  <li><a href="#">Términos y condiciones</a></li>
+                  <li><a href="#">Políticas de Privacidad</a></li>
+                  <li><a href="#">Contacto</a></li>
+                </ul>
+              </div>
+              </div>
+  
+              
+              
+            <div class="social-media">
+              <p class="redessociales">Redes sociales</p>
+              <div class="rrss-mobile">
+              <ul class="redes-sociales-iconos">
+                <li>
+                  <a href="https://www.facebook.com" target="_blank"
+                    ><img
+                      src="./imgs/facebook.png"
+                      alt="Facebook"
+                      height="30px"
+                      width="30px"
+                  /></a>
+                </li>
+                <li>
+                  <a href="https://www.instagram.com" target="_blank"
+                    ><img
+                      src="./imgs/instagram.png"
+                      alt="Instagram"
+                      height="30px"
+                      width="30px"
+                  /></a>
+                </li>
+                <li>
+                  <a href="https://www.twitter.com" target="_blank"
+                    ><img
+                      src="./imgs/twitter.png"
+                      alt="Twitter"
+                      height="30px"
+                      width="30px"
+                  /></a>
+                </li>
               </ul>
             </div>
-            <div class="footer-section">
-              <p class="soporte">Soporte</p>
-              <ul>
-                <li><a href="#">Preguntas frecuentes</a></li>
-                <li><a href="#">Términos y condiciones</a></li>
-                <li><a href="#">Políticas de Privacidad</a></li>
-                <li><a href="#">Contacto</a></li>
-              </ul>
+            </div>
+  
+            <div class="info-contact-total2">
+              <img src="./imgs/mail.png" width="40px"  height="40px">
+              <div class="info-contact2">
+              <p class="contacto2">Contacto</p>
+              <p class="correo2">E-mail: contacto@appbogado.cl</p>
+            </div>
+  
+          </div>
             </div>
           </div>
-          <div class="social-media">
-            <p class="redessociales">Redes sociales</p>
-            <ul>
-              <li>
-                <a href="https://www.facebook.com" target="_blank"
-                  ><img
-                    src="./imagen/facebook.png"
-                    alt="Facebook"
-                    height="20px"
-                    width="20px"
-                /></a>
-              </li>
-              <li>
-                <a href="https://www.instagram.com" target="_blank"
-                  ><img
-                    src="./imagen/instagram.png"
-                    alt="Instagram"
-                    height="20px"
-                    width="20px"
-                /></a>
-              </li>
-              <li>
-                <a href="https://www.twitter.com" target="_blank"
-                  ><img
-                    src="./imagen/twitter.png"
-                    alt="Twitter"
-                    height="20px"
-                    width="20px"
-                /></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </footer>
-    </div>
-  </body>
-</html>
+  
+            </div>
+        </footer>
+      </div>
+  
+    </body>
+  </html>
