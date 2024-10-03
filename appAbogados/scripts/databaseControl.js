@@ -1,5 +1,6 @@
 const { Pool } = require("pg");
 const fs = require("fs");
+const { v4: uuidv4 } = require("uuid");
 
 // Create a new pool instance to manage the database connection
 const pool = new Pool({
@@ -56,7 +57,6 @@ async function databaseStore(formData) {
 
 async function insertSolicitante(formData) {
   const {
-    id_solicitud,
     nombre,
     rut,
     apellidos,
@@ -69,11 +69,16 @@ async function insertSolicitante(formData) {
     residencia,
   } = formData;
 
+  const id_solicitud = uuidv4(); // Genera un UUID único
+
   try {
     const client = await pool.connect();
     const query = `
-      INSERT INTO ft_solicitudes (id_solicitud,nombres, rut, apellidos, mail, region, comuna, caso, antecedentes_penales, antecedentes_comerciales, residencia)
-      VALUES ($1,$2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`;
+      INSERT INTO ft_solicitudes 
+      (id_solicitud, nombres, rut, apellidos, mail, region, comuna, caso, antecedentes_penales, antecedentes_comerciales, residencia)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) 
+      RETURNING *;
+    `;
     const values = [
       id_solicitud,
       nombre,

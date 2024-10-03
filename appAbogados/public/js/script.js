@@ -80,9 +80,7 @@ function regionOrganize(data) {
 }
 
 function comunaOrganize(data, selectedRegion) {
-  let comunas = data.filter(
-    (item) => item.region === selectedRegion
-  );
+  let comunas = data.filter((item) => item.region === selectedRegion);
 
   // Sort comunas alphabetically
   comunas.sort((a, b) => a.comuna.localeCompare(b.comuna));
@@ -108,12 +106,12 @@ document
     event.preventDefault();
 
     // Recopilar datos del formulario
-    const name = document.getElementById("name").value.trim();
+    const nombre = document.getElementById("name").value.trim();
     let rut = document.getElementById("rut").value.trim();
-    const Apellidos = document.getElementById("Apellidos").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const Region = document.getElementById("Region").value.trim();
-    const Comuna = document.getElementById("Comuna").value.trim();
+    const apellidos = document.getElementById("Apellidos").value.trim();
+    const mail = document.getElementById("email").value.trim();
+    const region = document.getElementById("Region").value.trim();
+    const comuna = document.getElementById("Comuna").value.trim();
     const Problema = document.getElementById("Problema").value.trim();
     const antecedentes_penales = document.querySelector(
       'input[name="antecedentes_penales"]:checked'
@@ -125,14 +123,16 @@ document
       'input[name="residencia"]:checked'
     ).value;
 
+    // Eliminar puntos y guion del RUT
+    rut = rut.replace(/[.]/g, "");
     // Validar campos
     if (
-      !name ||
+      !nombre ||
       !rut ||
-      !Apellidos ||
-      !email ||
-      !Region ||
-      !Comuna ||
+      !apellidos ||
+      !mail ||
+      !region ||
+      !comuna ||
       !Problema ||
       !antecedentes_penales ||
       !antecedentes_comerciales ||
@@ -147,12 +147,12 @@ document
     // Generar objeto de datos para la solicitud
     const formData = {
       formType,
-      name,
+      nombre,
       rut,
-      Apellidos,
-      email,
-      Region,
-      Comuna,
+      apellidos,
+      mail,
+      region,
+      comuna,
       Problema,
       antecedentes_penales,
       antecedentes_comerciales,

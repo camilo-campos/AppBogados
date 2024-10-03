@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Appbogado.cl</title>
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/style.formulario_cliente.css" />
   </head>
   <body>
     <header>
@@ -25,131 +25,108 @@
       </div>
     </header>
     <br />
-    <div class="formulario-div">
-      <form id="cliente-form" action="/submit-form" method="post">
-        <input type="hidden" id="csrf-token" name="_csrf" value="" />
-        <input type="hidden" name="formType" value="cliente" />
+    <div class="formulario-container">
+      <div class="formulario-div">
+        <form id="cliente-form" action="/submit-form" method="post">
+          <input type="hidden" id="csrf-token" name="_csrf" value="" />
+          <input type="hidden" name="formType" value="cliente" />
 
-        <label for="name">Nombres:</label>
-        <input type="text" id="name" name="nombres" required />
+          <h2>Cuéntanos tu problema</h2>
+          <label for="name">Nombres:</label>
+          <input type="text" id="name" name="nombres" required />
 
-        <label for="rut">Rut :</label>
-        <input type="text" name="rut" id="rut" required />
+          <label for="rut">Rut:</label>
+          <input type="text" id="rut" name="rut" required />
 
-        <br />
-        <label for="apellidos">Apellidos:</label>
-        <input type="text" id="Apellidos" name="Apellidos" required />
+          <label for="apellidos">Apellidos:</label>
+          <input type="text" id="Apellidos" name="apellidos" required />
 
-        <br />
-        <label for="email">Correo Electrónico:</label>
-        <input type="email" id="email" name="email" required />
+          <label for="email">Correo Electrónico:</label>
+          <input type="email" id="email" name="email" required />
 
-        <br />
-        <label for="Region">Region de residencia:</label>
-        <select id="Region" name="region" required>
-          <option value="">Seleccione una región</option>
-        </select>
+          
 
-        <br />
-        <label for="Comuna">Comuna de residencia:</label>
-        <select id="Comuna" name="comuna" required>
-          <option value="">Seleccione una comuna</option>
-        </select>
+          <label for="Region">Región de residencia:</label>
+          <select id="Region" name="region" required>
+            <option value="">Seleccione una región</option>
+          </select>
 
-        <br />
-        <label style="display: block; margin-top: 10px"
-          >¿Tienes antecedentes penales?</label
-        >
-        <div class="radio-group">
-          <input
-            type="radio"
-            id="penales_si"
-            name="antecedentes_penales"
-            value="si"
-            required
-          />
-          <label for="penales_si">SI</label>
-          <input
-            type="radio"
-            id="penales_no"
-            name="antecedentes_penales"
-            value="no"
-            required
-          />
-          <label for="penales_no">NO</label>
-        </div>
+          <label for="Comuna">Comuna de residencia:</label>
+          <select id="Comuna" name="comuna" required>
+            <option value="">Seleccione una comuna</option>
+          </select>
 
-        <label style="display: block; margin-top: 10px"
-          >¿Tienes antecedentes comerciales (DICOM)?</label
-        >
-        <div class="radio-group">
-          <input
-            type="radio"
-            id="dicom_si"
-            name="antecedentes_comerciales"
-            value="si"
-            required
-          />
-          <label for="dicom_si">SI</label>
-          <input
-            type="radio"
-            id="dicom_no"
-            name="antecedentes_comerciales"
-            value="no"
-            required
-          />
-          <label for="dicom_no">NO</label>
-        </div>
+          <label>¿Tienes antecedentes penales?</label>
+          <div class="radio-group">
+            <input
+              type="radio"
+              id="penales_si"
+              name="antecedentes_penales"
+              value="1"
+              required
+            />
+            <label for="penales_si">SI</label>
+            <input
+              type="radio"
+              id="penales_no"
+              name="antecedentes_penales"
+              value="0"
+              required
+            />
+            <label for="penales_no">NO</label>
+          </div>
 
-        <label style="display: block; margin-top: 10px"
-          >¿Tienes Residencia regular en Chile?</label
-        >
-        <div class="radio-group">
-          <input
-            type="radio"
-            id="residencia_si"
-            name="residencia"
-            value="si"
-            required
-          />
-          <label for="residencia_si">SI</label>
-          <input
-            type="radio"
-            id="residencia_no"
-            name="residencia"
-            value="no"
-            required
-          />
-          <label for="residencia_no">NO</label>
-        </div>
+          <label>¿Tienes antecedentes comerciales (DICOM)?</label>
+          <div class="radio-group">
+            <input
+              type="radio"
+              id="dicom_si"
+              name="antecedentes_comerciales"
+              value="1"
+              required
+            />
+            <label for="dicom_si">SI</label>
+            <input
+              type="radio"
+              id="dicom_no"
+              name="antecedentes_comerciales"
+              value="0"
+              required
+            />
+            <label for="dicom_no">NO</label>
+          </div>
 
-        <label for="Problema" style="display: block; margin-top: 10px"
-          >Describe tu problema aquí</label
-        >
-        <textarea
-          id="Problema"
-          name="Problema"
-          required
-          style="width: 100%; padding: 10px; border-radius: 5px; border: none"
-        ></textarea>
+          <label>¿Tienes Residencia regular en Chile?</label>
+          <div class="radio-group">
+            <input
+              type="radio"
+              id="residencia_si"
+              name="residencia"
+              value="1"
+              required
+            />
+            <label for="residencia_si">SI</label>
+            <input
+              type="radio"
+              id="residencia_no"
+              name="residencia"
+              value="1"
+              required
+            />
+            <label for="residencia_no">NO</label>
+          </div>
 
-        <button
-          type="submit"
-          style="
-            background-color: #ffa500;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            margin-top: 20px;
-            cursor: pointer;
-          "
-        >
-          Click Aquí
-        </button>
+          <label>Describe tu problema aquí:</label>
+          <textarea id="Problema" name="Problema" required></textarea>
 
-        <br />
-      </form>
+          <button type="submit">Click Aquí</button>
+        </form>
+      </div>
+
+      <div class="imagenes-div">
+        <img src="ruta/a/tu/imagen1.png" alt="Imagen 1" />
+        <img src="ruta/a/tu/imagen2.png" alt="Imagen 2" />
+      </div>
       <div id="success-image" style="display: none; text-align: center">
         <img src="/imagen/mensaje_naranja.png" alt="Formulario Enviado" />
         <p>Redirigiendo...</p>
@@ -158,35 +135,119 @@
     <br />
     <script src="/js/script.js"></script>
     <footer>
+      <img class="image-tablet"
+      src="./imgs/appabogados.cl.png" width="100px" height="100px"/>
       <div class="footer-content">
+        <div class="contact-info">
+          <img
+            src="./imgs/appabogados.cl.png" width="100px"/>
+            <div class="info-contact-total">
+            <img src="./imgs/mail.png" width="40px"  height="40px">
+            <div class="info-contact">
+            <p class="contacto">Contacto</p>
+            <p class="correo">E-mail: contacto@appbogado.cl</p>
+          </div>
+          </div>
+        </div>
+      
+       <div class="footer-completo2">
         <div class="footer-links">
           <div class="footer-section">
-            <p>Nosotros</p>
+            <p class="nosotros">Nosotros</p>
             <ul>
               <li><a href="/nosotros">Sobre nosotros</a></li>
               <li><a href="/equipo">Equipo</a></li>
-              <li><a href="#">¿Eres Abogado?</a></li>
-            </ul>
+              <li><a href="/abogado">¿Eres Abogado?</a></li>
+            </ul> 
           </div>
-          <div class="footer-section">
-            <p>Soporte</p>
+          </div>
+       </div>
+
+          
+          <div class="footer-completo2">
+            <div class="footer-links">
+              <div class="footer-section">
+            <p class="soporte">Soporte</p>
             <ul>
-              <li><a href="#">Preguntas frecuentes</a></li>
+              <li><a href="/preguntas">Preguntas frecuentes</a></li>
               <li><a href="#">Términos y condiciones</a></li>
-              <li><a href="#">Políticas de Privacidad</a></li>
-              <li><a href="#">Contacto</a></li>
+              <li><a href="/politicas_cliente">Políticas de Privacidad</a></li>
+              <li><a href="/contacto">Contacto</a></li>
             </ul>
           </div>
-        </div>
+          </div>
+          </div>
+        
+
+        <div class="footer-links2">
+          <div class="footer-section2">
+            <p class="nosotros2">Nosotros</p>
+            <ul class="links-footer-2">
+              <li><a href="/nosotros">Sobre nosotros</a></li>
+              <li><a href="/equipo">Equipo</a></li>
+              <li><a href="/abogado">¿Eres Abogado?</a></li>
+            </ul>
+          </div>
+          <div class="footer-section2">
+            <p class="soporte2">Soporte</p>
+            <ul class="links-footer-2">
+              <li><a href="/preguntas">Preguntas frecuentes</a></li>
+              <li><a href="#">Términos y condiciones</a></li>
+              <li><a href="/politicas_cliente">Políticas de Privacidad</a></li>
+              <li><a href="/contacto">Contacto</a></li>
+            </ul>
+          </div>
+          </div>
+
+          
+          
         <div class="social-media">
-          <p>Redes sociales</p>
-          <ul>
-            <li><a href="#">Facebook</a></li>
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">Twitter</a></li>
+          <p class="redessociales">Redes sociales</p>
+          <div class="rrss-mobile">
+          <ul class="redes-sociales-iconos">
+            <li>
+              <a href="https://www.facebook.com" target="_blank"
+                ><img
+                  src="./imgs/facebook.png"
+                  alt="Facebook"
+                  height="30px"
+                  width="30px"
+              /></a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com" target="_blank"
+                ><img
+                  src="./imgs/instagram.png"
+                  alt="Instagram"
+                  height="30px"
+                  width="30px"
+              /></a>
+            </li>
+            <li>
+              <a href="https://www.twitter.com" target="_blank"
+                ><img
+                  src="./imgs/twitter.png"
+                  alt="Twitter"
+                  height="30px"
+                  width="30px"
+              /></a>
+            </li>
           </ul>
         </div>
+        </div>
+
+        <div class="info-contact-total2">
+          <img src="./imgs/mail.png" width="40px"  height="40px">
+          <div class="info-contact2">
+          <p class="contacto2">Contacto</p>
+          <p class="correo2">E-mail: contacto@appbogado.cl</p>
+        </div>
+
       </div>
+        </div>
+      </div>
+
+        </div>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
   </body>
