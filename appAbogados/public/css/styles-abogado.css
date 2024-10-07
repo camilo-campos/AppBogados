@@ -9,16 +9,14 @@ body {
 }
 
 header {
-  position: fixed; /* Fija la barra de navegación en la parte superior */
-  top: 0; /* Alinea la barra con la parte superior de la página */
-  width: 100%; /* Hace que la barra ocupe todo el ancho de la página */
-  z-index: 1000; /* Asegura que la barra esté por encima de otros elementos */
+  position: fixed; /* Fija la barra de navegaciÃ³n en la parte superior */
+  top: 0; /* Alinea la barra con la parte superior de la pÃ¡gina */
+  width: 100%; /* Hace que la barra ocupe todo el ancho de la pÃ¡gina */
+  z-index: 1000; /* Asegura que la barra estÃ© por encima de otros elementos */
   background-color: #1a1449;
   color: white;
   padding: 10px 0;
   border-bottom: 2px solid #e0e0e0;
-  font-family: "navbar";
-  font-size: x-large;
 }
 
 .header-top {
@@ -30,9 +28,17 @@ header {
   padding: 0 20px;
 }
 
+h1 {
+  background-color: #1a1449;
+  color: white;
+  padding: 10px 0;
+  border-bottom: 2px solid #e0e0e0;
+}
+
 .logo {
   display: flex;
   align-items: center;
+  grid-area: 20px;
 }
 
 .logo img {
@@ -51,13 +57,12 @@ nav ul {
   display: flex;
 }
 
-nav ul li {
-  margin-left: 20px;
-}
-
 nav ul li a {
   color: white;
   text-decoration: none;
+  font-size: 20px;
+  margin-left: 30px;
+  list-style: none;
 }
 
 footer {
@@ -560,4 +565,29 @@ form button {
   form .radio-group {
     flex-direction: column; /* Muestra las opciones de radio en una columna */
   }
+}
+
+.button-nav,
+.button-main,
+.step button {
+  padding: 15px 25px;
+  border-radius: 16px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  font-size: x-large;
+}
+
+.button-nav {
+  background-color: #d9691f;
+  color: #f5f2f0;
+  font-size: 20px;
+  font-weight: normal;
+  padding: 8px 20px;
+  border-radius: 12px;
+}
+
+.button-nav:hover {
+  background-color: #ffcc80;
 }
