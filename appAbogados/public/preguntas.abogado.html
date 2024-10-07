@@ -21,18 +21,19 @@
         <div class="header-top">
           <div class="header-top2">
             <div class="logo">
-              <img src="./imgs/logo.png" alt="Lupa" width="250px" />
+              <img src="./imgs/Logo.png" alt="Lupa" width="250px" />
             </div>
             <div class="menu2">
-              <a href="/abogado" class="button-nav">¿BUSCAS ABOGADO?</a>
+              <a href="/" class="button-nav">¿BUSCAS ABOGADO?</a>
     
               <div class="dropdown">
                 <button class="btn btn-terciary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i class="fa-solid fa-bars fa-1x" style="color: #ffffff"></i> 
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Condiciones del servicio</a></li>
-                  <li><a class="dropdown-item" href="#">Contacto</a></li>
+                  <li><a class="dropdown-item" href="">Condiciones del servicio</a></li>
+                  <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
+
                 </ul>
               </div>
     
@@ -42,8 +43,9 @@
             <ul>
               <li><a href="/abogado">INICIO</a></li>
               <li><a href="">CONDICIONES DEL SERVICIO</a></li>
-              <li><a href="">CONTACTO</a></li>
-              <li><a href="/abogado" class="button-nav">¿BUSCAS ABOGADO?</a></li>
+              <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
+
+              <li><a href="/" class="button-nav">¿BUSCAS ABOGADO?</a></li>
             </ul>
           </nav>
         </div>
@@ -183,9 +185,9 @@ preferencias.</p>
             <div class="footer-section">
               <p class="nosotros">Nosotros</p>
               <ul>
-                <li><a href="#">Sobre nosotros</a></li>
-                <li><a href="#">Equipo</a></li>
-                <li><a href="#">¿Eres Abogado?</a></li>
+                <li><a href="/nosotros">Sobre nosotros</a></li>
+                <li><a href="/equipo">Equipo</a></li>
+                <li><a href="/abogado">¿Eres Abogado?</a></li>
               </ul> 
             </div>
             </div>
@@ -197,10 +199,10 @@ preferencias.</p>
                 <div class="footer-section">
               <p class="soporte">Soporte</p>
               <ul>
-                <li><a href="#">Preguntas frecuentes</a></li>
-                <li><a href="#">Términos y condiciones</a></li>
-                <li><a href="#">Políticas de Privacidad</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li><a href="/preguntas_abogado">Preguntas frecuentes</a></li>
+                <li><a href="/politicas_abogado">Términos y condiciones</a></li>
+                <li><a href="/politicas_abogado">Políticas de Privacidad</a></li>
+                <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
               </ul>
             </div>
             </div>
@@ -211,18 +213,19 @@ preferencias.</p>
             <div class="footer-section2">
               <p class="nosotros2">Nosotros</p>
               <ul class="links-footer-2">
-                <li><a href="#">Sobre nosotros</a></li>
-                <li><a href="#">Equipo</a></li>
-                <li><a href="#">¿Eres Abogado?</a></li>
+                <li><a href="/nosotros">Sobre nosotros</a></li>
+                <li><a href="/equipo">Equipo</a></li>
+                <li><a href="/abogado">¿Eres Abogado?</a></li>
               </ul>
             </div>
             <div class="footer-section2">
               <p class="soporte2">Soporte</p>
               <ul class="links-footer-2">
-                <li><a href="#">Preguntas frecuentes</a></li>
-                <li><a href="#">Términos y condiciones</a></li>
-                <li><a href="#">Políticas de Privacidad</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li><a href="/preguntas_abogado">Preguntas frecuentes</a></li>
+                <li><a href="/politicas_abogado">Términos y condiciones</a></li>
+                <li><a href="/politicas_abogado">Políticas de Privacidad</a></li>
+                <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
+
               </ul>
             </div>
             </div>
@@ -286,7 +289,15 @@ preferencias.</p>
     <script>
         const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
         const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
-    </script>
+        function scrollToBottom() {
+          window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth' // Hace que el scroll sea suave
+          });
+        }
+      </script>
+    
+    
 
     
   </body>

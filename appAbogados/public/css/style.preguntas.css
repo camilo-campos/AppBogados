@@ -126,7 +126,7 @@ nav ul li a {
   padding: 40px 20px;
   margin-top: 40px;
   border-bottom: 2px solid #e0e0e0;
-  background-image: url(../imagen/fondo_final.png);
+  background-image: url(../imgs/fondo_final.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -284,7 +284,7 @@ ul {
 }
 
 .background-container {
-  background-image: url(../imagen/HOME4.png);
+  background-image: url(../imgs/HOME4.png);
   background-color: #ff6f00;
   background-size: cover;
   background-repeat: no-repeat;
@@ -666,7 +666,7 @@ ul {
     padding: 40px 20px;
     margin-top: 40px;
     border-bottom: 2px solid #e0e0e0;
-    background-image: url("/imagen/fondo_final.png");
+    background-image: url("/assets/imgs/fondo_final.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

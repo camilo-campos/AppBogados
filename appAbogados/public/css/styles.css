@@ -1,4 +1,7 @@
 /* ASPECTOS GENERALES*/
+html body {
+  font-family: "Source Sans 3", sans-serif;
+}
 
 body {
   font-family: "Source Sans 3", sans-serif;
@@ -65,6 +68,21 @@ nav ul li a {
   list-style: none;
 }
 
+.question {
+  text-align: left;
+}
+
+.description1 {
+  font-weight: 700;
+  margin-left: 40px;
+  line-height: normal;
+}
+
+.description3 {
+  margin-left: 40px;
+  margin-bottom: 40px;
+}
+
 /*Fin Header */
 
 /* Buttons */
@@ -78,6 +96,12 @@ nav ul li a {
   cursor: pointer;
   border: none;
   font-size: x-large;
+}
+
+.description {
+  text-align: justify;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 .button-nav {
@@ -199,7 +223,7 @@ ul {
 .contact-info {
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  margin-top: 0px;
   margin-left: 40px;
 }
 
@@ -365,6 +389,19 @@ ul {
   object-fit: cover;
 }
 
+.dropdown-menu {
+  margin-bottom: 20px; /* Aumenta el espacio entre el botón de hamburguesa y el menú */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.dropdown-item {
+  color: #0a2540; /* Cambiar la tipografía a azul oscuro */
+}
+
+.dropdown-item:hover {
+  color: #0a2540; /* Asegurarse de que mantenga el color al hacer hover */
+}
 /* Large devices (desktops, 1200px and up) */
 @media (min-width: 1200px) {
   .main-banner-cliente {
@@ -429,15 +466,15 @@ ul {
   }
 
   /*
-  .footer-section,
-  .social-media {
-    flex: 1;
-    display: flex;
-    margin: 0 20px;
-    flex-direction: column; /* Las listas dentro estarÃ¡n en columna */
+    .footer-section,
+    .social-media {
+      flex: 1;
+      display: flex;
+      margin: 0 20px;
+      flex-direction: column; /* Las listas dentro estarÃ¡n en columna */
   /*
-
-  /* No es necesario cambiar el estilo de ul y li ya que estÃ¡n correctos */
+  
+    /* No es necesario cambiar el estilo de ul y li ya que estÃ¡n correctos */
   .footer-links ul,
   .social-media ul {
     list-style: none;
@@ -526,6 +563,14 @@ ul {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+  }
+
+  .titulo-desktop {
+    font-size: 38px;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: 40px;
   }
 }
 
@@ -632,12 +677,12 @@ ul {
   }
 
   /* .footer-content {
-    display: flex; 
-    justify-content: space-between; 
-    flex-direction: row; 
-    align-items: flex-start; 
-    font-size: 12px;
-  } */
+      display: flex; 
+      justify-content: space-between; 
+      flex-direction: row; 
+      align-items: flex-start; 
+      font-size: 12px;
+    } */
 
   .footer-content {
     display: flex;
@@ -766,10 +811,6 @@ ul {
     justify-content: center;
   }
 
-  .titulo-mobile {
-    display: none;
-  }
-
   .contact-info {
     display: none;
   }
@@ -832,6 +873,18 @@ ul {
   .image-tablet {
     margin-left: 40px;
   }
+
+  .titulo-desktop {
+    display: none;
+  }
+
+  .titulo-mobile {
+    font-size: 38px;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-right: 40px;
+  }
 }
 
 /* Small devices (phones, 767px and down) */
@@ -847,7 +900,7 @@ ul {
 
   .menu2 {
     display: flex;
-    gap: 12px;
+    gap: 4px;
     align-items: center;
   }
 
@@ -872,6 +925,7 @@ ul {
 
   nav ul li {
     margin: 0 15px; /* Ajusta el margen horizontal para espaciado */
+    margin-top: 10px;
   }
 
   nav li {
@@ -906,16 +960,19 @@ ul {
     background-color: #052565;
     color: white;
     border-bottom: 2px solid #e0e0e0;
-    background-image: url("../imgs/fondo_final.png");
+    background-image: url("../imgs/fondo_final_mobile.png");
     background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
   }
 
   .titulo-mobile {
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: 700;
     margin-left: 40px;
     margin-right: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   .titulo-desktop {
@@ -1099,5 +1156,17 @@ ul {
     flex-direction: column;
     align-items: center;
     justify-content: left;
+  }
+
+  .text-how-to {
+    margin-top: 20px;
+  }
+
+  .description {
+    text-align: justify;
+    margin-left: 20px;
+    margin-right: 40px;
+    font-size: 20px;
+    margin-bottom: 40px;
   }
 }
