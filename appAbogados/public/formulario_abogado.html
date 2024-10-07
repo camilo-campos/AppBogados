@@ -18,7 +18,8 @@
             <li><a href="/abogado">Inicio</a></li>
             
             <li><a href="/politicas_abogado">Condiciones del Servicio</a></li>
-            <li><a href="/contacto">Contacto</a></li>
+            <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
+
             <li><a href="/registro" class="button-nav">¿Eres Abogado?</a></li>
           </ul>
         </nav>
@@ -449,8 +450,9 @@
             <ul>
               <li><a href="/preguntas">Preguntas frecuentes</a></li>
               <li><a href="/politicas_abogado">Términos y condiciones</a></li>
-              <li><a href="/politicas_abogado">Políticas de Privacidad</a></li>
-              <li><a href="/contacto">Contacto</a></li>
+              <li><a href="/politicas_cliente">Políticas de Privacidad</a></li>
+              <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
+
             </ul>
           </div>
         </div>
@@ -464,5 +466,14 @@
         </div>
       </div>
     </footer>
+    <script>
+      function scrollToBottom() {
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth' // Hace que el scroll sea suave
+        });
+      }
+    </script>
+    
   </body>
 </html>

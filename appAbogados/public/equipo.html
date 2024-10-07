@@ -39,7 +39,12 @@
           <ul>
             <li><a href="/">INICIO</a></li>
             <li><a href="/politicas_cliente">CONDICIONES DEL SERVICIO</a></li>
-            <li><a href="/contacto">CONTACTO</a></li>
+            <li>
+              <a href="javascript:void(0);" onclick="scrollToBottom()"
+                >CONTACTO</a
+              >
+            </li>
+
             <li><a href="/abogado" class="button-nav">¿ERES ABOGADO?</a></li>
           </ul>
         </nav>
@@ -76,7 +81,7 @@
       <!-- Tu contenido aquí -->
       <section class="how-to">
         <div class="text-how-to">
-          <p>Soporte</p>
+          <p>Equipo</p>
         </div>
         <p class="description">
           Appbogado.cl cuenta con un equipo multidisciplinario de profesionales,
@@ -89,18 +94,22 @@
       </section>
 
       <footer>
+        <img class="image-tablet"
+        src="./imgs/appabogados.cl.png" width="100px" height="100px"/>
         <div class="footer-content">
           <div class="contact-info">
-            <img src="./imgs/appabogados.cl.png" width="100px" />
-            <div class="info-contact-total">
-              <img src="./imgs/mail.png" width="40px" height="40px" />
+            <img
+              src="./imgs/appabogados.cl.png" width="100px"/>
+              <div class="info-contact-total">
+              <img src="./imgs/mail.png" width="40px"  height="40px">
               <div class="info-contact">
-                <p class="contacto">Contacto</p>
-                <p class="correo">E-mail: contacto@appbogado.cl</p>
-              </div>
+              <p class="contacto">Contacto</p>
+              <p class="correo">E-mail: contacto@appbogado.cl</p>
+            </div>
             </div>
           </div>
-
+        
+         <div class="footer-completo2">
           <div class="footer-links">
             <div class="footer-section">
               <p class="nosotros">Nosotros</p>
@@ -108,54 +117,105 @@
                 <li><a href="/nosotros">Sobre nosotros</a></li>
                 <li><a href="/equipo">Equipo</a></li>
                 <li><a href="/abogado">¿Eres Abogado?</a></li>
-              </ul>
+              </ul> 
             </div>
-            <div class="footer-section">
+            </div>
+         </div>
+
+            
+            <div class="footer-completo2">
+              <div class="footer-links">
+                <div class="footer-section">
               <p class="soporte">Soporte</p>
               <ul>
                 <li><a href="/preguntas">Preguntas frecuentes</a></li>
-                <li><a href="/politicas_cliente">Términos y condiciones</a></li>
-                <li>
-                  <a href="/politicas_cliente">Políticas de Privacidad</a>
-                </li>
+                <li><a href="/terminos_condiciones_cliente">Términos y condiciones</a></li>
+                <li><a href="/politicas_cliente">Políticas de Privacidad</a></li>
                 <li><a href="/contacto">Contacto</a></li>
               </ul>
             </div>
-          </div>
+            </div>
+            </div>
+          
+
+          <div class="footer-links2">
+            <div class="footer-section2">
+              <p class="nosotros2">Nosotros</p>
+              <ul class="links-footer-2">
+                <li><a href="/nosotros">Sobre nosotros</a></li>
+                <li><a href="/equipo">Equipo</a></li>
+                <li><a href="/abogado">¿Eres Abogado?</a></li>
+              </ul>
+            </div>
+            <div class="footer-section2">
+              <p class="soporte2">Soporte</p>
+              <ul class="links-footer-2">
+                <li><a href="/preguntas">Preguntas frecuentes</a></li>
+                <li><a href="/terminos_condiciones_cliente">Términos y condiciones</a></li>
+                <li><a href="/politicas_cliente">Políticas de Privacidad</a></li>
+                <li><a href="/contacto">Contacto</a></li>
+              </ul>
+            </div>
+            </div>
+
+            
+            
           <div class="social-media">
             <p class="redessociales">Redes sociales</p>
-            <ul>
+            <div class="rrss-mobile">
+            <ul class="redes-sociales-iconos">
               <li>
-                <a href="https://www.facebook.com" target="_blank"
+                <a href="https://web.facebook.com/appbogado.cl" target="_blank"
                   ><img
-                    src="./imagen/facebook.png"
+                    src="./imgs/facebook.png"
                     alt="Facebook"
-                    height="20px"
-                    width="20px"
+                    height="30px"
+                    width="30px"
                 /></a>
               </li>
               <li>
-                <a href="https://www.instagram.com" target="_blank"
+                <a href="https://www.instagram.com/appbogado.cl/" target="_blank"
                   ><img
-                    src="./imagen/instagram.png"
+                    src="./imgs/instagram.png"
                     alt="Instagram"
-                    height="20px"
-                    width="20px"
+                    height="30px"
+                    width="30px"
                 /></a>
               </li>
               <li>
                 <a href="https://www.twitter.com" target="_blank"
                   ><img
-                    src="./imagen/twitter.png"
+                    src="./imgs/twitter.png"
                     alt="Twitter"
-                    height="20px"
-                    width="20px"
+                    height="30px"
+                    width="30px"
                 /></a>
               </li>
             </ul>
           </div>
+          </div>
+
+          <div class="info-contact-total2">
+            <img src="./imgs/mail.png" width="40px"  height="40px">
+            <div class="info-contact2">
+            <p class="contacto2">Contacto</p>
+            <p class="correo2">E-mail: contacto@appbogado.cl</p>
+          </div>
+
         </div>
+          </div>
+        </div>
+
+          </div>
       </footer>
     </div>
+    <script>
+      function scrollToBottom() {
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: "smooth", // Hace que el scroll sea suave
+        });
+      }
+    </script>
   </body>
 </html>

@@ -21,7 +21,7 @@ header {
   top: 0; /* Alinea la barra con la parte superior de la pÃ¡gina */
   width: 100%; /* Hace que la barra ocupe todo el ancho de la pÃ¡gina */
   z-index: 1000; /* Asegura que la barra estÃ© por encima de otros elementos */
-  background-color: #052565;
+  background-color: #1a1449;
   color: white;
   padding: 10px 0;
   border-bottom: 2px solid #e0e0e0;
@@ -113,7 +113,7 @@ nav ul li a {
 
 /* Main Banner */
 .main-banner-cliente {
-  background-color: #052565;
+  background-color: #1a1449;
   color: white;
   padding: 40px 20px;
   margin-top: 40px;

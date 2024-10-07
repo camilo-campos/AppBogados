@@ -73,6 +73,18 @@ router.get("/equipo", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/equipo.html");
 });
 
+router.get("/equipo_abogado", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/equipo.abogado.html");
+});
+
+router.get("/terminos_condiciones_cliente", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/terminos_condiciones_cliente.html");
+});
+
+router.get("/terminos_condiciones_abogado", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/terminos_condiciones_abogado.html");
+});
+
 router.get("/politicas_cliente", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/politicas.cliente.html");
 });
@@ -85,8 +97,16 @@ router.get("/preguntas", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/preguntas.html");
 });
 
+router.get("/preguntas_abogado", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/preguntas.abogado.html");
+});
+
 router.get("/nosotros", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/nosotros.html");
+});
+
+router.get("/nosotros_abogado", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/nosotros.abogado.html");
 });
 
 router.get("/abogado", csrfProtection, (req, res) => {

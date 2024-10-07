@@ -18,7 +18,8 @@
             <li><a href="/">Inicio</a></li>
 
             <li><a href="/politicas_cliente">Condiciones del Servicio</a></li>
-            <li><a href="/soporte">Contacto</a></li>
+            <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
+
             <li><a href="/registro" class="button-nav">¿Eres Abogado?</a></li>
           </ul>
         </nav>
@@ -170,9 +171,10 @@
             <p class="soporte">Soporte</p>
             <ul>
               <li><a href="/preguntas">Preguntas frecuentes</a></li>
-              <li><a href="/politicas_cliente">Términos y condiciones</a></li>
+              <li><a href="/terminos_condiciones_cliente">Términos y condiciones</a></li>
               <li><a href="/politicas_cliente">Políticas de Privacidad</a></li>
-              <li><a href="/contacto">Contacto</a></li>
+              <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
+
             </ul>
           </div>
           </div>
@@ -192,9 +194,10 @@
             <p class="soporte2">Soporte</p>
             <ul class="links-footer-2">
               <li><a href="/preguntas">Preguntas frecuentes</a></li>
-              <li><a href="/politicas_cliente">Términos y condiciones</a></li>
+              <li><a href="/terminos_condiciones_cliente">Términos y condiciones</a></li>
               <li><a href="/politicas_cliente">Políticas de Privacidad</a></li>
-              <li><a href="/contacto">Contacto</a></li>
+              <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
+
             </ul>
           </div>
           </div>
@@ -206,7 +209,7 @@
           <div class="rrss-mobile">
           <ul class="redes-sociales-iconos">
             <li>
-              <a href="https://www.facebook.com" target="_blank"
+              <a href="https://web.facebook.com/appbogado.cl" target="_blank"
                 ><img
                   src="./imgs/facebook.png"
                   alt="Facebook"
@@ -215,7 +218,7 @@
               /></a>
             </li>
             <li>
-              <a href="https://www.instagram.com" target="_blank"
+              <a href="https://www.instagram.com/appbogado.cl/" target="_blank"
                 ><img
                   src="./imgs/instagram.png"
                   alt="Instagram"
@@ -249,6 +252,15 @@
 
         </div>
     </footer>
+    <script>
+      function scrollToBottom() {
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth' // Hace que el scroll sea suave
+        });
+      }
+    </script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
   </body>
 </html>

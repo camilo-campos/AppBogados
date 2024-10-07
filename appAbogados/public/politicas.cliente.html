@@ -1,165 +1,243 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
+<html lang="es"></html>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Appbogado.cl</title>
-    <link rel="stylesheet" href="./css/style.politicas.cliente.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <header>
-      <div class="header-top">
-        <div class="header-top2">
-          <div class="logo">
-            <img
-              src="./imagen/logo blanco fondo azul.png"
-              alt="Lupa"
-              width="80px"
-            />
-            <h1>Appbogado.cl</h1>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <!-- Archivo de estilos personalizado -->
+    <link rel="stylesheet" href="./css/politicas.cliente.css">
+    <body>
+
+
+      <header>
+        <div class="header-top">
+          <div class="header-top2">
+            <div class="logo">
+              <img src="./imgs/logo.png" alt="Lupa" width="250px" />
+            </div>
+            <div class="menu2">
+              <a href="/abogado" class="button-nav">¿ERES ABOGADO?</a>
+    
+              <div class="dropdown">
+                <button class="btn btn-terciary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa-solid fa-bars fa-1x" style="color: #ffffff"></i> 
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/politicas">Condiciones del servicio</a></li>
+                  <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
+
+                </ul>
+              </div>
+    
+            </div>
           </div>
-          <div class="menu2">
-            <i class="fa-solid fa-bars fa-2x" style="color: #ffffff"></i>
+          <nav>
+            <ul>
+              <li><a href="/">INICIO</a></li>
+              <li><a href="/politicas_cliente">CONDICIONES DEL SERVICIO</a></li>
+              <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
+
+              <li><a href="/abogado" class="button-nav">¿ERES ABOGADO?</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <section class="main-banner-cliente">
+        <div>
+          <h2 class="titulo-desktop">
+            Encuentra el abogado a tu medida: en todas las áreas<br />
+            del Derecho y en todo Chile.
+          </h2>
+          <h2 class="titulo-mobile">Encuentra el abogado a tu medida: en todas las áreas del Derecho y en todo Chile</h2>
+        </div>
+  
+        <div class="content">
+          <div class="text">
+              <li class="viñeta">
+              <img src="./imgs/chevron_right.png" width="28px">
+              <p>Gratis, rápido y fácil de usar.</p>
+              </li>
+              <li class="viñeta">
+                <img src="./imgs/chevron_right.png" width="28px">
+                <p>
+                  Cuéntanos tu problema y deja que nuestra <br />Inteligencia
+                  Artificial encuentre a los abogados<br />
+                  que mejor se adapten a tus necesidades.
+                </p>
+              </li>
+            </div>
+            <div class="button-main-position">
+            <a href="/contacto" class="button-main">Cuéntanos tu problema</a>
+          </div>
           </div>
         </div>
-        <nav>
-          <ul>
-            <li><a href="/">INICIO</a></li>
-            <li><a href="/politicas_cliente">CONDICIONES DEL SERVICIO</a></li>
-            <li><a href="/contacto">CONTACTO</a></li>
-            <li><a href="/abogado" class="button-nav">¿ERES ABOGADO?</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-
-    <section class="main-banner-cliente">
-      <div>
-        <h2>
-          Encuentra el abogado a tu medida: en todas las áreas<br />
-          del Derecho y en todo Chile.
-        </h2>
-      </div>
-
-      <div class="content">
-        <div class="text">
-          <ul>
-            <li><p>Gratis, rápido y fácil de usar.</p></li>
-            <li>
-              <p>
-                Cuéntanos tu problema y deja que nuestra <br />Inteligencia
-                Artificial encuentre a los abogados<br />
-                que mejor se adapten a tus necesidades.
-              </p>
-            </li>
-          </ul>
-          <br />
-          <a href="/contacto" class="button-main">Cuéntanos tu problema</a>
-        </div>
-      </div>
-    </section>
-
-    <div class="background-container">
-      <!-- Tu contenido aquí -->
-      <section class="how-to">
-        <div class="text-how-to">
-          <p>Políticas de privacidad</p>
-        </div>
-        <p class="description">
-          Appbogado.cl puede utilizar cookies. Las cookies son archivos que se
-          transeren desde un Sitio Web al disco duro del computador del Usuario,
-          con el n de que cuando el Usuario ingrese de nuevo al Sitio Web, este
-          último lo reconozca. El servidor donde está alojado el Sitio Web
-          utiliza cookies para mejorar el servicio prestado por la Empresa.
-          Estas cookies se instalan automáticamente en el computador empleado
-          por los usuarios, pero no almacenan ningún tipo de información
-          personal relativa a éstos. La información obtenida es anónima,
-          conforme a la legislación vigente en materia de protección de datos.
-        </p>
-
-        <p class="description">
-          Appbogado.cl ha adoptado los niveles de seguridad adecuados a los
-          datos facilitados por los usuarios, y, además, ha instalado todos los
-          medios y medidas a su alcance para evitar la pérdida, mal uso,
-          alteración, acceso no autorizado y extracción de los mismos. Sin
-          perjuicio de lo anterior, si usted lo desea, puede congurar su
-          navegador para ser avisado en pantalla de la recepción de cookies y
-          para impedir la instalación de cookies en su disco duro. Por favor,
-          consulte las instrucciones y manuales de su navegador para ampliar
-          esta información.
-        </p>
       </section>
 
-      <footer>
-        <div class="footer-content">
-          <div class="footer-links">
-            <div class="footer-section">
-              <p class="nosotros">Nosotros</p>
-              <ul>
-                <li><a href="/nosotros">Sobre nosotros</a></li>
-                <li><a href="/equipo">Equipo</a></li>
-                <li><a href="/abogado">¿Eres Abogado?</a></li>
-              </ul>
+      <div class="background-container">
+        <!-- Tu contenido aquí -->
+        <section class="how-to">
+          <div class="text-how-to">
+          <p>Políticas de Privacidad</p>
+          </div>
+          <p class="description"> Appbogado.cl puede utilizar cookies. Las cookies son archivos que se transeren desde un Sitio Web al
+           disco duro del computador del Usuario, con el n de que cuando el Usuario ingrese de nuevo al Sitio Web,
+            este último lo reconozca. El servidor donde está alojado el Sitio Web utiliza cookies para mejorar el servicio
+            prestado por la Empresa. Estas cookies se instalan automáticamente en el computador empleado por los
+            usuarios, pero no almacenan ningún tipo de información personal relativa a éstos. La información
+            obtenida es anónima, conforme a la legislación vigente en materia de protección de datos. </p>
+            
+            <p class="description">
+              Appbogado.cl ha adoptado los niveles de seguridad adecuados a los datos facilitados por los usuarios, y,
+              además, ha instalado todos los medios y medidas a su alcance para evitar la pérdida, mal uso, alteración,
+              acceso no autorizado y extracción de los mismos. Sin perjuicio de lo anterior, si usted lo desea, puede
+              congurar su navegador para ser avisado en pantalla de la recepción de cookies y para impedir la
+              instalación de cookies en su disco duro. Por favor, consulte las instrucciones y manuales de su navegador
+              para ampliar esta información.  </p>
+              
+        </section>
+  
+        <footer>
+          <img class="image-tablet"
+          src="./imgs/appabogados.cl.png" width="100px" height="100px"/>
+          <div class="footer-content">
+            <div class="contact-info">
+              <img
+                src="./imgs/appabogados.cl.png" width="100px"/>
+                <div class="info-contact-total">
+                <img src="./imgs/mail.png" width="40px"  height="40px">
+                <div class="info-contact">
+                <p class="contacto">Contacto</p>
+                <p class="correo">E-mail: contacto@appbogado.cl</p>
+              </div>
+              </div>
             </div>
-            <div class="footer-section">
-              <p class="soporte">Soporte</p>
-              <ul>
-                <li><a href="/preguntas">Preguntas frecuentes</a></li>
-                <li><a href="/politicas_cliente">Términos y condiciones</a></li>
+          
+           <div class="footer-completo2">
+            <div class="footer-links">
+              <div class="footer-section">
+                <p class="nosotros">Nosotros</p>
+                <ul>
+                  <li><a href="/nosotros">Sobre nosotros</a></li>
+                  <li><a href="/equipo">Equipo</a></li>
+                  <li><a href="/abogado">¿Eres Abogado?</a></li>
+                </ul> 
+              </div>
+              </div>
+           </div>
+  
+              
+              <div class="footer-completo2">
+                <div class="footer-links">
+                  <div class="footer-section">
+                <p class="soporte">Soporte</p>
+                <ul>
+                  <li><a href="/preguntas">Preguntas frecuentes</a></li>
+                  <li><a href="/terminos_condiciones_cliente">Términos y condiciones</a></li>
+                  <li><a href="/politicas_abogado">Políticas de Privacidad</a></li>
+                  <li><a href="#">Contacto</a></li>
+                </ul>
+              </div>
+              </div>
+              </div>
+            
+  
+            <div class="footer-links2">
+              <div class="footer-section2">
+                <p class="nosotros2">Nosotros</p>
+                <ul class="links-footer-2">
+                  <li><a href="#">Sobre nosotros</a></li>
+                  <li><a href="#">Equipo</a></li>
+                  <li><a href="#">¿Eres Abogado?</a></li>
+                </ul>
+              </div>
+              <div class="footer-section2">
+                <p class="soporte2">Soporte</p>
+                <ul class="links-footer-2">
+                  <li><a href="#">Preguntas frecuentes</a></li>
+                  <li><a href="#">Términos y condiciones</a></li>
+                  <li><a href="#">Políticas de Privacidad</a></li>
+                  <li><a href="#">Contacto</a></li>
+                </ul>
+              </div>
+              </div>
+  
+              
+              
+            <div class="social-media">
+              <p class="redessociales">Redes sociales</p>
+              <div class="rrss-mobile">
+              <ul class="redes-sociales-iconos">
                 <li>
-                  <a href="/politicas_cliente">Políticas de Privacidad</a>
+                  <a href="https://www.facebook.com" target="_blank"
+                    ><img
+                      src="./imgs/facebook.png"
+                      alt="Facebook"
+                      height="30px"
+                      width="30px"
+                  /></a>
                 </li>
-                <li><a href="/contacto">Contacto</a></li>
+                <li>
+                  <a href="https://www.instagram.com" target="_blank"
+                    ><img
+                      src="./imgs/instagram.png"
+                      alt="Instagram"
+                      height="30px"
+                      width="30px"
+                  /></a>
+                </li>
+                <li>
+                  <a href="https://www.twitter.com" target="_blank"
+                    ><img
+                      src="./imgs/twitter.png"
+                      alt="Twitter"
+                      height="30px"
+                      width="30px"
+                  /></a>
+                </li>
               </ul>
             </div>
+            </div>
+  
+            <div class="info-contact-total2">
+              <img src="./imgs/mail.png" width="40px"  height="40px">
+              <div class="info-contact2">
+              <p class="contacto2">Contacto</p>
+              <p class="correo2">E-mail: contacto@appbogado.cl</p>
+            </div>
+  
           </div>
-          <div class="social-media">
-            <p class="redessociales">Redes sociales</p>
-            <ul>
-              <li>
-                <a href="https://www.facebook.com" target="_blank"
-                  ><img
-                    src="./imagen/facebook.png"
-                    alt="Facebook"
-                    height="20px"
-                    width="20px"
-                /></a>
-              </li>
-              <li>
-                <a href="https://www.instagram.com" target="_blank"
-                  ><img
-                    src="./imagen/instagram.png"
-                    alt="Instagram"
-                    height="20px"
-                    width="20px"
-                /></a>
-              </li>
-              <li>
-                <a href="https://www.twitter.com" target="_blank"
-                  ><img
-                    src="./imagen/twitter.png"
-                    alt="Twitter"
-                    height="20px"
-                    width="20px"
-                /></a>
-              </li>
-            </ul>
+            </div>
           </div>
-        </div>
-      </footer>
+  
+            </div>
+        </footer>
+      </div>
+
     </div>
-  </body>
-</html>
+    <!-- Bootstrap JS (incluyendo Popper.js) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
+        const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
+        function scrollToBottom() {
+          window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth' // Hace que el scroll sea suave
+          });
+        }
+      </script>
+   
+    
+    </body>
+  </html>
