@@ -25,6 +25,7 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   padding: 20px;
+  margin-top: 150px;
 }
 
 .radio-group {
