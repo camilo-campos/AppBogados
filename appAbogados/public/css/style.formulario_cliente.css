@@ -907,13 +907,13 @@ ul {
   }
 }
 
-@media (max-width: 770px) and (max-width: 990px) {
+@media (max-width: 990px) {
   .imagenes-div img {
     display: none;
   }
 }
 
-@media (max-width: 770px) and (max-width: 990px) {
+@media  (max-width: 990px) {
   .formulario-div {
     flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
     width: 90%;            /* Ocupa todo el ancho de la pantalla */
