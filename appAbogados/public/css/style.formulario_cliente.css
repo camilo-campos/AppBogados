@@ -16,7 +16,7 @@ body {
   overflow-x: hidden;
 }
 body {
-  background-color: #ff6f00; /* Fondo similar al diseño */
+  background-color: #ff6f00 !important; /* Fondo similar al diseño */
   font-family: Arial, sans-serif;
 }
 
