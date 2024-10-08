@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="./css/style.nosotros.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+     <!-- Bootstrap CSS -->
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -28,7 +30,15 @@
         </div>
         <div class="menu2">
           <a href="/abogado" class="button-nav">¿ERES ABOGADO?</a>
-            <i class="fa-solid fa-bars fa-1x" style="color: #ffffff"></i> 
+          <div class="dropdown">
+            <button class="btn btn-terciary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-bars fa-1x" style="color: #ffffff"></i> 
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/terminos_condiciones_cliente">Condiciones del servicio</a></li>
+              <li><a class="dropdown-item" href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
+            </ul>
+          </div>
             </div>
         </div>
         <nav>
@@ -204,7 +214,14 @@
           </div>
       </footer>
     </div>
+  
+    <!-- Bootstrap JS (incluyendo Popper.js) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
     <script>
+      const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
+      const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
       function scrollToBottom() {
         window.scrollTo({
           top: document.body.scrollHeight,
