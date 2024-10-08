@@ -907,6 +907,19 @@ ul {
   }
 }
 
+@media only screen and (max-width: 768px) {
+  .imagenes-div img {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .formulario-div {
+    flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+    width: 90%;            /* Ocupa todo el ancho de la pantalla */
+  }
+}
+
 /* Small devices (phones, 767px and down) */
 @media (max-width: 770px) and (max-width: 990px) {
   .header-top2 {
