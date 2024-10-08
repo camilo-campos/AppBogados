@@ -478,6 +478,20 @@ form button {
   object-fit: cover;
 }
 
+.dropdown-menu {
+  margin-bottom: 20px; /* Aumenta el espacio entre el botón de hamburguesa y el menú */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.dropdown-item {
+  color: #0a2540; /* Cambiar la tipografía a azul oscuro */
+}
+
+.dropdown-item:hover {
+  color: #0a2540; /* Asegurarse de que mantenga el color al hacer hover */
+}
+
 /* Large devices (desktops, 1200px and up) */
 @media (min-width: 1200px) {
   .main-banner-cliente {
