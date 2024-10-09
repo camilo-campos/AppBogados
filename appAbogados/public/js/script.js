@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   function populateRegionAndComuna(data) {
-    const regionSelect = document.getElementById("Region");
-    const comunaSelect = document.getElementById("Comuna");
+    const regionSelect = document.getElementById("region");
+    const comunaSelect = document.getElementById("comuna");
 
     // Get unique regions and sort them alphabetically
     const regions = regionOrganize(data);
@@ -106,13 +106,13 @@ document
     event.preventDefault();
 
     // Recopilar datos del formulario
-    const nombre = document.getElementById("name").value.trim();
+    const nombres = document.getElementById("nombres").value.trim();
     let rut = document.getElementById("rut").value.trim();
-    const apellidos = document.getElementById("Apellidos").value.trim();
+    const apellidos = document.getElementById("apellidos").value.trim();
     const mail = document.getElementById("email").value.trim();
-    const region = document.getElementById("Region").value.trim();
-    const comuna = document.getElementById("Comuna").value.trim();
-    const Problema = document.getElementById("Problema").value.trim();
+    const region = document.getElementById("region").value.trim();
+    const comuna = document.getElementById("comuna").value.trim();
+    const caso = document.getElementById("caso").value.trim();
     const antecedentes_penales = document.querySelector(
       'input[name="antecedentes_penales"]:checked'
     ).value;
@@ -127,13 +127,13 @@ document
     rut = rut.replace(/[.]/g, "");
     // Validar campos
     if (
-      !nombre ||
+      !nombres ||
       !rut ||
       !apellidos ||
       !mail ||
       !region ||
       !comuna ||
-      !Problema ||
+      !caso ||
       !antecedentes_penales ||
       !antecedentes_comerciales ||
       !residencia
@@ -147,13 +147,13 @@ document
     // Generar objeto de datos para la solicitud
     const formData = {
       formType,
-      nombre,
+      nombres,
       rut,
       apellidos,
       mail,
       region,
       comuna,
-      Problema,
+      caso,
       antecedentes_penales,
       antecedentes_comerciales,
       residencia,

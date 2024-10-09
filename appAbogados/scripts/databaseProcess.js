@@ -1,4 +1,4 @@
-const { databaseStore, databaseGet } = require('./databaseControl');
+const { databaseGet } = require('./databaseControl');
 const { dataTest } = require('./dataTest');
 const { parseResponse } = require('./parseResponse');
 const { comunaLocator } = require('./comunaLocator');
@@ -78,7 +78,7 @@ async function processForm(formData, response) {
       // Filter abogados if they are too far (using comunaLocator)
       let abogadosFiltered = [];
 
-      const comunaA = formData.Comuna;
+      const comunaA = formData.comuna;
 
       // Run all the comunaLocator in parallel
       const comunaPromises = abogadosData.map(async (abogado) => {
@@ -107,7 +107,7 @@ async function processForm(formData, response) {
         const abogado = abogadosData[i];
         const ambitos = await databaseGet({ table: 'ft_ambitos', rut: abogado.rut });
         const ambitosDesc = ambitos.map(ambito => dimAmbitos[ambito.id_ambito]);
-        abogadosAmbitosRet.push({ nombre: abogado.nombres, ambitos: ambitosDesc });
+        abogadosAmbitosRet.push({ nombres: abogado.nombres, ambitos: ambitosDesc });
       }
 
       return { abogadosData, abogadosAmbitosRet }; // Return the abogados data and the tags
@@ -122,4 +122,4 @@ async function processForm(formData, response) {
   }
 }
 
-module.exports = { databaseStore, databaseGet, processForm, getAssistantPrompt };
+module.exports = { databaseGet, processForm, getAssistantPrompt };

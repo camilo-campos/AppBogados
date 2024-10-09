@@ -3,14 +3,14 @@ const { JSDOM } = require('jsdom');  // Import jsdom to manipulate HTML
 const fs = require('fs');
 const path = require('path');
 
-sgMail.setApiKey("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");
+sgMail.setApiKey("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");
 
 // Helper function to convert camelCase to kebab-case
 function camelCaseToKebabCase(str) {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
-async function sendEmail(to, from, subject, placeholders = {}, htmlFilePath = '', list = []) {
+async function sendEmail(to, from, subject, placeholders = {}, htmlFilePath = '', list = [], attachments = []) {
   let htmlTemplate = '';
 
   const resolvedHtmlFilePath = path.resolve(__dirname, htmlFilePath);
@@ -80,6 +80,26 @@ async function sendEmail(to, from, subject, placeholders = {}, htmlFilePath = ''
       }
     }
 
+    // Insert the image as an inline image using the cid (Content-ID)
+    if (attachments && attachments.length > 0) {
+      attachments.forEach((attachment, index) => {
+        if (attachment.content_id && attachment.type.includes('image')) {
+          // If an attachment has a content ID (cid), add an <img> tag to reference it in the HTML
+          const imgElement = document.createElement('img');
+          imgElement.src = `cid:${attachment.content_id}`;
+          imgElement.alt = `Attachment ${index + 1}`;
+          imgElement.style.display = 'block';
+          imgElement.style.marginTop = '20px';
+          imgElement.style.width = '100%';
+          
+          const footerElement = document.querySelector('footer');
+          if (footerElement) {
+            footerElement.insertAdjacentElement('afterend', imgElement);
+          }
+        }
+      });
+    }
+
     // Serialize the updated DOM back to HTML
     htmlTemplate = dom.serialize();
   }
@@ -88,8 +108,9 @@ async function sendEmail(to, from, subject, placeholders = {}, htmlFilePath = ''
     to: to,
     from: from,
     subject: subject,
-    text: placeholders.phMessage || '', // Use a default text or one from placeholders
+    text: placeholders.phText || '', // We should get an error if no text is provided, leave this like this so we can debug it
     html: htmlTemplate, // Use the final HTML content
+    attachments: attachments,
   };
 
   try {

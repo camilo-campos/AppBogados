@@ -1,5 +1,6 @@
 // handle form using AI and the database
 const { handleClientForm } = require("./scripts/handleClientForm");
+const { handleAbogadoForm } = require("./scripts/handleAbogadoForm");
 const { getAssistantPrompt } = require("./scripts/databaseProcess");
 const {
   insertSolicitante,
@@ -180,92 +181,98 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
   const formData = req.body;
   console.log("Form Data Received:", formData);
 
-  if (formData.formType === "cliente") {
-    if (formData.Problema) {
-      /*
-        Insertar datos del formulario del cliente en la base de datos
-        y enviar respuesta al cliente
-        [i] Verificamos al usuario ANTES de procesar el formulario para que el usuario no tenga que esperar a que se complete el procesamiento
-      */
+  try {
+    if (formData.formType === "cliente") {
+      if (formData.caso) {
+        /*
+          Insertar datos del formulario del cliente en la base de datos
+          y enviar respuesta al cliente
+          [i] Verificamos al usuario ANTES de procesar el formulario para que el usuario no tenga que esperar a que se complete el procesamiento
+        */
 
-      if (subirABaseDeDatos) {
-        await insertSolicitante(formData);
-      }
-
-      res.status(200).json({ message: "Client form processed successfully" });
-
-      /*
-        Procesar el formulario del cliente con la AI y enviar correos a los abogados
-      */
-
-      const assistantData = getAssistantPrompt();
-
-      const promptProblema = formData.Problema;
-      const promptSystem = assistantData[0];
-      const promptAmbitoList = assistantData[1];
-
-      await handleClientForm(
-        formData,
-        { promptProblema, promptSystem, promptAmbitoList },
-        maxAbogadosPerClient
-      );
-
-      // Process AFTER we send the response to the client
-      // So the client doesn't have to wait for the processing to complete
-      await handleForm(formData, {
-        promptProblema,
-        promptSystem,
-        promptAmbitoList,
-      });
-    } else {
-      console.error("Error: No 'Problema' field in client form data");
-      res
-        .status(400)
-        .json({ error: "No 'Problema' field in client form data" });
-    }
-  } else if (formData.formType === "abogado") {
-    if (formData.nombre && formData.apellidos) {
-      console.log("Processing Abogado form data");
-      try {
-        // Verificar si el abogado existe en la base de datos del PJUD
-        if (await lawyerVerify(formData.rut)) {
-          // Insertar datos del abogado en la tabla correspondiente
-          if (subirABaseDeDatos) {
-            await insertAbogado(formData);
-          }
-
-          // Insertar datos en la tabla ft_ambitos para cada ámbito seleccionado
-          const selectedSpecialties = formData.especialidades; // IDs de los ámbitos seleccionados
-          const rut = formData.rut;
-          const vigencia = "SI";
-
-          // Esperar que todas las inserciones se completen antes de enviar la respuesta
-          await Promise.all(
-            selectedSpecialties.map(async (id_ambito) => {
-              const id_rut_ambito = `${rut}-${id_ambito}`; // Combina rut y id_ambito
-              await insertft_ambitos({
-                id_rut_ambito,
-                rut,
-                id_ambito,
-                vigencia,
-              });
-            })
-          );
-          res.status(200).json({ message: "Data inserted successfully" });
-        } else {
-          console.error("Error: Lawyer not found in PJUD database");
-          res.status(400).json({ error: "Lawyer not found in PJUD database" });
+        if (subirABaseDeDatos) {
+          await insertSolicitante(formData);
         }
-      } catch (error) {
-        console.error("Error inserting data into DB:", error);
-        res.status(500).json({ message: "Error inserting data into DB" });
+
+        res.status(200).json({ message: "Client form processed successfully" });
+
+        /*
+          Procesar el formulario del cliente con la AI y enviar correos a los abogados
+        */
+
+        const assistantData = getAssistantPrompt();
+
+        const promptProblema = formData.caso;
+        const promptSystem = assistantData[0];
+        const promptAmbitoList = assistantData[1];
+
+        // Process AFTER we send the response to the client
+        // So the client doesn't have to wait for the processing to complete
+        await handleClientForm(
+          formData,
+          { promptProblema, promptSystem, promptAmbitoList },
+          maxAbogadosPerClient
+        );
+      } else {
+        console.error("Error: No 'caso' field in client form data");
+        res
+          .status(400)
+          .json({ error: "No 'caso' field in client form data" });
+      }
+    } else if (formData.formType === "abogado") {
+      if (formData.nombres && formData.apellidos) {
+        console.log("Processing Abogado form data");
+        try {
+          // Verificar si el abogado existe en la base de datos del PJUD
+          if (true || await lawyerVerify(formData.rut)) {
+            // Insertar datos del abogado en la tabla correspondiente
+            if (subirABaseDeDatos) {
+              await insertAbogado(formData);
+            }
+
+            // Insertar datos en la tabla ft_ambitos para cada ámbito seleccionado
+            const selectedSpecialties = formData.especialidades; // IDs de los ámbitos seleccionados
+            const rut = formData.rut;
+            const vigencia = "SI";
+
+            // Esperar que todas las inserciones se completen antes de enviar la respuesta
+            await Promise.all(
+              selectedSpecialties.map(async (id_ambito) => {
+                const id_rut_ambito = `${rut}-${id_ambito}`; // Combina rut y id_ambito
+                await insertft_ambitos({
+                  id_rut_ambito,
+                  rut,
+                  id_ambito,
+                  vigencia,
+                });
+              })
+            );
+            //res.status(200).json({ message: "Data inserted successfully" });
+
+            // Enviar correo de confirmación al abogado
+            try {
+              await handleAbogadoForm(formData);
+            } catch (error) {
+              console.error("Error sending email to abogado:", error);
+            }
+          } else {
+            console.error("Error: Lawyer not found in PJUD database");
+            res.status(400).json({ error: "Lawyer not found in PJUD database" });
+          }
+        } catch (error) {
+          console.error("Error inserting data into DB:", error);
+          res.status(500).json({ message: "Error inserting data into DB" });
+        }
+      } else {
+        console.error("Error: Missing required form fields");
+        res.status(400).json({ error: "Invalid form data" });
       }
     } else {
-      console.error("Error: Missing required form fields");
-      res.status(400).json({ error: "Invalid form data" });
+      res.status(400).json({ error: "Unknown form type" });
     }
-  } else {
-    res.status(400).json({ error: "Unknown form type" });
+  } catch (error) {
+    console.error("Error processing form:", error);
+    res.status(500).json({ error: "Error processing form" });
   }
 });
 

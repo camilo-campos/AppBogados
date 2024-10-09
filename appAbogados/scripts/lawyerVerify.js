@@ -6,7 +6,7 @@ async function lawyerVerify(rut = "12345678-9") {
   const rutVerifier = rutArray[1];
 
   // Define the webroot if it's not defined globally
-  var webroot = 'https://www.pjud.cl/'; // Adjust this to the correct base URL
+  var webroot = 'https://www.pjud.cl/';
 
   try {
     const response = await fetch(webroot + 'ajax/Lawyers/search', {

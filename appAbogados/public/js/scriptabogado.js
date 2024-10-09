@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function validateForm() {
   const errors = [];
 
-  const name = document.getElementById("nombre").value.trim();
+  const nombres = document.getElementById("nombres").value.trim();
   const rut = document.getElementById("rut").value.trim();
   const apellidos = document.getElementById("apellidos").value.trim();
   const mail = document.getElementById("mail").value.trim();
@@ -138,9 +138,9 @@ function validateForm() {
     'input[name="especialidad"]:checked'
   );
 
-  if (!name) errors.push("Nombre es obligatorio.");
+  if (!nombres) errors.push("Nombre es obligatorio.");
   if (!rut) errors.push("RUT es obligatorio.");
-  if (!apellidos) errors.push("Apellidos son obligatorios.");
+  if (!apellidos) errors.push("apellidos son obligatorios.");
   if (!mail) errors.push("Correo electrónico es obligatorio.");
   if (!telefono) errors.push("Teléfono es obligatorio.");
   if (!costo_ser_primer_adelant)
@@ -229,7 +229,7 @@ document
     }
 
     // Captura los valores del formulario
-    const name = document.getElementById("nombre").value.trim();
+    const nombres = document.getElementById("nombres").value.trim();
     let rut = document.getElementById("rut").value.trim();
     const apellidos = document.getElementById("apellidos").value.trim();
     const mail = document.getElementById("mail").value.trim();
@@ -278,7 +278,7 @@ document
     const dataToSend = {
       formType: "abogado",
       rut: rut,
-      nombre: name,
+      nombres: nombres,
       apellidos: apellidos,
       mail: mail,
       telefono: telefono,

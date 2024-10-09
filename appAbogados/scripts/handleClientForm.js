@@ -3,6 +3,8 @@ const { processForm } = require("./databaseProcess");
 const { getOpenAiResponse } = require("./openAiControl");
 const { parseResponse } = require("./parseResponse");
 const { sendEmail } = require("./mailHandler");
+const fs = require('fs');
+const path = require('path');
 const mailFormatAbogado = './templateMailAbogado.html';
 const mailFormatCliente = './templateMailCliente.html';
 const mailFormatFail = './templateMailNoEncontrado.html';
@@ -13,6 +15,24 @@ const toleranceIncrement = 5; // Tolerance if we can't find a suitable lawyer
 
 const promptFilter = "From 1 to 100, how suitable is the lawyer for the case? Only answer the number, with a START before the number and an END after (both uppercase), DO NOT explain your reasoning";
 
+const imagesAbogado = [
+  {
+    filename: 'footerAbogado.jpg',
+    content: fs.readFileSync(path.resolve(__dirname, '../assets/footerAbogado.jpg')).toString('base64'),
+    type: 'image/jpg+xml',
+    disposition: 'inline',
+    content_id: 'jpg_inline_image'  // This 'cid' will be used in the <img> tag
+  }
+];
+const imagesCliente = [
+  {
+    filename: 'footerConsultante.jpg',
+    content: fs.readFileSync(path.resolve(__dirname, '../assets/footerConsultante.jpg')).toString('base64'),
+    type: 'image/jpg+xml',
+    disposition: 'inline',
+    content_id: 'jpg_inline_image'  // This 'cid' will be used in the <img> tag
+  }
+];
 
 async function handleClientForm(formData, prompt, maxAbogadosPerClient) {
   let attempts = 0;
@@ -75,7 +95,7 @@ async function handleClientForm(formData, prompt, maxAbogadosPerClient) {
             const abogadoPrompt =
               "Lawyer's areas: " + abogadosAmbitos[i].ambitos.join(", ") +
               "\nLawyer's description: " + abogado.descripcion +
-              "\nClient's case: " + formData.Problema +
+              "\nClient's case: " + formData.caso +
 
             console.log("----> Comparing abogado [", abogado.nombres, "] - Attempt", comparisonAttempts + 1);
             //const response = await getAiResponse(abogadoPrompt, false);
@@ -128,60 +148,73 @@ async function handleClientForm(formData, prompt, maxAbogadosPerClient) {
         6) Enviar correos a los abogados
       -------------------------------- */
 
+      // phText is the text of the email, in case the html doesnt load
+      // This will be send to the abogado
+      
+
       for (let i = 0; i < abogadosRating.length; i++) {
         const abogado = abogadosRating[i];
         try {
-          const to = formData.email; //abogado.mail;
-          const from = "appbogados@aptero.co";
-          const subject = "Consulta de cliente [" + formData.name + "]";
+          const simpleText = `Estimado/a ${abogado.nombres},\n\nUn cliente ha solicitado sus servicios legales. A continuación, se presenta la información de contacto del cliente y su caso:\n\nNombre: ${formData.nombres} ${formData.apellidos}\nRUT: ${formData.rut}\nEmail: ${formData.mail}\nMensaje: ${formData.caso}\nRegión: ${formData.region}, ${formData.comuna}\n\nAntecedentes Penales: ${formData.antecedentes_penales ? "Sí" : "No"}\nAntecedentes Comerciales: ${formData.antecedentes_comerciales ? "Sí" : "No"}\nResidencia Regular: ${formData.residencia ? "Sí" : "No"}\n\nFecha de la consulta: ${new Date().toLocaleDateString()}\n\nPara más detalles, por favor revise el correo electrónico enviado a su dirección.\n\nSaludos cordiales,\nEquipo AppBogado`;
+
+          const to = formData.mail; //abogado.mail;
+          const from = "admin@appbogado.cl";
+          const subject = "Consulta de cliente [" + formData.nombres + "]";
           const placeholders = {
             phAbogado: abogado.nombres + " [" + abogado.mail + "]",
-            phCliente: formData.name + " " + formData.Apellidos,
+            phCliente: formData.nombres + " " + formData.apellidos,
             phRut: formData.rut,
-            phEmail: formData.email,
-            phMessage: formData.Problema,
-            phRegion: formData.Region + ", " + formData.Comuna,
+            phEmail: formData.mail,
+            phMessage: formData.caso,
+            phRegion: formData.region + ", " + formData.comuna,
             phAPenales: formData.antecedentes_penales, // Bool
             phAComerciales: formData.antecedentes_comerciales, // (DICOM) Bool
             phResidencia: formData.residencia, // Bool
             phDate: new Date().toLocaleDateString(),
+            phText: simpleText,
           };
           
-          sendEmail(to, from, subject, placeholders, mailFormatAbogado);
+          sendEmail(to, from, subject, placeholders, mailFormatAbogado, [], imagesAbogado);
         } catch (error) {
           console.error("Error sending email to abogado:", error);
         }
       }
 
       /* --------------------------------
-        7) Enviar correo al cliente con la confirmación de la consulta
+        7) Enviar correo al consultante con la confirmación de la consulta
       -------------------------------- */
 
       // We randomize the list, so we don't reveal the order of best rated abogados
       abogadosRating = abogadosRating.sort(() => Math.random() - 0.5);
 
+      const messageInfo = `Hemos recibido la información de su caso satisfactoriamente y la hemos enviado a ${abogadosRating.length} abogado${abogadosRating.length > 1 ? "s" : ""} inscritos en nuestra plataforma, quienes le contactarán prontamente.`;
+
+      const simpleTextCliente = `Estimado/a ${formData.nombres} ${formData.apellidos},\n\nHemos recibido la información de su caso satisfactoriamente y la hemos enviado a ${abogadosRating.length} abogado${abogadosRating.length > 1 ? "s" : ""} inscritos en nuestra plataforma, quienes le contactarán prontamente.\n\nPara más detalles, por favor revise el correo electrónico enviado a su dirección.\n\nSaludos cordiales,\nEquipo AppBogado`;
+
       try {
-        const to = formData.email;
-        const from = "appbogados@aptero.co";
+        const to = formData.mail;
+        const from = "admin@appbogado.cl";
         const subject = "Confirmacion Consulta de abogado";
         const placeholders = {
-          phCliente: formData.name + " " + formData.Apellidos,
-          phMessage: formData.Problema,
-          phRegion: formData.Region + ", " + formData.Comuna,
+          phCliente: formData.nombres + " " + formData.apellidos,
+          phAbogados: messageInfo,
+          phMessage: formData.caso,
+          phRegion: formData.region + ", " + formData.comuna,
           phDate: new Date().toLocaleDateString(),
+          phText: simpleTextCliente,
         };
 
         // Make an object containing only the abogado's relevant info
-        let finalAbogadosList = [];
+        /*let finalAbogadosList = [];
         for (let i = 0; i < abogadosRating.length; i++) {
           const abogado = abogadosRating[i];
           finalAbogadosList.push({
             Nombre: abogado.nombres + " " + abogado.apellidos,
             Email: abogado.mail,
           });
-        }
+        }*/
 
-        sendEmail(to, from, subject, placeholders, mailFormatCliente, finalAbogadosList);
+        await sendEmail(to, from, subject, placeholders, mailFormatCliente, [], imagesCliente);
       } catch (error) {
         console.error("Error sending email to client:", error);
       }
@@ -196,15 +229,15 @@ async function handleClientForm(formData, prompt, maxAbogadosPerClient) {
 
     // Send an email to the client with the failure
     try {
-      const to = formData.email;
+      const to = formData.mail;
       const from = "appbogados@aptero.co";
       const subject = "Error en la consulta de abogado";
       const placeholders = {
-        phCliente: formData.name + " " + formData.Apellidos,
+        phCliente: formData.nombres + " " + formData.apellidos,
         phDate: new Date().toLocaleDateString(),
       };
 
-      sendEmail(to, from, subject, placeholders, mailFormatFail);
+      await sendEmail(to, from, subject, placeholders, mailFormatFail, [], imagesCliente);
     } catch (error) {
       console.error("Error sending email to client:", error);
     }

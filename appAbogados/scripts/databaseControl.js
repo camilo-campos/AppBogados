@@ -26,44 +26,19 @@ databaseGet()
   })
   .catch((error) => console.error(error));
 
-async function databaseStore(formData) {
-  try {
-    const client = await pool.connect();
-    let query;
-    const baseValues = [
-      formData.nombre,
-      formData.apellido,
-      formData.rut,
-      formData.region,
-      formData.vigencia,
-    ];
 
-    //if (!isNaN(idAsNumber) && Number.isInteger(idAsNumber)) { // Use instead if we have issues validating the ID value
-    if (formData.id !== undefined) {
-      // Update existing record
-      query = `UPDATE "${abogadosTable}" SET nombre = $1, apellido = $2, rut = $3, region = $4, vigencia = $5 WHERE id = $6 RETURNING *`;
-      baseValues.push(formData.id);
-    } else {
-      // Insert new record
-      query = `INSERT INTO "${abogadosTable}"(nombre, apellido, rut, region, vigencia) VALUES($1, $2, $3, $4, $5) RETURNING *`;
-    }
-    const res = await client.query(query, baseValues);
-    console.log(res.rows[0]);
-    client.release();
-  } catch (err) {
-    console.error("Error executing query", err.stack);
-  }
-}
 
 async function insertSolicitante(formData) {
   const {
-    nombre,
     rut,
+    nombres,
     apellidos,
     mail,
     region,
     comuna,
     caso,
+    tipo_costo,
+    tipo_requerimiento,
     antecedentes_penales,
     antecedentes_comerciales,
     residencia,
@@ -75,19 +50,21 @@ async function insertSolicitante(formData) {
     const client = await pool.connect();
     const query = `
       INSERT INTO ft_solicitudes 
-      (id_solicitud, nombres, rut, apellidos, mail, region, comuna, caso, antecedentes_penales, antecedentes_comerciales, residencia)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) 
+      (id_solicitud, rut, nombres, apellidos, mail, region, comuna, caso, tipo_costo, tipo_requerimiento, antecedentes_penales, antecedentes_comerciales, residencia)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) 
       RETURNING *;
     `;
     const values = [
       id_solicitud,
-      nombre,
       rut,
+      nombres,
       apellidos,
       mail,
       region,
       comuna,
       caso,
+      tipo_costo,
+      tipo_requerimiento,
       antecedentes_penales,
       antecedentes_comerciales,
       residencia,
@@ -128,7 +105,7 @@ async function insertft_ambitos(formData) {
 async function insertAbogado(formData) {
   const {
     rut,
-    nombre,
+    nombres,
     apellidos,
     mail,
     telefono,
@@ -153,7 +130,7 @@ async function insertAbogado(formData) {
       VALUES ($1,$2, $3, $4, $5, $6, $7, $8, $9, $10, $11 , $12 , $13 , $14 , $15 , $16 , $17) RETURNING *`;
     const values = [
       rut,
-      nombre,
+      nombres,
       apellidos,
       mail,
       telefono,
@@ -242,7 +219,6 @@ async function databaseGet({ table, ...filters } = {}) {
 
 module.exports = {
   databaseGet,
-  databaseStore,
   insertSolicitante,
   insertAbogado,
   insertft_ambitos,
