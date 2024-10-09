@@ -224,16 +224,25 @@ async function handleClientForm(formData, prompt, maxAbogadosPerClient) {
     attempts++;
   }
 
-  if (!abogadosInfo) {
+  if (!abogadosInfo || !abogadosInfo?.length) {
     console.error(`Failed to process form after ${lawyerSeekMaxAttempts} attempt${lawyerSeekMaxAttempts > 1 ? "s" : ""}`);
 
     // Send an email to the client with the failure
     try {
       const to = formData.mail;
-      const from = "appbogados@aptero.co";
+      const from = "admin@appbogado.cl";
       const subject = "Error en la consulta de abogado";
       const placeholders = {
+        phText: `Gracias por utilizar nuestro servicio de matching de abogados. Lamentablemente, en este momento no hemos podido encontrar abogados que cumplan con sus requisitos.
+
+Entendemos la importancia de su búsqueda y lamentamos sinceramente los inconvenientes que esto pueda ocasionarte. Lo invitamos a intentar nuevamente mas tarde.
+
+Si tiene alguna consulta o necesitas asistencia adicional, no dude en contactarnos.
+
+Agradecemos su comprension y esperamos poder ayudarle pronto.`,
         phCliente: formData.nombres + " " + formData.apellidos,
+        phMessage: formData.caso,
+        phRegion: formData.region + ", " + formData.comuna,
         phDate: new Date().toLocaleDateString(),
       };
 

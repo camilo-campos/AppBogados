@@ -224,7 +224,7 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
         console.log("Processing Abogado form data");
         try {
           // Verificar si el abogado existe en la base de datos del PJUD
-          if (true || await lawyerVerify(formData.rut)) {
+          if (await lawyerVerify(formData.rut)) {
             // Insertar datos del abogado en la tabla correspondiente
             if (subirABaseDeDatos) {
               await insertAbogado(formData);
@@ -247,7 +247,7 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
                 });
               })
             );
-            //res.status(200).json({ message: "Data inserted successfully" });
+            res.status(200).json({ message: "Data inserted successfully" });
 
             // Enviar correo de confirmación al abogado
             try {
