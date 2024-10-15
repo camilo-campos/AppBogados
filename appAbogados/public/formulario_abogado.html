@@ -1,57 +1,72 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
+<html lang="es"></html>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Appbogado.cl</title>
-    <link rel="stylesheet" href="css/style.abogado.css" />
-  </head>
-  <body>
-    <header>
-      <div class="header-top">
-        <div class="header-top2">
-        <div class="logo">
-          <img src="./imgs/Logo.png" alt="Lupa" width="250px" />
-        </div>
-        <div class="menu2">
-          <a href="/abogado" class="button-nav">¿BUSCAS ABOGADO?</a>
-            <i class="fa-solid fa-bars fa-1x" style="color: #ffffff"></i> 
-            </div>
-        </div>
-        <nav>
-          <ul>
-            <li><a href="/abogado">INICIO</a></li>
-            <li><a href="/terminos_condiciones_abogado">CONDICIONES DEL SERVICIO</a></li>
-            <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
-
-            <li><a href="/" class="button-nav">¿BUSCAS ABOGADO?</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-    <br />
-    <div id="success-image" style="display: none; text-align: center">
-      
-      <img
-        src="/imagen/mensaje_azul.png"
-        alt="Formulario Enviado"
-      />
-      <p>Redirigiendo...</p>
-    </div>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
     
-    <div class="background-container">
-      
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <!-- Archivo de estilos personalizado -->
+    <link rel="stylesheet" href="./css/style.formulario.abogado.css">
+    <body>
+
+
+      <header>
+        <div class="header-top">
+          <div class="header-top2">
+            <div class="logo">
+              <img src="./imgs/Logo.png" alt="Lupa" width="250px" />
+            </div>
+            <div class="menu2">
+              <a href="/abogado" class="button-nav">¿BUSCAS ABOGADO?</a>
+    
+              <div class="dropdown">
+                <button class="btn btn-terciary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa-solid fa-bars fa-1x" style="color: #ffffff"></i> 
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Condiciones del servicio</a></li>
+                  <li><a class="dropdown-item" href="#">Contacto</a></li>
+                </ul>
+              </div>
+    
+            </div>
+          </div>
+          <nav>
+            <ul>
+              <li><a href="/">INICIO</a></li>
+              <li><a href="#">CONDICIONES DEL SERVICIO</a></li>
+              <li><a href="#">CONTACTO</a></li>
+              <li><a href="/abogado" class="button-nav">¿BUSCAS ABOGADO?</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <section>
+      <div class="background-container">
+      <div class="text-how-to">
+        <p>Registro del abogado</p>
+        </div>
+
+
       <div class="formulario-div">
-        <h1>Registro de Abogado .</h1>
+        
         <form id="abogado-form" action="/submit-form" method="post">
           <input type="hidden" id="csrf-token" name="_csrf" value="" />
           <input type="hidden" name="formType" value="abogado" />
-          <h2>NIVEL I</h2>
+          <!-- <h2>NIVEL I </h2> -->
           <label for="rut">Rut:</label>
           <input type="text" id="rut" name="rut" required />
           <br />
-          <label for="nombres">Nombres:</label>
-          <input type="text" id="nombres" name="nombres" required />
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" required />
           <br />
           <label for="apellidos">Apellidos:</label>
           <input type="text" id="apellidos" name="apellidos" required />
@@ -62,10 +77,9 @@
           <label for="telefono">Teléfono:</label>
           <input type="tel" id="telefono" name="telefono" required />
           <br />
-          
       
-          <!-- Campos booleanos -->
-          <label style="display: block; margin-top: 10px">Costo Ser Primer Adelantado:</label>
+        <div class="campos-boleanos">
+          <label style="display: block; margin-top: 20px">Costo Ser Primer Adelantado:</label>
           <div class="radio-group">
             <input type="radio" id="costo_ser_primer_adelant_si" name="costo_ser_primer_adelant" value="1" required />
             <label for="costo_ser_primer_adelant_si">SI</label>
@@ -73,7 +87,7 @@
             <label for="costo_ser_primer_adelant_no">NO</label>
           </div>
       
-          <label style="display: block; margin-top: 10px">Costo Ser Cuota Litis:</label>
+          <label style="display: block; margin-top: 20px">Costo Ser Cuota Litis:</label>
           <div class="radio-group">
             <input type="radio" id="costo_ser_cuota_litis_si" name="costo_ser_cuota_litis" value="1" required />
             <label for="costo_ser_cuota_litis_si">SI</label>
@@ -81,7 +95,7 @@
             <label for="costo_ser_cuota_litis_no">NO</label>
           </div>
       
-          <label style="display: block; margin-top: 10px">Costo Ser Gastos Tramitación:</label>
+          <label style="display: block; margin-top: 20px">Costo Ser Gastos Tramitación:</label>
           <div class="radio-group">
             <input type="radio" id="costo_ser_gastos_tramitacion_si" name="costo_ser_gastos_tramitacion" value="1" required />
             <label for="costo_ser_gastos_tramitacion_si">SI</label>
@@ -89,7 +103,7 @@
             <label for="costo_ser_gastos_tramitacion_no">NO</label>
           </div>
       
-          <label style="display: block; margin-top: 10px">Horario Atención Días Hábiles:</label>
+          <label style="display: block; margin-top: 20px">Horario Atención Días Hábiles:</label>
           <div class="radio-group">
             <input type="radio" id="horario_at_dias_hab_si" name="horario_at_dias_hab" value="1" required />
             <label for="horario_at_dias_hab_si">SI</label>
@@ -97,7 +111,7 @@
             <label for="horario_at_dias_hab_no">NO</label>
           </div>
       
-          <label style="display: block; margin-top: 10px">Horario Atención Horas Hábiles:</label>
+          <label style="display: block; margin-top: 20px">Horario Atención Horas Hábiles:</label>
           <div class="radio-group">
             <input type="radio" id="horario_at_horas_hab_si" name="horario_at_horas_hab" value="1" required />
             <label for="horario_at_horas_hab_si">SI</label>
@@ -105,7 +119,7 @@
             <label for="horario_at_horas_hab_no">NO</label>
           </div>
       
-          <label style="display: block; margin-top: 10px">Requiere Cliente sin Antecedentes Penales:</label>
+          <label style="display: block; margin-top: 20px">Requiere Cliente sin Antecedentes Penales:</label>
           <div class="radio-group">
             <input type="radio" id="req_cliente_sin_ant_penales_si" name="req_cliente_sin_ant_penales" value="1" required />
             <label for="req_cliente_sin_ant_penales_si">SI</label>
@@ -113,7 +127,7 @@
             <label for="req_cliente_sin_ant_penales_no">NO</label>
           </div>
       
-          <label style="display: block; margin-top: 10px">Requiere Cliente sin Antecedentes Comerciales:</label>
+          <label style="display: block; margin-top: 20px">Requiere Cliente sin Antecedentes Comerciales:</label>
           <div class="radio-group">
             <input type="radio" id="req_cliente_sin_ant_com_si" name="req_cliente_sin_ant_com" value="1" required />
             <label for="req_cliente_sin_ant_com_si">SI</label>
@@ -121,7 +135,7 @@
             <label for="req_cliente_sin_ant_com_no">NO</label>
           </div>
       
-          <label style="display: block; margin-top: 10px">Requiere Cliente con Residencia Regular:</label>
+          <label style="display: block; margin-top: 20px">Requiere Cliente con Residencia Regular:</label>
           <div class="radio-group">
             <input type="radio" id="req_cliente_residencia_regular_si" name="req_cliente_residencia_regular" value="1" required />
             <label for="req_cliente_residencia_regular_si">SI</label>
@@ -129,40 +143,698 @@
             <label for="req_cliente_residencia_regular_no">NO</label>
           </div>
           <br>
-  
-          <label>Áreas del derecho en que te especializas:</label><br><br>
+        </div>
+      </form>
+
+
+  <div class="areas_derecho">
+          <h3>Áreas del derecho en que te especializas:</h3>
+
+          <div class="item-area-general">
+          <div class="item-area">
+            <input type="checkbox" id="2" name="especialidad" value="2" class="large-checkbox">
+            <label for="2">DERECHO DE FAMILIA</label>
+          </div>
     
-    <!-- Derecho Contractual -->
-    <label for="1">Derecho Contractual</label>
-          <input type="checkbox" id="1" name="especialidad" value="1"><br>
+
+          <div class="columns-container">
+            <div class="column">
+              <div class="item">
+                <input type="checkbox" id="2" name="especialidad" value="2">
+                <label for="2">Pensión Alimenticia</label>
+              </div>
+              
+              <div class="item">
+                <input type="checkbox" id="3" name="especialidad" value="3">
+                <label for="3">Divorcio</label>
+              </div>
+              
+              <div class="item">
+                <input type="checkbox" id="4" name="especialidad" value="4">
+                <label for="4">Tuición</label>
+              </div>
+            </div>
+          
+            <div class="column">
+              <div class="item">
+                <input type="checkbox" id="5" name="especialidad" value="5">
+                <label for="5">Juicio de paternidad</label>
+              </div>
+              
+              <div class="item">
+                <input type="checkbox" id="6" name="especialidad" value="6">
+                <label for="6">Régimen de visitas</label>
+              </div>
+              
+              <div class="item">
+                <input type="checkbox" id="7" name="especialidad" value="7">
+                <label for="7">Violencia Intrafamiliar</label>
+              </div>
+            </div>
+          
+            <div class="column">
+              <div class="item">
+                <input type="checkbox" id="8" name="especialidad" value="8">
+                <label for="8">Cambio de Nombre</label>
+              </div>
+              
+              <div class="item">
+                <input type="checkbox" id="9" name="especialidad" value="9">
+                <label for="9">Declaración de Interdicción</label>
+              </div>
+              
+              <div class="item">
+                <input type="checkbox" id="10" name="especialidad" value="10">
+                <label for="10">Adopciones</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+          <!--Hasta aquí derecho de familia-->
+
+        
+          <div class="item-area-general">
+            <div class="item-area">
+              <input type="checkbox" id="2" name="especialidad" value="2" class="large-checkbox">
+              <label for="2">DERECHO LABORAL</label>
+            </div>
+      
   
-          <label for="2">Pensión Alimenticia</label>
-          <input type="checkbox" id="2" name="especialidad" value="2"><br>
+            <div class="columns-container">
+              <div class="column">
+                <div class="item">
+                  <input type="checkbox" id="2" name="especialidad" value="2">
+                  <label for="2">Defensa derechos laborales</label>
+                </div>
+                
+                <div class="item">
+                  <input type="checkbox" id="3" name="especialidad" value="3">
+                  <label for="3">Despido injustificado</label>
+                </div>
+                
+                <div class="item">
+                  <input type="checkbox" id="4" name="especialidad" value="4">
+                  <label for="4">Licencia Médica</label>
+                </div>
+              </div>
+            
+              <div class="column">
+                <div class="item">
+                  <input type="checkbox" id="5" name="especialidad" value="5">
+                  <label for="5">Accidentes Laborales</label>
+                </div>
+                
+                <div class="item">
+                  <input type="checkbox" id="6" name="especialidad" value="6">
+                  <label for="6">Acoso Sexual</label>
+                </div>
+                
+                <div class="item">
+                  <input type="checkbox" id="7" name="especialidad" value="7">
+                  <label for="7">Autodespido</label>
+                </div>
+              </div>
+            
+              <div class="column">
+                <div class="item">
+                  <input type="checkbox" id="8" name="especialidad" value="8">
+                  <label for="8">Constitución de Sindicatos</label>
+                </div>
+                
+                <div class="item">
+                  <input type="checkbox" id="9" name="especialidad" value="9">
+                  <label for="9">Asesoría de Sindicatos</label>
+                </div>
+                
+                <div class="item">
+                  <input type="checkbox" id="10" name="especialidad" value="10">
+                  <label for="10">Negociación Colectivas</label>
+                </div>
+              </div>
+            </div>
+          </div>
   
-          <label for="3">Divorcio</label>
-          <input type="checkbox" id="3" name="especialidad" value="3"><br>
   
-          <label for="4">Tuición</label>
-          <input type="checkbox" id="4" name="especialidad" value="4"><br>
+            <!--Hasta aquí derecho laboral-->
+
+          
+            <div class="item-area-general">
+              <div class="item-area">
+                <input type="checkbox" id="2" name="especialidad" value="2" class="large-checkbox">
+                <label for="2">DERECHO PENAL</label>
+              </div>
+        
+    
+              <div class="columns-container">
+                <div class="column">
+                  <div class="item">
+                    <input type="checkbox" id="2" name="especialidad" value="2">
+                    <label for="2">Abuso sexual</label>
+                  </div>
+                  
+                  <div class="item">
+                    <input type="checkbox" id="3" name="especialidad" value="3">
+                    <label for="3">Violación</label>
+                  </div>
+                  
+                  <div class="item">
+                    <input type="checkbox" id="4" name="especialidad" value="4">
+                    <label for="4">Robos</label>
+                  </div>
+              
+                  <div class="item">
+                    <input type="checkbox" id="5" name="especialidad" value="5">
+                    <label for="5">Hurtos</label>
+                  </div>
+
+                  <div class="item">
+                    <input type="checkbox" id="6" name="especialidad" value="6">
+                    <label for="6">Lesiones</label>
+                  </div>
+                  
+                  <div class="item">
+                    <input type="checkbox" id="7" name="especialidad" value="7">
+                    <label for="7">Asesinato</label>
+                  </div>
+              
+                  <div class="item">
+                    <input type="checkbox" id="8" name="especialidad" value="8">
+                    <label for="8">Muerte accidental</label>
+                  </div>
+                </div>
+                
+                <div class="column">
+                  <div class="item">
+                    <input type="checkbox" id="9" name="especialidad" value="9">
+                    <label for="9">Estafa</label>
+                  </div>
+
+                  <div class="item">
+                    <input type="checkbox" id="10" name="especialidad" value="10">
+                    <label for="10">Incendio</label>
+                  </div>
+
+                  <div class="item">
+                    <input type="checkbox" id="10" name="especialidad" value="10">
+                    <label for="10">Daños</label>
+                  </div>
+
+                  <div class="item">
+                    <input type="checkbox" id="10" name="especialidad" value="10">
+                    <label for="10">Calumnias</label>
+                  </div>
+
+                  <div class="item">
+                    <input type="checkbox" id="10" name="especialidad" value="10">
+                    <label for="10">Injurias</label>
+                  </div>
+
+                  <div class="item">
+                    <input type="checkbox" id="10" name="especialidad" value="10">
+                    <label for="10">Tráfico de drogas</label>
+                  </div>
+                </div>
+
+                <div class="column">
+                <div class="item">
+                    <input type="checkbox" id="10" name="especialidad" value="10">
+                    <label for="10">Negligencia médica</label>
+                  </div>
+
+                  <div class="item">
+                    <input type="checkbox" id="10" name="especialidad" value="10">
+                    <label for="10">Negligencia médica</label>
+                  </div>
+
+                  <div class="item">
+                    <input type="checkbox" id="10" name="especialidad" value="10">
+                    <label for="10">Agresiones</label>
+                  </div>
+
+                  <div class="item">
+                    <input type="checkbox" id="10" name="especialidad" value="10">
+                    <label for="10">Discriminación</label>
+                  </div>
+
+                  <div class="item">
+                    <input type="checkbox" id="10" name="especialidad" value="10">
+                    <label for="10">Chantaje</label>
+                  </div>
+
+                  <div class="item">
+                    <input type="checkbox" id="10" name="especialidad" value="10">
+                    <label for="10">Délitos de odio</label>
+                  </div>
+
+                  <div class="item">
+                    <input type="checkbox" id="10" name="especialidad" value="10">
+                    <label for="10">Délitos informáticos</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+    
+              <!--Hasta aquí derecho penal-->
+
+          
+              <div class="item-area-general">
+                <div class="item-area">
+                  <input type="checkbox" id="2" name="especialidad" value="2" class="large-checkbox">
+                  <label for="2">DERECHO COMERCIAL</label>
+                </div>
+          
+      
+                <div class="columns-container">
+                  <div class="column">
+                    <div class="item">
+                      <input type="checkbox" id="2" name="especialidad" value="2">
+                      <label for="2">Quiebras</label>
+                    </div>
+                    
+                    <div class="item">
+                      <input type="checkbox" id="3" name="especialidad" value="3">
+                      <label for="3">Insolvencias</label>
+                    </div>
+                    
+                    <div class="item">
+                      <input type="checkbox" id="4" name="especialidad" value="4">
+                      <label for="4">Marcas</label>
+                    </div>
+
+                    <div class="item">
+                      <input type="checkbox" id="5" name="especialidad" value="5">
+                      <label for="5">Patentes comerciales</label>
+                    </div>
+                  </div>
+
+                    <div class="column">
+                    <div class="item">
+                      <input type="checkbox" id="6" name="especialidad" value="6">
+                      <label for="6">Constitución Sociedades</label>
+                    </div>
+                    
+                    <div class="item">
+                      <input type="checkbox" id="7" name="especialidad" value="7">
+                      <label for="7">Inversión extranjera</label>
+                    </div>
+              
+                    <div class="item">
+                      <input type="checkbox" id="8" name="especialidad" value="8">
+                      <label for="8">Mercado de capitales</label>
+                    </div>
+                    
+                    <div class="item">
+                      <input type="checkbox" id="9" name="especialidad" value="9">
+                      <label for="9">Recursos Naturales</label>
+                    </div>
+                  </div>
+                    
+                  <div class="column"> 
+                    <div class="item">
+                      <input type="checkbox" id="10" name="especialidad" value="10">
+                      <label for="10">Medioambiente</label>
+                    </div>
+
+                    <div class="item">
+                      <input type="checkbox" id="10" name="especialidad" value="10">
+                      <label for="10">Exportaciones</label>
+                    </div>
+
+                    <div class="item">
+                      <input type="checkbox" id="10" name="especialidad" value="10">
+                      <label for="10">Importaciones</label>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+      
+                <!--Hasta aquí derecho comercial-->
+
+                <div class="item-area-general">
+                  <div class="item-area">
+                    <input type="checkbox" id="2" name="especialidad" value="2" class="large-checkbox">
+                    <label for="2">DERECHO ADUANERO</label>
+                  </div>
+            
+        
+                  <div class="columns-container">
+                    <div class="column">
+                      <div class="item">
+                        <input type="checkbox" id="2" name="especialidad" value="2">
+                        <label for="2">Agentes Aduaneros</label>
+                      </div>
+                      
+                      <div class="item">
+                        <input type="checkbox" id="3" name="especialidad" value="3">
+                        <label for="3">Contratos de bodegaje</label>
+                      </div>
+                    </div>
   
-          <label for="5">Juicio de paternidad</label>
-          <input type="checkbox" id="5" name="especialidad" value="5"><br>
+                      <div class="column">
+                      <div class="item">
+                        <input type="checkbox" id="6" name="especialidad" value="6">
+                        <label for="6">Contrato de cabotaje</label>
+                      </div>
+                      </div>
+
+                      <div class="column">
+                        <div class="item">
+                          <input type="checkbox" id="6" name="especialidad" value="6">
+                          <label for="6">Seguros aduaneros</label>
+                        </div>
+                        </div>
+                      
+                    </div>
+                </div>
+        
+                  <!--Hasta aquí derecho aduanero-->
+
+                  <div class="item-area-general">
+                    <div class="item-area">
+                      <input type="checkbox" id="2" name="especialidad" value="2" class="large-checkbox">
+                      <label for="2">DERECHO TRIBUTARIO</label>
+                    </div>
+              
+                    <div class="columns-container">
+                      <div class="column">
+                        <div class="item">
+                          <input type="checkbox" id="2" name="especialidad" value="2" class="large-checkbox">
+                          <label for="2">Agentes Aduaneros</label>
+                        </div>
+                        
+                        <div class="item">
+                          <input type="checkbox" id="3" name="especialidad" value="3">
+                          <label for="3">Contratos de bodegaje</label>
+                        </div>
+                      </div>
+    
+                        <div class="column">
+                        <div class="item">
+                          <input type="checkbox" id="6" name="especialidad" value="6">
+                          <label for="6">Contrato de cabotaje</label>
+                        </div>
+                        </div>
   
-          <label for="6">Régimen de visitas</label>
-          <input type="checkbox" id="6" name="especialidad" value="6"><br>
-  
-          <label for="7">Violencia Intrafamiliar</label>
-          <input type="checkbox" id="7" name="especialidad" value="7"><br>
-  
-          <label for="8">Cambio de Nombre</label>
-          <input type="checkbox" id="8" name="especialidad" value="8"><br>
-  
-          <label for="9">Declaración de Interdicción</label>
-          <input type="checkbox" id="9" name="especialidad" value="9"><br>
-  
-          <label for="10">Adopciones</label>
-          <input type="checkbox" id="10" name="especialidad" value="10"><br>
-  
+                        <div class="column">
+                          <div class="item">
+                            <input type="checkbox" id="6" name="especialidad" value="6">
+                            <label for="6">Seguros aduaneros</label>
+                          </div>
+                          </div>
+                        
+                      </div>
+                  </div>
+          
+                    <!--Hasta aquí derecho tributario-->
+        
+                    <div class="item-area-general">
+                      <div class="item-area">
+                        <input type="checkbox" id="2" name="especialidad" value="2" class="large-checkbox">
+                        <label for="2">DERECHO DEL CONSUMIDOR</label>
+                      </div>
+                
+            
+                      <div class="columns-container">
+                        <div class="column">
+                          <div class="item">
+                            <input type="checkbox" id="2" name="especialidad" value="2">
+                            <label for="2">Inmobiliarias</label>
+                          </div>
+                          
+                          <div class="item">
+                            <input type="checkbox" id="3" name="especialidad" value="3">
+                            <label for="3">Constructoras</label>
+                          </div>
+                          
+                          <div class="item">
+                            <input type="checkbox" id="4" name="especialidad" value="4">
+                            <label for="4">Bancos</label>
+                          </div>
+                      
+                          <div class="item">
+                            <input type="checkbox" id="5" name="especialidad" value="5">
+                            <label for="5">AFPs</label>
+                          </div>
+        
+                          <div class="item">
+                            <input type="checkbox" id="6" name="especialidad" value="6">
+                            <label for="6">Aseguradoras</label>
+                          </div>
+                          
+                          <div class="item">
+                            <input type="checkbox" id="7" name="especialidad" value="7">
+                            <label for="7">Transporte</label>
+                          </div>
+                        </div>
+
+                        <div class="column">
+                          <div class="item">
+                            <input type="checkbox" id="8" name="especialidad" value="8">
+                            <label for="8">Tiendas Comerciales</label>
+                          </div>
+                        
+                          <div class="item">
+                            <input type="checkbox" id="9" name="especialidad" value="9">
+                            <label for="9">Entretención</label>
+                          </div>
+        
+                          <div class="item">
+                            <input type="checkbox" id="10" name="especialidad" value="10">
+                            <label for="10">Turismo</label>
+                          </div>
+        
+                          <div class="item">
+                            <input type="checkbox" id="10" name="especialidad" value="10">
+                            <label for="10">Comercio Electrónico</label>
+                          </div>
+        
+                          <div class="item">
+                            <input type="checkbox" id="10" name="especialidad" value="10">
+                            <label for="10">Automóviles</label>
+                          </div>
+                        </div>
+
+                        <div class="column">
+                          <div class="item">
+                            <input type="checkbox" id="10" name="especialidad" value="10">
+                            <label for="10">Salud</label>
+                          </div>
+        
+                          <div class="item">
+                            <input type="checkbox" id="10" name="especialidad" value="10">
+                            <label for="10">Educación</label>
+                          </div>
+        
+                        <div class="item">
+                            <input type="checkbox" id="10" name="especialidad" value="10">
+                            <label for="10">Telecomunicaciones</label>
+                          </div>
+        
+                          <div class="item">
+                            <input type="checkbox" id="10" name="especialidad" value="10">
+                            <label for="10">Servicios básicos</label>
+                          </div>
+                      
+                        </div>
+                      </div>
+                    </div>
+            
+                      <!--Hasta aquí derecho del consumidor-->
+          
+                  <div class="item-area-general">
+                    <div class="item-area">
+                      <input type="checkbox" id="2" name="especialidad" value="2" class="large-checkbox">
+                      <label for="2">DERECHOS HUMANOS</label>
+                    </div>
+              
+          
+                    <div class="columns-container">
+                      <div class="column">
+                        <div class="item">
+                          <input type="checkbox" id="2" name="especialidad" value="2">
+                          <label for="2">Detención ilegal por parte del Estado</label>
+                        </div>
+                        
+                        <div class="item">
+                          <input type="checkbox" id="3" name="especialidad" value="3">
+                          <label for="3">Lesiones por parte del Estado</label>
+                        </div>
+                        
+                        <div class="item">
+                          <input type="checkbox" id="4" name="especialidad" value="4">
+                          <label for="4">Tortura por parte de Estado</label>
+                        </div>
+                      </div>
+
+                      <div class="column">
+    
+                        <div class="item">
+                          <input type="checkbox" id="5" name="especialidad" value="5">
+                          <label for="5">Secuestro por parte de Estado</label>
+                        </div>
+    
+                        <div class="item">
+                          <input type="checkbox" id="6" name="especialidad" value="6">
+                          <label for="6">Sustracción de menores por parte del Estado</label>
+                        </div>
+                        
+                        <div class="item">
+                          <input type="checkbox" id="7" name="especialidad" value="7">
+                          <label for="7">Violencia sexual por parte de Estado</label>
+                        </div>
+                        </div>
+
+                    <div class="column">
+                        <div class="item">
+                          <input type="checkbox" id="8" name="especialidad" value="8">
+                          <label for="8">Adopciones irregulares por parte de Estado</label>
+                        </div>
+                        
+                        <div class="item">
+                          <input type="checkbox" id="9" name="especialidad" value="9">
+                          <label for="9">Homicidio por parte de Estado</label>
+                        </div>
+      
+                      </div>
+                    </div>
+                  </div>
+          
+                    <!--Hasta aquí derechoS Humanos-->
+
+                  
+                    <div class="item-area-general">
+                      <div class="item-area">
+                        <input type="checkbox" id="2" name="especialidad" value="2" class="large-checkbox">
+                        <label for="2">DERECHO SUCESORIO</label>
+                      </div>
+                
+            
+                      <div class="columns-container">
+                        <div class="column">
+                          <div class="item">
+                            <input type="checkbox" id="2" name="especialidad" value="2">
+                            <label for="2">Herencia</label>
+                          </div>
+                          
+                          <div class="item">
+                            <input type="checkbox" id="3" name="especialidad" value="3">
+                            <label for="3">Peticiones</label>
+                          </div>
+                        </div>
+      
+                          <div class="column">
+                          <div class="item">
+                            <input type="checkbox" id="6" name="especialidad" value="6">
+                            <label for="6">Testamentos</label>
+                          </div>
+                          </div>
+    
+                          <div class="column">
+                            <div class="item">
+                              <input type="checkbox" id="6" name="especialidad" value="6">
+                              <label for="6">Posesiones Efectivas</label>
+                            </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+            
+                      <!--Hasta aquí derecho sucesorio-->
+
+                                    
+                      <div class="item-area-general">
+                        <div class="item-area">
+                          <input type="checkbox" id="2" name="especialidad" value="2" class="large-checkbox">
+                          <label for="2">COBRANZA</label>
+                        </div>
+                  
+                        <div class="columns-container">
+                          <div class="column">
+                            <div class="item">
+                              <input type="checkbox" id="2" name="especialidad" value="2">
+                              <label for="2">Repactación de deudas</label>
+                            </div>
+                          </div>
+        
+                            <div class="column">
+                            <div class="item">
+                              <input type="checkbox" id="6" name="especialidad" value="6">
+                              <label for="6">Embargos</label>
+                            </div>
+                            </div>
+      
+                            <div class="column">
+                              <div class="item">
+                                <input type="checkbox" id="6" name="especialidad" value="6">
+                                <label for="6">Remates</label>
+                              </div>
+                              </div>
+                          
+                        </div>
+                      </div>
+              
+                        <!--Hasta aquí Cobranzas-->
+
+                        <div class="item-area-general">
+                          <div class="item-area">
+                            <input type="checkbox" id="2" name="especialidad" value="2" class="large-checkbox">
+                            <label for="2">OTROS CASOS MÁS FRECUENTES</label>
+                          </div>
+                    
+                
+                          <div class="columns-container">
+                            <div class="column">
+                              <div class="item">
+                                <input type="checkbox" id="2" name="especialidad" value="2">
+                                <label for="2">Derecho contractual</label>
+                              </div>
+                              
+                              <div class="item">
+                                <input type="checkbox" id="3" name="especialidad" value="3">
+                                <label for="3">Derecho migratorio</label>
+                              </div>
+                              
+                              <div class="item">
+                                <input type="checkbox" id="4" name="especialidad" value="4">
+                                <label for="4">Compra de propiedades</label>
+                              </div>
+                            </div>
+                          
+                            <div class="column">
+                              <div class="item">
+                                <input type="checkbox" id="5" name="especialidad" value="5">
+                                <label for="5">Arriendo de propiedades</label>
+                              </div>
+                              
+                              <div class="item">
+                                <input type="checkbox" id="6" name="especialidad" value="6">
+                                <label for="6">Accidente de tránsito</label>
+                              </div>
+                            </div>
+
+                            <div class="column">
+                              <div class="item">
+                                <input type="checkbox" id="8" name="especialidad" value="8">
+                                <label for="8">Manejo en estado de ebriedad</label>
+                              </div>
+                              
+                              <div class="item">
+                                <input type="checkbox" id="9" name="especialidad" value="9">
+                                <label for="9">Problemas vecinales</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                
+                
+                          <!--Hasta aquí derecho de familia-->
+
+
+  <!--
           <label for="11">Derecho Migratorio</label>
           <input type="checkbox" id="11" name="especialidad" value="11"><br>
   
@@ -408,8 +1080,12 @@
   
           <label for="92">Problemas vecinales</label>
           <input type="checkbox" id="92" name="especialidad" value="92"><br>
+
+
+        </div>
+      -->
   
-      
+    <form class="form-nivel">
           <label for="nivel_coincidencia">Nivel de Coincidencia:</label>
   <input type="range" id="nivel_coincidencia" name="nivel_coincidencia" min="10" max="100" step="10" value="50" />
   <span id="valor_nivel_coincidencia">50</span>
@@ -417,27 +1093,32 @@
           <label for="descripcion">Descripción:</label>
           <textarea id="descripcion" name="descripcion"></textarea>
           <br />
-          <label for="region">Region de residencia:</label>
+          <label for="Region">Region de residencia:</label>
           <select id="region" name="region" required>
             <option value="">Seleccione una región</option>
           </select>
   
           <br />
-          <label for="comuna">Comuna de residencia:</label>
+          <label for="Comuna">Comuna de residencia:</label>
           <select id="comuna" name="comuna" required>
             <option value="">Seleccione una comuna</option>
           </select>
           
-          <button type="submit">Enviar</button>
         </form>
+      </div> 
+
+      <div class="ingresar-registro">
+        <button type="button" class="button-ingresar"> Ingresar Registro</button>
       </div>
+
       <br />
       <script src="/js/scriptabogado.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
 
+    </section>
       <footer>
         <img class="image-tablet"
-        src="./imgs/appabogados.cl.png" width="100px" height="100px"/>
+        src="./assets/imgs/appabogados.cl.png" width="100px" height="100px"/>
         <div class="footer-content">
           <div class="contact-info">
             <img
@@ -451,18 +1132,18 @@
             </div>
           </div>
         
-        <div class="footer-completo2">
+         <div class="footer-completo2">
           <div class="footer-links">
             <div class="footer-section">
               <p class="nosotros">Nosotros</p>
               <ul>
-                <li><a href="/nosotros_abogado">Sobre nosotros</a></li>
-                <li><a href="/equipo_abogado">Equipo</a></li>
-                <li><a href="/abogado">¿Eres Abogado?</a></li>
+                <li><a href="#">Sobre nosotros</a></li>
+                <li><a href="#">Equipo</a></li>
+                <li><a href="#">¿Eres Abogado?</a></li>
               </ul> 
             </div>
             </div>
-        </div>
+         </div>
 
             
             <div class="footer-completo2">
@@ -470,11 +1151,10 @@
                 <div class="footer-section">
               <p class="soporte">Soporte</p>
               <ul>
-                <li><a href="/preguntas_abogado">Preguntas frecuentes</a></li>
-                <li><a href="/politicas_abogado">Términos y condiciones</a></li>
-                <li><a href="/politicas_abogado">Políticas de Privacidad</a></li>
-                <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
-
+                <li><a href="#">Preguntas frecuentes</a></li>
+                <li><a href="#">Términos y condiciones</a></li>
+                <li><a href="#">Políticas de Privacidad</a></li>
+                <li><a href="#">Contacto</a></li>
               </ul>
             </div>
             </div>
@@ -485,19 +1165,18 @@
             <div class="footer-section2">
               <p class="nosotros2">Nosotros</p>
               <ul class="links-footer-2">
-                <li><a href="/nosotros">Sobre nosotros</a></li>
-                <li><a href="/equipo">Equipo</a></li>
-                <li><a href="/abogado">¿Eres Abogado?</a></li>
+                <li><a href="#">Sobre nosotros</a></li>
+                <li><a href="#">Equipo</a></li>
+                <li><a href="#">¿Eres Abogado?</a></li>
               </ul>
             </div>
             <div class="footer-section2">
               <p class="soporte2">Soporte</p>
               <ul class="links-footer-2">
-                <li><a href="/preguntas_abogado">Preguntas frecuentes</a></li>
-                <li><a href="/terminos_condiciones_abogado">Términos y condiciones</a></li>
-                <li><a href="/politicas_abogado">Políticas de Privacidad</a></li>
-                <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
-
+                <li><a href="#">Preguntas frecuentes</a></li>
+                <li><a href="#">Términos y condiciones</a></li>
+                <li><a href="#">Políticas de Privacidad</a></li>
+                <li><a href="#">Contacto</a></li>
               </ul>
             </div>
             </div>
@@ -509,7 +1188,7 @@
             <div class="rrss-mobile">
             <ul class="redes-sociales-iconos">
               <li>
-                <a href="https://web.facebook.com/appbogado.cl" target="_blank"
+                <a href="https://www.facebook.com" target="_blank"
                   ><img
                     src="./imgs/facebook.png"
                     alt="Facebook"
@@ -518,7 +1197,7 @@
                 /></a>
               </li>
               <li>
-                <a href="https://www.instagram.com/appbogado.cl/" target="_blank"
+                <a href="https://www.instagram.com" target="_blank"
                   ><img
                     src="./imgs/instagram.png"
                     alt="Instagram"
@@ -554,6 +1233,17 @@
       </footer>
 
     </div>
+
+  </div>
+  <!-- Bootstrap JS (incluyendo Popper.js) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+      const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
+      const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
+  </script>
+
     <script>
       function scrollToBottom() {
         window.scrollTo({
@@ -562,6 +1252,25 @@
         });
       }
     </script>
+
+<script>
+  // Selecciona todos los checkboxes de los títulos en mayúsculas
+  const mainCheckboxes = document.querySelectorAll('.item-area input[type="checkbox"]');
+
+  mainCheckboxes.forEach(mainCheckbox => {
+    mainCheckbox.addEventListener('change', function() {
+      // Encuentra el contenedor principal del grupo
+      const groupContainer = this.closest('.item-area-general');
+      // Selecciona todos los checkboxes dentro de ese grupo
+      const groupCheckboxes = groupContainer.querySelectorAll('.columns-container input[type="checkbox"]');
+      
+      // Marca o desmarca todos los checkboxes del grupo según el estado del checkbox principal
+      groupCheckboxes.forEach(checkbox => {
+        checkbox.checked = mainCheckbox.checked;
+      });
+    });
+  });
+</script>
     
   </body>
 </html>

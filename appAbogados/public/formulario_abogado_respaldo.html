@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appbogado.cl</title>
+    <link rel="stylesheet" href="css/style.abogado.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-top">
+        <div class="header-top2">
+        <div class="logo">
+          <img src="./imgs/Logo.png" alt="Lupa" width="250px" />
+        </div>
+        <div class="menu2">
+          <a href="/abogado" class="button-nav">¿BUSCAS ABOGADO?</a>
+            <i class="fa-solid fa-bars fa-1x" style="color: #ffffff"></i> 
+            </div>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="/abogado">INICIO</a></li>
+            <li><a href="/terminos_condiciones_abogado">CONDICIONES DEL SERVICIO</a></li>
+            <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
+
+            <li><a href="/" class="button-nav">¿BUSCAS ABOGADO?</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <br />
+    <div id="success-image" style="display: none; text-align: center">
+      
+      <img
+        src="/imagen/mensaje_azul.png"
+        alt="Formulario Enviado"
+      />
+      <p>Redirigiendo...</p>
+    </div>
+    
+    <div class="background-container">
+      
+      <div class="formulario-div">
+        <h1>Registro de Abogado .</h1>
+        <form id="abogado-form" action="/submit-form" method="post">
+          <input type="hidden" id="csrf-token" name="_csrf" value="" />
+          <input type="hidden" name="formType" value="abogado" />
+          <h2>NIVEL I</h2>
+          <label for="rut">Rut:</label>
+          <input type="text" id="rut" name="rut" required />
+          <br />
+          <label for="nombres">Nombres:</label>
+          <input type="text" id="nombres" name="nombres" required />
+          <br />
+          <label for="apellidos">Apellidos:</label>
+          <input type="text" id="apellidos" name="apellidos" required />
+          <br />
+          <label for="mail">Correo Electrónico:</label>
+          <input type="email" id="mail" name="mail" required />
+          <br />
+          <label for="telefono">Teléfono:</label>
+          <input type="tel" id="telefono" name="telefono" required />
+          <br />
+          
+      
+          <!-- Campos booleanos -->
+          <label style="display: block; margin-top: 10px">Costo Ser Primer Adelantado:</label>
+          <div class="radio-group">
+            <input type="radio" id="costo_ser_primer_adelant_si" name="costo_ser_primer_adelant" value="1" required />
+            <label for="costo_ser_primer_adelant_si">SI</label>
+            <input type="radio" id="costo_ser_primer_adelant_no" name="costo_ser_primer_adelant" value="0" required />
+            <label for="costo_ser_primer_adelant_no">NO</label>
+          </div>
+      
+          <label style="display: block; margin-top: 10px">Costo Ser Cuota Litis:</label>
+          <div class="radio-group">
+            <input type="radio" id="costo_ser_cuota_litis_si" name="costo_ser_cuota_litis" value="1" required />
+            <label for="costo_ser_cuota_litis_si">SI</label>
+            <input type="radio" id="costo_ser_cuota_litis_no" name="costo_ser_cuota_litis" value="0" required />
+            <label for="costo_ser_cuota_litis_no">NO</label>
+          </div>
+      
+          <label style="display: block; margin-top: 10px">Costo Ser Gastos Tramitación:</label>
+          <div class="radio-group">
+            <input type="radio" id="costo_ser_gastos_tramitacion_si" name="costo_ser_gastos_tramitacion" value="1" required />
+            <label for="costo_ser_gastos_tramitacion_si">SI</label>
+            <input type="radio" id="costo_ser_gastos_tramitacion_no" name="costo_ser_gastos_tramitacion" value="0" required />
+            <label for="costo_ser_gastos_tramitacion_no">NO</label>
+          </div>
+      
+          <label style="display: block; margin-top: 10px">Horario Atención Días Hábiles:</label>
+          <div class="radio-group">
+            <input type="radio" id="horario_at_dias_hab_si" name="horario_at_dias_hab" value="1" required />
+            <label for="horario_at_dias_hab_si">SI</label>
+            <input type="radio" id="horario_at_dias_hab_no" name="horario_at_dias_hab" value="0" required />
+            <label for="horario_at_dias_hab_no">NO</label>
+          </div>
+      
+          <label style="display: block; margin-top: 10px">Horario Atención Horas Hábiles:</label>
+          <div class="radio-group">
+            <input type="radio" id="horario_at_horas_hab_si" name="horario_at_horas_hab" value="1" required />
+            <label for="horario_at_horas_hab_si">SI</label>
+            <input type="radio" id="horario_at_horas_hab_no" name="horario_at_horas_hab" value="0" required />
+            <label for="horario_at_horas_hab_no">NO</label>
+          </div>
+      
+          <label style="display: block; margin-top: 10px">Requiere Cliente sin Antecedentes Penales:</label>
+          <div class="radio-group">
+            <input type="radio" id="req_cliente_sin_ant_penales_si" name="req_cliente_sin_ant_penales" value="1" required />
+            <label for="req_cliente_sin_ant_penales_si">SI</label>
+            <input type="radio" id="req_cliente_sin_ant_penales_no" name="req_cliente_sin_ant_penales" value="0" required />
+            <label for="req_cliente_sin_ant_penales_no">NO</label>
+          </div>
+      
+          <label style="display: block; margin-top: 10px">Requiere Cliente sin Antecedentes Comerciales:</label>
+          <div class="radio-group">
+            <input type="radio" id="req_cliente_sin_ant_com_si" name="req_cliente_sin_ant_com" value="1" required />
+            <label for="req_cliente_sin_ant_com_si">SI</label>
+            <input type="radio" id="req_cliente_sin_ant_com_no" name="req_cliente_sin_ant_com" value="0" required />
+            <label for="req_cliente_sin_ant_com_no">NO</label>
+          </div>
+      
+          <label style="display: block; margin-top: 10px">Requiere Cliente con Residencia Regular:</label>
+          <div class="radio-group">
+            <input type="radio" id="req_cliente_residencia_regular_si" name="req_cliente_residencia_regular" value="1" required />
+            <label for="req_cliente_residencia_regular_si">SI</label>
+            <input type="radio" id="req_cliente_residencia_regular_no" name="req_cliente_residencia_regular" value="0" required />
+            <label for="req_cliente_residencia_regular_no">NO</label>
+          </div>
+          <br>
+  
+          <label>Áreas del derecho en que te especializas:</label><br><br>
+    
+    <!-- Derecho Contractual -->
+    <label for="1">Derecho Contractual</label>
+          <input type="checkbox" id="1" name="especialidad" value="1"><br>
+  
+          <label for="2">Pensión Alimenticia</label>
+          <input type="checkbox" id="2" name="especialidad" value="2"><br>
+  
+          <label for="3">Divorcio</label>
+          <input type="checkbox" id="3" name="especialidad" value="3"><br>
+  
+          <label for="4">Tuición</label>
+          <input type="checkbox" id="4" name="especialidad" value="4"><br>
+  
+          <label for="5">Juicio de paternidad</label>
+          <input type="checkbox" id="5" name="especialidad" value="5"><br>
+  
+          <label for="6">Régimen de visitas</label>
+          <input type="checkbox" id="6" name="especialidad" value="6"><br>
+  
+          <label for="7">Violencia Intrafamiliar</label>
+          <input type="checkbox" id="7" name="especialidad" value="7"><br>
+  
+          <label for="8">Cambio de Nombre</label>
+          <input type="checkbox" id="8" name="especialidad" value="8"><br>
+  
+          <label for="9">Declaración de Interdicción</label>
+          <input type="checkbox" id="9" name="especialidad" value="9"><br>
+  
+          <label for="10">Adopciones</label>
+          <input type="checkbox" id="10" name="especialidad" value="10"><br>
+  
+          <label for="11">Derecho Migratorio</label>
+          <input type="checkbox" id="11" name="especialidad" value="11"><br>
+  
+          <label for="12">Defensa de derechos laborales</label>
+          <input type="checkbox" id="12" name="especialidad" value="12"><br>
+  
+          <label for="13">Despido injustificado</label>
+          <input type="checkbox" id="13" name="especialidad" value="13"><br>
+  
+          <label for="14">Licencia Médica</label>
+          <input type="checkbox" id="14" name="especialidad" value="14"><br>
+  
+          <label for="15">Accidentes Laborales</label>
+          <input type="checkbox" id="15" name="especialidad" value="15"><br>
+  
+          <label for="16">Acoso Sexual</label>
+          <input type="checkbox" id="16" name="especialidad" value="16"><br>
+  
+          <label for="17">Autodespido</label>
+          <input type="checkbox" id="17" name="especialidad" value="17"><br>
+  
+          <label for="18">Constitución de Sindicatos</label>
+          <input type="checkbox" id="18" name="especialidad" value="18"><br>
+  
+          <label for="19">Asesoría de Sindicatos</label>
+          <input type="checkbox" id="19" name="especialidad" value="19"><br>
+  
+          <label for="20">Negociación Colectiva</label>
+          <input type="checkbox" id="20" name="especialidad" value="20"><br>
+  
+          <label for="21">Abuso sexual</label>
+          <input type="checkbox" id="21" name="especialidad" value="21"><br>
+  
+          <label for="22">Violación</label>
+          <input type="checkbox" id="22" name="especialidad" value="22"><br>
+  
+          <label for="23">Robos</label>
+          <input type="checkbox" id="23" name="especialidad" value="23"><br>
+  
+          <label for="24">Hurtos</label>
+          <input type="checkbox" id="24" name="especialidad" value="24"><br>
+  
+          <label for="25">Lesiones</label>
+          <input type="checkbox" id="25" name="especialidad" value="25"><br>
+  
+          <label for="26">Asesinato</label>
+          <input type="checkbox" id="26" name="especialidad" value="26"><br>
+  
+          <label for="27">Muerte accidental</label>
+          <input type="checkbox" id="27" name="especialidad" value="27"><br>
+  
+          <label for="28">Estafa</label>
+          <input type="checkbox" id="28" name="especialidad" value="28"><br>
+  
+          <label for="29">Incendio</label>
+          <input type="checkbox" id="29" name="especialidad" value="29"><br>
+  
+          <label for="30">Daños</label>
+          <input type="checkbox" id="30" name="especialidad" value="30"><br>
+  
+          <label for="31">Calumnias</label>
+          <input type="checkbox" id="31" name="especialidad" value="31"><br>
+  
+          <label for="32">Injurias</label>
+          <input type="checkbox" id="32" name="especialidad" value="32"><br>
+  
+          <label for="33">Tráfico de drogas</label>
+          <input type="checkbox" id="33" name="especialidad" value="33"><br>
+  
+          <label for="34">Negligencia médica</label>
+          <input type="checkbox" id="34" name="especialidad" value="34"><br>
+  
+          <label for="35">Agresiones</label>
+          <input type="checkbox" id="35" name="especialidad" value="35"><br>
+  
+          <label for="36">Discriminación</label>
+          <input type="checkbox" id="36" name="especialidad" value="36"><br>
+  
+          <label for="37">Delitos de odio</label>
+          <input type="checkbox" id="37" name="especialidad" value="37"><br>
+  
+          <label for="38">Chantaje</label>
+          <input type="checkbox" id="38" name="especialidad" value="38"><br>
+  
+          <label for="39">Delitos Informáticos</label>
+          <input type="checkbox" id="39" name="especialidad" value="39"><br>
+  
+          <label for="40">Quiebras</label>
+          <input type="checkbox" id="40" name="especialidad" value="40"><br>
+  
+          <label for="41">Insolvencias</label>
+          <input type="checkbox" id="41" name="especialidad" value="41"><br>
+  
+          <label for="42">Marcas</label>
+          <input type="checkbox" id="42" name="especialidad" value="42"><br>
+  
+          <label for="43">Patentes comerciales</label>
+          <input type="checkbox" id="43" name="especialidad" value="43"><br>
+  
+          <label for="44">Constitución de Sociedades</label>
+          <input type="checkbox" id="44" name="especialidad" value="44"><br>
+  
+          <label for="45">Redacción de contratos</label>
+          <input type="checkbox" id="45" name="especialidad" value="45"><br>
+  
+          <label for="46">Inversión extrajera</label>
+          <input type="checkbox" id="46" name="especialidad" value="46"><br>
+  
+          <label for="47">Mercado de capitales</label>
+          <input type="checkbox" id="47" name="especialidad" value="47"><br>
+  
+          <label for="48">Recursos Naturales</label>
+          <input type="checkbox" id="48" name="especialidad" value="48"><br>
+  
+          <label for="49">Medioambiente</label>
+          <input type="checkbox" id="49" name="especialidad" value="49"><br>
+  
+          <label for="50">Exportaciones</label>
+          <input type="checkbox" id="50" name="especialidad" value="50"><br>
+  
+          <label for="51">Importaciones</label>
+          <input type="checkbox" id="51" name="especialidad" value="51"><br>
+  
+          <label for="52">Agentes aduaneros</label>
+          <input type="checkbox" id="52" name="especialidad" value="52"><br>
+  
+          <label for="53">Contratos de bodegaje</label>
+          <input type="checkbox" id="53" name="especialidad" value="53"><br>
+  
+          <label for="54">Contratos de cabotaje</label>
+          <input type="checkbox" id="54" name="especialidad" value="54"><br>
+  
+          <label for="55">Seguros aduaneros</label>
+          <input type="checkbox" id="55" name="especialidad" value="55"><br>
+  
+          <label for="56">Planificación Tributaria</label>
+          <input type="checkbox" id="56" name="especialidad" value="56"><br>
+  
+          <label for="57">Litigios tributarios</label>
+          <input type="checkbox" id="57" name="especialidad" value="57"><br>
+  
+          <label for="58">Inmobiliarias</label>
+          <input type="checkbox" id="58" name="especialidad" value="58"><br>
+  
+          <label for="59">Constructoras</label>
+          <input type="checkbox" id="59" name="especialidad" value="59"><br>
+  
+          <label for="60">Bancos</label>
+          <input type="checkbox" id="60" name="especialidad" value="60"><br>
+  
+          <label for="61">AFPs</label>
+          <input type="checkbox" id="61" name="especialidad" value="61"><br>
+  
+          <label for="62">Aseguradoras</label>
+          <input type="checkbox" id="62" name="especialidad" value="62"><br>
+  
+          <label for="63">Transporte</label>
+          <input type="checkbox" id="63" name="especialidad" value="63"><br>
+  
+          <label for="64">Tiendas comerciales</label>
+          <input type="checkbox" id="64" name="especialidad" value="64"><br>
+  
+          <label for="65">Entretención</label>
+          <input type="checkbox" id="65" name="especialidad" value="65"><br>
+  
+          <label for="66">Turismo</label>
+          <input type="checkbox" id="66" name="especialidad" value="66"><br>
+  
+          <label for="67">Comercio Electrónico</label>
+          <input type="checkbox" id="67" name="especialidad" value="67"><br>
+  
+          <label for="68">Automóviles</label>
+          <input type="checkbox" id="68" name="especialidad" value="68"><br>
+  
+          <label for="69">Salud</label>
+          <input type="checkbox" id="69" name="especialidad" value="69"><br>
+  
+          <label for="70">Educación</label>
+          <input type="checkbox" id="70" name="especialidad" value="70"><br>
+  
+          <label for="71">Telecomunicaciones</label>
+          <input type="checkbox" id="71" name="especialidad" value="71"><br>
+  
+          <label for="72">Servicios básicos</label>
+          <input type="checkbox" id="72" name="especialidad" value="72"><br>
+  
+          <label for="73">Detención ilegal por parte del Estado</label>
+          <input type="checkbox" id="73" name="especialidad" value="73"><br>
+  
+          <label for="74">Lesiones por parte del Estado</label>
+          <input type="checkbox" id="74" name="especialidad" value="74"><br>
+  
+          <label for="75">Tortura por parte del Estado</label>
+          <input type="checkbox" id="75" name="especialidad" value="75"><br>
+  
+          <label for="76">Secuestro por parte del Estado</label>
+          <input type="checkbox" id="76" name="especialidad" value="76"><br>
+  
+          <label for="77">Sustracción de menores por parte del Estado</label>
+          <input type="checkbox" id="77" name="especialidad" value="77"><br>
+  
+          <label for="78">Violencia sexual por parte del Estado</label>
+          <input type="checkbox" id="78" name="especialidad" value="78"><br>
+  
+          <label for="79">Adopciones irregulares por parte del Estado</label>
+          <input type="checkbox" id="79" name="especialidad" value="79"><br>
+  
+          <label for="80">Homicidio por parte del Estado</label>
+          <input type="checkbox" id="80" name="especialidad" value="80"><br>
+  
+          <label for="81">Herencias</label>
+          <input type="checkbox" id="81" name="especialidad" value="81"><br>
+  
+          <label for="82">Particiones</label>
+          <input type="checkbox" id="82" name="especialidad" value="82"><br>
+  
+          <label for="83">Testamentos</label>
+          <input type="checkbox" id="83" name="especialidad" value="83"><br>
+  
+          <label for="84">Posesiones Efectivas</label>
+          <input type="checkbox" id="84" name="especialidad" value="84"><br>
+  
+          <label for="85">Repactación de deudas</label>
+          <input type="checkbox" id="85" name="especialidad" value="85"><br>
+  
+          <label for="86">Embargos</label>
+          <input type="checkbox" id="86" name="especialidad" value="86"><br>
+  
+          <label for="87">Remates</label>
+          <input type="checkbox" id="87" name="especialidad" value="87"><br>
+  
+          <label for="88">Compra de propiedades</label>
+          <input type="checkbox" id="88" name="especialidad" value="88"><br>
+  
+          <label for="89">Arriendo de propiedades</label>
+          <input type="checkbox" id="89" name="especialidad" value="89"><br>
+  
+          <label for="90">Accidentes de tránsito</label>
+          <input type="checkbox" id="90" name="especialidad" value="90"><br>
+  
+          <label for="91">Manejo en estado de ebriedad</label>
+          <input type="checkbox" id="91" name="especialidad" value="91"><br>
+  
+          <label for="92">Problemas vecinales</label>
+          <input type="checkbox" id="92" name="especialidad" value="92"><br>
+  
+      
+          <label for="nivel_coincidencia">Nivel de Coincidencia:</label>
+  <input type="range" id="nivel_coincidencia" name="nivel_coincidencia" min="10" max="100" step="10" value="50" />
+  <span id="valor_nivel_coincidencia">50</span>
+          <br />
+          <label for="descripcion">Descripción:</label>
+          <textarea id="descripcion" name="descripcion"></textarea>
+          <br />
+          <label for="region">Region de residencia:</label>
+          <select id="region" name="region" required>
+            <option value="">Seleccione una región</option>
+          </select>
+  
+          <br />
+          <label for="comuna">Comuna de residencia:</label>
+          <select id="comuna" name="comuna" required>
+            <option value="">Seleccione una comuna</option>
+          </select>
+          
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
+      <br />
+      <script src="/js/scriptabogado.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+
+      <footer>
+        <img class="image-tablet"
+        src="./imgs/appabogados.cl.png" width="100px" height="100px"/>
+        <div class="footer-content">
+          <div class="contact-info">
+            <img
+              src="./imgs/appabogados.cl.png" width="100px"/>
+              <div class="info-contact-total">
+              <img src="./imgs/mail.png" width="40px"  height="40px">
+              <div class="info-contact">
+              <p class="contacto">Contacto</p>
+              <p class="correo">E-mail: contacto@appbogado.cl</p>
+            </div>
+            </div>
+          </div>
+        
+        <div class="footer-completo2">
+          <div class="footer-links">
+            <div class="footer-section">
+              <p class="nosotros">Nosotros</p>
+              <ul>
+                <li><a href="/nosotros_abogado">Sobre nosotros</a></li>
+                <li><a href="/equipo_abogado">Equipo</a></li>
+                <li><a href="/abogado">¿Eres Abogado?</a></li>
+              </ul> 
+            </div>
+            </div>
+        </div>
+
+            
+            <div class="footer-completo2">
+              <div class="footer-links">
+                <div class="footer-section">
+              <p class="soporte">Soporte</p>
+              <ul>
+                <li><a href="/preguntas_abogado">Preguntas frecuentes</a></li>
+                <li><a href="/politicas_abogado">Términos y condiciones</a></li>
+                <li><a href="/politicas_abogado">Políticas de Privacidad</a></li>
+                <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
+
+              </ul>
+            </div>
+            </div>
+            </div>
+          
+
+          <div class="footer-links2">
+            <div class="footer-section2">
+              <p class="nosotros2">Nosotros</p>
+              <ul class="links-footer-2">
+                <li><a href="/nosotros">Sobre nosotros</a></li>
+                <li><a href="/equipo">Equipo</a></li>
+                <li><a href="/abogado">¿Eres Abogado?</a></li>
+              </ul>
+            </div>
+            <div class="footer-section2">
+              <p class="soporte2">Soporte</p>
+              <ul class="links-footer-2">
+                <li><a href="/preguntas_abogado">Preguntas frecuentes</a></li>
+                <li><a href="/terminos_condiciones_abogado">Términos y condiciones</a></li>
+                <li><a href="/politicas_abogado">Políticas de Privacidad</a></li>
+                <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
+
+              </ul>
+            </div>
+            </div>
+
+            
+            
+          <div class="social-media">
+            <p class="redessociales">Redes sociales</p>
+            <div class="rrss-mobile">
+            <ul class="redes-sociales-iconos">
+              <li>
+                <a href="https://web.facebook.com/appbogado.cl" target="_blank"
+                  ><img
+                    src="./imgs/facebook.png"
+                    alt="Facebook"
+                    height="30px"
+                    width="30px"
+                /></a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/appbogado.cl/" target="_blank"
+                  ><img
+                    src="./imgs/instagram.png"
+                    alt="Instagram"
+                    height="30px"
+                    width="30px"
+                /></a>
+              </li>
+              <li>
+                <a href="https://www.twitter.com" target="_blank"
+                  ><img
+                    src="./imgs/twitter.png"
+                    alt="Twitter"
+                    height="30px"
+                    width="30px"
+                /></a>
+              </li>
+            </ul>
+          </div>
+          </div>
+
+          <div class="info-contact-total2">
+            <img src="./imgs/mail.png" width="40px"  height="40px">
+            <div class="info-contact2">
+            <p class="contacto2">Contacto</p>
+            <p class="correo2">E-mail: contacto@appbogado.cl</p>
+          </div>
+
+        </div>
+          </div>
+        </div>
+
+          </div>
+      </footer>
+
+    </div>
+    <script>
+      function scrollToBottom() {
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth' // Hace que el scroll sea suave
+        });
+      }
+    </script>
+    
+  </body>
+</html>
