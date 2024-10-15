@@ -262,5 +262,22 @@
     "id": 92,
     "nombre": "Problemas vecinales",
     "categoria": "Problemas vecinales"
-  }
+  },
+  {"id": 93, "nombre": "Relación directa y regular", "categoria": "Derecho de Familia"},
+  {"id": 94, "nombre": "Estafa y chantaje", "categoria": "Derecho Penal"},
+  {"id": 95, "nombre": "Discriminación y delitos de odio", "categoria": "Derecho Penal"},
+  {"id": 96, "nombre": "Registro de Marcas", "categoria": "Derecho Comercial"},
+  {"id": 97, "nombre": "Registro de Patentes comerciales", "categoria": "Derecho Comercial"},
+  {"id": 98, "nombre": "Derechos Humanos (DD.HH.)", "categoria": "Derechos Humanos (DD.HH.)"},
+  {"id": 99, "nombre": "Compraventa de Inmuebles", "categoria": "Derecho Inmobiliario"},
+  {"id": 100, "nombre": "Arriendo de inmuebles", "categoria": "Derecho Inmobiliario"},
+  {"id": 101, "nombre": "Accidentes de Tránsito", "categoria": "Derecho del Tránsito"},
+  {"id": 102, "nombre": "Manejo en estado de ebriedad", "categoria": "Derecho del Tránsito"},
+  {"id": 103, "nombre": "Litigios vecinales", "categoria": "Policía Local"},
+  {"id": 104, "nombre": "Ruidos molestos", "categoria": "Policía Local"},
+  {"id": 105, "nombre": "Derecho del Medioambiente", "categoria": "Derecho del Medioambiente"},
+  {"id": 106, "nombre": "Derecho del Consumidor", "categoria": "Derecho del Consumidor"},
+  {"id": 107, "nombre": "Ley de Isapres", "categoria": "Derecho Sanitario"},
+  {"id": 108, "nombre": "Negligencia médica", "categoria": "Derecho Sanitario"},
+  {"id": 109, "nombre": "Normas sobre medicamentos", "categoria": "Derecho Sanitario"}
 ]
