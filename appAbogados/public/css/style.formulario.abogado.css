@@ -505,6 +505,17 @@ form {
   box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total del formulario */
 }
 
+.formtype {
+  background-color: #1a1449;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  margin: auto;
+  margin-top: 20px;
+  color: white;
+  box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total del formulario */
+}
+
 form-nivel {
   margin-top: 40px;
 }

@@ -66,10 +66,9 @@
         </div>
 
 
-      
+      <div class="formulario-div">
         
-      <form id="abogado-form" action="/submit-form" method="post">
-        <div class="formulario-div">
+        <form id="abogado-form" action="/submit-form" method="post">
           <input type="hidden" id="csrf-token" name="_csrf" value="" />
           <input type="hidden" name="formType" value="abogado" />
           <!-- <h2>NIVEL I </h2> -->
@@ -88,9 +87,8 @@
           <label for="telefono">Teléfono:</label>
           <input type="tel" id="telefono" name="telefono" required />
           <br />
-        </div>
+      
         <div class="campos-boleanos">
-        <!--
           <label style="display: block; margin-top: 20px">Costo Ser Primer Adelantado:</label>
           <div class="radio-group">
             <input type="radio" id="costo_ser_primer_adelant_si" name="costo_ser_primer_adelant" value="1" required />
@@ -114,7 +112,7 @@
             <input type="radio" id="costo_ser_gastos_tramitacion_no" name="costo_ser_gastos_tramitacion" value="0" required />
             <label for="costo_ser_gastos_tramitacion_no">NO</label>
           </div>
-        -->
+      
           <label style="display: block; margin-top: 20px">Horario Atención Días Hábiles:</label>
           <div class="radio-group">
             <input type="radio" id="horario_at_dias_hab_si" name="horario_at_dias_hab" value="1" required />
@@ -130,7 +128,7 @@
             <input type="radio" id="horario_at_horas_hab_no" name="horario_at_horas_hab" value="0" required />
             <label for="horario_at_horas_hab_no">NO</label>
           </div>
-      <!--
+      
           <label style="display: block; margin-top: 20px">Requiere Cliente sin Antecedentes Penales:</label>
           <div class="radio-group">
             <input type="radio" id="req_cliente_sin_ant_penales_si" name="req_cliente_sin_ant_penales" value="1" required />
@@ -154,7 +152,6 @@
             <input type="radio" id="req_cliente_residencia_regular_no" name="req_cliente_residencia_regular" value="0" required />
             <label for="req_cliente_residencia_regular_no">NO</label>
           </div>
-        -->
           <br>
         </div>
       </form>
@@ -708,8 +705,11 @@
                   </div>
           
                     <!--Hasta aquí oTRAS ÁREAS-->
-    </div>
+  <!--
 
+
+        </div>
+      -->
   
     <form class="form-nivel">
           <label for="nivel_coincidencia">Nivel de Coincidencia:</label>
@@ -731,15 +731,16 @@
           </select>
           
         </form>
-      
+      </div> 
 
       <div class="ingresar-registro">
         <button type="button" class="button-ingresar"> Ingresar Registro</button>
       </div>
+
       <br />
       <script src="/js/scriptabogado.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
-      </div> 
+
     </section>
       <footer>
         <img class="image-tablet"
