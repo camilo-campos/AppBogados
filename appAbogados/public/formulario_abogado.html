@@ -66,10 +66,8 @@
         </div>
 
 
-      
-        
       <form id="abogado-form" action="/submit-form" method="post">
-        <div class="formulario-div">
+        <div class="formtype">
           <input type="hidden" id="csrf-token" name="_csrf" value="" />
           <input type="hidden" name="formType" value="abogado" />
           <!-- <h2>NIVEL I </h2> -->
@@ -88,7 +86,7 @@
           <label for="telefono">Teléfono:</label>
           <input type="tel" id="telefono" name="telefono" required />
           <br />
-        </div>
+        
         <div class="campos-boleanos">
         <!--
           <label style="display: block; margin-top: 20px">Costo Ser Primer Adelantado:</label>
@@ -156,8 +154,9 @@
           </div>
         -->
           <br>
+          </div>
         </div>
-      </form>
+
 
 
   <div class="areas_derecho">
@@ -710,8 +709,8 @@
                     <!--Hasta aquí oTRAS ÁREAS-->
     </div>
 
-  
-    <form class="form-nivel">
+    <div class="formtype">
+   <!-- <form class="form-nivel"> -->
           <label for="nivel_coincidencia">Nivel de Coincidencia:</label>
   <input type="range" id="nivel_coincidencia" name="nivel_coincidencia" min="10" max="100" step="10" value="50" />
   <span id="valor_nivel_coincidencia">50</span>
@@ -730,16 +729,17 @@
             <option value="">Seleccione una comuna</option>
           </select>
           
-        </form>
-      
+        <!--</form> --> 
+      </div>  
 
       <div class="ingresar-registro">
         <button type="button" class="button-ingresar"> Ingresar Registro</button>
       </div>
       <br />
+    </form>
       <script src="/js/scriptabogado.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
-      </div> 
+     <!-- </div> -->
     </section>
       <footer>
         <img class="image-tablet"
