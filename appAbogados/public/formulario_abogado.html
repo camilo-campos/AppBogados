@@ -160,7 +160,12 @@
 
 
   <div class="areas_derecho">
-          <h3>Áreas del derecho en que te especializas:</h3>
+          <h3>Áreas del derecho en que te especializas:
+            si marcas sólo un área del Derecho se incluirán todos los tópicos que esa área contempla. 
+            También puedes marcar sólo aquellos tópicos específicos de tu interés. 
+            Todo esto permitirá a nuestro sistema optimizar la búsqueda de coincidencias entre 
+            tus áreas de especialidad y las necesidades de los solicitantes.
+          </h3>
 
           <div class="item-area-general">
           <div class="item-area">
@@ -190,12 +195,7 @@
             <div class="column">
               <div class="item">
                 <input type="checkbox" id="93" name="especialidad" value="93">
-                <label for="93">Relación directa y regular</label>
-              </div>
-              
-              <div class="item">
-                <input type="checkbox" id="6" name="especialidad" value="6">
-                <label for="6">Régimen de visitas</label>
+                <label for="93">Relación directa y regular (derecho de visitas)</label>
               </div>
               
               <div class="item">
@@ -331,7 +331,7 @@
 
                   <div class="item">
                     <input type="checkbox" id="28" name="especialidad" value="28">
-                    <label for="28">Estafa</label>
+                    <label for="28">Estafa y chantaje</label>
                   </div>
 
                   <div class="item">
@@ -365,16 +365,6 @@
                   <div class="item">
                     <input type="checkbox" id="35" name="especialidad" value="35">
                     <label for="35">Agresiones</label>
-                  </div>
-
-                  <div class="item">
-                    <input type="checkbox" id="36" name="especialidad" value="36">
-                    <label for="36">Discriminación</label>
-                  </div>
-
-                  <div class="item">
-                    <input type="checkbox" id="94" name="especialidad" value="94">
-                    <label for="94">Estafa y chantaje</label>
                   </div>
 
                   <div class="item">
@@ -412,18 +402,13 @@
                       <input type="checkbox" id="41" name="especialidad" value="41">
                       <label for="41">Insolvencias</label>
                     </div>
-                    
-                    <div class="item">
-                      <input type="checkbox" id="42" name="especialidad" value="42">
-                      <label for="42">Marcas</label>
-                    </div>
 
                   </div>
 
                     <div class="column">
                       <div class="item">
                         <input type="checkbox" id="43" name="especialidad" value="43">
-                        <label for="43">Patentes comerciales</label>
+                        <label for="43">Registro de Patentes comerciales</label>
                       </div>
 
                     <div class="item">
@@ -437,11 +422,6 @@
                     <div class="item">
                       <input type="checkbox" id="96" name="especialidad" value="96">
                       <label for="96">Registro de Marcas</label>
-                    </div>
-
-                    <div class="item">
-                      <input type="checkbox" id="97" name="especialidad" value="97">
-                      <label for="97">Registro de Patentes comerciales</label>
                     </div>
 
                   </div>
@@ -715,7 +695,7 @@
   <input type="range" id="nivel_coincidencia" name="nivel_coincidencia" min="10" max="100" step="10" value="50" />
   <span id="valor_nivel_coincidencia">50</span>
           <br />
-          <label for="descripcion">Descripción:</label>
+          <label for="descripcion">Descripción del cliente ideal:</label>
           <textarea id="descripcion" name="descripcion"></textarea>
           <br />
           <label for="Region">Region de residencia:</label>
