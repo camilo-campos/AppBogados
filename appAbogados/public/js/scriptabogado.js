@@ -104,30 +104,30 @@ function validateForm() {
   const apellidos = document.getElementById("apellidos").value.trim();
   const mail = document.getElementById("mail").value.trim();
   const telefono = document.getElementById("telefono").value.trim();
-  const costo_ser_primer_adelant = document.querySelector(
-    'input[name="costo_ser_primer_adelant"]:checked'
-  )?.value;
-  const costo_ser_cuota_litis = document.querySelector(
-    'input[name="costo_ser_cuota_litis"]:checked'
-  )?.value;
-  const costo_ser_gastos_tramitacion = document.querySelector(
-    'input[name="costo_ser_gastos_tramitacion"]:checked'
-  )?.value;
+  //const costo_ser_primer_adelant = document.querySelector(
+  //  'input[name="costo_ser_primer_adelant"]:checked'
+  //)?.value;
+  //const costo_ser_cuota_litis = document.querySelector(
+  //  'input[name="costo_ser_cuota_litis"]:checked'
+  //)?.value;
+  //const costo_ser_gastos_tramitacion = document.querySelector(
+  //  'input[name="costo_ser_gastos_tramitacion"]:checked'
+  //)?.value;
   const horario_at_dias_hab = document.querySelector(
     'input[name="horario_at_dias_hab"]:checked'
   )?.value;
   const horario_at_horas_hab = document.querySelector(
     'input[name="horario_at_horas_hab"]:checked'
   )?.value;
-  const req_cliente_sin_ant_penales = document.querySelector(
-    'input[name="req_cliente_sin_ant_penales"]:checked'
-  )?.value;
-  const req_cliente_sin_ant_com = document.querySelector(
-    'input[name="req_cliente_sin_ant_com"]:checked'
-  )?.value;
-  const req_cliente_residencia_regular = document.querySelector(
-    'input[name="req_cliente_residencia_regular"]:checked'
-  )?.value;
+  //const req_cliente_sin_ant_penales = document.querySelector(
+  //  'input[name="req_cliente_sin_ant_penales"]:checked'
+  //)?.value;
+  //const req_cliente_sin_ant_com = document.querySelector(
+  //  'input[name="req_cliente_sin_ant_com"]:checked'
+  //)?.value;
+  //const req_cliente_residencia_regular = document.querySelector(
+  //  'input[name="req_cliente_residencia_regular"]:checked'
+  //)?.value;
   const nivel_coincidencia = document
     .getElementById("nivel_coincidencia")
     ?.value.trim();
@@ -143,26 +143,26 @@ function validateForm() {
   if (!apellidos) errors.push("apellidos son obligatorios.");
   if (!mail) errors.push("Correo electrónico es obligatorio.");
   if (!telefono) errors.push("Teléfono es obligatorio.");
-  if (!costo_ser_primer_adelant)
-    errors.push("Debe seleccionar el costo por ser primer adelantado.");
-  if (!costo_ser_cuota_litis)
-    errors.push("Debe seleccionar el costo por cuota litis.");
-  if (!costo_ser_gastos_tramitacion)
-    errors.push("Debe seleccionar el costo por gastos de tramitación.");
+  //if (!costo_ser_primer_adelant)
+  //  errors.push("Debe seleccionar el costo por ser primer adelantado.");
+  //if (!costo_ser_cuota_litis)
+  //  errors.push("Debe seleccionar el costo por cuota litis.");
+  //if (!costo_ser_gastos_tramitacion)
+  //  errors.push("Debe seleccionar el costo por gastos de tramitación.");
   if (!horario_at_dias_hab)
     errors.push("Debe seleccionar el horario de atención en días hábiles.");
   if (!horario_at_horas_hab)
-    errors.push("Debe seleccionar el horario de atención en horas hábiles.");
-  if (!req_cliente_sin_ant_penales)
-    errors.push(
-      "Debe seleccionar el requerimiento de cliente sin antecedentes penales."
-    );
-  if (!req_cliente_sin_ant_com)
-    errors.push(
-      "Debe seleccionar el requerimiento de cliente sin antecedentes comerciales."
-    );
-  if (!req_cliente_residencia_regular)
-    errors.push("Debe seleccionar el requerimiento de residencia regular.");
+  //  errors.push("Debe seleccionar el horario de atención en horas hábiles.");
+  //if (!req_cliente_sin_ant_penales)
+  //  errors.push(
+  //    "Debe seleccionar el requerimiento de cliente sin antecedentes penales."
+  //  );
+  //if (!req_cliente_sin_ant_com)
+  //  errors.push(
+  //    "Debe seleccionar el requerimiento de cliente sin antecedentes comerciales."
+  //  );
+  //if (!req_cliente_residencia_regular)
+  //  errors.push("Debe seleccionar el requerimiento de residencia regular.");
   if (!nivel_coincidencia) errors.push("Nivel de coincidencia es obligatorio.");
   if (!descripcion) errors.push("Descripción es obligatoria.");
   if (!region) errors.push("Región es obligatoria.");
@@ -234,30 +234,30 @@ document
     const apellidos = document.getElementById("apellidos").value.trim();
     const mail = document.getElementById("mail").value.trim();
     const telefono = document.getElementById("telefono").value.trim();
-    const costo_ser_primer_adelant = document.querySelector(
-      'input[name="costo_ser_primer_adelant"]:checked'
-    )?.value;
-    const costo_ser_cuota_litis = document.querySelector(
-      'input[name="costo_ser_cuota_litis"]:checked'
-    )?.value;
-    const costo_ser_gastos_tramitacion = document.querySelector(
-      'input[name="costo_ser_gastos_tramitacion"]:checked'
-    )?.value;
+    //const costo_ser_primer_adelant = document.querySelector(
+    //  'input[name="costo_ser_primer_adelant"]:checked'
+    //)?.value;
+    //const costo_ser_cuota_litis = document.querySelector(
+    //  'input[name="costo_ser_cuota_litis"]:checked'
+    //)?.value;
+    //const costo_ser_gastos_tramitacion = document.querySelector(
+    //  'input[name="costo_ser_gastos_tramitacion"]:checked'
+    //)?.value;
     const horario_at_dias_hab = document.querySelector(
       'input[name="horario_at_dias_hab"]:checked'
     )?.value;
     const horario_at_horas_hab = document.querySelector(
       'input[name="horario_at_horas_hab"]:checked'
     )?.value;
-    const req_cliente_sin_ant_penales = document.querySelector(
-      'input[name="req_cliente_sin_ant_penales"]:checked'
-    )?.value;
-    const req_cliente_sin_ant_com = document.querySelector(
-      'input[name="req_cliente_sin_ant_com"]:checked'
-    )?.value;
-    const req_cliente_residencia_regular = document.querySelector(
-      'input[name="req_cliente_residencia_regular"]:checked'
-    )?.value;
+    //const req_cliente_sin_ant_penales = document.querySelector(
+    //  'input[name="req_cliente_sin_ant_penales"]:checked'
+    //)?.value;
+    //const req_cliente_sin_ant_com = document.querySelector(
+    //  'input[name="req_cliente_sin_ant_com"]:checked'
+    //)?.value;
+    //const req_cliente_residencia_regular = document.querySelector(
+    //  'input[name="req_cliente_residencia_regular"]:checked'
+    //)?.value;
     const nivel_coincidencia = document
       .getElementById("nivel_coincidencia")
       ?.value.trim();
@@ -282,14 +282,14 @@ document
       apellidos: apellidos,
       mail: mail,
       telefono: telefono,
-      costo_ser_primer_adelant: costo_ser_primer_adelant,
-      costo_ser_cuota_litis: costo_ser_cuota_litis,
-      costo_ser_gastos_tramitacion: costo_ser_gastos_tramitacion,
+    //  costo_ser_primer_adelant: costo_ser_primer_adelant,
+    //  costo_ser_cuota_litis: costo_ser_cuota_litis,
+    //  costo_ser_gastos_tramitacion: costo_ser_gastos_tramitacion,
       horario_at_dias_hab: horario_at_dias_hab,
       horario_at_horas_hab: horario_at_horas_hab,
-      req_cliente_sin_ant_penales: req_cliente_sin_ant_penales,
-      req_cliente_sin_ant_com: req_cliente_sin_ant_com,
-      req_cliente_residencia_regular: req_cliente_residencia_regular,
+    //  req_cliente_sin_ant_penales: req_cliente_sin_ant_penales,
+    //  req_cliente_sin_ant_com: req_cliente_sin_ant_com,
+    //  req_cliente_residencia_regular: req_cliente_residencia_regular,
       nivel_coincidencia: nivel_coincidencia,
       descripcion: descripcion,
       region: region,
