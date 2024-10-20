@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Función para validar los campos del formulario y devolver mensajes de error específicos
 function validateForm() {
   const errors = [];
-
+ 
   const nombres = document.getElementById("nombres").value.trim();
   const rut = document.getElementById("rut").value.trim();
   const apellidos = document.getElementById("apellidos").value.trim();
