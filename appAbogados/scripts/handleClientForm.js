@@ -187,7 +187,13 @@ async function handleClientForm(formData, prompt, maxAbogadosPerClient) {
       // We randomize the list, so we don't reveal the order of best rated abogados
       abogadosRating = abogadosRating.sort(() => Math.random() - 0.5);
 
-      const messageInfo = `Hemos recibido la información de su caso satisfactoriamente y la hemos enviado a ${abogadosRating.length} abogado${abogadosRating.length > 1 ? "s" : ""} inscritos en nuestra plataforma, quienes le contactarán prontamente.`;
+      /*const messageInfo = `Hemos recibido la información de su caso satisfactoriamente y la hemos enviado a ${abogadosRating.length} abogado${abogadosRating.length > 1 ? "s" : ""} inscritos en nuestra plataforma, quienes le contactarán prontamente.`;*/
+
+      const messageInfo = `El servicio de appbogado.cl comenzará a operar el próximo 21 de noviembre.  
+
+Entendemos la importancia de su búsqueda y lamentamos sinceramente los inconvenientes que esto pueda ocasionarle. Le invitamos a enviarnos los datos de su caso después de esa fecha.  
+
+Si tiene alguna consulta o necesita asistencia adicional, no dude en contactarnos.`
 
       const simpleTextCliente = `Estimado/a ${formData.nombres} ${formData.apellidos},\n\nHemos recibido la información de su caso satisfactoriamente y la hemos enviado a ${abogadosRating.length} abogado${abogadosRating.length > 1 ? "s" : ""} inscritos en nuestra plataforma, quienes le contactarán prontamente.\n\nPara más detalles, por favor revise el correo electrónico enviado a su dirección.\n\nSaludos cordiales,\nEquipo AppBogado`;
 
