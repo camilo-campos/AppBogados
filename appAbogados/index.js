@@ -25,7 +25,7 @@ const path = require("path");
 const app = express();
 
 // define port 8080
-const PORT = 2020;
+const PORT = 8080;
 
 // Setup cookie parser middleware
 app.use(cookieParser());
