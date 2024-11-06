@@ -79,6 +79,10 @@
           <div id="authenticityCheckContainer" class="authenticity-check-container" style="display: none;">
             <!-- Los resultados de AuthenticityCheckList se mostrarán aquí -->
           </div>
+          <div id="specificFieldVisualContainer" class="field-visual-container" style="display: none;">
+            <!-- Los valores de Field_Visual específicos se mostrarán aquí -->
+          </div>
+          
           
           
           
@@ -337,12 +341,12 @@ function prepareImageJson() {
 }
 
 // Función para enviar el JSON en una solicitud POST
-// Función para enviar el JSON en una solicitud POST
 async function sendImageJson() {
   const jsonData = prepareImageJson();
 
   if (!jsonData) {
-    return; // Salir si el JSON no está correctamente preparado
+    console.error("JSON no está correctamente preparado.");
+    return;
   }
 
   try {
@@ -359,40 +363,53 @@ async function sendImageJson() {
     }
 
     const result = await response.json();
-    console.log("Respuesta de la API:", result);
-    alert("Las imágenes se han enviado correctamente.");
+    console.log("Respuesta de la API:", result.ContainerList.List[1]);
 
-    // Buscar y mostrar AuthenticityCheckList
-    const authenticityCheckList = result?.ContainerList?.List?.find(item => item?.AuthenticityCheckList)?.AuthenticityCheckList?.List;
-    if (authenticityCheckList) {
-      const authenticityHtml = authenticityCheckList.map(check => {
-        return `
-          <div class="authenticity-item">
-            <h3>Authenticity Check</h3>
-            <p>Result: ${check.Result}</p>
-            <p>Type: ${check.Type}</p>
-            ${check.List.map(element => `
-              <div class="authenticity-element">
-                <p>Element Result: ${element.ElementResult}</p>
-                <p>Percent Value: ${element.PercentValue}</p>
-              </div>
-            `).join('')}
-          </div>
-        `;
-      }).join('');
-
-      document.getElementById('authenticityCheckContainer').innerHTML = authenticityHtml;
-      document.getElementById('authenticityCheckContainer').style.display = 'block';
+    // Accede al primer elemento de la lista en AuthenticityCheckList y extrae el porcentaje de similitud
+    const firstAuthenticityCheck = result.ContainerList.List[1]?.AuthenticityCheckList?.List[0]?.List[0].PercentValue;
+    if (firstAuthenticityCheck) {
+      console.log("Primer elemento de AuthenticityCheckList:", firstAuthenticityCheck);
     } else {
-      document.getElementById('authenticityCheckContainer').innerText = 'No se encontró información de AuthenticityCheckList.';
-      document.getElementById('authenticityCheckContainer').style.display = 'block';
+      console.warn("No se encontró el primer elemento en AuthenticityCheckList.");
     }
 
+    // Mostrar el porcentaje de similitud en el contenedor correspondiente
+    const authenticityCheckText = `Porcentaje de similitud: ${firstAuthenticityCheck || 'No disponible'}`;
+    const authenticityCheckContainer = document.getElementById('authenticityCheckContainer');
+    authenticityCheckContainer.innerHTML = `<p>${authenticityCheckText}</p>`;
+    authenticityCheckContainer.style.display = 'block';  // Asegúrate de mostrar el contenedor
+
+    // Definir etiquetas para cada campo específico de Field_Visual
+    const fieldLabels = ['RUT', 'Apellidos', 'Apellidos', 'Nombres'];
+    
+    // Obtener valores específicos de Field_Visual si existen
+    const specificFieldVisuals = result?.ContainerList?.List[8]?.ListVerifiedFields?.pFieldMaps
+      ?.slice(5, 9)
+      ?.map((field, index) => field ? `${fieldLabels[index]}: ${field.Field_Visual}` : null)
+      .filter(Boolean); // Filtrar valores nulos o no definidos
+
+    // Muestra solo los valores de Field_Visual en la consola y el HTML si están presentes
+    if (specificFieldVisuals?.length) {
+      console.log("Valores de Field_Visual específicos:", specificFieldVisuals);
+
+      const fieldVisualHtml = specificFieldVisuals.map(value => `<p>${value}</p>`).join('');
+      const fieldVisualContainer = document.getElementById('specificFieldVisualContainer');
+      fieldVisualContainer.innerHTML = fieldVisualHtml;
+      fieldVisualContainer.style.display = 'block';
+    } else {
+      console.warn("No se encontraron valores específicos de Field_Visual.");
+      document.getElementById('specificFieldVisualContainer').style.display = 'none';
+    }
+
+    alert("Las imágenes se han enviado correctamente.");
   } catch (error) {
     console.error("Error al enviar las imágenes:", error);
     alert("Hubo un problema al enviar las imágenes.");
   }
 }
+
+
+
 
 
 
