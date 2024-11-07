@@ -32,7 +32,8 @@ function getAssistantPrompt() {
 // <-- Uncomment to test the data retrieval -->
 //dataTest(['dim_comunas_chile', 'dim_abogados', 'ft_ambitos', 'ft_comunas', 'ft_solicitudes']); OLD
 //dataTest(['dim_comunas_chile', 'dim_credenciales', 'ft_ambitos', 'dim_ambitos', 'dim_abogados']);
-//dataTest(['ft_solicitudes']);
+//dataTest(['ft_pagos']);
+//dataTest(['dim_abogados']);
 
 //----------------------------------------------
 
@@ -43,6 +44,7 @@ async function processForm(formData, response) {
 
   if (cleanResponse) {
     try {
+      // Get the IDs of the tags that match the response
       let aiAmbitosIds = ambitosFilter(cleanResponse, dimAmbitos);
 
       // Get the abogados that match the tags (ft_ambitos)
@@ -57,7 +59,7 @@ async function processForm(formData, response) {
         rut: abogadosIds,
       };
 
-      if (formData.antecedentes_penales === 'si') {
+      /*if (formData.antecedentes_penales === 'si') {
         dataMatch.req_cliente_sin_ant_penales = "0";
       }
       if (formData.antecedentes_comerciales === 'si') {
@@ -65,7 +67,7 @@ async function processForm(formData, response) {
       }
       if (formData.residencia === 'no') {
         dataMatch.req_cliente_residencia_regular = "0";
-      }
+      }*/
 
       console.log("-------> [dataMatch]:", dataMatch);
 
@@ -74,6 +76,18 @@ async function processForm(formData, response) {
 
       const abogadosNombres = abogadosData.map(abogado => abogado.nombres);
       console.log("Abogados matching tags:", abogadosNombres);
+
+      // Filter abogados that have paid the service
+      const currentDate = new Date();
+
+      abogadosData = abogadosData.filter(abogado => 
+        abogado.fecha_vigencia && new Date(abogado.fecha_vigencia) >= currentDate
+      );
+
+      if (abogadosData.length === 0) {
+        console.log("No se encontraron abogados con fecha de vigencia activa");
+        return false; // Return failure if no valid abogados are found
+      }
 
       // Filter abogados if they are too far (using comunaLocator)
       let abogadosFiltered = [];

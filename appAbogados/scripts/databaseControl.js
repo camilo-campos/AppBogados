@@ -172,6 +172,7 @@ async function databaseGet({ table, ...filters } = {}) {
   if (tableList.length === 0) {
     tableList = [
       "dim_comunas_chile",
+      "ft_pagos",
       "dim_credenciales",
       "ft_ambitos",
       "dim_ambitos",
