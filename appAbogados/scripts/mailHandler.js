@@ -115,7 +115,7 @@ async function sendEmail(to, from, subject, placeholders = {}, htmlFilePath = ''
 
   try {
     await sgMail.send(msg);
-    console.log('Email sent successfully');
+    console.log(`Email sent [${to}]`);
   } catch (error) {
     console.error('Error sending email:', error);
 
