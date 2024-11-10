@@ -165,6 +165,7 @@ function validateForm() {
   //  errors.push("Debe seleccionar el requerimiento de residencia regular.");
   if (!nivel_coincidencia) errors.push("Nivel de coincidencia es obligatorio.");
   if (!descripcion) errors.push("Descripción es obligatoria.");
+  if (descripcion.length > 550) errors.push("La descripción debe tener un máximo de 550 caracteres.");
   if (!region) errors.push("Región es obligatoria.");
   if (!comuna) errors.push("Comuna es obligatoria.");
   if (selectedSpecialties.length === 0)
