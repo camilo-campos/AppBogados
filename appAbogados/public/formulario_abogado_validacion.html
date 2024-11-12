@@ -1,0 +1,1111 @@
+<html lang="es"></html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appbogado.cl</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <!-- Archivo de estilos personalizado -->
+    <link rel="stylesheet" href="./css/style.formulario.abogado.validacion.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WY0QCWQ97B"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-WY0QCWQ97B');
+    </script>
+
+  </head>
+    <body>
+
+
+      <header>
+        <div class="header-top">
+          <div class="header-top2">
+            <div class="logo">
+              <img src="./imgs/Logo.png" alt="Lupa" width="250px" />
+            </div>
+            <div class="menu2">
+              <a href="/" class="button-nav">¿BUSCAS ABOGADO?</a>
+    
+              <div class="dropdown">
+                <button class="btn btn-terciary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa-solid fa-bars fa-1x" style="color: #ffffff"></i> 
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/terminos_condiciones_abogado">Condiciones del servicio</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0);" onclick="scrollToBottom()">Contacto</a></li>
+                </ul>
+              </div>
+    
+            </div>
+          </div>
+          <nav>
+            <ul>
+              <li><a href="/abogado">INICIO</a></li>
+              <li><a href="/terminos_condiciones_abogado">CONDICIONES DEL SERVICIO</a></li>
+              <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
+              <li><a href="/" class="button-nav">¿BUSCAS ABOGADO?</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <br />
+      <div id="success-image" style="display: none; text-align: center">
+        
+        <img
+          src="/imagen/mensaje_azul.png"
+          alt="Formulario Enviado"
+        />
+        <p>Redirigiendo...</p>
+      </div>
+
+      <section>
+      <div class="background-container">
+        
+          <!-- Tu contenido aquí -->
+          <section class="validacion">
+            <div class="containe-validacion">
+              <h1>Permiso para Usar la Cámara</h1>
+              <p id="instruction">Por favor, toma una foto de tu cara.</p>
+              <video id="video" autoplay></video>
+              
+              <!-- Contenedor para los botones -->
+              <div class="button-group">
+                <button id="toggleCameraBtn">Activar Cámara</button>
+                <button id="captureFaceBtn">Capturar Foto de la Cara</button>
+                <button id="captureIdBtn">Capturar Foto del Carnet</button>
+                <button id="sendJsonBtn">Enviar Imágenes</button>
+              </div>
+          
+              <canvas id="canvas" style="display: none;"></canvas> <!-- Oculta el canvas por defecto -->
+              
+              <div id="photoContainer">
+                <div id="facePhotoContainer" class="photo-group">
+                  <h2>Foto de la Cara</h2>
+                  <img id="facePhoto" alt="Foto de la Cara">
+                </div>
+                <div id="idPhotoContainer" class="photo-group">
+                  <h2>Foto del Carnet</h2>
+                  <img id="idPhoto" alt="Foto del Carnet">
+                </div>
+              </div>
+              
+              <button id="deletePhotosBtn">Eliminar Fotos</button>
+              
+              <div id="authenticityCheckContainer" class="authenticity-check-container" style="display: none;"></div>
+              <div id="specificFieldVisualContainer" class="field-visual-container" style="display: none;"></div>
+            </div>
+          </section>
+          
+    
+          
+        
+          
+  
+          <form id="abogado-form" action="/submit-form" method="post">
+          <div class="formtype">
+            <input type="hidden" id="csrf-token" name="_csrf" value="" />
+            <input type="hidden" name="formType" value="abogado" />
+            <!-- <h2>NIVEL I </h2> -->
+            <label for="rut">Rut:</label>
+            <input type="text" id="rut" name="rut" required />
+            <br />
+            <label for="nombres">Nombre:</label>
+            <input type="text" id="nombres" name="nombres" required />
+            <br />
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" name="apellidos" required />
+            <br />
+            <label for="mail">Correo Electrónico:</label>
+            <input type="email" id="mail" name="mail" required />
+            <br />
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" required />
+            <br />
+          
+          <div class="campos-boleanos">
+          <!--
+            <label style="display: block; margin-top: 20px">Costo Ser Primer Adelantado:</label>
+            <div class="radio-group">
+              <input type="radio" id="costo_ser_primer_adelant_si" name="costo_ser_primer_adelant" value="1" required />
+              <label for="costo_ser_primer_adelant_si">SI</label>
+              <input type="radio" id="costo_ser_primer_adelant_no" name="costo_ser_primer_adelant" value="0" required />
+              <label for="costo_ser_primer_adelant_no">NO</label>
+            </div>
+        
+            <label style="display: block; margin-top: 20px">Costo Ser Cuota Litis:</label>
+            <div class="radio-group">
+              <input type="radio" id="costo_ser_cuota_litis_si" name="costo_ser_cuota_litis" value="1" required />
+              <label for="costo_ser_cuota_litis_si">SI</label>
+              <input type="radio" id="costo_ser_cuota_litis_no" name="costo_ser_cuota_litis" value="0" required />
+              <label for="costo_ser_cuota_litis_no">NO</label>
+            </div>
+        
+            <label style="display: block; margin-top: 20px">Costo Ser Gastos Tramitación:</label>
+            <div class="radio-group">
+              <input type="radio" id="costo_ser_gastos_tramitacion_si" name="costo_ser_gastos_tramitacion" value="1" required />
+              <label for="costo_ser_gastos_tramitacion_si">SI</label>
+              <input type="radio" id="costo_ser_gastos_tramitacion_no" name="costo_ser_gastos_tramitacion" value="0" required />
+              <label for="costo_ser_gastos_tramitacion_no">NO</label>
+            </div>
+          -->
+            <label style="display: block; margin-top: 20px">¿Atiendes solo en días hábiles?</label>
+            <div class="radio-group">
+              <input type="radio" id="horario_at_dias_hab_si" name="horario_at_dias_hab" value="1" required />
+              <label for="horario_at_dias_hab_si">SI</label>
+              <input type="radio" id="horario_at_dias_hab_no" name="horario_at_dias_hab" value="0" required />
+              <label for="horario_at_dias_hab_no">NO</label>
+            </div>
+        
+            <label style="display: block; margin-top: 20px">¿Atiendes solo en horas hábiles?</label>
+            <div class="radio-group">
+              <input type="radio" id="horario_at_horas_hab_si" name="horario_at_horas_hab" value="1" required />
+              <label for="horario_at_horas_hab_si">SI</label>
+              <input type="radio" id="horario_at_horas_hab_no" name="horario_at_horas_hab" value="0" required />
+              <label for="horario_at_horas_hab_no">NO</label>
+            </div>
+        <!--
+            <label style="display: block; margin-top: 20px">Requiere Cliente sin Antecedentes Penales:</label>
+            <div class="radio-group">
+              <input type="radio" id="req_cliente_sin_ant_penales_si" name="req_cliente_sin_ant_penales" value="1" required />
+              <label for="req_cliente_sin_ant_penales_si">SI</label>
+              <input type="radio" id="req_cliente_sin_ant_penales_no" name="req_cliente_sin_ant_penales" value="0" required />
+              <label for="req_cliente_sin_ant_penales_no">NO</label>
+            </div>
+        
+            <label style="display: block; margin-top: 20px">Requiere Cliente sin Antecedentes Comerciales:</label>
+            <div class="radio-group">
+              <input type="radio" id="req_cliente_sin_ant_com_si" name="req_cliente_sin_ant_com" value="1" required />
+              <label for="req_cliente_sin_ant_com_si">SI</label>
+              <input type="radio" id="req_cliente_sin_ant_com_no" name="req_cliente_sin_ant_com" value="0" required />
+              <label for="req_cliente_sin_ant_com_no">NO</label>
+            </div>
+        
+            <label style="display: block; margin-top: 20px">Requiere Cliente con Residencia Regular:</label>
+            <div class="radio-group">
+              <input type="radio" id="req_cliente_residencia_regular_si" name="req_cliente_residencia_regular" value="1" required />
+              <label for="req_cliente_residencia_regular_si">SI</label>
+              <input type="radio" id="req_cliente_residencia_regular_no" name="req_cliente_residencia_regular" value="0" required />
+              <label for="req_cliente_residencia_regular_no">NO</label>
+            </div>
+          -->
+            <br>
+            </div>
+          </div>
+
+
+
+    <div class="areas_derecho">
+            <h3>Áreas del derecho en que te especializas:
+              si marcas sólo un área del Derecho se incluirán todos los tópicos que esa área contempla. 
+              También puedes marcar sólo aquellos tópicos específicos de tu interés. 
+              Todo esto permitirá a nuestro sistema optimizar la búsqueda de coincidencias entre 
+              tus áreas de especialidad y las necesidades de los solicitantes.
+            </h3>
+
+            <div class="item-area-general">
+            <div class="item-area">
+              <input type="checkbox" id="1012" name="especialidad" value="1012" class="large-checkbox">
+              <label for="1012">DERECHO DE FAMILIA</label>
+            </div>
+      
+
+            <div class="columns-container">
+              <div class="column">
+                <div class="item">
+                  <input type="checkbox" id="2" name="especialidad" value="2">
+                  <label for="2">Pensión Alimenticia</label>
+                </div>
+                
+                <div class="item">
+                  <input type="checkbox" id="3" name="especialidad" value="3">
+                  <label for="3">Divorcio</label>
+                </div>
+                
+                <div class="item">
+                  <input type="checkbox" id="4" name="especialidad" value="4">
+                  <label for="4">Tuición</label>
+                </div>
+              </div>
+            
+              <div class="column">
+                <div class="item">
+                  <input type="checkbox" id="93" name="especialidad" value="93">
+                  <label for="93">Relación directa y regular (derecho de visitas)</label>
+                </div>
+                
+                <div class="item">
+                  <input type="checkbox" id="7" name="especialidad" value="7">
+                  <label for="7">Violencia Intrafamiliar</label>
+                </div>
+              </div>
+            
+              <div class="column">
+                <div class="item">
+                  <input type="checkbox" id="8" name="especialidad" value="8">
+                  <label for="8">Cambio de Nombre</label>
+                </div>
+                
+                <div class="item">
+                  <input type="checkbox" id="9" name="especialidad" value="9">
+                  <label for="9">Declaración de Interdicción</label>
+                </div>
+                
+                <div class="item">
+                  <input type="checkbox" id="10" name="especialidad" value="10">
+                  <label for="10">Adopciones</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+            <!--Hasta aquí derecho de familia-->
+
+          
+            <div class="item-area-general">
+              <div class="item-area">
+                <input type="checkbox" id="1000" name="especialidad" value="1000" class="large-checkbox">
+                <label for="1000">DERECHO LABORAL</label>
+              </div>
+        
+    
+              <div class="columns-container">
+                <div class="column">
+
+                  <div class="item">
+                    <input type="checkbox" id="13" name="especialidad" value="13">
+                    <label for="13">Despido injustificado</label>
+                  </div>
+                  
+                  <div class="item">
+                    <input type="checkbox" id="14" name="especialidad" value="14">
+                    <label for="14">Licencia Médica</label>
+                  </div>
+                </div>
+              
+                <div class="column">
+                  <div class="item">
+                    <input type="checkbox" id="15" name="especialidad" value="15">
+                    <label for="15">Accidentes Laborales</label>
+                  </div>
+                  
+                  <div class="item">
+                    <input type="checkbox" id="16" name="especialidad" value="16">
+                    <label for="16">Acoso Sexual</label>
+                  </div>
+                  
+
+                </div>
+              
+                <div class="column">
+                  <div class="item">
+                    <input type="checkbox" id="17" name="especialidad" value="17">
+                    <label for="17">Autodespido</label>
+                  </div>
+                  
+                  <div class="item">
+                    <input type="checkbox" id="19" name="especialidad" value="19">
+                    <label for="19">Asesoría de Sindicatos</label>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+    
+    
+              <!--Hasta aquí derecho laboral-->
+
+            
+              <div class="item-area-general">
+                <div class="item-area">
+                  <input type="checkbox" id="1001" name="especialidad" value="1001" class="large-checkbox">
+                  <label for="1001">DERECHO PENAL</label>
+                </div>
+          
+      
+                <div class="columns-container">
+                  <div class="column">
+                    <div class="item">
+                      <input type="checkbox" id="21" name="especialidad" value="21">
+                      <label for="21">Abuso sexual</label>
+                    </div>
+                    
+                    <div class="item">
+                      <input type="checkbox" id="22" name="especialidad" value="22">
+                      <label for="22">Violación</label>
+                    </div>
+                    
+                    <div class="item">
+                      <input type="checkbox" id="23" name="especialidad" value="23">
+                      <label for="23">Robos</label>
+                    </div>
+                
+                    <div class="item">
+                      <input type="checkbox" id="24" name="especialidad" value="24">
+                      <label for="24">Hurtos</label>
+                    </div>
+
+                    <div class="item">
+                      <input type="checkbox" id="25" name="especialidad" value="25">
+                      <label for="25">Lesiones</label>
+                    </div>
+                    
+                    <div class="item">
+                      <input type="checkbox" id="26" name="especialidad" value="26">
+                      <label for="26">Asesinato</label>
+                    </div>
+                
+
+                  </div>
+                  
+                  <div class="column">
+                    <div class="item">
+                      <input type="checkbox" id="27" name="especialidad" value="27">
+                      <label for="27">Muerte accidental</label>
+                    </div>
+
+                    <div class="item">
+                      <input type="checkbox" id="28" name="especialidad" value="28">
+                      <label for="28">Estafa y chantaje</label>
+                    </div>
+
+                    <div class="item">
+                      <input type="checkbox" id="29" name="especialidad" value="29">
+                      <label for="29">Incendio</label>
+                    </div>
+
+                    <div class="item">
+                      <input type="checkbox" id="30" name="especialidad" value="30">
+                      <label for="30">Daños</label>
+                    </div>
+
+                    <div class="item">
+                      <input type="checkbox" id="31" name="especialidad" value="31">
+                      <label for="31">Calumnias</label>
+                    </div>
+
+                    <div class="item">
+                      <input type="checkbox" id="32" name="especialidad" value="32">
+                      <label for="32">Injurias</label>
+                    </div>
+
+                  </div>
+
+                  <div class="column">
+                  <div class="item">
+                      <input type="checkbox" id="34" name="especialidad" value="34">
+                      <label for="34">Negligencia médica</label>
+                    </div>
+
+                    <div class="item">
+                      <input type="checkbox" id="35" name="especialidad" value="35">
+                      <label for="35">Agresiones</label>
+                    </div>
+
+                    <div class="item">
+                      <input type="checkbox" id="95" name="especialidad" value="95">
+                      <label for="95">Discriminación y delitos de odio</label>
+                    </div>
+
+                    <div class="item">
+                      <input type="checkbox" id="39" name="especialidad" value="39">
+                      <label for="39">Délitos informáticos</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      
+      
+                <!--Hasta aquí derecho penal-->
+
+            
+                <div class="item-area-general">
+                  <div class="item-area">
+                    <input type="checkbox" id="1002" name="especialidad" value="1002" class="large-checkbox">
+                    <label for="1002">DERECHO COMERCIAL</label>
+                  </div>
+            
+        
+                  <div class="columns-container">
+                    <div class="column">
+                      <div class="item">
+                        <input type="checkbox" id="40" name="especialidad" value="40">
+                        <label for="40">Quiebras</label>
+                      </div>
+                      
+                      <div class="item">
+                        <input type="checkbox" id="41" name="especialidad" value="41">
+                        <label for="41">Insolvencias</label>
+                      </div>
+
+                    </div>
+
+                      <div class="column">
+                        <div class="item">
+                          <input type="checkbox" id="43" name="especialidad" value="43">
+                          <label for="43">Registro de Patentes comerciales</label>
+                        </div>
+
+                      <div class="item">
+                        <input type="checkbox" id="44" name="especialidad" value="44">
+                        <label for="44">Constitución Sociedades</label>
+                      </div>
+                    
+                    </div>
+                      
+                    <div class="column"> 
+                      <div class="item">
+                        <input type="checkbox" id="96" name="especialidad" value="96">
+                        <label for="96">Registro de Marcas</label>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+        
+                  <!--Hasta aquí derecho comercial-->
+
+                  <div class="item-area-general">
+                    <div class="item-area">
+                      <input type="checkbox" id="1003" name="especialidad" value="1003" class="large-checkbox">
+                      <label for="1003">DERECHO TRIBUTARIO</label>
+                    </div>
+              
+          
+                    <div class="columns-container">
+                      <div class="column">
+                        <div class="item">
+                          <input type="checkbox" id="57" name="especialidad" value="57">
+                          <label for="57">Litigios tributarios</label>
+                        </div>
+                        
+                      </div>
+                        
+                      </div>
+                  </div>
+          
+                    <!--Hasta aquí derecho tributario-->
+                
+                      <div class="item-area-general">
+                        <div class="item-area">
+                          <input type="checkbox" id="1005" name="especialidad" value="1005" class="large-checkbox">
+                          <label for="1005">DERECHO SUCESORIO</label>
+                        </div>
+                  
+              
+                        <div class="columns-container">
+                          <div class="column">
+                            <div class="item">
+                              <input type="checkbox" id="81" name="especialidad" value="81">
+                              <label for="81">Herencia</label>
+                            </div>
+                            
+                            <div class="item">
+                              <input type="checkbox" id="82" name="especialidad" value="82">
+                              <label for="82">Particiones</label>
+                            </div>
+                          </div>
+        
+                            <div class="column">
+                            <div class="item">
+                              <input type="checkbox" id="83" name="especialidad" value="83">
+                              <label for="83">Testamentos</label>
+                            </div>
+                            </div>
+      
+                            <div class="column">
+                              <div class="item">
+                                <input type="checkbox" id="84" name="especialidad" value="84">
+                                <label for="84">Posesiones Efectivas</label>
+                              </div>
+                              </div>
+                            
+                          </div>
+                      </div>
+              
+                        <!--Hasta aquí derecho sucesorio-->
+
+                                      
+                        <div class="item-area-general">
+                          <div class="item-area">
+                            <input type="checkbox" id="1006" name="especialidad" value="1006" class="large-checkbox">
+                            <label for="1006">COBRANZA</label>
+                          </div>
+                    
+                          <div class="columns-container">
+                            <div class="column">
+                              <div class="item">
+                                <input type="checkbox" id="85" name="especialidad" value="85">
+                                <label for="85">Repactación de deudas</label>
+                              </div>
+                            </div>
+          
+                              <div class="column">
+                              <div class="item">
+                                <input type="checkbox" id="86" name="especialidad" value="86">
+                                <label for="86">Embargos</label>
+                              </div>
+                              </div>
+        
+                              <div class="column">
+                                <div class="item">
+                                  <input type="checkbox" id="87" name="especialidad" value="87">
+                                  <label for="87">Remates</label>
+                                </div>
+                                </div>
+                            
+                          </div>
+                        </div>
+                
+                          <!--Hasta aquí Cobranzas-->
+                  
+                          <div class="item-area-general">
+                            <div class="item-area">
+                              <input type="checkbox" id="1007" name="especialidad" value="1007" class="large-checkbox">
+                              <label for="1007">DERECHO INMOBILIARIO</label>
+                            </div>
+                      
+                            <div class="columns-container">
+                              <div class="column">
+                                <div class="item">
+                                  <input type="checkbox" id="99" name="especialidad" value="99">
+                                  <label for="99">Compraventa de Inmuebles</label>
+                                </div>
+                              </div>
+            
+                                <div class="column">
+                                <div class="item">
+                                  <input type="checkbox" id="100" name="especialidad" value="100">
+                                  <label for="100">Arriendo de inmuebles</label>
+                                </div>
+                                </div>
+                              
+                            </div>
+                          </div>
+                  
+                            <!--Hasta aquí Derecho inmobiliario-->    
+
+                            <div class="item-area-general">
+                              <div class="item-area">
+                                <input type="checkbox" id="1008" name="especialidad" value="1008" class="large-checkbox">
+                                <label for="1008">DERECHO DEL TRANSITO</label>
+                              </div>
+                        
+                              <div class="columns-container">
+                                <div class="column">
+                                  <div class="item">
+                                    <input type="checkbox" id="101" name="especialidad" value="101">
+                                    <label for="101">Accidentes de Tránsito</label>
+                                  </div>
+                                </div>
+              
+                                  <div class="column">
+                                  <div class="item">
+                                    <input type="checkbox" id="102" name="especialidad" value="102">
+                                    <label for="102">Manejo en estado de ebriedad</label>
+                                  </div>
+                                  </div>
+                                
+                              </div>
+                            </div>
+                    
+                              <!--Hasta aquí Derecho inmobiliario-->    
+
+                              <div class="item-area-general">
+                                <div class="item-area">
+                                  <input type="checkbox" id="1009" name="especialidad" value="1009" class="large-checkbox">
+                                  <label for="1009">POLICIA LOCAL</label>
+                                </div>
+                          
+                                <div class="columns-container">
+                                  <div class="column">
+                                    <div class="item">
+                                      <input type="checkbox" id="103" name="especialidad" value="103">
+                                      <label for="103">Litigios vecinales</label>
+                                    </div>
+                                  </div>
+                
+                                    <div class="column">
+                                    <div class="item">
+                                      <input type="checkbox" id="104" name="especialidad" value="104">
+                                      <label for="104">Ruidos molestos</label>
+                                    </div>
+                                    </div>
+                                  
+                                </div>
+                              </div>
+                      
+                                <!--Hasta aquí Policia Local-->    
+
+                                <div class="item-area-general">
+                                  <div class="item-area">
+                                    <input type="checkbox" id="1010" name="especialidad" value="1010" class="large-checkbox">
+                                    <label for="1010">DERECHO SANITARIO</label>
+                                  </div>
+                            
+                                  <div class="columns-container">
+                                    <div class="column">
+                                      <div class="item">
+                                        <input type="checkbox" id="107" name="especialidad" value="107">
+                                        <label for="107">Ley de Isapres</label>
+                                      </div>
+                                    </div>
+                  
+                                      <div class="column">
+                                      <div class="item">
+                                        <input type="checkbox" id="108" name="especialidad" value="108">
+                                        <label for="108">Negligencia médica</label>
+                                      </div>
+
+                                      </div>
+
+                                      <div class="column">
+                                        <div class="item">
+                                          <input type="checkbox" id="109" name="especialidad" value="109">
+                                          <label for="109">Normas sobre medicamentos</label>
+                                        </div>
+                                        </div>
+                                  </div>
+                                </div>
+                        
+                                  <!--Hasta aquí Derecho Sanitario-->    
+                                
+                    <div class="item-area-general">
+                      <div class="item-area">
+                        <input type="checkbox" id="1011" name="especialidad" value="1011" class="large-checkbox">
+                        <label for="1011">OTRAS ÁREAS</label>
+                      </div>
+                
+            
+                      <div class="columns-container">
+                        <div class="column">
+                          <div class="item">
+                            <input type="checkbox" id="11" name="especialidad" value="11">
+                            <label for="11">Derecho Migratorio</label>
+                          </div> 
+                        </div>
+                      
+                        <div class="column">
+                          <div class="item">
+                            <input type="checkbox" id="105" name="especialidad" value="105">
+                            <label for="105">Derecho del Medioambiente</label>
+                          </div> 
+
+                            <div class="item">
+                              <input type="checkbox" id="98" name="especialidad" value="98">
+                              <label for="98">Derechos Humanos (DD.HH.)</label>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                          <div class="item">
+                            <input type="checkbox" id="106" name="especialidad" value="106">
+                            <label for="106">Derecho del Consumidor</label>
+                          </div> 
+                        </div>
+                        </div>
+                    </div>
+            
+                      <!--Hasta aquí oTRAS ÁREAS-->
+      </div>
+
+      <div class="formtype">
+    <!-- <form class="form-nivel"> -->
+            <label for="nivel_coincidencia">¿Que nivel de coincidencia quieres tener con tus clientes? (en porcentaje de 0 a 100)</label>
+    <input type="range" id="nivel_coincidencia" name="nivel_coincidencia" min="10" max="100" step="10" value="50" />
+    <span id="valor_nivel_coincidencia">50</span>
+            <br />
+            <label for="descripcion">Descripción del cliente ideal(max 550 caracteres):</label>
+            <textarea id="descripcion" name="descripcion"></textarea>
+            <br />
+            <label for="Region">Region de residencia:</label>
+            <select id="region" name="region" required>
+              <option value="">Seleccione una región</option>
+            </select>
+    
+            <br />
+            <label for="Comuna">Comuna de residencia:</label>
+            <select id="comuna" name="comuna" required>
+              <option value="">Seleccione una comuna</option>
+            </select>
+            
+            <div class="ingresar-registro">
+              <button type="submit" class="button-ingresar"> Ingresar Registro</button>
+            </div>
+          </form>
+      </div> 
+
+
+      <br />
+    </form>
+      <script src="/js/scriptabogado.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+     <!-- </div> -->
+    </section>
+      <footer>
+        <img class="image-tablet"
+        src="./assets/imgs/appabogados.cl.png" width="100px" height="100px"/>
+        <div class="footer-content">
+          <div class="contact-info">
+            <img
+              src="./imgs/appabogados.cl.png" width="100px"/>
+              <div class="info-contact-total">
+              <img src="./imgs/mail.png" width="40px"  height="40px">
+              <div class="info-contact">
+              <p class="contacto">Contacto</p>
+              <p class="correo">E-mail: contacto@appbogado.cl</p>
+            </div>
+            </div>
+          </div>
+        
+         <div class="footer-completo2">
+          <div class="footer-links">
+            <div class="footer-section">
+              <p class="nosotros">Nosotros</p>
+              <ul>
+                <li><a href="/nosotros_abogado">Sobre nosotros</a></li>
+                <li><a href="/equipo_abogado">Equipo</a></li>
+                <li><a href="/abogado">¿Eres Abogado?</a></li>
+              </ul> 
+            </div>
+            </div>
+         </div>
+
+            
+            <div class="footer-completo2">
+              <div class="footer-links">
+                <div class="footer-section">
+              <p class="soporte">Soporte</p>
+              <ul>
+                <li><a href="/preguntas_abogado">Preguntas frecuentes</a></li>
+                <li><a href="/politicas_abogado">Términos y condiciones</a></li>
+                <li><a href="/politicas_abogado">Políticas de Privacidad</a></li>
+                <li><a href="javascript:void(0);" onclick="scrollToBottom()">Contacto</a></li>
+              </ul>
+            </div>
+            </div>
+            </div>
+          
+
+          <div class="footer-links2">
+            <div class="footer-section2">
+              <p class="nosotros2">Nosotros</p>
+              <ul class="links-footer-2">
+                <li><a href="/nosotros_abogado">Sobre nosotros</a></li>
+                <li><a href="/equipo_abogado">Equipo</a></li>
+                <li><a href="/abogado">¿Eres Abogado?</a></li>
+              </ul>
+            </div>
+            <div class="footer-section2">
+              <p class="soporte2">Soporte</p>
+              <ul class="links-footer-2">
+                <li><a href="/preguntas_abogado">Preguntas frecuentes</a></li>
+                <li><a href="/terminos_condiciones_abogado">Términos y condiciones</a></li>
+                <li><a href="/politicas_abogado">Políticas de Privacidad</a></li>
+                <li><a href="javascript:void(0);" onclick="scrollToBottom()">Contacto</a></li>
+              </ul>
+            </div>
+            </div>
+
+            
+            
+          <div class="social-media">
+            <p class="redessociales">Redes sociales</p>
+            <div class="rrss-mobile">
+            <ul class="redes-sociales-iconos">
+              <li>
+                <a href="https://web.facebook.com/appbogado.cl" target="_blank"
+                  ><img
+                    src="./imgs/facebook.png"
+                    alt="Facebook"
+                    height="30px"
+                    width="30px"
+                /></a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/appbogado.cl/" target="_blank"
+                  ><img
+                    src="./imgs/instagram.png"
+                    alt="Instagram"
+                    height="30px"
+                    width="30px"
+                /></a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/company/appbogado-cl/" target="_blank"
+                  ><img
+                    src="./imgs/linkedin.png"
+                    alt="Twitter"
+                    height="30px"
+                    width="30px"
+                /></a>
+              </li>
+            </ul>
+          </div>
+          </div>
+
+          <div class="info-contact-total2">
+            <img src="./imgs/mail.png" width="40px"  height="40px">
+            <div class="info-contact2">
+            <p class="contacto2">Contacto</p>
+            <p class="correo2">E-mail: contacto@appbogado.cl</p>
+          </div>
+
+        </div>
+          </div>
+        </div>
+
+          </div>
+      </footer>
+
+    </div>
+
+  </div>
+  <!-- Bootstrap JS (incluyendo Popper.js) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+      const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
+      const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
+      const video = document.getElementById('video');
+      const canvas = document.getElementById('canvas');
+      const captureFaceBtn = document.getElementById('captureFaceBtn');
+      const captureIdBtn = document.getElementById('captureIdBtn');
+      const toggleCameraBtn = document.getElementById('toggleCameraBtn');
+      const instruction = document.getElementById('instruction');
+      const facePhoto = document.getElementById('facePhoto');
+      const idPhoto = document.getElementById('idPhoto');
+
+      let stream; // Variable para almacenar el flujo de video
+
+      // Solicitar acceso a la cámara
+      async function startCamera() {
+          try {
+              stream = await navigator.mediaDevices.getUserMedia({ video: true });
+              video.srcObject = stream;
+              toggleCameraBtn.innerText = "Desactivar Cámara";
+          } catch (error) {
+              console.error("Error al acceder a la cámara:", error);
+              alert("No se pudo acceder a la cámara.");
+          }
+      }
+
+      // Detener la cámara
+      function stopCamera() {
+          if (stream) {
+              stream.getTracks().forEach(track => track.stop());
+              video.srcObject = null;
+              toggleCameraBtn.innerText = "Activar Cámara";
+          }
+      }
+
+      // Función para alternar la cámara entre activada y desactivada
+      function toggleCamera() {
+          if (stream && stream.active) {
+              stopCamera();
+          } else {
+              startCamera();
+          }
+      }
+
+      // Capturar foto de la cara y guardarla en sessionStorage
+      function captureFacePhoto() {
+          const context = canvas.getContext('2d');
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+          const photoDataUrl = canvas.toDataURL('image/png');
+          sessionStorage.setItem("facePhoto", photoDataUrl);
+
+          facePhoto.src = photoDataUrl;
+          instruction.innerText = "Ahora, toma una foto de tu carnet.";
+      }
+
+      // Capturar foto del carnet y guardarla en sessionStorage
+      function captureIdPhoto() {
+          const context = canvas.getContext('2d');
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+          const photoDataUrl = canvas.toDataURL('image/png');
+          sessionStorage.setItem("idPhoto", photoDataUrl);
+
+          idPhoto.src = photoDataUrl;
+          instruction.innerText = "Fotos capturadas. Gracias.";
+      }
+
+      // Cargar fotos almacenadas en sessionStorage al iniciar
+      function loadStoredPhotos() {
+          const storedFacePhoto = sessionStorage.getItem("facePhoto");
+          const storedIdPhoto = sessionStorage.getItem("idPhoto");
+
+          if (storedFacePhoto) facePhoto.src = storedFacePhoto;
+          if (storedIdPhoto) idPhoto.src = storedIdPhoto;
+      }
+
+      captureFaceBtn.addEventListener('click', captureFacePhoto);
+      captureIdBtn.addEventListener('click', captureIdPhoto);
+      toggleCameraBtn.addEventListener('click', toggleCamera);
+      window.addEventListener('load', () => {
+          loadStoredPhotos();
+      });
+      // Función para preparar y convertir las imágenes en Base64 y crear el JSON
+      function prepareImageJson() {
+        // Obtener las imágenes de sessionStorage
+        const facePhotoBase64 = sessionStorage.getItem("facePhoto");
+        const idPhotoBase64 = sessionStorage.getItem("idPhoto");
+
+        // Verificar que ambas imágenes están disponibles
+        if (!facePhotoBase64 || !idPhotoBase64) {
+            alert("Por favor, asegúrate de capturar ambas fotos.");
+            return null;
+        }
+
+        // Crear el JSON con el formato requerido
+        const jsonData = {
+            processParam: {
+                scenario: "FullAuth",
+                authParams: {
+                    checkLiveness: false
+                },
+                useFaceApi: true
+            },
+            List: [
+                {
+                    ImageData: {
+                        image: idPhotoBase64.replace("data:image/png;base64,", "") // Limpiar la cabecera Base64
+                    }
+                }
+            ],
+            livePortrait: facePhotoBase64.replace("data:image/png;base64,", "") // Limpiar la cabecera Base64
+        };
+
+        return jsonData;
+      }
+
+      // Función para enviar el JSON en una solicitud POST
+      async function sendImageJson() {
+        const jsonData = prepareImageJson();
+      
+        if (!jsonData) {
+          console.error("JSON no está correctamente preparado.");
+          return;
+        }
+      
+        try {
+          const response = await fetch("https://regula-verificacion.1htxkwgx6seo.us-south.codeengine.appdomain.cloud/api/process", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(jsonData)
+          });
+      
+          if (!response.ok) {
+            throw new Error("Error en la respuesta de la API");
+          }
+      
+          const result = await response.json();
+          console.log("Respuesta de la API:", result.ContainerList.List[1]);
+      
+          // Accede al primer elemento de la lista en AuthenticityCheckList y extrae el porcentaje de similitud
+          const firstAuthenticityCheck = result.ContainerList.List[1]?.AuthenticityCheckList?.List[0]?.List[0].PercentValue;
+          if (firstAuthenticityCheck) {
+            console.log("Primer elemento de AuthenticityCheckList:", firstAuthenticityCheck);
+          } else {
+            console.warn("No se encontró el primer elemento en AuthenticityCheckList.");
+          }
+      
+          // Mostrar el porcentaje de similitud en el contenedor correspondiente
+          const authenticityCheckText = `Porcentaje de similitud: ${firstAuthenticityCheck || 'No disponible'}`;
+          const authenticityCheckContainer = document.getElementById('authenticityCheckContainer');
+          authenticityCheckContainer.innerHTML = `<p>${authenticityCheckText}</p>`;
+          authenticityCheckContainer.style.display = 'block';
+      
+          // Solo rellena el campo RUT si el porcentaje de similitud es mayor o igual a 85
+          if (firstAuthenticityCheck >= 85) {
+            // Definir etiquetas para cada campo específico de Field_Visual
+            const fieldLabels = ['RUT', 'Apellidos', 'Apellidos', 'Nombres'];
+      
+            // Obtener el valor de RUT y realizar la modificación para agregar el guion
+            let rutFieldVisual = result?.ContainerList?.List[8]?.ListVerifiedFields?.pFieldMaps[5]?.Field_Visual;
+            if (rutFieldVisual) {
+              // Realiza la modificación del RUT para agregar un guion antes del último carácter
+              rutFieldVisual = rutFieldVisual.slice(0, -1) + '-' + rutFieldVisual.slice(-1);
+      
+              // Encuentra el elemento del formulario y rellena el valor modificado
+              const rutInput = document.getElementById("rut");
+              if (rutInput) {
+                rutInput.value = rutFieldVisual;
+              }
+            } else {
+              console.warn("No se encontró el valor de RUT en Field_Visual.");
+            }
+          } else {
+            console.warn("El porcentaje de similitud es menor a 85. No se rellenará el campo RUT.");
+          }
+      
+          // Muestra los valores de Field_Visual en el HTML
+          const specificFieldVisuals = result?.ContainerList?.List[8]?.ListVerifiedFields?.pFieldMaps
+            ?.slice(5, 9)
+            ?.map((field, index) => field ? `${fieldLabels[index]}: ${field.Field_Visual}` : null)
+            .filter(Boolean);
+      
+          if (specificFieldVisuals?.length) {
+            console.log("Valores de Field_Visual específicos:", specificFieldVisuals);
+      
+            const fieldVisualHtml = specificFieldVisuals.map(value => `<p>${value}</p>`).join('');
+            const fieldVisualContainer = document.getElementById('specificFieldVisualContainer');
+            fieldVisualContainer.innerHTML = fieldVisualHtml;
+            fieldVisualContainer.style.display = 'block';
+          } else {
+            console.warn("No se encontraron valores específicos de Field_Visual.");
+            document.getElementById('specificFieldVisualContainer').style.display = 'none';
+          }
+      
+          alert("Las imágenes se han enviado correctamente.");
+        } catch (error) {
+          console.error("Error al enviar las imágenes:", error);
+          alert("Hubo un problema al enviar las imágenes.");
+        }
+      }
+      
+      
+      
+      // Función para eliminar las fotos del sessionStorage
+      function deleteStoredPhotos() {
+        sessionStorage.removeItem("facePhoto");
+        sessionStorage.removeItem("idPhoto");
+
+        // Limpiar las imágenes mostradas
+        facePhoto.src = "";
+        idPhoto.src = "";
+        instruction.innerText = "Fotos eliminadas.";
+      }
+
+      // Agregar un evento al botón de eliminar fotos
+      document.getElementById('deletePhotosBtn').addEventListener('click', deleteStoredPhotos);
+
+      // Agrega un evento para capturar ambas imágenes y enviarlas
+      document.getElementById("captureFaceBtn").addEventListener("click", captureFacePhoto);
+      document.getElementById("captureIdBtn").addEventListener("click", captureIdPhoto);
+      document.getElementById("sendJsonBtn").addEventListener("click", sendImageJson);
+  </script>
+    
+  </body>
+</html>
