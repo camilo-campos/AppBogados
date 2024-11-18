@@ -79,13 +79,25 @@
               <h1>Permiso para Usar la Cámara</h1>
               <p id="instruction">Por favor, toma una foto de tu cara.</p>
               <video id="video" autoplay></video>
-              
+              <!-- Campo de entrada para subir foto de la cara -->
+<div class="photo-group">
+  <h2>Subir Foto de la Cara</h2>
+  <input type="file" id="uploadFacePhoto" accept="image/*">
+</div>
+
+<!-- Campo de entrada para subir foto del carnet -->
+<div class="photo-group">
+  <h2>Subir Foto del Carnet</h2>
+  <input type="file" id="uploadIdPhoto" accept="image/*">
+</div>
+
               <!-- Contenedor para los botones -->
               <div class="button-group">
                 <button id="toggleCameraBtn">Activar Cámara</button>
                 <button id="captureFaceBtn">Capturar Foto de la Cara</button>
                 <button id="captureIdBtn">Capturar Foto del Carnet</button>
                 <button id="sendJsonBtn">Enviar Imágenes</button>
+                
               </div>
           
               <canvas id="canvas" style="display: none;"></canvas> <!-- Oculta el canvas por defecto -->
@@ -921,6 +933,41 @@
           }
       }
 
+      // Obtener referencias a los nuevos campos de entrada
+      const uploadFacePhotoInput = document.getElementById('uploadFacePhoto');
+      const uploadIdPhotoInput = document.getElementById('uploadIdPhoto');
+
+      // Función para manejar la subida de la foto de la cara
+      uploadFacePhotoInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const photoDataUrl = e.target.result;
+            sessionStorage.setItem("facePhoto", photoDataUrl);
+            facePhoto.src = photoDataUrl;
+            instruction.innerText = "Ahora, sube una foto de tu carnet.";
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      // Función para manejar la subida de la foto del carnet
+      uploadIdPhotoInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const photoDataUrl = e.target.result;
+            sessionStorage.setItem("idPhoto", photoDataUrl);
+            idPhoto.src = photoDataUrl;
+            instruction.innerText = "Fotos subidas. Gracias.";
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+
       // Capturar foto de la cara y guardarla en sessionStorage
       function captureFacePhoto() {
           const context = canvas.getContext('2d');
@@ -1021,12 +1068,13 @@
           }
       
           const result = await response.json();
-          console.log("Respuesta de la API:", result.ContainerList.List[1]);
+          console.log("Respuesta de la API:", result.ContainerList.List[8]);
+          //console.log("Respuesta de la API:", result.ContainerList.List[10]?.AuthenticityCheckList?.List[0]?.List[0].PercentValue);
       
           // Accede al primer elemento de la lista en AuthenticityCheckList y extrae el porcentaje de similitud
-          const firstAuthenticityCheck = result.ContainerList.List[1]?.AuthenticityCheckList?.List[0]?.List[0].PercentValue;
+          const firstAuthenticityCheck = result.ContainerList.List[10]?.AuthenticityCheckList?.List[0]?.List[0].PercentValue;
           if (firstAuthenticityCheck) {
-            console.log("Primer elemento de AuthenticityCheckList:", firstAuthenticityCheck);
+            //console.log("Primer elemento de AuthenticityCheckList:", firstAuthenticityCheck);
           } else {
             console.warn("No se encontró el primer elemento en AuthenticityCheckList.");
           }
@@ -1039,11 +1087,10 @@
       
           // Solo rellena el campo RUT si el porcentaje de similitud es mayor o igual a 85
           if (firstAuthenticityCheck >= 85) {
-            // Definir etiquetas para cada campo específico de Field_Visual
-            const fieldLabels = ['RUT', 'Apellidos', 'Apellidos', 'Nombres'];
+            
       
             // Obtener el valor de RUT y realizar la modificación para agregar el guion
-            let rutFieldVisual = result?.ContainerList?.List[8]?.ListVerifiedFields?.pFieldMaps[5]?.Field_Visual;
+            let rutFieldVisual = result?.ContainerList?.List[8]?.ListVerifiedFields?.pFieldMaps[4]?.Field_Visual;
             if (rutFieldVisual) {
               // Realiza la modificación del RUT para agregar un guion antes del último carácter
               rutFieldVisual = rutFieldVisual.slice(0, -1) + '-' + rutFieldVisual.slice(-1);
@@ -1059,24 +1106,44 @@
           } else {
             console.warn("El porcentaje de similitud es menor a 85. No se rellenará el campo RUT.");
           }
-      
-          // Muestra los valores de Field_Visual en el HTML
-          const specificFieldVisuals = result?.ContainerList?.List[8]?.ListVerifiedFields?.pFieldMaps
-            ?.slice(5, 9)
-            ?.map((field, index) => field ? `${fieldLabels[index]}: ${field.Field_Visual}` : null)
-            .filter(Boolean);
-      
-          if (specificFieldVisuals?.length) {
-            console.log("Valores de Field_Visual específicos:", specificFieldVisuals);
-      
-            const fieldVisualHtml = specificFieldVisuals.map(value => `<p>${value}</p>`).join('');
+          const fieldLabels = ['RUT', 'Apellidos', 'Apellidos', 'Nombres'];
+          // Supongamos que tienes el resultado de la API en `result`
+          const verifiedFields = result?.ContainerList?.List[8]?.ListVerifiedFields?.pFieldMaps;
+
+          if (verifiedFields?.length === 17) {
+            // Usa los índices 4, 5 y 8
+            const rut = verifiedFields[4]?.Field_Visual;
+            const apellidos = verifiedFields[5]?.Field_Visual;
+            const nombres = verifiedFields[8]?.Field_Visual;
+
+            // Mostrar los valores en el HTML
+            displayFieldVisuals(rut, apellidos, nombres);
+          } else if (verifiedFields?.length === 19) {
+            // Usa los índices 5, 6 y 8
+            const rut = verifiedFields[5]?.Field_Visual;
+            const apellidos = verifiedFields[6]?.Field_Visual;
+            const nombres = verifiedFields[8]?.Field_Visual;
+
+            // Mostrar los valores en el HTML
+            displayFieldVisuals(rut, apellidos, nombres);
+          } else {
+            console.warn("La longitud de pFieldMaps no coincide con 17 o 19.");
+          }
+
+          // Función para mostrar los valores en el HTML
+          function displayFieldVisuals(rut, apellidos, nombres) {
+            const fieldVisualHtml = `
+              <p>RUT: ${rut || 'No disponible'}</p>
+              <p>Apellidos: ${apellidos || 'No disponible'}</p>
+              <p>Nombres: ${nombres || 'No disponible'}</p>
+            `;
+
             const fieldVisualContainer = document.getElementById('specificFieldVisualContainer');
             fieldVisualContainer.innerHTML = fieldVisualHtml;
             fieldVisualContainer.style.display = 'block';
-          } else {
-            console.warn("No se encontraron valores específicos de Field_Visual.");
-            document.getElementById('specificFieldVisualContainer').style.display = 'none';
           }
+
+
       
           alert("Las imágenes se han enviado correctamente.");
         } catch (error) {
