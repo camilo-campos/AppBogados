@@ -308,14 +308,13 @@ document
         body: JSON.stringify(dataToSend),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        // if the response is: "Lawyer not found in PJUD database", show an alert
-        const data = await response.json();
         if (data.error === "Lawyer not found in PJUD database") {
-          alert(
-            "El abogado no se encuentra en la base de datos del PJUD. Por favor, verifique el RUT ingresado."
-          );
-          return;
+          alert("El abogado no se encuentra en la base de datos del PJUD. Por favor, verifique el RUT ingresado.");
+        } else if (data.error === "Lawyer already registered") {
+          alert(`El RUT [${rut}] ya se encuentra registrado en nuestro sistema.`);
         }
 
 

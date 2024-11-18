@@ -125,6 +125,18 @@ async function insertAbogado(formData) {
 
   try {
     const client = await pool.connect();
+
+    // Check if the RUT already exists
+    const checkQuery = `SELECT 1 FROM dim_abogados WHERE rut = $1`;
+    const checkResult = await client.query(checkQuery, [rut]);
+
+    if (checkResult.rows.length > 0) {
+      client.release();
+      const error = new Error("Lawyer already registered");
+      error.code = "RUT_ALREADY_REGISTERED";
+      throw error;
+    }
+
     const query = `
       INSERT INTO dim_abogados (rut, nombres, apellidos, mail, telefono, costo_ser_primer_adelant, costo_ser_cuota_litis, costo_ser_gastos_tramitacion, horario_at_dias_hab, horario_at_horas_hab, req_cliente_sin_ant_penales, req_cliente_sin_ant_com, req_cliente_residencia_regular, nivel_coincidencia, descripcion, region, comuna)
       VALUES ($1,$2, $3, $4, $5, $6, $7, $8, $9, $10, $11 , $12 , $13 , $14 , $15 , $16 , $17) RETURNING *`;

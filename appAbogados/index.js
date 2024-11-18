@@ -214,7 +214,11 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
           }
         } catch (error) {
           console.error("Error inserting data into DB:", error);
-          res.status(500).json({ message: "Error inserting data into DB" });
+          if (error.code === "RUT_ALREADY_REGISTERED") {
+            res.status(400).json({ error: "Lawyer already registered" });
+          } else {
+            res.status(500).json({ message: "Error inserting data into DB" });
+          }
         }
       } else {
         console.error("Error: Missing required form fields");
