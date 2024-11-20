@@ -26,8 +26,6 @@ databaseGet()
   })
   .catch((error) => console.error(error));
 
-
-
 async function insertSolicitante(formData) {
   const {
     rut,
@@ -97,6 +95,35 @@ async function insertft_ambitos(formData) {
     console.log("Form Data Inserted:", result.rows[0]);
     return result.rows[0];
   } catch (error) {
+    console.error("Error executing query", error.stack);
+    throw error;
+  }
+}
+
+async function insert_dim_validados(formData) {
+  const { rut_abogado } = formData;
+
+  try {
+    // Conexión al pool de base de datos
+    const client = await pool.connect();
+
+    // Consulta para insertar datos
+    const query = `
+      INSERT INTO dim_validados (rut_abogado)
+      VALUES ($1) RETURNING *`;
+    const values = [rut_abogado];
+
+    // Ejecutar la consulta
+    const result = await client.query(query, values);
+
+    // Liberar el cliente
+    client.release();
+
+    // Log de resultados
+    console.log("Form Data Inserted:", result.rows[0]);
+    return result.rows[0];
+  } catch (error) {
+    // Manejo de errores
     console.error("Error executing query", error.stack);
     throw error;
   }
@@ -235,4 +262,5 @@ module.exports = {
   insertSolicitante,
   insertAbogado,
   insertft_ambitos,
+  insert_dim_validados,
 };

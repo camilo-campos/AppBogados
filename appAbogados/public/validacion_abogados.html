@@ -142,20 +142,17 @@
             </div>
           </section>
   
-          <form id="abogado-form" action="/submit-form" method="post">
-          <div class="formtype">
-            <input type="hidden" id="csrf-token" name="_csrf" value="" />
-            <input type="hidden" name="formType" value="abogado" />
-            <!-- <h2>NIVEL I </h2> -->
-            <label for="rut">Rut: (se completa con validación de identidad)</label>
-            <input type="text" id="rut" name="rut" readonly required />
-            <br />
-          
-
-          </div>
-
-
+          <form id="abogado-form-validacion" action="/submit-form" method="post">
+            <div class="formtype">
+              <input type="hidden" id="csrf-token" name="_csrf" value="" />
+              <input type="hidden" name="formType" value="validacion" />
+              <label for="rut">Rut: (se completa con validación de identidad)</label>
+              <input type="text" id="rut" name="rut" readonly required />
+              <br />
+              <button type="submit">Validar Identidad</button>
+            </div>
           </form>
+          
       </div> 
 
 

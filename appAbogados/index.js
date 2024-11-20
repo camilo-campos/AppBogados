@@ -6,6 +6,7 @@ const {
   insertSolicitante,
   insertAbogado,
   insertft_ambitos,
+  insert_dim_validados,
 } = require("./scripts/databaseControl");
 
 // --- Configuraciones miscelaneas ---
@@ -139,7 +140,26 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
   console.log("Form Data Received:", formData);
 
   try {
-    if (formData.formType === "cliente") {
+    if (formData.formType === "validacion") {
+      // Validar que el RUT esté presente
+      if (!formData.rut_abogado) {
+        return res.status(400).json({ error: "RUT is required" });
+      }
+
+      // Validar el formato del RUT (opcional, ajusta según sea necesario)
+
+      console.log(`Validando RUT: ${formData.rut}`);
+
+      if (subirABaseDeDatos) {
+        const result = await insert_dim_validados(formData);
+        console.log("Data inserted into database:", result);
+      }
+
+      // Respuesta exitosa
+      return res
+        .status(200)
+        .json({ message: "Form of type 'validacion' processed successfully" });
+    } else if (formData.formType === "cliente") {
       if (formData.caso) {
         /*
           Insertar datos del formulario del cliente en la base de datos
