@@ -20,6 +20,8 @@
   transition: background-color 0.3s;
 }
 
+
+
 .validacion button:hover {
   background-color: #0056b3;
 }
@@ -28,6 +30,22 @@
 h2,
 p {
   color: white;
+}
+
+#video {
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  max-width: 600px; /* Ajusta el tamaño máximo para que no sea demasiado grande */
+  height: auto; /* Mantén la proporción del video */
+  border-radius: 8px; /* Opcional: esquinas redondeadas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Opcional: sombra para mejor estética */
+  display: block;
+  margin: 0 auto; /* Centra el video */
+}
+
+.containe-validacion {
+  width: 90%; /* Ajusta el ancho del contenedor */
+  max-width: 800px; /* Evita que sea demasiado ancho en pantallas grandes */
+  margin: 0 auto; /* Centra el contenedor en la página */
 }
 
 /* ASPECTOS GENERALES*/
