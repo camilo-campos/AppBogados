@@ -152,8 +152,8 @@
             <input type="hidden" id="csrf-token" name="_csrf" value="" />
             <input type="hidden" name="formType" value="abogado" />
             <!-- <h2>NIVEL I </h2> -->
-            <label for="rut">Rut:</label>
-            <input type="text" id="rut" name="rut" required />
+            <label for="rut">Rut: (se completa con validación de identidad)</label>
+            <input type="text" id="rut" name="rut" readonly required />
             <br />
             <label for="nombres">Nombre:</label>
             <input type="text" id="nombres" name="nombres" required />
@@ -1131,7 +1131,10 @@ async function startCamera() {
           } else {
             console.warn("No se encontró el primer elemento en AuthenticityCheckList.");
           }
-      
+          if (!firstAuthenticityCheck || firstAuthenticityCheck < 85) {
+            alert("No se pudo realizar la validación de identidad. Por favor, intente nuevamente.");
+            return;
+          }
           // Mostrar el porcentaje de similitud en el contenedor correspondiente
           const authenticityCheckText = `Porcentaje de similitud: ${firstAuthenticityCheck || 'No disponible'}`;
           const authenticityCheckContainer = document.getElementById('authenticityCheckContainer');
@@ -1146,14 +1149,15 @@ async function startCamera() {
             let rutFieldVisual = result?.ContainerList?.List[8]?.ListVerifiedFields?.pFieldMaps[4]?.Field_Visual;
             if (rutFieldVisual) {
               // Realiza la modificación del RUT para agregar un guion antes del último carácter
-              rutFieldVisual = rutFieldVisual.slice(0, -1) + '-' + rutFieldVisual.slice(-1);
-      
+              
               // Encuentra el elemento del formulario y rellena el valor modificado
+            /*
               const rutInput = document.getElementById("rut");
               if (rutInput) {
                 rutInput.value = rutFieldVisual;
-              }
-            } else {
+              } */
+            } 
+            else {
               console.warn("No se encontró el valor de RUT en Field_Visual.");
             }
           } else {
@@ -1162,23 +1166,29 @@ async function startCamera() {
           const fieldLabels = ['RUT', 'Apellidos', 'Apellidos', 'Nombres'];
           // Supongamos que tienes el resultado de la API en `result`
           const verifiedFields = result?.ContainerList?.List[8]?.ListVerifiedFields?.pFieldMaps;
-
+          const rutInput = document.getElementById("rut");
           if (verifiedFields?.length === 17) {
             // Usa los índices 4, 5 y 8
             const rut = verifiedFields[4]?.Field_Visual;
             const apellidos = verifiedFields[5]?.Field_Visual;
             const nombres = verifiedFields[8]?.Field_Visual;
-
             // Mostrar los valores en el HTML
             displayFieldVisuals(rut, apellidos, nombres);
-          } else if (verifiedFields?.length === 19) {
+            // agregar rut en formulario
+            if (rutInput) {
+              rutInput.value = rut;
+            }
+          } 
+          else if (verifiedFields?.length === 19) {
             // Usa los índices 5, 6 y 8
             const rut = verifiedFields[5]?.Field_Visual;
             const apellidos = verifiedFields[6]?.Field_Visual;
             const nombres = verifiedFields[8]?.Field_Visual;
-
             // Mostrar los valores en el HTML
             displayFieldVisuals(rut, apellidos, nombres);
+            // agregar rut en formulario
+            if (rutInput) {
+              rutInput.value = rut;}
           } else {
             console.warn("La longitud de pFieldMaps no coincide con 17 o 19.");
           }

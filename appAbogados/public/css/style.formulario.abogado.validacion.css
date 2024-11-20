@@ -185,6 +185,16 @@ ul {
   list-style: none;
 }
 
+.readonly-field {
+  background-color: #d6d4d479;
+  cursor: not-allowed;
+  color: #666; /* Color del texto para que también parezca inactivo */
+  font-family: inherit; /* Usar la misma fuente que los demás campos */
+  font-size: inherit; /* Usar el mismo tamaño de fuente */
+  padding: 0.5em; /* Asegurarte de que el padding sea consistente */
+  border-radius: 4px; /* Si los otros campos tienen bordes redondeados */
+}
+
 .main-banner .content {
   display: flex;
   align-items: center;
