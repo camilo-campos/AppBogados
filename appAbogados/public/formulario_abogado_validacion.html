@@ -929,6 +929,16 @@
 
       // Solicitar acceso a la cámara
       async function startCamera() {
+          // Detener el flujo actual si existe
+          if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+          }
+          // Configuración para usar la cámara frontal o trasera
+          const constraints = {
+              video: {
+                  facingMode: useFrontCamera ? 'user' : 'environment'
+              }
+          }
           try {
               stream = await navigator.mediaDevices.getUserMedia({ video: true });
               video.srcObject = stream;
@@ -948,10 +958,10 @@
           }
       }
 
-      // Evento para cambiar entre cámaras
+      // Evento para alternar entre cámaras
       switchCameraBtn.addEventListener('click', () => {
-        useFrontCamera = !useFrontCamera;
-        startCamera();
+        useFrontCamera = !useFrontCamera; // Cambiar entre frontal y trasera
+        startCamera(); // Reiniciar la cámara con la nueva configuración
       })
 
       // Función para alternar la cámara entre activada y desactivada
@@ -962,6 +972,18 @@
               startCamera();
           }
       }
+
+      // Evento para activar/desactivar la cámara
+      toggleCameraBtn.addEventListener('click', () => {
+        if (stream && stream.active) {
+            stream.getTracks().forEach(track => track.stop());
+            video.srcObject = null;
+            toggleCameraBtn.innerText = "Activar Cámara";
+        } else {
+            startCamera();
+            toggleCameraBtn.innerText = "Desactivar Cámara";
+        }
+      })
 
       // Obtener referencias a los nuevos campos de entrada
     //  const uploadFacePhotoInput = document.getElementById('uploadFacePhoto');
