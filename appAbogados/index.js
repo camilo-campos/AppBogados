@@ -53,6 +53,10 @@ router.get("/formulario-validacion", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/formulario_abogado_validacion.html");
 });
 
+router.get("/validacion-abogados", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/validacion_abogados.html");
+});
+
 router.get("/contacto", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/formulario_cliente.html");
 });
