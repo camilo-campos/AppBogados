@@ -107,7 +107,7 @@
               <div class="photo-group">
                 <h2>Subir Foto del Carnet</h2>
                 <input type="file" id="uploadIdPhoto" accept="image/*">
-              </div> 
+              </div>
 
               <!-- Contenedor para los botones -->
               <div class="button-group">
@@ -917,6 +917,7 @@
       const video = document.getElementById('video');
       const canvas = document.getElementById('canvas');
       const captureFaceBtn = document.getElementById('captureFaceBtn');
+      const switchCameraBtn = document.getElementById('switchCameraBtn');
       const captureIdBtn = document.getElementById('captureIdBtn');
       const toggleCameraBtn = document.getElementById('toggleCameraBtn');
       const instruction = document.getElementById('instruction');
@@ -924,7 +925,8 @@
       const idPhoto = document.getElementById('idPhoto');
 
       let stream; // Variable para almacenar el flujo de video
-
+      let useFrontCamera = true; // Controla qué cámara usar (frontal o trasera)
+      
       // Solicitar acceso a la cámara
       async function startCamera() {
           try {
@@ -945,6 +947,12 @@
               toggleCameraBtn.innerText = "Activar Cámara";
           }
       }
+
+      // Evento para cambiar entre cámaras
+      switchCameraBtn.addEventListener('click', () => {
+        useFrontCamera = !useFrontCamera;
+        startCamera();
+      })
 
       // Función para alternar la cámara entre activada y desactivada
       function toggleCamera() {

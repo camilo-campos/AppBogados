@@ -849,6 +849,18 @@ form-nivel {
   }
 }
 
+/* Ocultar el botón por defecto */
+#switchCameraBtn {
+  display: none;
+}
+
+/* Mostrar el botón solo en pantallas móviles */
+@media only screen and (max-width: 768px) {
+  #switchCameraBtn {
+    display: inline-block;
+  }
+}
+
 /* Medium devices (tablets, 770px to 1199px) */
 @media (min-width: 770px) and (max-width: 1199px) {
   body {
