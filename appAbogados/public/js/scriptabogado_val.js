@@ -17,6 +17,7 @@ document
     let rut_abogado = document.getElementById("rut").value.trim();
     rut_abogado = rut_abogado.replace(/[.]/g, ""); // Limpiar formato de RUT
     // Añadir el guion antes del último dígito
+    rut_abogado = rut_abogado.replace(/(\d{7})(\d{1})$/, "$1-$2"); // Añadir el guion antes del último dígito
 
     if (!rut_abogado) {
       alert("Todos los campos son obligatorios.");
