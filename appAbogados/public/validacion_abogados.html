@@ -1,0 +1,575 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appbogado.cl</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="imgs/favicon-32x32.png">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <!-- Archivo de estilos personalizado -->
+    <link rel="stylesheet" href="./css/style.formulario.abogado.validacion.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WY0QCWQ97B"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-WY0QCWQ97B');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PPJR5JZR');
+    </script>
+    <!-- End Google Tag Manager -->
+  </head>
+    <body>
+      <!-- Google Tag Manager (noscript) -->
+      <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PPJR5JZR"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>
+      </noscript>
+      <!-- End Google Tag Manager (noscript) -->
+
+      <header>
+        <div class="header-top">
+          <div class="header-top2">
+            <div class="logo">
+              <img src="./imgs/Logo.png" alt="Lupa" width="250px" />
+            </div>
+            <div class="menu2">
+              <a href="/" class="button-nav">¿BUSCAS ABOGADO?</a>
+    
+              <div class="dropdown">
+                <button class="btn btn-terciary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa-solid fa-bars fa-1x" style="color: #ffffff"></i> 
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/terminos_condiciones_abogado">Condiciones del servicio</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0);" onclick="scrollToBottom()">Contacto</a></li>
+                </ul>
+              </div>
+    
+            </div>
+          </div>
+          <nav>
+            <ul>
+              <li><a href="/abogado">INICIO</a></li>
+              <li><a href="/terminos_condiciones_abogado">CONDICIONES DEL SERVICIO</a></li>
+              <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
+              <li><a href="/" class="button-nav">¿BUSCAS ABOGADO?</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <br />
+      <div id="success-image" style="display: none; text-align: center">
+        
+        <img
+          src="/imagen/mensaje_azul.png"
+          alt="Formulario Enviado"
+        />
+        <p>Redirigiendo...</p>
+      </div>
+
+      <section>
+      <div class="background-container">
+        
+          <!-- Tu contenido aquí -->
+          <section class="validacion">
+            <div class="containe-validacion">
+              <h1>Permiso para Usar la Cámara</h1>
+              <br>
+              <h2>¡Bienvenidos!</h2>
+              <h2>Por tu propia seguridad y la de todos nuestros usuarios, por favor valida tu identidad
+                . Para hacerlo, debes tomar una foto de tu cara y otra de tu cédula de identidad.</h2>
+              <!--<p id="instruction">Por favor, toma una foto de tu cara.</p> -->
+              <video id="video" autoplay></video>
+              
+              <!-- Campo de entrada para subir foto de la cara  
+              <div class="photo-group">
+                <h2>Subir Foto de la Cara</h2>
+                <input type="file" id="uploadFacePhoto" accept="image/*">
+              </div>  -->
+
+              <!-- Campo de entrada para subir foto del carnet 
+              <div class="photo-group">
+                <h2>Subir Foto del Carnet</h2>
+                <input type="file" id="uploadIdPhoto" accept="image/*">
+              </div>  -->
+
+              <!-- Contenedor para los botones -->
+              <div class="button-group">
+                <button id="toggleCameraBtn">Activar Cámara</button>
+                <button id="switchCameraBtn">Cambiar Cámara</button>
+              </div>
+              <div class="button-group">
+                <button id="captureFaceBtn">Capturar Foto de la Cara</button>
+                <button id="captureIdBtn">Capturar Foto del Carnet</button>
+              </div>  
+                
+             
+          
+              <canvas id="canvas" style="display: none;"></canvas> <!-- Oculta el canvas por defecto -->
+              
+              <div id="photoContainer">
+                <div id="facePhotoContainer" class="photo-group">
+                  <h2>Foto de la Cara</h2>
+                  <img id="facePhoto" alt="Foto de la Cara">
+                </div>
+                <div id="idPhotoContainer" class="photo-group">
+                  <h2>Foto del Carnet</h2>
+                  <img id="idPhoto" alt="Foto del Carnet">
+                </div>
+              </div>
+              
+              <button id="deletePhotosBtn">Eliminar Fotos</button>
+              <button id="sendJsonBtn">Enviar Imágenes</button>
+
+              <div id="authenticityCheckContainer" class="authenticity-check-container" style="display: none;"></div>
+              <div id="specificFieldVisualContainer" class="field-visual-container" style="display: none;"></div>
+            </div>
+          </section>
+  
+          <form id="abogado-form" action="/submit-form" method="post">
+          <div class="formtype">
+            <input type="hidden" id="csrf-token" name="_csrf" value="" />
+            <input type="hidden" name="formType" value="abogado" />
+            <!-- <h2>NIVEL I </h2> -->
+            <label for="rut">Rut: (se completa con validación de identidad)</label>
+            <input type="text" id="rut" name="rut" readonly required />
+            <br />
+          
+
+          </div>
+
+
+          </form>
+      </div> 
+
+
+      <br />
+    </form>
+      <script src="/js/scriptabogado_val.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+     <!-- </div> -->
+    </section>
+      <footer>
+        <img class="image-tablet"
+        src="./assets/imgs/appabogados.cl.png" width="100px" height="100px"/>
+        <div class="footer-content">
+          <div class="contact-info">
+            <img
+              src="./imgs/appabogados.cl.png" width="100px"/>
+              <div class="info-contact-total">
+              <img src="./imgs/mail.png" width="40px"  height="40px">
+              <div class="info-contact">
+              <p class="contacto">Contacto</p>
+              <p class="correo">E-mail: contacto@appbogado.cl</p>
+            </div>
+            </div>
+          </div>
+        
+         <div class="footer-completo2">
+          <div class="footer-links">
+            <div class="footer-section">
+              <p class="nosotros">Nosotros</p>
+              <ul>
+                <li><a href="/nosotros_abogado">Sobre nosotros</a></li>
+                <li><a href="/equipo_abogado">Equipo</a></li>
+                <li><a href="/abogado">¿Eres Abogado?</a></li>
+              </ul> 
+            </div>
+            </div>
+         </div>
+
+            
+            <div class="footer-completo2">
+              <div class="footer-links">
+                <div class="footer-section">
+              <p class="soporte">Soporte</p>
+              <ul>
+                <li><a href="/preguntas_abogado">Preguntas frecuentes</a></li>
+                <li><a href="/politicas_abogado">Términos y condiciones</a></li>
+                <li><a href="/politicas_abogado">Políticas de Privacidad</a></li>
+                <li><a href="javascript:void(0);" onclick="scrollToBottom()">Contacto</a></li>
+              </ul>
+            </div>
+            </div>
+            </div>
+          
+
+          <div class="footer-links2">
+            <div class="footer-section2">
+              <p class="nosotros2">Nosotros</p>
+              <ul class="links-footer-2">
+                <li><a href="/nosotros_abogado">Sobre nosotros</a></li>
+                <li><a href="/equipo_abogado">Equipo</a></li>
+                <li><a href="/abogado">¿Eres Abogado?</a></li>
+              </ul>
+            </div>
+            <div class="footer-section2">
+              <p class="soporte2">Soporte</p>
+              <ul class="links-footer-2">
+                <li><a href="/preguntas_abogado">Preguntas frecuentes</a></li>
+                <li><a href="/terminos_condiciones_abogado">Términos y condiciones</a></li>
+                <li><a href="/politicas_abogado">Políticas de Privacidad</a></li>
+                <li><a href="javascript:void(0);" onclick="scrollToBottom()">Contacto</a></li>
+              </ul>
+            </div>
+            </div>
+
+            
+            
+          <div class="social-media">
+            <p class="redessociales">Redes sociales</p>
+            <div class="rrss-mobile">
+            <ul class="redes-sociales-iconos">
+              <li>
+                <a href="https://web.facebook.com/appbogado.cl" target="_blank"
+                  ><img
+                    src="./imgs/facebook.png"
+                    alt="Facebook"
+                    height="30px"
+                    width="30px"
+                /></a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/appbogado.cl/" target="_blank"
+                  ><img
+                    src="./imgs/instagram.png"
+                    alt="Instagram"
+                    height="30px"
+                    width="30px"
+                /></a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/company/appbogado-cl/" target="_blank"
+                  ><img
+                    src="./imgs/linkedin.png"
+                    alt="Twitter"
+                    height="30px"
+                    width="30px"
+                /></a>
+              </li>
+            </ul>
+          </div>
+          </div>
+
+          <div class="info-contact-total2">
+            <img src="./imgs/mail.png" width="40px"  height="40px">
+            <div class="info-contact2">
+            <p class="contacto2">Contacto</p>
+            <p class="correo2">E-mail: contacto@appbogado.cl</p>
+          </div>
+
+        </div>
+          </div>
+        </div>
+
+          </div>
+      </footer>
+
+    </div>
+
+  </div>
+  <!-- Bootstrap JS (incluyendo Popper.js) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+      const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
+      const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
+      const video = document.getElementById('video');
+      const canvas = document.getElementById('canvas');
+      const captureFaceBtn = document.getElementById('captureFaceBtn');
+      const switchCameraBtn = document.getElementById('switchCameraBtn');
+      const captureIdBtn = document.getElementById('captureIdBtn');
+      const toggleCameraBtn = document.getElementById('toggleCameraBtn');
+      const instruction = document.getElementById('instruction');
+      const facePhoto = document.getElementById('facePhoto');
+      const idPhoto = document.getElementById('idPhoto');
+
+      let stream; // Variable para almacenar el flujo de video
+      let useFrontCamera = true; // Controla qué cámara usar (frontal o trasera)
+
+// Función para iniciar la cámara
+async function startCamera() {
+  try {
+      // Detener el flujo actual si ya está activo
+      if (stream) {
+          stream.getTracks().forEach(track => track.stop());
+      }
+
+      // Configuración para usar la cámara frontal o trasera
+      const constraints = {
+          video: {
+              facingMode: useFrontCamera ? 'user' : 'environment'
+          }
+      };
+      // Solicitar acceso a la cámara
+      stream = await navigator.mediaDevices.getUserMedia(constraints);
+      video.srcObject = stream;
+      video.play();
+      toggleCameraBtn.innerText = "Desactivar Cámara";
+  } catch (error) {
+      console.error("Error al acceder a la cámara:", error);
+      alert("No se pudo acceder a la cámara.");
+  }
+}
+
+    // Función para detener la cámara
+    function stopCamera() {
+      if (stream) {
+          stream.getTracks().forEach(track => track.stop());
+          video.srcObject = null;
+          toggleCameraBtn.innerText = "Activar Cámara";
+      }
+    }
+
+        // Evento para cambiar entre cámaras
+        switchCameraBtn.addEventListener('click', async () => {
+          useFrontCamera = !useFrontCamera; // Cambiar entre frontal y trasera
+          await startCamera(); // Reiniciar la cámara con la nueva configuración
+        });
+
+      // Función para alternar la cámara entre activada y desactivada
+    
+      function toggleCamera() {
+          if (stream && stream.active) {
+              stopCamera();
+          } else {
+              startCamera();
+          }
+      } 
+
+
+      // Capturar foto de la cara y guardarla en sessionStorage
+      function captureFacePhoto() {
+          const context = canvas.getContext('2d');
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+          const photoDataUrl = canvas.toDataURL('image/png');
+          sessionStorage.setItem("facePhoto", photoDataUrl);
+
+          facePhoto.src = photoDataUrl;
+          instruction.innerText = "Ahora, toma una foto de tu carnet.";
+      }
+
+      // Capturar foto del carnet y guardarla en sessionStorage
+      function captureIdPhoto() {
+          const context = canvas.getContext('2d');
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+          const photoDataUrl = canvas.toDataURL('image/png');
+          sessionStorage.setItem("idPhoto", photoDataUrl);
+
+          idPhoto.src = photoDataUrl;
+          instruction.innerText = "Fotos capturadas. Gracias.";
+      }
+
+      // Cargar fotos almacenadas en sessionStorage al iniciar
+      function loadStoredPhotos() {
+          const storedFacePhoto = sessionStorage.getItem("facePhoto");
+          const storedIdPhoto = sessionStorage.getItem("idPhoto");
+
+          if (storedFacePhoto) facePhoto.src = storedFacePhoto;
+          if (storedIdPhoto) idPhoto.src = storedIdPhoto;
+      }
+
+      captureFaceBtn.addEventListener('click', captureFacePhoto);
+      captureIdBtn.addEventListener('click', captureIdPhoto);
+      toggleCameraBtn.addEventListener('click', toggleCamera);
+      window.addEventListener('load', () => {
+          loadStoredPhotos();
+      });
+      // Función para preparar y convertir las imágenes en Base64 y crear el JSON
+      function prepareImageJson() {
+        // Obtener las imágenes de sessionStorage
+        const facePhotoBase64 = sessionStorage.getItem("facePhoto");
+        const idPhotoBase64 = sessionStorage.getItem("idPhoto");
+
+        // Verificar que ambas imágenes están disponibles
+        if (!facePhotoBase64 || !idPhotoBase64) {
+            alert("Por favor, asegúrate de capturar ambas fotos.");
+            return null;
+        }
+
+        // Crear el JSON con el formato requerido
+        const jsonData = {
+            processParam: {
+                scenario: "FullAuth",
+                authParams: {
+                    checkLiveness: false
+                },
+                useFaceApi: true
+            },
+            List: [
+                {
+                    ImageData: {
+                        image: idPhotoBase64.replace("data:image/png;base64,", "") // Limpiar la cabecera Base64
+                    }
+                }
+            ],
+            livePortrait: facePhotoBase64.replace("data:image/png;base64,", "") // Limpiar la cabecera Base64
+        };
+
+        return jsonData;
+      }
+
+      // Función para enviar el JSON en una solicitud POST
+      async function sendImageJson() {
+        const jsonData = prepareImageJson();
+      
+        if (!jsonData) {
+          console.error("JSON no está correctamente preparado.");
+          return;
+        }
+      
+        try {
+          const response = await fetch("https://regula-verificacion.1htxkwgx6seo.us-south.codeengine.appdomain.cloud/api/process", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(jsonData)
+          });
+      
+          if (!response.ok) {
+            throw new Error("Error en la respuesta de la API");
+          }
+      
+          const result = await response.json();
+          console.log("Respuesta de la API:", result.ContainerList.List[8]);
+          //console.log("Respuesta de la API:", result.ContainerList.List[10]?.AuthenticityCheckList?.List[0]?.List[0].PercentValue);
+      
+          // Accede al primer elemento de la lista en AuthenticityCheckList y extrae el porcentaje de similitud
+          const firstAuthenticityCheck = result.ContainerList.List[10]?.AuthenticityCheckList?.List[0]?.List[0].PercentValue;
+          if (firstAuthenticityCheck) {
+            //console.log("Primer elemento de AuthenticityCheckList:", firstAuthenticityCheck);
+          } else {
+            console.warn("No se encontró el primer elemento en AuthenticityCheckList.");
+          }
+          if (!firstAuthenticityCheck || firstAuthenticityCheck < 85) {
+            alert("No se pudo realizar la validación de identidad. Por favor, intente nuevamente.");
+            return;
+          }
+          // Mostrar el porcentaje de similitud en el contenedor correspondiente
+          const authenticityCheckText = `Porcentaje de similitud: ${firstAuthenticityCheck || 'No disponible'}`;
+          const authenticityCheckContainer = document.getElementById('authenticityCheckContainer');
+          authenticityCheckContainer.innerHTML = `<p>${authenticityCheckText}</p>`;
+          authenticityCheckContainer.style.display = 'block';
+      
+          // Solo rellena el campo RUT si el porcentaje de similitud es mayor o igual a 85
+          if (firstAuthenticityCheck >= 85) {
+            
+      
+            // Obtener el valor de RUT y realizar la modificación para agregar el guion
+            let rutFieldVisual = result?.ContainerList?.List[8]?.ListVerifiedFields?.pFieldMaps[4]?.Field_Visual;
+            if (rutFieldVisual) {
+              // Realiza la modificación del RUT para agregar un guion antes del último carácter
+              
+              // Encuentra el elemento del formulario y rellena el valor modificado
+            /*
+              const rutInput = document.getElementById("rut");
+              if (rutInput) {
+                rutInput.value = rutFieldVisual;
+              } */
+            } 
+            else {
+              console.warn("No se encontró el valor de RUT en Field_Visual.");
+            }
+          } else {
+            console.warn("El porcentaje de similitud es menor a 85. No se rellenará el campo RUT.");
+          }
+          const fieldLabels = ['RUT', 'Apellidos', 'Apellidos', 'Nombres'];
+          // Supongamos que tienes el resultado de la API en `result`
+          const verifiedFields = result?.ContainerList?.List[8]?.ListVerifiedFields?.pFieldMaps;
+          const rutInput = document.getElementById("rut");
+          if (verifiedFields?.length === 17) {
+            // Usa los índices 4, 5 y 8
+            const rut = verifiedFields[4]?.Field_Visual;
+            const apellidos = verifiedFields[5]?.Field_Visual;
+            const nombres = verifiedFields[8]?.Field_Visual;
+            // Mostrar los valores en el HTML
+            displayFieldVisuals(rut, apellidos, nombres);
+            // agregar rut en formulario
+            if (rutInput) {
+              rutInput.value = rut;
+            }
+          } 
+          else if (verifiedFields?.length === 19) {
+            // Usa los índices 5, 6 y 8
+            const rut = verifiedFields[5]?.Field_Visual;
+            const apellidos = verifiedFields[6]?.Field_Visual;
+            const nombres = verifiedFields[8]?.Field_Visual;
+            // Mostrar los valores en el HTML
+            displayFieldVisuals(rut, apellidos, nombres);
+            // agregar rut en formulario
+            if (rutInput) {
+              rutInput.value = rut;}
+          } else {
+            console.warn("La longitud de pFieldMaps no coincide con 17 o 19.");
+          }
+
+          // Función para mostrar los valores en el HTML
+          function displayFieldVisuals(rut, apellidos, nombres) {
+            const fieldVisualHtml = `
+              <p>RUT: ${rut || 'No disponible'}</p>
+              <p>Apellidos: ${apellidos || 'No disponible'}</p>
+              <p>Nombres: ${nombres || 'No disponible'}</p>
+            `;
+
+            const fieldVisualContainer = document.getElementById('specificFieldVisualContainer');
+            fieldVisualContainer.innerHTML = fieldVisualHtml;
+            fieldVisualContainer.style.display = 'block';
+          }
+
+
+      
+          alert("Las imágenes se han enviado correctamente.");
+        } catch (error) {
+          console.error("Error al enviar las imágenes:", error);
+          alert("Hubo un problema al enviar las imágenes.");
+        }
+      }
+      
+      
+      
+      // Función para eliminar las fotos del sessionStorage
+      function deleteStoredPhotos() {
+        sessionStorage.removeItem("facePhoto");
+        sessionStorage.removeItem("idPhoto");
+
+        // Limpiar las imágenes mostradas
+        facePhoto.src = "";
+        idPhoto.src = "";
+        instruction.innerText = "Fotos eliminadas.";
+      }
+
+      // Agregar un evento al botón de eliminar fotos
+      document.getElementById('deletePhotosBtn').addEventListener('click', deleteStoredPhotos);
+
+      // Agrega un evento para capturar ambas imágenes y enviarlas
+      document.getElementById("captureFaceBtn").addEventListener("click", captureFacePhoto);
+      document.getElementById("captureIdBtn").addEventListener("click", captureIdPhoto);
+      document.getElementById("sendJsonBtn").addEventListener("click", sendImageJson);
+  </script>
+    
+  </body>
+</html>
