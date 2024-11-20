@@ -97,22 +97,22 @@
               <!--<p id="instruction">Por favor, toma una foto de tu cara.</p> -->
               <video id="video" autoplay></video>
               
-              <!-- Campo de entrada para subir foto de la cara -->
+              <!-- Campo de entrada para subir foto de la cara  
               <div class="photo-group">
                 <h2>Subir Foto de la Cara</h2>
                 <input type="file" id="uploadFacePhoto" accept="image/*">
-              </div>
+              </div>  -->
 
-              <!-- Campo de entrada para subir foto del carnet  -->
+              <!-- Campo de entrada para subir foto del carnet 
               <div class="photo-group">
                 <h2>Subir Foto del Carnet</h2>
                 <input type="file" id="uploadIdPhoto" accept="image/*">
-              </div>
+              </div>  -->
 
               <!-- Contenedor para los botones -->
               <div class="button-group">
                 <button id="toggleCameraBtn">Activar Cámara</button>
-                <button id="switchCameraBtn" class="boton_movile">Cambiar Cámara</button>
+                <button id="switchCameraBtn">Cambiar Cámara</button>
               </div>
               <div class="button-group">
                 <button id="captureFaceBtn">Capturar Foto de la Cara</button>
@@ -926,7 +926,7 @@
 
       let stream; // Variable para almacenar el flujo de video
       let useFrontCamera = true; // Controla qué cámara usar (frontal o trasera)
-      
+
       // Solicitar acceso a la cámara
       async function startCamera() {
           try {
@@ -964,9 +964,9 @@
       }
 
       // Obtener referencias a los nuevos campos de entrada
-      const uploadFacePhotoInput = document.getElementById('uploadFacePhoto');
-      const uploadIdPhotoInput = document.getElementById('uploadIdPhoto');
-
+    //  const uploadFacePhotoInput = document.getElementById('uploadFacePhoto');
+    //  const uploadIdPhotoInput = document.getElementById('uploadIdPhoto');
+/*
       // Función para manejar la subida de la foto de la cara
       uploadFacePhotoInput.addEventListener('change', function(event) {
         const file = event.target.files[0];
@@ -980,7 +980,7 @@
           };
           reader.readAsDataURL(file);
         }
-      });
+      }); 
 
       // Función para manejar la subida de la foto del carnet
       uploadIdPhotoInput.addEventListener('change', function(event) {
@@ -995,7 +995,7 @@
           };
           reader.readAsDataURL(file);
         }
-      });
+      }); */
 
 
       // Capturar foto de la cara y guardarla en sessionStorage
