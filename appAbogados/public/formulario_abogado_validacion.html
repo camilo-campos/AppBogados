@@ -77,28 +77,36 @@
           <section class="validacion">
             <div class="containe-validacion">
               <h1>Permiso para Usar la Cámara</h1>
-              <p id="instruction">Por favor, toma una foto de tu cara.</p>
+              <br>
+              <h2>!Bienvenidos¡</h2>
+              <h2>Por tu propia seguridad y la de todos nuestros usuarios, por favor valida tu identidad antes de
+                registrarte. Para hacerlo, debes tomar una foto de tu cara y otra de tu cédula de identidad.</h2>
+              <!--<p id="instruction">Por favor, toma una foto de tu cara.</p> -->
               <video id="video" autoplay></video>
+              
               <!-- Campo de entrada para subir foto de la cara -->
-<div class="photo-group">
-  <h2>Subir Foto de la Cara</h2>
-  <input type="file" id="uploadFacePhoto" accept="image/*">
-</div>
+              <div class="photo-group">
+                <h2>Subir Foto de la Cara</h2>
+                <input type="file" id="uploadFacePhoto" accept="image/*">
+              </div>
 
-<!-- Campo de entrada para subir foto del carnet -->
-<div class="photo-group">
-  <h2>Subir Foto del Carnet</h2>
-  <input type="file" id="uploadIdPhoto" accept="image/*">
-</div>
+              <!-- Campo de entrada para subir foto del carnet  -->
+              <div class="photo-group">
+                <h2>Subir Foto del Carnet</h2>
+                <input type="file" id="uploadIdPhoto" accept="image/*">
+              </div> 
 
               <!-- Contenedor para los botones -->
               <div class="button-group">
                 <button id="toggleCameraBtn">Activar Cámara</button>
+                <button id="switchCameraBtn" class="boton_movile">Cambiar Cámara</button>
+              </div>
+              <div class="button-group"></div> 
                 <button id="captureFaceBtn">Capturar Foto de la Cara</button>
                 <button id="captureIdBtn">Capturar Foto del Carnet</button>
-                <button id="sendJsonBtn">Enviar Imágenes</button>
+              </div>  
                 
-              </div>
+             
           
               <canvas id="canvas" style="display: none;"></canvas> <!-- Oculta el canvas por defecto -->
               
@@ -114,7 +122,8 @@
               </div>
               
               <button id="deletePhotosBtn">Eliminar Fotos</button>
-              
+              <button id="sendJsonBtn">Enviar Imágenes</button>
+
               <div id="authenticityCheckContainer" class="authenticity-check-container" style="display: none;"></div>
               <div id="specificFieldVisualContainer" class="field-visual-container" style="display: none;"></div>
             </div>
