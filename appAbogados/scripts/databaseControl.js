@@ -212,10 +212,12 @@ async function databaseGet({ table, ...filters } = {}) {
     tableList = [
       "dim_comunas_chile",
       "ft_pagos",
+      "ft_casos_perdidos",
       "dim_credenciales",
       "ft_ambitos",
       "dim_ambitos",
       "dim_abogados",
+      "dim_validados",
       "dim_comunas",
       "ft_solicitudes",
       "ft_operacion",
