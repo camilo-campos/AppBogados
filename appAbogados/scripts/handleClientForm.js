@@ -157,7 +157,7 @@ async function handleClientForm(formData, prompt, maxAbogadosPerClient) {
         try {
           const simpleText = `Estimado/a ${abogado.nombres},\n\nUn cliente ha solicitado sus servicios legales. A continuación, se presenta la información de contacto del cliente y su caso:\n\nNombre: ${formData.nombres} ${formData.apellidos}\nRUT: ${formData.rut}\nEmail: ${formData.mail}\nMensaje: ${formData.caso}\nRegión: ${formData.region}, ${formData.comuna}\n\nAntecedentes Penales: ${formData.antecedentes_penales ? "Sí" : "No"}\nAntecedentes Comerciales: ${formData.antecedentes_comerciales ? "Sí" : "No"}\nResidencia Regular: ${formData.residencia ? "Sí" : "No"}\n\nFecha de la consulta: ${new Date().toLocaleDateString()}\n\nPara más detalles, por favor revise el correo electrónico enviado a su dirección.\n\nSaludos cordiales,\nEquipo AppBogado`;
 
-          const to = formData.mail; //abogado.mail;
+          const to = abogado.mail;
           const from = "admin@appbogado.cl";
           const subject = "Consulta de cliente [" + formData.nombres + "]";
           const placeholders = {
@@ -174,6 +174,7 @@ async function handleClientForm(formData, prompt, maxAbogadosPerClient) {
             phText: simpleText,
           };
           
+          //console.log("TEST sendEmailTo Lawyer:", to);
           sendEmail(to, from, subject, placeholders, mailFormatAbogado, [], imagesAbogado);
         } catch (error) {
           console.error("Error sending email to abogado:", error);
@@ -187,13 +188,7 @@ async function handleClientForm(formData, prompt, maxAbogadosPerClient) {
       // We randomize the list, so we don't reveal the order of best rated abogados
       abogadosRating = abogadosRating.sort(() => Math.random() - 0.5);
 
-      /*const messageInfo = `Hemos recibido la información de su caso satisfactoriamente y la hemos enviado a ${abogadosRating.length} abogado${abogadosRating.length > 1 ? "s" : ""} inscritos en nuestra plataforma, quienes le contactarán prontamente.`;*/
-
-      const messageInfo = `El servicio de appbogado.cl comenzará a operar el próximo 21 de noviembre.  
-
-Entendemos la importancia de su búsqueda y lamentamos sinceramente los inconvenientes que esto pueda ocasionarle. Le invitamos a enviarnos los datos de su caso después de esa fecha.  
-
-Si tiene alguna consulta o necesita asistencia adicional, no dude en contactarnos.`
+      const messageInfo = `Hemos recibido la información de su caso satisfactoriamente y la hemos enviado a ${abogadosRating.length} abogado${abogadosRating.length > 1 ? "s" : ""} inscritos en nuestra plataforma, quienes le contactarán prontamente.`;
 
       const simpleTextCliente = `Estimado/a ${formData.nombres} ${formData.apellidos},\n\nHemos recibido la información de su caso satisfactoriamente y la hemos enviado a ${abogadosRating.length} abogado${abogadosRating.length > 1 ? "s" : ""} inscritos en nuestra plataforma, quienes le contactarán prontamente.\n\nPara más detalles, por favor revise el correo electrónico enviado a su dirección.\n\nSaludos cordiales,\nEquipo AppBogado`;
 
@@ -211,15 +206,16 @@ Si tiene alguna consulta o necesita asistencia adicional, no dude en contactarno
         };
 
         // Make an object containing only the abogado's relevant info
-        /*let finalAbogadosList = [];
+        let finalAbogadosList = [];
         for (let i = 0; i < abogadosRating.length; i++) {
           const abogado = abogadosRating[i];
           finalAbogadosList.push({
             Nombre: abogado.nombres + " " + abogado.apellidos,
             Email: abogado.mail,
           });
-        }*/
+        }
 
+        //console.log("TEST sendEmailTo Client:", to, "\nwith", finalAbogadosList);
         await sendEmail(to, from, subject, placeholders, mailFormatCliente, [], imagesCliente);
       } catch (error) {
         console.error("Error sending email to client:", error);
@@ -252,6 +248,7 @@ Agradecemos su comprension y esperamos poder ayudarle pronto.`,
         phDate: new Date().toLocaleDateString(),
       };
 
+      //console.log("TEST sendEmailTo Client:", to, "\nwith no abogados");
       await sendEmail(to, from, subject, placeholders, mailFormatFail, [], imagesCliente);
     } catch (error) {
       console.error("Error sending email to client:", error);
