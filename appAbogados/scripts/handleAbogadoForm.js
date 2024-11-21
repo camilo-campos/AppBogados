@@ -1,5 +1,5 @@
 const { sendEmail } = require("./mailHandler");
-const mailFormatAbogadoRegistro = './templateMailAbogadoRegistro.html';
+const mailFormatAbogadoRegistro = './emailTemplates/templateMailAbogadoRegistro.html';
 const fs = require('fs');
 const path = require('path');
 

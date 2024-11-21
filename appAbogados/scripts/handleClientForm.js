@@ -5,9 +5,9 @@ const { parseResponse } = require("./parseResponse");
 const { sendEmail } = require("./mailHandler");
 const fs = require('fs');
 const path = require('path');
-const mailFormatAbogado = './templateMailAbogado.html';
-const mailFormatCliente = './templateMailCliente.html';
-const mailFormatFail = './templateMailNoEncontrado.html';
+const mailFormatAbogado = './emailTemplates/templateMailAbogado.html';
+const mailFormatCliente = './emailTemplates/templateMailCliente.html';
+const mailFormatFail = './emailTemplates/templateMailNoEncontrado.html';
 
 const lawyerSeekMaxAttempts = 4; // Max attempts to get abogados (No more than 5 is recommended)
 const maxComparisonAttempts = 4; // Max attempts to compare abogados
