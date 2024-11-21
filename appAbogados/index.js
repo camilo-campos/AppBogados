@@ -50,7 +50,7 @@ router.get("/", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/index_cliente.html");
 });
 
-router.get("/formulario-validacion", csrfProtection, (req, res) => {
+router.get("/registro", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/formulario_abogado_validacion.html");
 });
 
@@ -106,9 +106,9 @@ router.get("/abogado", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/index_abogado.html");
 });
 
-router.get("/registro", csrfProtection, (req, res) => {
-  res.sendFile(__dirname + "/public/formulario_abogado.html");
-});
+//router.get("/formulario-validacion", csrfProtection, (req, res) => {
+//  res.sendFile(__dirname + "/public/formulario_abogado.html");
+//});
 
 router.get("/soporte", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/soporte.html");
