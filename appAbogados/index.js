@@ -14,6 +14,8 @@ const {
 const subirABaseDeDatos = true;
 // [i] Numero maximo de abogados a los que se les enviara el caso de un cliente
 const maxAbogadosPerClient = 10;
+// [i] No registrar ni enviar correos en modo de pruebas
+//const testingMode = true; (No implementado aun)
 
 // require expressjs
 const express = require("express");
@@ -208,7 +210,7 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
             // Insertar datos en la tabla ft_ambitos para cada ámbito seleccionado
             const selectedSpecialties = formData.especialidades; // IDs de los ámbitos seleccionados
             const rut = formData.rut;
-            const vigencia = "SI";
+            const vigencia = "activo";
 
             // Esperar que todas las inserciones se completen antes de enviar la respuesta
             await Promise.all(
