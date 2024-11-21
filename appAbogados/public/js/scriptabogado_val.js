@@ -15,9 +15,14 @@ document
     event.preventDefault();
 
     let rut_abogado = document.getElementById("rut").value.trim();
-    rut_abogado = rut_abogado.replace(/[.]/g, ""); // Limpiar formato de RUT
-    // Añadir el guion antes del último dígito
-    rut_abogado = rut_abogado.replace(/(\d{7})(\d{1})$/, "$1-$2"); // Añadir el guion antes del último dígito
+    rut_abogado = rut_abogado.replace(/[.]/g, ""); // Limpiar puntos del RUT
+
+    // Asegurar que se agrega el guion antes del último dígito
+    if (!rut_abogado.includes("-")) {
+      const rutSinDigitoVerificador = rut_abogado.slice(0, -1);
+      const digitoVerificador = rut_abogado.slice(-1);
+      rut_abogado = `${rutSinDigitoVerificador}-${digitoVerificador}`;
+    }
 
     if (!rut_abogado) {
       alert("Todos los campos son obligatorios.");
