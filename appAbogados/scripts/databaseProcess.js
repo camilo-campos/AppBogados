@@ -33,7 +33,7 @@ function getAssistantPrompt() {
 // <-- Uncomment to test the data retrieval -->
 //dataTest(['dim_comunas_chile', 'dim_abogados', 'ft_ambitos', 'ft_comunas', 'ft_solicitudes']); OLD
 //dataTest(['dim_comunas_chile', 'dim_credenciales', 'ft_ambitos', 'dim_ambitos', 'dim_abogados']);
-//dataTest(['ft_pagos']);
+//dataTest(['ft_solicitudes']);
 //dataTest(['ft_casos_perdidos','dim_validados']);
 
 // <-- Uncomment to send the validation emails -->
@@ -61,6 +61,7 @@ async function processForm(formData, response) {
 
       let dataMatch = {
         rut: abogadosIds,
+        vigencia: 'SI',
       };
 
       /*if (formData.antecedentes_penales === 'si') {
