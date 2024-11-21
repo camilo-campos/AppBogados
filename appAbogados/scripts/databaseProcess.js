@@ -3,6 +3,7 @@ const { dataTest } = require('./dataTest');
 const { parseResponse } = require('./parseResponse');
 const { comunaLocator } = require('./comunaLocator');
 const { ambitosFilter } = require('./microScripts/ambitosFilter');
+const { sendValidationEmails } = require('./microScripts/sendValidationEmails');
 
 const basePrompt = "Based on the information provided, output the relevant tags from the list that apply to the user, inside curly brackets, separated by commas, DO NOT JUSTIFY YOUR ANSWER select ONLY tags from the list";
 
@@ -33,7 +34,10 @@ function getAssistantPrompt() {
 //dataTest(['dim_comunas_chile', 'dim_abogados', 'ft_ambitos', 'ft_comunas', 'ft_solicitudes']); OLD
 //dataTest(['dim_comunas_chile', 'dim_credenciales', 'ft_ambitos', 'dim_ambitos', 'dim_abogados']);
 //dataTest(['ft_pagos']);
-//dataTest(['dim_abogados']);
+//dataTest(['ft_casos_perdidos','dim_validados']);
+
+// <-- Uncomment to send the validation emails -->
+//sendValidationEmails();
 
 //----------------------------------------------
 
