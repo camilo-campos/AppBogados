@@ -146,7 +146,13 @@
             <div class="formtype">
               <input type="hidden" id="csrf-token" name="_csrf" value="" />
               <input type="hidden" name="formType" value="validacion" />
-              <label for="rut">Rut: (se completa con validación de identidad)</label>
+              <label for="rut">
+                Rut: (este campo se completa automaticamente, 
+                      si el registro no coincide con su numero de carnet, 
+                      favor eliminar las fotos y volver a intentar con 
+                      imagenes de mayor nitides)
+
+              </label>
               <input type="text" id="rut" name="rut" readonly required />
               <br />
               <button type="submit">Validar Identidad</button>

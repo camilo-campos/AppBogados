@@ -17,6 +17,11 @@ document
     let rut_abogado = document.getElementById("rut").value.trim();
     rut_abogado = rut_abogado.replace(/[.]/g, ""); // Limpiar puntos del RUT
 
+    if (!rut_abogado) {
+      alert("Todos los campos son obligatorios.");
+      return;
+    }
+
     // Asegurar que se agrega el guion antes del último dígito
     if (!rut_abogado.includes("-")) {
       const rutSinDigitoVerificador = rut_abogado.slice(0, -1);
@@ -24,10 +29,7 @@ document
       rut_abogado = `${rutSinDigitoVerificador}-${digitoVerificador}`;
     }
 
-    if (!rut_abogado) {
-      alert("Todos los campos son obligatorios.");
-      return;
-    }
+
 
     const formData = {
       rut_abogado,
