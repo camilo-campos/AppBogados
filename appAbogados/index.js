@@ -148,16 +148,33 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
         return res.status(400).json({ error: "RUT is required" });
       }
 
-      // Validar el formato del RUT
+      // Validar el formato del RUT (opcional, ajusta según sea necesario)
       console.log(`Validando RUT: ${formData.rut}`);
 
-      if (await lawyerVerify(formData.rut)) {
-        console.log("RUT validado correctamente");
-      } else {
-        console.error("Error: Lawyer not found in PJUD database");
+      // Revisar si el abogado se encuentra en "dim_abogados"
+      const abogados = await databaseGet({
+        table: "dim_abogados",
+        rut: formData.rut_abogado,
+      });
+
+      if (abogados.length === 0) {
+        // El abogado no se encuentra en la base de datos
+        return res.status(400).json({
+          error: "Lawyer not found in appbogado database",
+        });
+      }
+      
+      // Revisar si ya se encuentran en "dim_validados"
+      const validados = await databaseGet({
+        table: "dim_validados",
+        rut_abogado: formData.rut_abogado,
+      });
+
+      if (validados.length > 0) {
+        // El abogado ya está validado
         return res
           .status(400)
-          .json({ error: "Lawyer not found in PJUD database" });
+          .json({ error: "Lawyer already validated in verified database" });
       }
 
       if (subirABaseDeDatos) {

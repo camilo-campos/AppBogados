@@ -48,10 +48,30 @@ document
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) {
+      /*if (!response.ok) {
         const errorText = await response.text();
         console.error("Error en la respuesta del servidor:", errorText);
         throw new Error("Error al enviar el formulario: " + response.status);
+      }*/
+      
+      if (!response.ok) {
+        console.error("Error en la respuesta del servidor:", data.error);
+        // Manejar mensajes de error específicos
+        if (
+          data.error === "Lawyer not found in appbogado database"
+        ) {
+          alert(
+            "No se encuentra el abogado! Regístrese en: https://www.appbogado.cl/registro"
+          );
+        } else if (data.error === "Lawyer already validated in verified database") {
+          alert("El abogado ya se encuentra validado");
+        } else {
+          alert(
+            "Hubo un problema al procesar la solicitud. Por favor, inténtelo de nuevo."
+          );
+        }
+        
+        return
       }
 
       document.getElementById("abogado-form-validacion").reset();
