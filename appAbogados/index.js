@@ -148,13 +148,21 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
         return res.status(400).json({ error: "RUT is required" });
       }
 
-      // Validar el formato del RUT (opcional, ajusta según sea necesario)
-
+      // Validar el formato del RUT
       console.log(`Validando RUT: ${formData.rut}`);
+
+      if (await lawyerVerify(formData.rut)) {
+        console.log("RUT validado correctamente");
+      } else {
+        console.error("Error: Lawyer not found in PJUD database");
+        return res
+          .status(400)
+          .json({ error: "Lawyer not found in PJUD database" });
+      }
 
       if (subirABaseDeDatos) {
         const result = await insert_dim_validados(formData);
-        console.log("Data inserted into database:", result);
+        console.log("[ok] Data inserted into dim_validados database:", result);
       }
 
       // Respuesta exitosa
