@@ -7,6 +7,7 @@ const {
   insertAbogado,
   insertft_ambitos,
   insert_dim_validados,
+  databaseGet,
 } = require("./scripts/databaseControl");
 
 // --- Configuraciones miscelaneas ---
