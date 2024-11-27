@@ -150,7 +150,7 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
       }
 
       // Validar el formato del RUT (opcional, ajusta según sea necesario)
-      console.log(`Validando RUT: ${formData.rut}`);
+      console.log(`Validando RUT: ${formData.rut_abogado}`);
 
       // Revisar si el abogado se encuentra en "dim_abogados"
       const abogados = await databaseGet({

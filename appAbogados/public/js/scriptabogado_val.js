@@ -55,15 +55,24 @@ document
       }*/
       
       if (!response.ok) {
-        console.error("Error en la respuesta del servidor:", data.error);
+        let errorBase;
+        try {
+          errorBase = await response.text();
+        } catch (e) {
+          errorBase = "Error desconocido";
+        }
+
+        const error = JSON.parse(errorBase)?.error || errorBase;
+
+        console.error("Error en la respuesta del servidor:", error);
         // Manejar mensajes de error específicos
         if (
-          data.error === "Lawyer not found in appbogado database"
+          error === "Lawyer not found in appbogado database"
         ) {
           alert(
-            "No se encuentra el abogado! Regístrese en: https://www.appbogado.cl/registro"
+            "No se encuentra el abogado! Regístrese en:\nhttps://www.appbogado.cl/registro"
           );
-        } else if (data.error === "Lawyer already validated in verified database") {
+        } else if (error === "Lawyer already validated in verified database") {
           alert("El abogado ya se encuentra validado");
         } else {
           alert(
