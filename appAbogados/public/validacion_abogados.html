@@ -416,7 +416,7 @@ async function startCamera() {
         // Crear el JSON con el formato requerido
         const jsonData = {
             processParam: {
-                scenario: "FullAuth",
+                scenario: "FullProcess",
                 authParams: {
                     checkLiveness: false
                 },
@@ -462,7 +462,7 @@ async function startCamera() {
           //console.log("Respuesta de la API:", result.ContainerList.List[10]?.AuthenticityCheckList?.List[0]?.List[0].PercentValue);
       
           // Accede al primer elemento de la lista en AuthenticityCheckList y extrae el porcentaje de similitud
-          const firstAuthenticityCheck = result.ContainerList.List[10]?.AuthenticityCheckList?.List[0]?.List[0].PercentValue;
+          const firstAuthenticityCheck = result.ContainerList.List[9]?.AuthenticityCheckList?.List[0]?.List[0].PercentValue;
           if (firstAuthenticityCheck) {
             //console.log("Primer elemento de AuthenticityCheckList:", firstAuthenticityCheck);
           } else {
@@ -483,7 +483,7 @@ async function startCamera() {
             
       
             // Obtener el valor de RUT y realizar la modificación para agregar el guion
-            let rutFieldVisual = result?.ContainerList?.List[8]?.ListVerifiedFields?.pFieldMaps[4]?.Field_Visual;
+            let rutFieldVisual = result?.ContainerList?.List[7]?.ListVerifiedFields?.pFieldMaps[4]?.Field_Visual;
             if (rutFieldVisual) {
               // Realiza la modificación del RUT para agregar un guion antes del último carácter
               
