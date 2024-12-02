@@ -502,7 +502,7 @@ async function startCamera() {
           }
           const fieldLabels = ['RUT', 'Apellidos', 'Apellidos', 'Nombres'];
           // Supongamos que tienes el resultado de la API en `result`
-          const verifiedFields = result?.ContainerList?.List[8]?.ListVerifiedFields?.pFieldMaps;
+          const verifiedFields = result?.ContainerList?.List[7]?.ListVerifiedFields?.pFieldMaps;
           const rutInput = document.getElementById("rut");
           if (verifiedFields?.length === 17) {
             // Usa los índices 4, 5 y 8
