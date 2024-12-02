@@ -1127,9 +1127,7 @@ async function startCamera() {
           }
       
           const result = await response.json();
-          console.log("Respuesta de la API 2:", result.ContainerList);
-          console.log("Respuesta de la API:", result.ContainerList.List[9]);
-          console.log("Respuesta de la API 2:", result.ContainerList.List[7]);
+          
           //console.log("Respuesta de la API:", result.ContainerList.List[10]?.AuthenticityCheckList?.List[0]?.List[0].PercentValue);
       
           // Accede al primer elemento de la lista en AuthenticityCheckList y extrae el porcentaje de similitud
