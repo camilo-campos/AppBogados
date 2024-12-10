@@ -198,7 +198,23 @@ async function insertAbogado(formData) {
   }
 }
 
-async function databaseGet({ table, ...filters } = {}) {
+async function getTableColumns(table) {
+  const client = await pool.connect();
+  try {
+    const colQuery = `
+      SELECT column_name 
+      FROM information_schema.columns 
+      WHERE table_schema = 'public' AND table_name = $1
+      ORDER BY ordinal_position;
+    `;
+    const colResult = await client.query(colQuery, [table]);
+    return colResult.rows.map(r => r.column_name);
+  } finally {
+    client.release();
+  }
+}
+
+async function databaseGet({ table, ...filters } = {}, regEmpty = false) {
   let selectQuery;
   if (table) {
     selectQuery = `SELECT * FROM "public"."${table}"`;
@@ -252,6 +268,17 @@ async function databaseGet({ table, ...filters } = {}) {
 
     const res = await client.query(selectQuery, values);
     client.release();
+
+    // If a table was requested and the result set is empty, return a single object with null fields
+    if (regEmpty && table && res.rows.length === 0) {
+      const columns = await getTableColumns(table);
+      const emptyObj = {};
+      columns.forEach((col) => {
+        emptyObj[col] = null;
+      });
+      return [emptyObj]; 
+    }
+
     return res.rows;
   } catch (err) {
     console.error("Error executing select query", err.stack);
