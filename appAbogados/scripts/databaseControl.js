@@ -1,6 +1,5 @@
 const { Pool } = require("pg");
 const fs = require("fs");
-const { v4: uuidv4 } = require("uuid");
 
 // Create a new pool instance to manage the database connection
 const pool = new Pool({
@@ -26,177 +25,40 @@ databaseGet()
   })
   .catch((error) => console.error(error));
 
-async function insertSolicitante(formData) {
-  const {
-    rut,
-    nombres,
-    apellidos,
-    mail,
-    region,
-    comuna,
-    caso,
-    tipo_costo,
-    tipo_requerimiento,
-    antecedentes_penales,
-    antecedentes_comerciales,
-    residencia,
-  } = formData;
+async function databaseInsert(table, data) {
+  const columns = Object.keys(data);
+  const values = Object.values(data);
+  const placeholders = columns.map((_, i) => `$${i + 1}`);
 
-  const id_solicitud = uuidv4(); // Genera un UUID único
+  const query = `
+    INSERT INTO ${table} (${columns.join(", ")})
+    VALUES (${placeholders.join(", ")})
+    RETURNING *;
+  `;
 
-  try {
-    const client = await pool.connect();
-    const query = `
-      INSERT INTO ft_solicitudes 
-      (id_solicitud, rut, nombres, apellidos, mail, region, comuna, caso, tipo_costo, tipo_requerimiento, antecedentes_penales, antecedentes_comerciales, residencia)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) 
-      RETURNING *;
-    `;
-    const values = [
-      id_solicitud,
-      rut,
-      nombres,
-      apellidos,
-      mail,
-      region,
-      comuna,
-      caso,
-      tipo_costo,
-      tipo_requerimiento,
-      antecedentes_penales,
-      antecedentes_comerciales,
-      residencia,
-    ];
+  const client = await pool.connect();
+  const result = await client.query(query, values);
+  client.release();
 
-    const result = await client.query(query, values);
-    client.release();
-
-    console.log("Form Data Inserted:", result.rows[0]);
-    return result.rows[0];
-  } catch (error) {
-    console.error("Error executing query", error.stack);
-    throw error;
-  }
-}
-
-async function insertft_ambitos(formData) {
-  const { id_rut_ambito, rut, id_ambito, vigencia } = formData;
-
-  try {
-    const client = await pool.connect();
-    const query = `
-      INSERT INTO ft_ambitos (id_rut_ambito, rut, id_ambito, vigencia)
-      VALUES ($1, $2, $3, $4) RETURNING *`;
-    const values = [id_rut_ambito, rut, id_ambito, vigencia];
-
-    const result = await client.query(query, values);
-    client.release();
-
-    console.log("Form Data Inserted:", result.rows[0]);
-    return result.rows[0];
-  } catch (error) {
-    console.error("Error executing query", error.stack);
-    throw error;
-  }
-}
-
-async function insert_dim_validados(formData) {
-  const { rut_abogado } = formData;
-
-  try {
-    // Conexión al pool de base de datos
-    const client = await pool.connect();
-
-    // Consulta para insertar datos
-    const query = `
-      INSERT INTO dim_validados (rut_abogado)
-      VALUES ($1) RETURNING *`;
-    const values = [rut_abogado];
-
-    // Ejecutar la consulta
-    const result = await client.query(query, values);
-
-    // Liberar el cliente
-    client.release();
-
-    // Log de resultados
-    console.log("Form Data Inserted:", result.rows[0]);
-    return result.rows[0];
-  } catch (error) {
-    // Manejo de errores
-    console.error("Error executing query", error.stack);
-    throw error;
-  }
+  return result.rows[0];
 }
 
 async function insertAbogado(formData) {
-  const {
-    rut,
-    nombres,
-    apellidos,
-    mail,
-    telefono,
-    costo_ser_primer_adelant,
-    costo_ser_cuota_litis,
-    costo_ser_gastos_tramitacion,
-    horario_at_dias_hab,
-    horario_at_horas_hab,
-    req_cliente_sin_ant_penales,
-    req_cliente_sin_ant_com,
-    req_cliente_residencia_regular,
-    nivel_coincidencia,
-    descripcion,
-    region,
-    comuna,
-  } = formData;
-
-  try {
-    const client = await pool.connect();
-
-    // Check if the RUT already exists
-    const checkQuery = `SELECT 1 FROM dim_abogados WHERE rut = $1`;
-    const checkResult = await client.query(checkQuery, [rut]);
-
-    if (checkResult.rows.length > 0) {
-      client.release();
-      const error = new Error("Lawyer already registered");
-      error.code = "RUT_ALREADY_REGISTERED";
-      throw error;
-    }
-
-    const query = `
-      INSERT INTO dim_abogados (rut, nombres, apellidos, mail, telefono, costo_ser_primer_adelant, costo_ser_cuota_litis, costo_ser_gastos_tramitacion, horario_at_dias_hab, horario_at_horas_hab, req_cliente_sin_ant_penales, req_cliente_sin_ant_com, req_cliente_residencia_regular, nivel_coincidencia, descripcion, region, comuna)
-      VALUES ($1,$2, $3, $4, $5, $6, $7, $8, $9, $10, $11 , $12 , $13 , $14 , $15 , $16 , $17) RETURNING *`;
-    const values = [
-      rut,
-      nombres,
-      apellidos,
-      mail,
-      telefono,
-      costo_ser_primer_adelant,
-      costo_ser_cuota_litis,
-      costo_ser_gastos_tramitacion,
-      horario_at_dias_hab,
-      horario_at_horas_hab,
-      req_cliente_sin_ant_penales,
-      req_cliente_sin_ant_com,
-      req_cliente_residencia_regular,
-      nivel_coincidencia,
-      descripcion,
-      region,
-      comuna,
-    ];
-
-    const result = await client.query(query, values);
-    client.release();
-
-    console.log("Form Data Inserted:", result.rows[0]);
-    return result.rows[0];
-  } catch (error) {
-    console.error("Error executing query", error.stack);
+  // Perform uniqueness check
+  const client = await pool.connect();
+  const checkQuery = `SELECT 1 FROM dim_abogados WHERE rut = $1`;
+  const checkResult = await client.query(checkQuery, [formData.rut]);
+  client.release();
+  
+  if (checkResult.rows.length > 0) {
+    const error = new Error("Lawyer already registered");
+    error.code = "RUT_ALREADY_REGISTERED";
     throw error;
   }
+
+  return insertIntoDatabase("dim_abogados", formData);
 }
+
 
 async function getTableColumns(table) {
   const client = await pool.connect();
@@ -288,8 +150,6 @@ async function databaseGet({ table, ...filters } = {}, regEmpty = false) {
 
 module.exports = {
   databaseGet,
-  insertSolicitante,
   insertAbogado,
-  insertft_ambitos,
-  insert_dim_validados,
+  databaseInsert,
 };

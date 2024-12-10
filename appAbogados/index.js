@@ -3,10 +3,11 @@ const { handleClientForm } = require("./scripts/handleClientForm");
 const { handleAbogadoForm } = require("./scripts/handleAbogadoForm");
 const { getAssistantPrompt } = require("./scripts/databaseProcess");
 const {
-  insertSolicitante,
+  //insertSolicitante,
   insertAbogado,
-  insertft_ambitos,
-  insert_dim_validados,
+  //insertft_ambitos,
+  //insert_dim_validados,
+  databaseInsert,
   databaseGet,
 } = require("./scripts/databaseControl");
 
@@ -15,8 +16,6 @@ const {
 const subirABaseDeDatos = true;
 // [i] Numero maximo de abogados a los que se les enviara el caso de un cliente
 const maxAbogadosPerClient = 10;
-// [i] No registrar ni enviar correos en modo de pruebas
-//const testingMode = true; (No implementado aun)
 
 // require expressjs
 const express = require("express");
@@ -25,6 +24,7 @@ const csrf = require("csurf");
 const { lawyerVerify } = require("./scripts/lawyerVerify");
 const fs = require("fs");
 const path = require("path");
+const { v4: uuidv4 } = require("uuid");
 
 const app = express();
 
@@ -179,7 +179,8 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
       }
 
       if (subirABaseDeDatos) {
-        const result = await insert_dim_validados(formData);
+        //const result = await insert_dim_validados(formData);
+        const result = await databaseInsert("dim_validados", formData);
         console.log("[ok] Data inserted into dim_validados database:", result);
       }
 
@@ -195,8 +196,10 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
           [i] Verificamos al usuario ANTES de procesar el formulario para que el usuario no tenga que esperar a que se complete el procesamiento
         */
 
+        const id_solicitud = uuidv4(); // Genera un UUID único
         if (subirABaseDeDatos) {
-          await insertSolicitante(formData);
+          //await insertSolicitante({ ...formData, id_solicitud }); 
+          await databaseInsert("ft_solicitudes", {...formData, id_solicitud});
         }
 
         res.status(200).json({ message: "Client form processed successfully" });
@@ -216,7 +219,8 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
         await handleClientForm(
           formData,
           { promptProblema, promptSystem, promptAmbitoList },
-          maxAbogadosPerClient
+          maxAbogadosPerClient,
+          id_solicitud
         );
       } else {
         console.error("Error: No 'caso' field in client form data");
@@ -242,7 +246,13 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
             await Promise.all(
               selectedSpecialties.map(async (id_ambito) => {
                 const id_rut_ambito = `${rut}-${id_ambito}`; // Combina rut y id_ambito
-                await insertft_ambitos({
+                /*await insertft_ambitos({
+                  id_rut_ambito,
+                  rut,
+                  id_ambito,
+                  vigencia,
+                });*/
+                await databaseInsert("ft_ambitos", {
                   id_rut_ambito,
                   rut,
                   id_ambito,
