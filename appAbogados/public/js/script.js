@@ -113,15 +113,15 @@ document
     const region = document.getElementById("region").value.trim();
     const comuna = document.getElementById("comuna").value.trim();
     const caso = document.getElementById("caso").value.trim();
-   // const antecedentes_penales = document.querySelector(
-   //   'input[name="antecedentes_penales"]:checked'
-   // ).value;
-   // const antecedentes_comerciales = document.querySelector(
-   //   'input[name="antecedentes_comerciales"]:checked'
-   // ).value;
-   // const residencia = document.querySelector(
-   //   'input[name="residencia"]:checked'
-   // ).value;
+    // const antecedentes_penales = document.querySelector(
+    //   'input[name="antecedentes_penales"]:checked'
+    // ).value;
+    // const antecedentes_comerciales = document.querySelector(
+    //   'input[name="antecedentes_comerciales"]:checked'
+    // ).value;
+    // const residencia = document.querySelector(
+    //   'input[name="residencia"]:checked'
+    // ).value;
 
     // Eliminar puntos y guion del RUT
     rut = rut.replace(/[.]/g, "");
@@ -134,9 +134,9 @@ document
       !region ||
       !comuna ||
       !caso // ||
-    //  !antecedentes_penales ||
-    //  !antecedentes_comerciales ||
-    //  !residencia
+      //  !antecedentes_penales ||
+      //  !antecedentes_comerciales ||
+      //  !residencia
     ) {
       alert("Todos los campos son obligatorios.");
       return;
@@ -154,9 +154,9 @@ document
       region,
       comuna,
       caso,
-    //  antecedentes_penales,
-    //  antecedentes_comerciales,
-    //  residencia,
+      //  antecedentes_penales,
+      //  antecedentes_comerciales,
+      //  residencia,
     };
 
     try {
@@ -175,15 +175,10 @@ document
       } else {
         document.getElementById("cliente-form").reset();
 
-        document.getElementById("success-image").style.display = "block";
-        document
-          .getElementById("success-image")
-          .scrollIntoView({ behavior: "smooth" });
-
         // Esperar 3 segundos y luego redirigir a otra página
         setTimeout(() => {
-          window.location.href = "/success"; // Cambia "/gracias" por la ruta de la página de destino
-        }, 3000);
+          window.location.href = "/exito_cliente"; // Cambia "/gracias" por la ruta de la página de destino
+        }, 1000);
         console.log("Datos enviados correctamente.");
       }
     } catch (error) {
