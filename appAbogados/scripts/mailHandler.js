@@ -2,6 +2,7 @@ const sgMail = require('@sendgrid/mail');
 const { JSDOM } = require('jsdom');  // Import jsdom to manipulate HTML
 const fs = require('fs');
 const path = require('path');
+const { testMode } = require('./dataTest');
 
 sgMail.setApiKey("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");
 
@@ -11,6 +12,7 @@ function camelCaseToKebabCase(str) {
 }
 
 async function sendEmail(to, from, subject, placeholders = {}, htmlFilePath = '', list = [], attachments = []) {
+  if (testMode) return;
   let htmlTemplate = '';
 
   const resolvedHtmlFilePath = path.resolve(__dirname, htmlFilePath);

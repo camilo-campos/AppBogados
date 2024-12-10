@@ -11,4 +11,6 @@ function dataTest(dataTables) {
   });
 }
 
-module.exports = { dataTest };
+const testMode = false;
+
+module.exports = { dataTest, testMode };
