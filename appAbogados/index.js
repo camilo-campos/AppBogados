@@ -109,6 +109,14 @@ router.get("/abogado", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/index_abogado.html");
 });
 
+router.get("/exito_abogado", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/exito_abogado.html");
+});
+
+router.get("/exito_cliente", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/exito_cliente.html");
+});
+
 //router.get("/formulario-validacion", csrfProtection, (req, res) => {
 //  res.sendFile(__dirname + "/public/formulario_abogado.html");
 //});
@@ -164,7 +172,7 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
           error: "Lawyer not found in appbogado database",
         });
       }
-      
+
       // Revisar si ya se encuentran en "dim_validados"
       const validados = await databaseGet({
         table: "dim_validados",

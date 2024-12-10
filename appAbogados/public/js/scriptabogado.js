@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Función para validar los campos del formulario y devolver mensajes de error específicos
 function validateForm() {
   const errors = [];
- 
+
   const nombres = document.getElementById("nombres").value.trim();
   const rut = document.getElementById("rut").value.trim();
   const apellidos = document.getElementById("apellidos").value.trim();
@@ -152,20 +152,22 @@ function validateForm() {
   if (!horario_at_dias_hab)
     errors.push("Debe seleccionar el horario de atención en días hábiles.");
   if (!horario_at_horas_hab)
-  //  errors.push("Debe seleccionar el horario de atención en horas hábiles.");
-  //if (!req_cliente_sin_ant_penales)
-  //  errors.push(
-  //    "Debe seleccionar el requerimiento de cliente sin antecedentes penales."
-  //  );
-  //if (!req_cliente_sin_ant_com)
-  //  errors.push(
-  //    "Debe seleccionar el requerimiento de cliente sin antecedentes comerciales."
-  //  );
-  //if (!req_cliente_residencia_regular)
-  //  errors.push("Debe seleccionar el requerimiento de residencia regular.");
-  if (!nivel_coincidencia) errors.push("Nivel de coincidencia es obligatorio.");
+    if (!nivel_coincidencia)
+      //  errors.push("Debe seleccionar el horario de atención en horas hábiles.");
+      //if (!req_cliente_sin_ant_penales)
+      //  errors.push(
+      //    "Debe seleccionar el requerimiento de cliente sin antecedentes penales."
+      //  );
+      //if (!req_cliente_sin_ant_com)
+      //  errors.push(
+      //    "Debe seleccionar el requerimiento de cliente sin antecedentes comerciales."
+      //  );
+      //if (!req_cliente_residencia_regular)
+      //  errors.push("Debe seleccionar el requerimiento de residencia regular.");
+      errors.push("Nivel de coincidencia es obligatorio.");
   if (!descripcion) errors.push("Descripción es obligatoria.");
-  if (descripcion.length > 550) errors.push("La descripción debe tener un máximo de 550 caracteres.");
+  if (descripcion.length > 550)
+    errors.push("La descripción debe tener un máximo de 550 caracteres.");
   if (!region) errors.push("Región es obligatoria.");
   if (!comuna) errors.push("Comuna es obligatoria.");
   if (selectedSpecialties.length === 0)
@@ -175,7 +177,7 @@ function validateForm() {
 }
 
 function regionOrganize(data) {
-// Get unique regions and sort them alphabetically
+  // Get unique regions and sort them alphabetically
   let regions = [...new Set(data.map((item) => item.region))].sort();
   // Find 'Metropolitana de Santiago' and move it to the beginning of the list
   const metropolitanaIndex = regions.findIndex(
@@ -193,9 +195,7 @@ function regionOrganize(data) {
 }
 
 function comunaOrganize(data, selectedRegion) {
-  let comunas = data.filter(
-    (item) => item.region === selectedRegion
-  );
+  let comunas = data.filter((item) => item.region === selectedRegion);
 
   // Sort comunas alphabetically
   comunas.sort((a, b) => a.comuna.localeCompare(b.comuna));
@@ -283,14 +283,14 @@ document
       apellidos: apellidos,
       mail: mail,
       telefono: telefono,
-    //  costo_ser_primer_adelant: costo_ser_primer_adelant,
-    //  costo_ser_cuota_litis: costo_ser_cuota_litis,
-    //  costo_ser_gastos_tramitacion: costo_ser_gastos_tramitacion,
+      //  costo_ser_primer_adelant: costo_ser_primer_adelant,
+      //  costo_ser_cuota_litis: costo_ser_cuota_litis,
+      //  costo_ser_gastos_tramitacion: costo_ser_gastos_tramitacion,
       horario_at_dias_hab: horario_at_dias_hab,
       horario_at_horas_hab: horario_at_horas_hab,
-    //  req_cliente_sin_ant_penales: req_cliente_sin_ant_penales,
-    //  req_cliente_sin_ant_com: req_cliente_sin_ant_com,
-    //  req_cliente_residencia_regular: req_cliente_residencia_regular,
+      //  req_cliente_sin_ant_penales: req_cliente_sin_ant_penales,
+      //  req_cliente_sin_ant_com: req_cliente_sin_ant_com,
+      //  req_cliente_residencia_regular: req_cliente_residencia_regular,
       nivel_coincidencia: nivel_coincidencia,
       descripcion: descripcion,
       region: region,
@@ -312,26 +312,24 @@ document
 
       if (!response.ok) {
         if (data.error === "Lawyer not found in PJUD database") {
-          alert("El abogado no se encuentra en la base de datos del PJUD. Por favor, verifique el RUT ingresado.");
+          alert(
+            "El abogado no se encuentra en la base de datos del PJUD. Por favor, verifique el RUT ingresado."
+          );
         } else if (data.error === "Lawyer already registered") {
-          alert(`El RUT [${rut}] ya se encuentra registrado en nuestro sistema.`);
+          alert(
+            `El RUT [${rut}] ya se encuentra registrado en nuestro sistema.`
+          );
         }
-
 
         throw new Error("Network response was not ok");
       }
 
       document.getElementById("abogado-form").reset();
 
-      document.getElementById("success-image").style.display = "block";
-      document
-        .getElementById("success-image")
-        .scrollIntoView({ behavior: "smooth" });
-
       // Esperar 3 segundos y luego redirigir a otra página
       setTimeout(() => {
-        window.location.href = "/registro"; // Cambia "/gracias" por la ruta de la página de destino
-      }, 3000);
+        window.location.href = "/exito_abogado"; // Cambia "/gracias" por la ruta de la página de destino
+      }, 1000);
     } catch (error) {
       console.error("Error:", error);
     }
