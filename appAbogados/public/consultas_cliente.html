@@ -61,7 +61,7 @@
               </button>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/terminos_condiciones_cliente">Condiciones del servicio</a></li>
-                <li><a class="dropdown-item" href="/consultas_cliente">Contacto</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0);" onclick="scrollToBottom()">Contacto</a></li>
               </ul>
             </div>
           </div>
@@ -75,7 +75,7 @@
               >
             </li>
             <li>
-              <a href="/consultas_cliente"
+              <a href="javascript:void(0);" onclick="scrollToBottom()"
                 >CONTACTO</a
               >
             </li>
@@ -106,7 +106,7 @@
             </li>
           </ul>
           <br />
-          <a href="/contacto" class="button-main">Cuéntanos tu problema</a>
+          <a href="/contacto" class="button-main" id="problema_terminos_user">Cuéntanos tu problema</a>
         </div>
       </div>
     </section>
@@ -115,65 +115,13 @@
       <!-- Tu contenido aquí -->
       <section class="how-to">
         <div class="text-how-to">
-          <p>Preguntas frecuentes</p>
+          <p>Contacto Appbogados</p>
         </div>
-        <div class="question">
-          <p class="description1">¿Qué es Appbogado.cl?</p>
-          <p class="description">
-            Appbogado.cl es una plataforma digital que conecta a quienes buscan
-            asesoría legal personalizada con los profesionales del Derecho que
-            mejor se adaptan a sus necesidades.
-          </p>
-        </div> 
-        <div class="question">
-          <p class="description1">¿Por qué debo usar Appbogado.cl?</p>
-          <p class="description">
-            Porque es una manera eciente y transparente de recibir, en forma
-            rápida y gratuita, ofertas de apoyo jurídico de profesionales del
-            Derecho que se adaptan efectivamente a tus necesidades.
-          </p>
-        </div>
-        <div class="question">
-          <p class="description1">
-            ¿Es gratuito el uso de la plataforma Appbogado.cl?
-          </p>
-          <p class="description">
-            Para los usuarios que buscan asesoría legal, Appbogado.cl es, y será
-            siempre, un servicio completamente gratuito.
-          </p>
-        </div>
-        <div class="question">
-          <p class="description1">
-            ¿Los datos que entregue a Appbogado.cl serán de uso público?
-          </p>
-          <p class="description">
-            No. Nadie podrá ver tus datos, a excepción de los profesionales del
-            Derecho que nuestra que nuestro modelo de Inteligencia Articial
-            determine cómo la mejor coincidencia para tu búsqueda de ayuda. En
-            Appbogado.cl somos estrictos en cuanto a la condencialidad de los
-            datos de nuestros usuarios.
-          </p>
-        </div>
-        <div class="question">
-          <p class="description1">
-            ¿Qué hago para no seguir recibiendo propuestas de asesoría de parte
-            de los abogados inscritos en Appbogado.cl?
-          </p>
-          <p class="description">
-            Es muy fácil, usted solo debe enviarnos un email a
-            contacto@appbogado.cl solicitando ser eliminado de nuestros
-            registros y eliminaremos su solicitud de nuestro sistema para que
-            dejen de contactarlo.
-          </p>
-        </div>
-        <div class="question">
-          <p class="description1">
-            ¿Cómo me contacto con Appbogado.cl para hacerles una consulta?
-          </p>
-          <p class="description">
-            Nuestra dirección de correo electrónico es: contacto@appbogado.cl
-          </p>
-        </div>
+        <p class="description">
+          Encaso de cualquier duda o consulta, ya sea del proceso de solicitud o de cualquier
+          servicio o funcionaidad de la pagina, no dude en comunicarse con nosotros al correo
+          <a href="mailto:contacto@appbogado.cl">contacto@appbogado.cl</a>
+        </p>
       </section>
 
       <footer>
@@ -214,7 +162,7 @@
                 <li><a href="/preguntas">Preguntas frecuentes</a></li>
                 <li><a href="/terminos_condiciones_cliente">Términos y condiciones</a></li>
                 <li><a href="/politicas_cliente">Políticas de Privacidad</a></li>
-                <li><a href="/consultas_cliente">Contacto</a></li>
+                <li><a href="javascript:void(0);" onclick="scrollToBottom()">Contacto</a></li>
 
               </ul>
             </div>
@@ -237,7 +185,7 @@
                 <li><a href="/preguntas">Preguntas frecuentes</a></li>
                 <li><a href="/terminos_condiciones_cliente">Términos y condiciones</a></li>
                 <li><a href="/politicas_cliente">Políticas de Privacidad</a></li>
-                <li><a href="/consultas_cliente">Contacto</a></li>
+                <li><a href="javascript:void(0);" onclick="scrollToBottom()">Contacto</a></li>
 
               </ul>
             </div>
@@ -292,15 +240,16 @@
         </div>
 
           </div>
-      </footer>
+        </footer>
     </div>
     <!-- Bootstrap JS (incluyendo Popper.js) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
- 
+
     <script>
       const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
       const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
+
       function scrollToBottom() {
         window.scrollTo({
           top: document.body.scrollHeight,
