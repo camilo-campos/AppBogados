@@ -108,18 +108,21 @@
       <section class="how-to">
         <div class="text-how-to">
           <p>Formulario de Contacto</p>
+          <div id="success-message" style="display: none; color: green; margin-bottom: 10px;">
+            Mensaje enviado con éxito.
+          </div>
         </div>
 
-        <form action="/enviar" method="POST">
+        <form id="contact-form" action="/enviar" method="POST">
           <label for="nombre">Nombre:</label>
-          <input type="text" id="nombre" name="nombre" required><br><br>
-  
+          <input type="text" id="nombre" name="nombre" required /><br /><br />
+        
           <label for="email">Correo electrónico:</label>
-          <input type="email" id="email" name="email" required><br><br>
-  
-          <label for="mensaje">Mensaje:</label><br>
-          <textarea id="mensaje" name="mensaje" rows="5" required></textarea><br><br>
-  
+          <input type="email" id="email" name="email" required /><br /><br />
+        
+          <label for="mensaje">Mensaje:</label><br />
+          <textarea id="mensaje" name="mensaje" rows="5" required></textarea><br /><br />
+        
           <button type="submit">Enviar</button>
         </form>
       </section>
@@ -259,41 +262,49 @@
       }
     </script>
     <script>
-    const express = require('express');
-    const nodemailer = require('nodemailer');
-    const bodyParser = require('body-parser');
-  
-    const app = express();
-    app.use(bodyParser.urlencoded({ extended: true }));
-  
-    app.post('/enviar', (req, res) => {
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: 'contacto@appbogado.cl',
-          pass: 'jU2.FseG-q!A69b'
+      const form = document.getElementById("contact-form");
+      const successMessage = document.getElementById("success-message");
+    
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault(); // Evita que se recargue la página
+    
+        const formData = {
+          nombre: form.nombre.value,
+          email: form.email.value,
+          mensaje: form.mensaje.value,
+        };
+    
+        try {
+          const response = await fetch("/enviar", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          });
+    
+          if (response.ok) {
+            // Muestra el mensaje de éxito
+            successMessage.style.display = "block";
+            successMessage.textContent = "Mensaje enviado con éxito.";
+    
+            // Limpia los campos del formulario
+            form.reset();
+    
+            // Oculta el mensaje después de unos segundos
+            setTimeout(() => {
+              successMessage.style.display = "none";
+            }, 10000);
+          } else {
+            throw new Error("Error al enviar el mensaje.");
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          successMessage.style.display = "block";
+          successMessage.style.color = "red";
+          successMessage.textContent = "Hubo un problema al enviar el mensaje.";
         }
       });
-     
-      const mailOptions = {
-        from: req.body.email,
-        to: 'contacto@appbogado.cl',
-        subject: 'Consulta solicitante- ${req.body.nombre}',
-        text: req.body.mensaje
-      };
-  
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          return console.log(error);
-        }
-        res.send('Correo enviado: ' + info.response);
-      });
-    });
-  
-    app.listen(8080, () => {
-      console.log('Servidor corriendo en http://localhost:8080');
-    });
-  
-  </script>
+    </script>
   </body>
 </html>
