@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Appbogado.cl</title>
     <link rel="icon" type="image/png" sizes="32x32" href="imgs/favicon-32x32.png">
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/style.abogado.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-     <!-- Bootstrap CSS -->
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -54,13 +55,13 @@
             <img src="./imgs/Logo.png" alt="Lupa" width="250px" />
           </div>
           <div class="menu2">
-            <a href="/abogado" class="button-nav">¿ERES ABOGADO?</a>
+            <a href="/" class="button-nav">¿BUSCAS ABOGADO?</a>
             <div class="dropdown">
               <button class="btn btn-terciary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa-solid fa-bars fa-1x" style="color: #ffffff"></i> 
               </button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/terminos_condiciones_cliente">Condiciones del servicio</a></li>
+                <li><a class="dropdown-item" href="/terminos_condiciones_abogado">Condiciones del servicio</a></li>
                 <li><a class="dropdown-item" href="javascript:void(0);" onclick="scrollToBottom()">Contacto</a></li>
               </ul>
             </div>
@@ -68,9 +69,9 @@
         </div>
         <nav>
           <ul>
-            <li><a href="/">INICIO</a></li>
+            <li><a href="/abogado">INICIO</a></li>
             <li>
-              <a href="/terminos_condiciones_cliente"
+              <a href="/terminos_condiciones_abogado"
                 >CONDICIONES DEL SERVICIO</a
               >
             </li>
@@ -79,7 +80,8 @@
                 >CONTACTO</a
               >
             </li>
-            <li><a href="/abogado" class="button-nav">¿ERES ABOGADO?</a></li>
+
+            <li><a href="/" class="button-nav">¿BUSCAS ABOGADO?</a></li>
           </ul>
         </nav>
       </div>
@@ -106,7 +108,7 @@
             </li>
           </ul>
           <br />
-          <a href="/contacto" class="button-main" id="problema_terminos_user">Cuéntanos tu problema</a>
+          <a href="/registro" class="button-main">Regístrate</a>
         </div>
       </div>
     </section>
@@ -118,9 +120,8 @@
           <p>Contacto Appbogados</p>
         </div>
         <p class="description">
-          En caso de cualquier duda o consulta, ya sea del proceso de solicitud o de cualquier
+          En caso de cualquier duda o consulta, ya sea del proceso de inscripción o de cualquier
           servicio o funcionalidad de la página, no dude en comunicarse con nosotros al correo
-
           <a href="mailto:contacto@appbogado.cl">contacto@appbogado.cl</a>
         </p>
       </section>
@@ -146,8 +147,8 @@
             <div class="footer-section">
               <p class="nosotros">Nosotros</p>
               <ul>
-                <li><a href="/nosotros">Sobre nosotros</a></li>
-                <li><a href="/equipo">Equipo</a></li>
+                <li><a href="/nosotros_abogado">Sobre nosotros</a></li>
+                <li><a href="/equipo_abogado">Equipo</a></li>
                 <li><a href="/abogado">¿Eres Abogado?</a></li>
               </ul> 
             </div>
@@ -160,9 +161,9 @@
                 <div class="footer-section">
               <p class="soporte">Soporte</p>
               <ul>
-                <li><a href="/preguntas">Preguntas frecuentes</a></li>
-                <li><a href="/terminos_condiciones_cliente">Términos y condiciones</a></li>
-                <li><a href="/politicas_cliente">Políticas de Privacidad</a></li>
+                <li><a href="/preguntas_abogado">Preguntas frecuentes</a></li>
+                <li><a href="/politicas_abogado">Términos y condiciones</a></li>
+                <li><a href="/politicas_abogado">Políticas de Privacidad</a></li>
                 <li><a href="javascript:void(0);" onclick="scrollToBottom()">Contacto</a></li>
 
               </ul>
@@ -183,9 +184,9 @@
             <div class="footer-section2">
               <p class="soporte2">Soporte</p>
               <ul class="links-footer-2">
-                <li><a href="/preguntas">Preguntas frecuentes</a></li>
-                <li><a href="/terminos_condiciones_cliente">Términos y condiciones</a></li>
-                <li><a href="/politicas_cliente">Políticas de Privacidad</a></li>
+                <li><a href="/preguntas_abogado">Preguntas frecuentes</a></li>
+                <li><a href="/terminos_condiciones_abogado">Términos y condiciones</a></li>
+                <li><a href="/politicas_abogado">Políticas de Privacidad</a></li>
                 <li><a href="javascript:void(0);" onclick="scrollToBottom()">Contacto</a></li>
 
               </ul>
@@ -241,16 +242,16 @@
         </div>
 
           </div>
-        </footer>
+      </footer>
     </div>
+
     <!-- Bootstrap JS (incluyendo Popper.js) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
+      
     <script>
       const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
-      const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
-
+      const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl)); 
       function scrollToBottom() {
         window.scrollTo({
           top: document.body.scrollHeight,

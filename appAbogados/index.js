@@ -127,6 +127,10 @@ router.get("/consultas", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/consultas_cliente.html");
 });
 
+router.get("/consultas_abogado", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/consultas_abogados.html");
+});
+
 //router.get("/formulario-validacion", csrfProtection, (req, res) => {
 //  res.sendFile(__dirname + "/public/formulario_abogado.html");
 //});
@@ -154,6 +158,9 @@ const multer = require("multer"); // Para manejar la carga de archivos
 router.get("/csrf-token", csrfProtection, (req, res) => {
   res.json({ csrfToken: req.csrfToken() });
 });
+
+
+
 
 // Route to handle form submission
 router.post("/submit-form", csrfProtection, async (req, res) => {
