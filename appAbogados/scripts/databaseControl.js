@@ -1,14 +1,16 @@
 const { Pool } = require("pg");
 const fs = require("fs");
+const { v4: uuidv4 } = require("uuid");
+require("dotenv").config();
 
 // Create a new pool instance to manage the database connection
 const pool = new Pool({
-  host: "7add7be1-1f6c-47e1-987f-3a8a50eb78bd.4b2136ddd30a46e9b7bdb2b2db7f8cd0.databases.appdomain.cloud",
-  port: 32293,
-  database: "ibmclouddb",
-  user: "ibm_cloud_de5d629e_3196_40cf_ab94_2365fef098f9",
-  //password:"srh1Pemn1k697bmu5c6JKg==:dDDs2uYRBhM6ATxdUllQXs2KKONHlK8txfLvVt5Zfmm7CLgYdXLBk97gdRWtp4ErSQpOMO1NTVSX6nhproIYjg==",
-  password: "6dc898c24ff1a476bee1acad7ed6bfc5fe1e8f652d4e2f2735ba34c162b66080",
+  host: process.env.host,
+  port: process.env.port,
+  database: process.env.database,
+  user: process.env.user,
+
+  password: process.env.password,
   ssl: {
     ca: fs.readFileSync(__dirname + "/rds-combined-ca-bundle.pem").toString(),
     rejectUnauthorized: true,

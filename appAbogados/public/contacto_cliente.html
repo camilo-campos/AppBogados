@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Appbogado.cl</title>
     <link rel="icon" type="image/png" sizes="32x32" href="imgs/favicon-32x32.png">
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/style.nosotros.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
      <!-- Bootstrap CSS -->
@@ -50,35 +50,27 @@
     <header>
       <div class="header-top">
         <div class="header-top2">
-          <div class="logo">
-            <img src="./imgs/Logo.png" alt="Lupa" width="250px" />
+        <div class="logo">
+          <img src="./imgs/Logo.png" alt="Lupa" width="250px" />
+        </div>
+        <div class="menu2">
+          <a href="/abogado" class="button-nav">¿ERES ABOGADO?</a>
+          <div class="dropdown">
+            <button class="btn btn-terciary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-bars fa-1x" style="color: #ffffff"></i> 
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/terminos_condiciones_cliente">Condiciones del servicio</a></li>
+              <li><a class="dropdown-item" href="javascript:void(0);" onclick="scrollToBottom()">Contacto</a></li>
+            </ul>
           </div>
-          <div class="menu2">
-            <a href="/abogado" class="button-nav">¿ERES ABOGADO?</a>
-            <div class="dropdown">
-              <button class="btn btn-terciary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-bars fa-1x" style="color: #ffffff"></i> 
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/terminos_condiciones_cliente">Condiciones del servicio</a></li>
-                <li><a class="dropdown-item" href="/consultas">Contacto</a></li>
-              </ul>
             </div>
-          </div>
         </div>
         <nav>
           <ul>
             <li><a href="/">INICIO</a></li>
-            <li>
-              <a href="/terminos_condiciones_cliente"
-                >CONDICIONES DEL SERVICIO</a
-              >
-            </li>
-            <li>
-              <a href="/consultas"
-                >CONTACTO</a
-              >
-            </li>
+            <li><a href="/terminos_condiciones_cliente">CONDICIONES DEL SERVICIO</a></li>
+            <li><a href="javascript:void(0);" onclick="scrollToBottom()">CONTACTO</a></li>
             <li><a href="/abogado" class="button-nav">¿ERES ABOGADO?</a></li>
           </ul>
         </nav>
@@ -115,67 +107,25 @@
       <!-- Tu contenido aquí -->
       <section class="how-to">
         <div class="text-how-to">
-          <p>Preguntas frecuentes</p>
+          <p>Formulario de Contacto</p>
+          <div id="success-message" style="display: none; color: green; margin-bottom: 10px;">
+            Mensaje enviado con éxito.
+          </div>
         </div>
-        <div class="question">
-          <p class="description1">¿Qué es Appbogado.cl?</p>
-          <p class="description">
-            Appbogado.cl es una plataforma digital que conecta a quienes buscan
-            asesoría legal personalizada con los profesionales del Derecho que
-            mejor se adaptan a sus necesidades.
-          </p>
-        </div> 
-        <div class="question">
-          <p class="description1">¿Por qué debo usar Appbogado.cl?</p>
-          <p class="description">
-            Porque es una manera eciente y transparente de recibir, en forma
-            rápida y gratuita, ofertas de apoyo jurídico de profesionales del
-            Derecho que se adaptan efectivamente a tus necesidades.
-          </p>
-        </div>
-        <div class="question">
-          <p class="description1">
-            ¿Es gratuito el uso de la plataforma Appbogado.cl?
-          </p>
-          <p class="description">
-            Para los usuarios que buscan asesoría legal, Appbogado.cl es, y será
-            siempre, un servicio completamente gratuito.
-          </p>
-        </div>
-        <div class="question">
-          <p class="description1">
-            ¿Los datos que entregue a Appbogado.cl serán de uso público?
-          </p>
-          <p class="description">
-            No. Nadie podrá ver tus datos, a excepción de los profesionales del
-            Derecho que nuestra que nuestro modelo de Inteligencia Articial
-            determine cómo la mejor coincidencia para tu búsqueda de ayuda. En
-            Appbogado.cl somos estrictos en cuanto a la condencialidad de los
-            datos de nuestros usuarios.
-          </p>
-        </div>
-        <div class="question">
-          <p class="description1">
-            ¿Qué hago para no seguir recibiendo propuestas de asesoría de parte
-            de los abogados inscritos en Appbogado.cl?
-          </p>
-          <p class="description">
-            Es muy fácil, usted solo debe enviarnos un email a
-            contacto@appbogado.cl solicitando ser eliminado de nuestros
-            registros y eliminaremos su solicitud de nuestro sistema para que
-            dejen de contactarlo.
-          </p>
-        </div>
-        <div class="question">
-          <p class="description1">
-            ¿Cómo me contacto con Appbogado.cl para hacerles una consulta?
-          </p>
-          <p class="description">
-            Nuestra dirección de correo electrónico es: contacto@appbogado.cl
-          </p>
-        </div>
-      </section>
 
+        <form id="contact-form" action="/enviar" method="POST">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" required /><br /><br />
+        
+          <label for="email">Correo electrónico:</label>
+          <input type="email" id="email" name="email" required /><br /><br />
+        
+          <label for="mensaje">Mensaje:</label><br />
+          <textarea id="mensaje" name="mensaje" rows="5" required></textarea><br /><br />
+        
+          <button type="submit">Enviar</button>
+        </form>
+      </section>
       <footer>
         <img class="image-tablet"
         src="./imgs/appabogados.cl.png" width="100px" height="100px"/>
@@ -214,8 +164,7 @@
                 <li><a href="/preguntas">Preguntas frecuentes</a></li>
                 <li><a href="/terminos_condiciones_cliente">Términos y condiciones</a></li>
                 <li><a href="/politicas_cliente">Políticas de Privacidad</a></li>
-                <li><a href="/consultas">Contacto</a></li>
-
+                <li><a href="/contacto">Contacto</a></li>
               </ul>
             </div>
             </div>
@@ -237,8 +186,11 @@
                 <li><a href="/preguntas">Preguntas frecuentes</a></li>
                 <li><a href="/terminos_condiciones_cliente">Términos y condiciones</a></li>
                 <li><a href="/politicas_cliente">Políticas de Privacidad</a></li>
-                <li><a href="/consultas">Contacto</a></li>
-
+                <li>
+                  <a href="javascript:void(0);" onclick="scrollToBottom()"
+                    >Contacto</a
+                  >
+                </li>
               </ul>
             </div>
             </div>
@@ -294,10 +246,11 @@
           </div>
       </footer>
     </div>
+  
     <!-- Bootstrap JS (incluyendo Popper.js) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
- 
+    
     <script>
       const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
       const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
@@ -307,6 +260,51 @@
           behavior: "smooth", // Hace que el scroll sea suave
         });
       }
+    </script>
+    <script>
+      const form = document.getElementById("contact-form");
+      const successMessage = document.getElementById("success-message");
+    
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault(); // Evita que se recargue la página
+    
+        const formData = {
+          nombre: form.nombre.value,
+          email: form.email.value,
+          mensaje: form.mensaje.value,
+        };
+    
+        try {
+          const response = await fetch("/enviar", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          });
+    
+          if (response.ok) {
+            // Muestra el mensaje de éxito
+            successMessage.style.display = "block";
+            successMessage.textContent = "Mensaje enviado con éxito.";
+    
+            // Limpia los campos del formulario
+            form.reset();
+    
+            // Oculta el mensaje después de unos segundos
+            setTimeout(() => {
+              successMessage.style.display = "none";
+            }, 10000);
+          } else {
+            throw new Error("Error al enviar el mensaje.");
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          successMessage.style.display = "block";
+          successMessage.style.color = "red";
+          successMessage.textContent = "Hubo un problema al enviar el mensaje.";
+        }
+      });
     </script>
   </body>
 </html>

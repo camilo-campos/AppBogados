@@ -11,6 +11,8 @@ const {
   databaseGet,
 } = require("./scripts/databaseControl");
 
+require("dotenv").config();
+
 // --- Configuraciones miscelaneas ---
 // [i] Subir los abogados y solicitantes a la base de datos
 const subirABaseDeDatos = true;
@@ -47,6 +49,13 @@ app.use(express.static("public"));
 // use router to bundle all routes to /
 const router = express.Router();
 app.use("/", router);
+
+// Endpoint para exponer variables de entorno
+app.get("/api/config", (req, res) => {
+  res.json({
+    apiUrl: process.env.url_regula, // Exponiendo la URL de la API
+  });
+});
 
 // get on root route
 router.get("/", csrfProtection, (req, res) => {
@@ -117,6 +126,20 @@ router.get("/exito_cliente", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/exito_cliente.html");
 });
 
+// es el caso con el formulario que no esta funcionando !!!
+// debe ser actualizado cuando haya sido corregido
+router.get("/consultas_temp", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/contacto_cliente.html");
+});
+
+router.get("/consultas", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/consultas_cliente.html");
+});
+
+router.get("/consultas_abogado", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/consultas_abogados.html");
+});
+
 //router.get("/formulario-validacion", csrfProtection, (req, res) => {
 //  res.sendFile(__dirname + "/public/formulario_abogado.html");
 //});
@@ -139,6 +162,42 @@ const multer = require("multer"); // Para manejar la carga de archivos
 // Directorio temporal de carga de archivos
 
 // Ruta para manejar la verificación con Regula
+
+//ruta para envio de correo de contacto
+
+const nodemailer = require("nodemailer");
+
+// Nueva ruta POST para enviar correos
+router.post("/enviar", async (req, res) => {
+  const { nombre, email, mensaje } = req.body; // Extraer datos del formulario
+
+  // Configuración del transporte de correo
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.correo, // Correo de origen
+      pass: process.env.clave_correo, // Contraseña segura (mover a variables de entorno)
+    },
+  });
+
+  // Configurar el correo
+  const mailOptions = {
+    from: email,
+    to: "jaguilera@technonest.cl",
+    subject: `Consulta solicitante - ${nombre}`, // Asunto dinámico con nombre
+    text: mensaje,
+  };
+
+  try {
+    // Enviar el correo
+    const info = await transporter.sendMail(mailOptions);
+    console.log("Correo enviado:", info.response);
+    res.status(200).json({ message: "Correo enviado correctamente" });
+  } catch (error) {
+    console.error("Error al enviar el correo:", error);
+    res.status(500).json({ error: "Error al enviar el correo" });
+  }
+});
 
 // Route to serve CSRF token
 router.get("/csrf-token", csrfProtection, (req, res) => {
