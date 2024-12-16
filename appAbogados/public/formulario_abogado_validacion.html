@@ -1096,7 +1096,19 @@ async function startCamera() {
 
         return jsonData;
       }
-
+      async function loadConfig() {
+        try {
+            const response = await fetch('/api/config');
+            const config = await response.json();
+            
+            
+        } catch (error) {
+            console.error('Error al cargar la configuración:', error);
+        }
+      }
+      
+      // Llamar a la función para cargar la configuración al iniciar la aplicación
+      loadConfig();
       // Función para enviar el JSON en una solicitud POST
       async function sendImageJson() {
         const jsonData = prepareImageJson();
@@ -1107,7 +1119,7 @@ async function startCamera() {
         }
       
         try {
-          const response = await fetch("https://regula-verificacion.1htxkwgx6seo.us-south.codeengine.appdomain.cloud/api/process", {
+          const response = await fetch(appConfig.url_regula, {
             method: "POST",
             headers: {
               "Content-Type": "application/json"

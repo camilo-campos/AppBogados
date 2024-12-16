@@ -1,5 +1,6 @@
 const { WatsonxAI } = require("@langchain/community/llms/watsonx_ai");
-const fetch = require("node-fetch"); 
+const fetch = require("node-fetch");
+require("dotenv").config();
 
 let modelExtract = null;
 let modelRate = null;
@@ -11,10 +12,10 @@ let modelRate = null;
 function setModelExtract() {
   console.log("\x1b[47m\x1b[30m%s\x1b[0m", "Setting Extract model...");
   modelExtract = new WatsonxAI({
-    modelId: "meta-llama/llama-2-70b-chat",
+    modelId: process.env.modelId,
     url: "https://us-south.ml.cloud.ibm.com",
-    ibmCloudApiKey: "0GY8cqsa49R8Gs6aiK0RB5Hb6ZRDFyKew474yYfVJBKa",
-    projectId: "37e2e673-598a-4dca-af77-b102ee3b47c9",
+    ibmCloudApiKey: process.env.ibmCloudApiKey,
+    projectId: process.env.projectId,
     modelParameters: {
       max_new_tokens: 200,
       min_new_tokens: 0,
@@ -27,10 +28,10 @@ function setModelExtract() {
 function setModelRate() {
   console.log("\x1b[47m\x1b[30m%s\x1b[0m", "Setting Rate model...");
   modelRate = new WatsonxAI({
-    modelId: "ibm/granite-20b-multilingual", 
+    modelId: "ibm/granite-20b-multilingual",
     url: "https://us-south.ml.cloud.ibm.com",
-    ibmCloudApiKey: "0GY8cqsa49R8Gs6aiK0RB5Hb6ZRDFyKew474yYfVJBKa",
-    projectId: "37e2e673-598a-4dca-af77-b102ee3b47c9",
+    ibmCloudApiKey: process.env.ibmCloudApiKey,
+    projectId: process.env.projectId,
     modelParameters: {
       max_new_tokens: 250,
       min_new_tokens: 0,
@@ -43,18 +44,25 @@ function setModelRate() {
 
 async function getAiResponse(prompt, extract = true) {
   const promptContent = JSON.stringify(prompt);
-  console.log("\n-->Get AI Response called with prompt:", promptContent+"\n<--");
+  console.log(
+    "\n-->Get AI Response called with prompt:",
+    promptContent + "\n<--"
+  );
   try {
     if (!modelExtract) setModelExtract();
     if (!modelRate) setModelRate();
-    console.log("Model initialized, invoking model..."); 
+    console.log("Model initialized, invoking model...");
     let res;
     if (extract) {
       res = await modelExtract.invoke(promptContent);
     } else {
       res = await modelRate.invoke(promptContent);
     }
-    console.log("-----[Model response]-----", res, "\n--------------------------");
+    console.log(
+      "-----[Model response]-----",
+      res,
+      "\n--------------------------"
+    );
     return res;
   } catch (error) {
     console.error("Error in getAiResponse:", error);

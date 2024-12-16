@@ -10,6 +10,8 @@ const {
   databaseGet,
 } = require("./scripts/databaseControl");
 
+require("dotenv").config();
+
 // --- Configuraciones miscelaneas ---
 // [i] Subir los abogados y solicitantes a la base de datos
 const subirABaseDeDatos = true;
@@ -47,6 +49,13 @@ app.use(express.static("public"));
 // use router to bundle all routes to /
 const router = express.Router();
 app.use("/", router);
+
+// Endpoint para exponer variables de entorno
+app.get("/api/config", (req, res) => {
+  res.json({
+    apiUrl: process.env.url_regula, // Exponiendo la URL de la API
+  });
+});
 
 // get on root route
 router.get("/", csrfProtection, (req, res) => {
@@ -117,12 +126,11 @@ router.get("/exito_cliente", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/exito_cliente.html");
 });
 
-// es el caso con el formulario que no esta funcionando !!! 
+// es el caso con el formulario que no esta funcionando !!!
 // debe ser actualizado cuando haya sido corregido
 router.get("/consultas_temp", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/contacto_cliente.html");
 });
-
 
 router.get("/consultas", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/consultas_cliente.html");
@@ -155,7 +163,7 @@ const multer = require("multer"); // Para manejar la carga de archivos
 
 // Ruta para manejar la verificación con Regula
 
-//ruta para envio de correo de contacto 
+//ruta para envio de correo de contacto
 
 const nodemailer = require("nodemailer");
 
@@ -167,8 +175,8 @@ router.post("/enviar", async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "desarrollo@technonest.cl", // Correo de origen
-      pass: "",       // Contraseña segura (mover a variables de entorno)
+      user: process.env.correo, // Correo de origen
+      pass: process.env.clave_correo, // Contraseña segura (mover a variables de entorno)
     },
   });
 
@@ -191,15 +199,10 @@ router.post("/enviar", async (req, res) => {
   }
 });
 
-
-
 // Route to serve CSRF token
 router.get("/csrf-token", csrfProtection, (req, res) => {
   res.json({ csrfToken: req.csrfToken() });
 });
-
-
-
 
 // Route to handle form submission
 router.post("/submit-form", csrfProtection, async (req, res) => {
