@@ -3,6 +3,7 @@ const { processForm } = require("./databaseProcess");
 const { getOpenAiResponse } = require("./openAiControl");
 const { parseResponse } = require("./parseResponse");
 const { sendEmail } = require("./mailHandler");
+const { databaseInsert } = require("./databaseControl");
 const fs = require('fs');
 const path = require('path');
 const mailFormatAbogado = './emailTemplates/templateMailAbogado.html';
@@ -34,11 +35,12 @@ const imagesCliente = [
   }
 ];
 
-async function handleClientForm(formData, prompt, maxAbogadosPerClient) {
+async function handleClientForm(formData, prompt, maxAbogadosPerClient, id_solicitud) {
   let attempts = 0;
   let abogadosInfo = [];
   let abogadosAmbitos = [];
 
+  const currentDate = new Date();
 
   const systemRequest = `${prompt.promptSystem}\nList of tags: ${prompt.promptAmbitoList}`;
 
@@ -135,13 +137,31 @@ async function handleClientForm(formData, prompt, maxAbogadosPerClient) {
         }
       }
 
+      abogadosInfo = abogadosRating;
+
+      /* --------------------------------
+        4.5) Listar a los abogados que no han pagado ultimamente y que se han estado perdiendo clientes
+      -------------------------------- */
+
+      let lostLawyers = [];
+      let filteredLawyers = [];
+      for (let i = 0; i < abogadosInfo.length; i++) {
+        const abogado = abogadosInfo[i];
+        const lastPayment = new Date(abogado.fecha_vigencia);
+        if (lastPayment < currentDate) {
+          lostLawyers.push(abogado);
+        } else {
+          filteredLawyers.push(abogado);
+        }
+      }
+
       /* --------------------------------
         5) Limitar la cantidad de abogados por cliente
       -------------------------------- */
 
-      if (abogadosRating.length > maxAbogadosPerClient) {
-        abogadosRating.sort((a, b) => b.rating - a.rating); // Sort the abogados by rating
-        abogadosRating.splice(maxAbogadosPerClient); // Remove the lowest rated abogados
+      if (filteredLawyers.length > maxAbogadosPerClient) {
+        filteredLawyers.sort((a, b) => b.rating - a.rating); // Sort the abogados by rating
+        filteredLawyers.splice(maxAbogadosPerClient); // Remove the lowest rated abogados
       }
 
       /* --------------------------------
@@ -152,10 +172,10 @@ async function handleClientForm(formData, prompt, maxAbogadosPerClient) {
       // This will be send to the abogado
       
 
-      for (let i = 0; i < abogadosRating.length; i++) {
-        const abogado = abogadosRating[i];
+      for (let i = 0; i < filteredLawyers.length; i++) {
+        const abogado = filteredLawyers[i];
         try {
-          const simpleText = `Estimado/a ${abogado.nombres},\n\nUn cliente ha solicitado sus servicios legales. A continuación, se presenta la información de contacto del cliente y su caso:\n\nNombre: ${formData.nombres} ${formData.apellidos}\nRUT: ${formData.rut}\nEmail: ${formData.mail}\nMensaje: ${formData.caso}\nRegión: ${formData.region}, ${formData.comuna}\n\nAntecedentes Penales: ${formData.antecedentes_penales ? "Sí" : "No"}\nAntecedentes Comerciales: ${formData.antecedentes_comerciales ? "Sí" : "No"}\nResidencia Regular: ${formData.residencia ? "Sí" : "No"}\n\nFecha de la consulta: ${new Date().toLocaleDateString()}\n\nPara más detalles, por favor revise el correo electrónico enviado a su dirección.\n\nSaludos cordiales,\nEquipo AppBogado`;
+          const simpleText = `Estimado/a ${abogado.nombres},\n\nUn cliente ha solicitado sus servicios legales. A continuación, se presenta la información de contacto del cliente y su caso:\n\nNombre: ${formData.nombres} ${formData.apellidos}\nRUT: ${formData.rut}\nEmail: ${formData.mail}\nMensaje: ${formData.caso}\nRegión: ${formData.region}, ${formData.comuna}\n\nAntecedentes Penales: ${formData.antecedentes_penales ? "Sí" : "No"}\nAntecedentes Comerciales: ${formData.antecedentes_comerciales ? "Sí" : "No"}\nResidencia Regular: ${formData.residencia ? "Sí" : "No"}\n\nFecha de la consulta: ${currentDate.toLocaleDateString()}\n\nPara más detalles, por favor revise el correo electrónico enviado a su dirección.\n\nSaludos cordiales,\nEquipo AppBogado`;
 
           const to = abogado.mail;
           const from = "admin@appbogado.cl";
@@ -170,7 +190,7 @@ async function handleClientForm(formData, prompt, maxAbogadosPerClient) {
             phAPenales: formData.antecedentes_penales, // Bool
             phAComerciales: formData.antecedentes_comerciales, // (DICOM) Bool
             phResidencia: formData.residencia, // Bool
-            phDate: new Date().toLocaleDateString(),
+            phDate: currentDate.toLocaleDateString(),
             phText: simpleText,
           };
           
@@ -186,11 +206,11 @@ async function handleClientForm(formData, prompt, maxAbogadosPerClient) {
       -------------------------------- */
 
       // We randomize the list, so we don't reveal the order of best rated abogados
-      abogadosRating = abogadosRating.sort(() => Math.random() - 0.5);
+      filteredLawyers = filteredLawyers.sort(() => Math.random() - 0.5);
 
-      const messageInfo = `Hemos recibido la información de su caso satisfactoriamente y la hemos enviado a ${abogadosRating.length} abogado${abogadosRating.length > 1 ? "s" : ""} inscritos en nuestra plataforma, quienes le contactarán prontamente.`;
+      const messageInfo = `Hemos recibido la información de su caso satisfactoriamente y la hemos enviado a ${filteredLawyers.length} abogado${filteredLawyers.length > 1 ? "s" : ""} inscritos en nuestra plataforma, quienes le contactarán prontamente.`;
 
-      const simpleTextCliente = `Estimado/a ${formData.nombres} ${formData.apellidos},\n\nHemos recibido la información de su caso satisfactoriamente y la hemos enviado a ${abogadosRating.length} abogado${abogadosRating.length > 1 ? "s" : ""} inscritos en nuestra plataforma, quienes le contactarán prontamente.\n\nPara más detalles, por favor revise el correo electrónico enviado a su dirección.\n\nSaludos cordiales,\nEquipo AppBogado`;
+      const simpleTextCliente = `Estimado/a ${formData.nombres} ${formData.apellidos},\n\nHemos recibido la información de su caso satisfactoriamente y la hemos enviado a ${filteredLawyers.length} abogado${filteredLawyers.length > 1 ? "s" : ""} inscritos en nuestra plataforma, quienes le contactarán prontamente.\n\nPara más detalles, por favor revise el correo electrónico enviado a su dirección.\n\nSaludos cordiales,\nEquipo AppBogado`;
 
       try {
         const to = formData.mail;
@@ -201,14 +221,14 @@ async function handleClientForm(formData, prompt, maxAbogadosPerClient) {
           phAbogados: messageInfo,
           phMessage: formData.caso,
           phRegion: formData.region + ", " + formData.comuna,
-          phDate: new Date().toLocaleDateString(),
+          phDate: currentDate.toLocaleDateString(),
           phText: simpleTextCliente,
         };
 
         // Make an object containing only the abogado's relevant info
         let finalAbogadosList = [];
-        for (let i = 0; i < abogadosRating.length; i++) {
-          const abogado = abogadosRating[i];
+        for (let i = 0; i < filteredLawyers.length; i++) {
+          const abogado = filteredLawyers[i];
           finalAbogadosList.push({
             Nombre: abogado.nombres + " " + abogado.apellidos,
             Email: abogado.mail,
@@ -217,6 +237,73 @@ async function handleClientForm(formData, prompt, maxAbogadosPerClient) {
 
         //console.log("TEST sendEmailTo Client:", to, "\nwith", finalAbogadosList);
         await sendEmail(to, from, subject, placeholders, mailFormatCliente, [], imagesCliente);
+
+        /* --------------------------------
+          8) Registrar los casos enviados
+        -------------------------------- */
+        
+        for (let i = 0; i < filteredLawyers.length; i++) {
+          /*
+            DB: ft_envio
+            - id_envio
+            - id_operacion
+            - envio (rut)
+            - fecha_envio
+          */
+          const abogado = filteredLawyers[i];
+          
+          // Add the abogado to the sent list
+          const sentCase = {
+            id_operacion: id_solicitud,
+            envio: abogado.rut,
+            fecha_envio: currentDate.toISOString(),
+            id_envio: id_solicitud + "-" + abogado.rut,
+          };
+
+          console.log("Sent case:", sentCase);
+
+          try {
+            await databaseInsert("ft_envio", sentCase);
+            console.log("Sent case inserted into database");
+          } catch (error) {
+            console.error("Error inserting sent case into database:", error);
+          }
+          
+        }
+
+
+        /* --------------------------------
+          9) Registrar los casos de los abogados que no han pagado
+        -------------------------------- */
+
+        for (let i = 0; i < lostLawyers.length; i++) {
+          /*
+            DB: ft_casos_perdidos
+            - id_envio_perdido
+            - id_operacion
+            - envio (rut)
+            - fecha_envio
+          */
+          const abogado = lostLawyers[i];
+
+          // Add the abogado to the lost list
+          const lostCase = {
+            id_envio_perdido: id_solicitud + "-" + abogado.rut,
+            id_operacion: id_solicitud,
+            envio: abogado.rut,
+            fecha_envio: currentDate.toISOString(),
+          };
+
+          console.log("Lost case:", lostCase);
+          try {
+            await databaseInsert("ft_casos_perdidos", lostCase);
+            console.log("Lost case inserted into database");
+          } catch (error) {
+            console.error("Error inserting lost case into database:", error);
+          }
+
+        }
+
       } catch (error) {
         console.error("Error sending email to client:", error);
       }
@@ -245,7 +332,7 @@ Agradecemos su comprension y esperamos poder ayudarle pronto.`,
         phCliente: formData.nombres + " " + formData.apellidos,
         phMessage: formData.caso,
         phRegion: formData.region + ", " + formData.comuna,
-        phDate: new Date().toLocaleDateString(),
+        phDate: currentDate.toLocaleDateString(),
       };
 
       //console.log("TEST sendEmailTo Client:", to, "\nwith no abogados");

@@ -251,7 +251,10 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
 
       if (subirABaseDeDatos) {
         //const result = await insert_dim_validados(formData);
-        const result = await databaseInsert("dim_validados", formData);
+        let dataRequest = { ...formData };
+        delete dataRequest.formType;
+        
+        const result = await databaseInsert("dim_validados", dataRequest);
         console.log("[ok] Data inserted into dim_validados database:", result);
       }
 
@@ -270,7 +273,10 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
         const id_solicitud = uuidv4(); // Genera un UUID único
         if (subirABaseDeDatos) {
           //await insertSolicitante({ ...formData, id_solicitud }); 
-          await databaseInsert("ft_solicitudes", {...formData, id_solicitud});
+          let dataRequest = { ...formData, id_solicitud };
+          delete dataRequest.formType;
+
+          await databaseInsert("ft_solicitudes", dataRequest);
         }
 
         res.status(200).json({ message: "Client form processed successfully" });
@@ -311,7 +317,7 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
             // Insertar datos en la tabla ft_ambitos para cada ámbito seleccionado
             const selectedSpecialties = formData.especialidades; // IDs de los ámbitos seleccionados
             const rut = formData.rut;
-            const vigencia = "activo";
+            const vigencia = "SI";
 
             // Esperar que todas las inserciones se completen antes de enviar la respuesta
             await Promise.all(

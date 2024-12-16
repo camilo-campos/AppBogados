@@ -38,6 +38,8 @@ async function databaseInsert(table, data) {
     RETURNING *;
   `;
 
+  console.log("INSERTING", query, values);
+
   const client = await pool.connect();
   const result = await client.query(query, values);
   client.release();
@@ -58,7 +60,18 @@ async function insertAbogado(formData) {
     throw error;
   }
 
-  return insertIntoDatabase("dim_abogados", formData);
+  // Properly adjust formData to our database schema
+  delete formData.formType;
+  delete formData.especialidades;
+
+  formData.costo_ser_primer_adelant = null;
+  formData.costo_ser_cuota_litis = null;
+  formData.costo_ser_gastos_tramitacion = null;
+  formData.req_cliente_sin_ant_penales = null;
+  formData.req_cliente_sin_ant_com = null;
+  formData.req_cliente_residencia_regular = null;
+
+  return databaseInsert("dim_abogados", formData);
 }
 
 
