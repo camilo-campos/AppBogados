@@ -128,16 +128,20 @@ router.get("/exito_cliente", csrfProtection, (req, res) => {
 
 // es el caso con el formulario que no esta funcionando !!!
 // debe ser actualizado cuando haya sido corregido
-router.get("/consultas_temp", csrfProtection, (req, res) => {
+router.get("/consultas", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/contacto_cliente.html");
 });
 
-router.get("/consultas", csrfProtection, (req, res) => {
-  res.sendFile(__dirname + "/public/consultas_cliente.html");
-});
+//router.get("/consultas", csrfProtection, (req, res) => {
+//  res.sendFile(__dirname + "/public/consultas_cliente.html");
+//});
+
+//router.get("/consultas_abogado", csrfProtection, (req, res) => {
+//  res.sendFile(__dirname + "/public/consultas_abogados.html");
+//});
 
 router.get("/consultas_abogado", csrfProtection, (req, res) => {
-  res.sendFile(__dirname + "/public/consultas_abogados.html");
+  res.sendFile(__dirname + "/public/contacto_abogado.html");
 });
 
 //router.get("/formulario-validacion", csrfProtection, (req, res) => {
