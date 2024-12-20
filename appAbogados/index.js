@@ -371,7 +371,7 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
     res.status(500).json({ error: "Error processing form" });
   }
 });
-
+ 
 router.get("/success", csrfProtection, (req, res) => {
   // Envia la página de éxito al usuario
   res.sendFile(__dirname + "/public/index_cliente.html");
