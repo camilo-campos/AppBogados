@@ -148,9 +148,9 @@ router.get("/consultas_abogado", csrfProtection, (req, res) => {
 //  res.sendFile(__dirname + "/public/formulario_abogado.html");
 //});
 
-router.get("/soporte", csrfProtection, (req, res) => {
-  res.sendFile(__dirname + "/public/soporte.html");
-});
+//router.get("/soporte", csrfProtection, (req, res) => {
+//  res.sendFile(__dirname + "/public/soporte.html");
+//});
 
 // Ruta para la página de verificación con Regula
 router.get("/regula-verificacion", csrfProtection, (req, res) => {
