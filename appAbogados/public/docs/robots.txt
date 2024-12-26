@@ -1,0 +1,9 @@
+Usuario-agente: Googlebot
+Disallow:
+Usuario-agente: AdsBot-Google
+Disallow:
+Usuario-agente: Googlebot-Image
+Disallow:
+
+User-agent: *
+Disallow: /

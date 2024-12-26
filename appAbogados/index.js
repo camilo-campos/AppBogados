@@ -126,6 +126,10 @@ router.get("/exito_cliente", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/exito_cliente.html");
 });
 
+router.get("/robots.txt", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/docs/robots.txt");
+});
+
 // es el caso con el formulario que no esta funcionando !!!
 // debe ser actualizado cuando haya sido corregido
 router.get("/consultas", csrfProtection, (req, res) => {
