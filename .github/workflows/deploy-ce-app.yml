@@ -15,7 +15,7 @@ jobs:
     - name: Deploy Application to Code Engine
       uses: ibm/code-engine-github-action@v1
       with:
-        api-key: '1D4vtuwENvuxvHRvYlOK22towUf8WOT0YLCjKQ92ThnE'
+        api-key: 'g6P_sEpvcMKhVPYtM37rMz2t88dKZ8oNAvwv9i26KBML'
         resource-group: 'Technonest-GM'
         region: 'us-south'
         project: 'ce-project-Appbogado'
