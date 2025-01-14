@@ -1,4 +1,4 @@
-// handle form using AI and the database
+// handle form using AI and the database data
 const { handleClientForm } = require("./scripts/handleClientForm");
 const { handleAbogadoForm } = require("./scripts/handleAbogadoForm");
 const { getAssistantPrompt } = require("./scripts/databaseProcess");
