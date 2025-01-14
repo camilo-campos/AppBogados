@@ -24,6 +24,7 @@
    
          gtag('config', 'G-WY0QCWQ97B');
        </script> 
+
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -32,6 +33,13 @@
           })(window,document,'script','dataLayer','GTM-PPJR5JZR');
         </script>
         <!-- End Google Tag Manager -->
+    <!-- Event snippet for Envío de formulario para clientes potenciales conversion page In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. --> 
+      <script> function gtag_report_conversion(url) 
+      { var callback = function () { if (typeof(url) != 'undefined') 
+      { window.location = url; } }; gtag('event', 'conversion', 
+        { 'send_to': 'AW-11167482365/EbRUCOr9v-wZEP2Dic0p', 'value': 1.0, 'currency': 'CLP', 'event_callback': callback }); 
+        return false; } 
+      </script>
   </head>
   <body>
         <!-- Google Tag Manager (noscript) -->
@@ -165,7 +173,7 @@
           <label>Describe tu problema aquí:</label>
           <textarea id="caso" name="caso" required></textarea>
 
-          <button type="submit">Click Aquí</button>
+          <button type="submit" onclick="return gtag_report_conversion('https://www.appbogado.cl/exito_cliente')">Click Aquí</button>
         </form>
       </div>
 
