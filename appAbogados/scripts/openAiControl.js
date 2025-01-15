@@ -1,12 +1,15 @@
 const { OpenAI } = require("openai");
+require("dotenv").config();
 
 const openai = new OpenAI({
-  apiKey: "sk-proj-H68YCHOfUY370InWuCZyT3BlbkFJHpMePWaGU6Lyh3Dwa6SM",
+  apiKey: process.env.open_api_key,
 });
 
 async function getOpenAiResponse(prompt, maxTokens = 150, attempts = 0) {
   //console.log("\n[Get OpenAI Response called with this prompt]\n", prompt , "\n<-------------------------------------->");
-  console.log("\n[Get OpenAI Response called]\n<-------------------------------------->");
+  console.log(
+    "\n[Get OpenAI Response called]\n<-------------------------------------->"
+  );
 
   try {
     const response = await openai.chat.completions.create({
@@ -17,9 +20,19 @@ async function getOpenAiResponse(prompt, maxTokens = 150, attempts = 0) {
     });
     let resText = null;
 
-    if (response && response.choices && response.choices.length > 0 && response.choices[0].message && response.choices[0].message.content) {
+    if (
+      response &&
+      response.choices &&
+      response.choices.length > 0 &&
+      response.choices[0].message &&
+      response.choices[0].message.content
+    ) {
       resText = response.choices[0].message.content.trim();
-      console.log("-----[OpenAI response]-----\n", resText, "\n---------------------------");
+      console.log(
+        "-----[OpenAI response]-----\n",
+        resText,
+        "\n---------------------------"
+      );
     } else {
       console.log("[!!] -----> Got Response as:", response);
     }

@@ -9,16 +9,16 @@ jobs:
   app:
     runs-on: ubuntu-latest
     steps:
-    - name: Check out code
-      uses: actions/checkout@v3
+      - name: Check out code
+        uses: actions/checkout@v3
 
-    - name: Deploy Application to Code Engine
-      uses: ibm/code-engine-github-action@v1
-      with:
-        api-key: 'VWmOvFiyiovWh-2T09NSbpxgibTYgOzbBlHqFVSk8hOT'
-        resource-group: 'Technonest-GM'
-        region: 'us-south'
-        project: 'ce-project-Appbogado'
-        component: 'app'
-        name: 'appbogados'
-        build-source: './appAbogados'
+      - name: Deploy Application to Code Engine
+        uses: ibm/code-engine-github-action@v1
+        with:
+          api-key: "VWmOvFiyiovWh-2T09NSbpxgibTYgOzbBlHqFVSk8hOT"
+          resource-group: "Technonest-GM"
+          region: "us-south"
+          project: "ce-project-Appbogado"
+          component: "app"
+          name: "appbogados"
+          build-source: "./appAbogados"
