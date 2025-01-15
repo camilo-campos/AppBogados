@@ -1,12 +1,13 @@
-// handle form using AI and the database
+// handle form using AI and the database data
 const { handleClientForm } = require("./scripts/handleClientForm");
 const { handleAbogadoForm } = require("./scripts/handleAbogadoForm");
 const { getAssistantPrompt } = require("./scripts/databaseProcess");
 const {
-  insertSolicitante,
+  //insertSolicitante,
   insertAbogado,
-  insertft_ambitos,
-  insert_dim_validados,
+  //insertft_ambitos,
+  //insert_dim_validados,
+  databaseInsert,
   databaseGet,
 } = require("./scripts/databaseControl");
 
@@ -17,8 +18,6 @@ require("dotenv").config();
 const subirABaseDeDatos = true;
 // [i] Numero maximo de abogados a los que se les enviara el caso de un cliente
 const maxAbogadosPerClient = 10;
-// [i] No registrar ni enviar correos en modo de pruebas
-//const testingMode = true; (No implementado aun)
 
 // require expressjs
 const express = require("express");
@@ -27,6 +26,7 @@ const csrf = require("csurf");
 const { lawyerVerify } = require("./scripts/lawyerVerify");
 const fs = require("fs");
 const path = require("path");
+const { v4: uuidv4 } = require("uuid");
 
 const app = express();
 
@@ -126,27 +126,35 @@ router.get("/exito_cliente", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/exito_cliente.html");
 });
 
+router.get("/robots.txt", csrfProtection, (req, res) => {
+  res.sendFile(__dirname + "/public/docs/robots.txt");
+});
+
 // es el caso con el formulario que no esta funcionando !!!
 // debe ser actualizado cuando haya sido corregido
-router.get("/consultas_temp", csrfProtection, (req, res) => {
+router.get("/consultas", csrfProtection, (req, res) => {
   res.sendFile(__dirname + "/public/contacto_cliente.html");
 });
 
-router.get("/consultas", csrfProtection, (req, res) => {
-  res.sendFile(__dirname + "/public/consultas_cliente.html");
-});
+//router.get("/consultas", csrfProtection, (req, res) => {
+//  res.sendFile(__dirname + "/public/consultas_cliente.html");
+//});
+
+//router.get("/consultas_abogado", csrfProtection, (req, res) => {
+//  res.sendFile(__dirname + "/public/consultas_abogados.html");
+//});
 
 router.get("/consultas_abogado", csrfProtection, (req, res) => {
-  res.sendFile(__dirname + "/public/consultas_abogados.html");
+  res.sendFile(__dirname + "/public/contacto_abogado.html");
 });
 
 //router.get("/formulario-validacion", csrfProtection, (req, res) => {
 //  res.sendFile(__dirname + "/public/formulario_abogado.html");
 //});
 
-router.get("/soporte", csrfProtection, (req, res) => {
-  res.sendFile(__dirname + "/public/soporte.html");
-});
+//router.get("/soporte", csrfProtection, (req, res) => {
+//  res.sendFile(__dirname + "/public/soporte.html");
+//});
 
 // Ruta para la página de verificación con Regula
 router.get("/regula-verificacion", csrfProtection, (req, res) => {
@@ -246,7 +254,11 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
       }
 
       if (subirABaseDeDatos) {
-        const result = await insert_dim_validados(formData);
+        //const result = await insert_dim_validados(formData);
+        let dataRequest = { ...formData };
+        delete dataRequest.formType;
+        
+        const result = await databaseInsert("dim_validados", dataRequest);
         console.log("[ok] Data inserted into dim_validados database:", result);
       }
 
@@ -262,8 +274,13 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
           [i] Verificamos al usuario ANTES de procesar el formulario para que el usuario no tenga que esperar a que se complete el procesamiento
         */
 
+        const id_solicitud = uuidv4(); // Genera un UUID único
         if (subirABaseDeDatos) {
-          await insertSolicitante(formData);
+          //await insertSolicitante({ ...formData, id_solicitud }); 
+          let dataRequest = { ...formData, id_solicitud };
+          delete dataRequest.formType;
+
+          await databaseInsert("ft_solicitudes", dataRequest);
         }
 
         res.status(200).json({ message: "Client form processed successfully" });
@@ -283,7 +300,8 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
         await handleClientForm(
           formData,
           { promptProblema, promptSystem, promptAmbitoList },
-          maxAbogadosPerClient
+          maxAbogadosPerClient,
+          id_solicitud
         );
       } else {
         console.error("Error: No 'caso' field in client form data");
@@ -303,13 +321,19 @@ router.post("/submit-form", csrfProtection, async (req, res) => {
             // Insertar datos en la tabla ft_ambitos para cada ámbito seleccionado
             const selectedSpecialties = formData.especialidades; // IDs de los ámbitos seleccionados
             const rut = formData.rut;
-            const vigencia = "activo";
+            const vigencia = "SI";
 
             // Esperar que todas las inserciones se completen antes de enviar la respuesta
             await Promise.all(
               selectedSpecialties.map(async (id_ambito) => {
                 const id_rut_ambito = `${rut}-${id_ambito}`; // Combina rut y id_ambito
-                await insertft_ambitos({
+                /*await insertft_ambitos({
+                  id_rut_ambito,
+                  rut,
+                  id_ambito,
+                  vigencia,
+                });*/
+                await databaseInsert("ft_ambitos", {
                   id_rut_ambito,
                   rut,
                   id_ambito,

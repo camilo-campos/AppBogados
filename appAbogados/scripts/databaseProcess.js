@@ -33,8 +33,8 @@ function getAssistantPrompt() {
 // <-- Uncomment to test the data retrieval -->
 //dataTest(['dim_comunas_chile', 'dim_abogados', 'ft_ambitos', 'ft_comunas', 'ft_solicitudes']); OLD
 //dataTest(['dim_comunas_chile', 'dim_credenciales', 'ft_ambitos', 'dim_ambitos', 'dim_abogados']);
+//dataTest(['ft_casos_perdidos']);
 //dataTest(['dim_abogados']);
-//dataTest(['ft_casos_perdidos','dim_validados']);
 
 // <-- Uncomment to send the validation emails -->
 //sendValidationEmails();
@@ -61,7 +61,7 @@ async function processForm(formData, response) {
 
       let dataMatch = {
         rut: abogadosIds,
-        vigencia: 'activo',
+        vigencia: 'activo', //We are using 'vigencia' as 'verified', don't get them confused
       };
 
       /*if (formData.antecedentes_penales === 'si') {
@@ -84,12 +84,23 @@ async function processForm(formData, response) {
 
       // Filter abogados that have paid the service
       const currentDate = new Date();
-
-      abogadosData = abogadosData.filter(abogado => 
+      const abogadosDataCheck = abogadosData.filter(abogado => 
         abogado.fecha_vigencia && new Date(abogado.fecha_vigencia) >= currentDate
       );
 
-      if (abogadosData.length === 0) {
+      /*
+        --> We use abogadosDataCheck to ensure we are actually receiving a list of VALID lawyers, and reattempt if not
+        --> We then pass the WHOLE list (below), to add 1 to how many times the lawyer has missed a client
+        --> The final list filters for the last 3 years, it would originally used all the lawyers, but we are assuming 3 year old accounts are no longer relevant/interested
+      */
+
+      // First, filter lawyers who haven't payed in the last 3 years
+      const twoYearsAgo = new Date(currentDate.getFullYear() - 3, currentDate.getMonth(), currentDate.getDate());
+      abogadosData = abogadosData.filter(abogado =>
+        abogado.fecha_vigencia && new Date(abogado.fecha_vigencia) >= twoYearsAgo
+      );
+
+      if (abogadosData.length === 0 || abogadosDataCheck.length === 0) {
         console.log("No se encontraron abogados con fecha de vigencia activa");
         return false; // Return failure if no valid abogados are found
       }
@@ -117,8 +128,8 @@ async function processForm(formData, response) {
       }
 
     
-      const abogadosNombresB = abogadosData.map(abogado => abogado.nombres);
-      console.log("Abogados Final list:", abogadosNombresB);
+      const abogadosNombresLog = abogadosData.map(abogado => abogado.nombres);
+      console.log("Abogados Final list:", abogadosNombresLog);
 
       // Make a list of the abogados with their respective ambitos
       let abogadosAmbitosRet = [];
@@ -141,4 +152,4 @@ async function processForm(formData, response) {
   }
 }
 
-module.exports = { databaseGet, processForm, getAssistantPrompt };
+module.exports = { processForm, getAssistantPrompt };
